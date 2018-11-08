@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Student;
 use yii\widgets\ActiveForm;
+use yii\helpers\Json;
 use yii\web\Response;
 
 /**
@@ -32,11 +33,18 @@ class ProgramStudentController extends Controller
         ];
     }
 
-    public function actionGetStudent1($id)
+    public function actionGetStudent($id)
     {
         if(!Yii::$app->user->isGuest){
-           $student = ProgramStudent::find()->where(['program_id' => $id])->all();
-           return Json::encode($student);
+           $student = ProgramStudent::find()->joinWith('student')->where(['program_id' => $id])->all();
+           $studentArray = Array();
+           foreach($student as $s){
+                $tmp = Array();
+                array_push($tmp, $s->student_id);
+                array_push($tmp, $s->student->name);
+                array_push($studentArray, $tmp);
+           }
+           return Json::encode($studentArray);
         }else{
             throw new \yii\web\ForbiddenHttpException; 
         }

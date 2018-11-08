@@ -22,6 +22,7 @@ use app\models\AcademicYear;
         ArrayHelper::map(Program::find()->all(),'program_id','name'),
         ['prompt'=>'select ']
     )->label('Program Name')?>
+    
     <?= $form->field($model, 'paper_id')->dropDownList(
        []
     )?>
