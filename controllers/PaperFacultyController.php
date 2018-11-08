@@ -78,7 +78,7 @@ class PaperFacultyController extends Controller
         if(!Yii::$app->user->isGuest){
         $model = new PaperFaculty();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->paper_faculty_id]);
         }
 

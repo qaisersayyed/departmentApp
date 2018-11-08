@@ -19,7 +19,7 @@ class SearchPaperFaculty extends PaperFaculty
     {
         return [
             [['paper_faculty_id',], 'integer'],
-            [['paper_id', 'faculty_id', 'academic_year_id','created_at', 'updated_at'], 'safe'],
+            [['program_id','paper_id', 'faculty_id', 'academic_year_id','created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -68,7 +68,8 @@ class SearchPaperFaculty extends PaperFaculty
         ]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id])
               ->andFilterWhere(['like', 'academicYear.year', $this->academic_year_id])
-              ->andFilterWhere(['like', 'paper.name', $this->paper_id]);
+              ->andFilterWhere(['like', 'paper.name', $this->paper_id])
+              ->andFilterWhere(['like', 'program.name', $this->program_id]);
 
         return $dataProvider;
     }
