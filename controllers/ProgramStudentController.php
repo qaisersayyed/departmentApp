@@ -32,6 +32,15 @@ class ProgramStudentController extends Controller
         ];
     }
 
+    public function actionGetStudent1($id)
+    {
+        if(!Yii::$app->user->isGuest){
+           $student = ProgramStudent::find()->where(['program_id' => $id])->all();
+           return Json::encode($student);
+        }else{
+            throw new \yii\web\ForbiddenHttpException; 
+        }
+    }
     /**
      * Lists all ProgramStudent models.
      * @return mixed

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Organization;
 use app\models\Student;
+use app\models\Program;
 use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
@@ -15,6 +16,11 @@ use dosamigos\datepicker\DatePicker;
 <div class="student-organization-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'program_id')->dropDownList(
+        ArrayHelper::map(Program::find()->all(),'program_id','name'),
+        ['prompt'=>'select ']       
+   )  ?>
 
     <?= $form->field($model, 'organization_id')->dropDownList(
         ArrayHelper::map(Organization::find()->all(),'organization_id','company_name'),
@@ -47,3 +53,32 @@ use dosamigos\datepicker\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php 
+
+$script = <<< HTML
+    $(document).ready(function (){
+        $("#studentorganization-program_id").change(function (){
+            $('#studentorganization-student_id').empty();
+            program_id = $(this).val();
+            console.log(program_id);
+            $.ajax({
+                'method' : 'POST',
+                'url' : 'index.php?r=program-student/get-student1&id='+program_id,
+                'success': function(data){
+                    var data = jQuery.parseJSON(data);
+                    $.each(data, function(key, value){
+                        console.log(value.name);
+                        console.log(value.student_id);
+                        $('#studentorganization-student_id').append("<option value='"+value.student_id+"'>"+ value.name +"</option>");
+                    });
+                }
+            })
+        });
+    });
+HTML;
+$this->registerJS($script);
+?>
+
+
+
