@@ -93,6 +93,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'syllabus_date',
             ],
             [
+                'label' => 'Program Name',
+                'value' => 'program.name',
+                'attribute' => 'program_id',
+            ],
+            [
                 'label' => 'Course Name',
                 'value' => 'paper.name',
                 'attribute' => 'paper_id',
