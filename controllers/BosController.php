@@ -8,6 +8,7 @@ use app\models\SearchBos;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * BosController implements the CRUD actions for Bos model.
@@ -77,28 +78,24 @@ class BosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Bos();
+        $model = new BOS();
         if(!Yii::$app->user->isGuest){
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if (Yii::$app->request->isPost) {
-                $model->minutes = UploadedFile::getInstances($model, 'minutes');
-    
-                if ($model->minutes && $model->validate()) {
-                    foreach ($model->minutes as $minutes) {
-                        $minutes->saveAs('uploads/' . $minutes->baseName . '.' . $minutes->extension);
-                    }
+            if ($model->load(Yii::$app->request->post()) ){
+                $model->minutes = UploadedFile::getInstance($model, 'minutes');
+                if ($model->minutes ) {                
+                    $model->minutes->saveAs('uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension);
                 }
-            }
-            return $this->redirect(['view', 'id' => $model->bos_id]);
-        }
+                $model->minutes= 'uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension;
+	            $model->save();
+                return $this->redirect(['view', 'id' => $model->bos_id]);
+                }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-        }else {
-            throw new \yii\web\ForbiddenHttpException;
-        }
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;
+            }
     }
 
     /**

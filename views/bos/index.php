@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'bos_id',
             'program',
-            'minutes:ntext',
+            //'minutes:ntext',
             [
                 'label' => 'Date',
                 'attribute' => 'date',
