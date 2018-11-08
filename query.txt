@@ -21,3 +21,6 @@ ALTER TABLE `project` ADD `agency_id` INT NOT NULL AFTER `end_date`;
 
 
 ALTER TABLE `appointment` ADD `Type` VARCHAR(250) NOT NULL AFTER `appointment_id`;
+
+ALTER TABLE `revision` ADD `program_id` INT NOT NULL AFTER `syllabus_date`;
+alter table revision add constraint p7 foreign key(program_id) REFERENCES program(program_id)
