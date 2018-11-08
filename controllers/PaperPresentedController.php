@@ -38,6 +38,10 @@ class PaperPresentedController extends Controller
     {
         if(!Yii::$app->user->isGuest){
             $searchModel = new SearchPaperPresented();
+            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+                $searchModel->to = Yii::$app->request->get('to');
+                $searchModel->from = Yii::$app->request->get('from');
+            }
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -78,8 +82,8 @@ class PaperPresentedController extends Controller
             if ($model->load(Yii::$app->request->post()) ){
             $model->paper_presented_file = UploadedFile::getInstance($model, 'paper_presented_file');
                 if ($model->paper_presented_file ) {                
-                    $model->paper_presented_file->saveAs('uploads/paper_presented_uploads/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension);
-                    $model->paper_presented_file= 'uploads/paper_presented_uploads/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension;
+                    $model->paper_presented_file->saveAs('uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension);
+                    $model->paper_presented_file= 'uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension;
                 }
                 
 	            $model->save(false);

@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="paper-presented-form">
+<div class="paper-presented-form" style="width:50%">
 
     <?php $form = ActiveForm::begin(); ?>
 

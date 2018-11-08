@@ -12,6 +12,8 @@ use app\models\PaperPresented;
  */
 class SearchPaperPresented extends PaperPresented
 {
+    public $to;
+    public $from;
     /**
      * {@inheritdoc}
      */
@@ -57,19 +59,24 @@ class SearchPaperPresented extends PaperPresented
             return $dataProvider;
         }
 
+        if($this->to != "" && $this->from != ""){
+            $query->andFilterWhere(['between', 'date', $this->from, $this->to]);
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'paper_presented_id' => $this->paper_presented_id,
-            'date' => $this->date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'status' => $this->status,
+            'status'=>1,
         ]);
 
         $query->andFilterWhere(['like', 'paper_presented_file', $this->paper_presented_file])
             ->andFilterWhere(['like', 'paper_title', $this->paper_title])
             ->andFilterWhere(['like', 'conference_name', $this->conference_name])
-            ->andFilterWhere(['like', 'venue', $this->venue]);
+            ->andFilterWhere(['like', 'venue', $this->venue])
+            ->andFilterWhere(['like', 'date', $this->date])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

@@ -49,6 +49,7 @@ create table users (
 )
 
 ALTER TABLE `revision` CHANGE `syllabus_file` `syllabus_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
-
-ALTER TABLE `paper_presented` CHANGE `updated_at` `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+create table paper_presented( paper_presented_id int primary key auto_increment, paper_presented_file text, paper_title varchar(255),conference_name varchar(255), venue varchar(255), date date, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, status int);
+ALTER TABLE `paper_presented` CHANGE `status` `status` INT(11) NOT NULL DEFAULT '1';
 ALTER TABLE `paper_presented` CHANGE `paper_presented_file` `paper_presented_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+ALTER TABLE `student` ADD `alumni` TINYINT NOT NULL DEFAULT '0' AFTER `status`;

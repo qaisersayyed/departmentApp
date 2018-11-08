@@ -67,7 +67,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             [
                                 "items" => [
                                     ['label' => 'Student', 'icon' => 'user', 'url' => ['/program-student/index']],
-                                    /* ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student-organization/index']], */
+                                    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
                                     ['label' => 'Organization','icon' => 'briefcase', 'url' => ['/organization/index']],
                                     [
                                         'label' => 'Settings',
@@ -98,6 +98,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Auditing Member', 'url' => ['/auditing-member/index']],
                                             ['label' => 'Student Activity', 'url' => ['/student-activity/index']],
                                             ['label' => 'Project', 'url' => ['/project/index']],
+                                            ['label' => 'Internship', 'url' => ['/internship/index']],
+                                            ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
                         
                                         ],
                                     ],
