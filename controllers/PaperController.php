@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\helpers\Json;
 use app\models\Paper;
 use app\models\searchPaper;
 use yii\web\Controller;
@@ -130,6 +131,15 @@ class PaperController extends Controller
             $model->status = 0;
             $model->save(false);
             return $this->redirect(['index']);
+        }else{
+            throw new \yii\web\ForbiddenHttpException; 
+        }
+    }
+    public function actionGetPapers($id)
+    {
+        if(!Yii::$app->user->isGuest){
+           $papers = Paper::find()->where(['program_id' => $id])->all();
+           return Json::encode($papers);
         }else{
             throw new \yii\web\ForbiddenHttpException; 
         }
