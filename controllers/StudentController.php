@@ -69,6 +69,48 @@ class StudentController extends Controller
         }
     }
 
+    public function actionAlumni()
+    {
+        if(!Yii::$app->user->isGuest){
+            /* $searchModel = new SearchStudent();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams); */
+            $students = null;
+            $aid = null;
+            if(Yii::$app->request->get('a_id')){
+                $aid = Yii::$app->request->get('a_id');
+                $students = ProgramStudent::find()
+                                    ->joinWith('student')
+                                    ->where(['academic_year_id' => $aid])
+                                    ->andWhere(['student.alumni' => 0])
+                                    ->andWhere(['student.status' => 1])
+                                    ->all();
+            }
+            if(Yii::$app->request->get('aid')){  
+                $aid = Yii::$app->request->get('aid');
+                $students = ProgramStudent::find()
+                                    ->joinWith('student')
+                                    ->where(['academic_year_id' => $aid])
+                                    ->andWhere(['student.alumni' => 0])
+                                    ->andWhere(['student.status' => 1])
+                                    ->all();
+                foreach($students as $student){
+                    $student_roll = Yii::$app->request->get($student->student->roll_no);
+                    if($student_roll){
+                        $s = Student::find()->where(['roll_no' => $student->student->roll_no])->one();
+                        $s->alumni = 1;
+                        $s->save(false);
+                    }
+                }
+            }
+            return $this->render('alumni', [
+                'students' => $students,
+                'aid' => $aid,
+            ]);
+        }else{
+            throw new \yii\web\ForbiddenHttpException;
+        }
+    }
+
     /**
      * Creates a new Student model.
      * If creation is successful, the browser will be redirected to the 'view' page.

@@ -35,6 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'paper_faculty_id',
             [
+                'label' => 'Program Name',
+                'value' => 'program.name',
+                'attribute' => 'program_id',
+            ],
+            [
                 'label' => 'Paper Name',
                 'value' => 'paper.name',
                 'attribute' => 'paper_id',
@@ -53,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'created_at',
             //'updated_at',
 
-            ['class' => 'kartik\grid\SerialColumn'],
+            ['class' => 'kartik\grid\ActionColumn'],
         ],
         'pjax'=>true,
         'showPageSummary'=>false,

@@ -67,7 +67,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             [
                                 "items" => [
                                     ['label' => 'Student', 'icon' => 'user', 'url' => ['/program-student/index']],
-                                    /* ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student-organization/index']], */
+                                    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
                                     ['label' => 'Organization','icon' => 'briefcase', 'url' => ['/organization/index']],
                                     [
                                         'label' => 'Settings',

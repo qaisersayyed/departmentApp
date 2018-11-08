@@ -3,10 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\StudentOrganization;
-<<<<<<< HEAD
-
-=======
->>>>>>> 25a2359d9bd42cdadef0b226730d447daa5fac7d
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProgramStudent */
