@@ -47,3 +47,5 @@ create table users (
     created_at datetime DEFAULT now(),
     updated_at timestamp
 )
+
+ALTER TABLE `student` ADD `alumni` TINYINT NOT NULL DEFAULT '0' AFTER `status`;

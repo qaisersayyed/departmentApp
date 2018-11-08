@@ -78,11 +78,13 @@ class StudentController extends Controller
             $aid = null;
             if(Yii::$app->request->get('a_id')){
                 $aid = Yii::$app->request->get('a_id');
+                $pid = Yii::$app->request->get('program_id');
                 $students = ProgramStudent::find()
                                     ->joinWith('student')
                                     ->where(['academic_year_id' => $aid])
                                     ->andWhere(['student.alumni' => 0])
                                     ->andWhere(['student.status' => 1])
+                                    ->andWhere(['program_id' => $pid])
                                     ->all();
             }
             if(Yii::$app->request->get('aid')){  
@@ -106,6 +108,8 @@ class StudentController extends Controller
                 'students' => $students,
                 'aid' => $aid,
             ]);
+
+            
         }else{
             throw new \yii\web\ForbiddenHttpException;
         }

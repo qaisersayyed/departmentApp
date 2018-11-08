@@ -17,10 +17,9 @@ use app\models\AcademicYear;
 
 
 
-'enableAjaxValidation' => false,
-                    'enableClientValidation' => true,
-                    'id' => 'ajax'
-
+'enableAjaxValidation' => true,
+'enableClientValidation' => true,
+                    
 ]); ?>
 
     <?= $form->field($model, 'program_id')->dropDownList(
