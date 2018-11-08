@@ -64,13 +64,13 @@ $script = <<< HTML
             console.log(program_id);
             $.ajax({
                 'method' : 'POST',
-                'url' : 'index.php?r=program-student/get-student1&id='+program_id,
+                'url' : 'index.php?r=program-student/get-student&id='+program_id,
                 'success': function(data){
                     var data = jQuery.parseJSON(data);
                     $.each(data, function(key, value){
                         console.log(value.name);
                         console.log(value.student_id);
-                        $('#studentorganization-student_id').append("<option value='"+value.student_id+"'>"+ value.name +"</option>");
+                        $('#studentorganization-student_id').append("<option value='"+value[0]+"'>"+ value[1] +"</option>");
                     });
                 }
             })

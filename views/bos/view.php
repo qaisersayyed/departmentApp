@@ -32,5 +32,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
             //'updated_at',
         ],
     ]) ?>
+    <a class="btn btn-default" href='<?= $model->minutes ?>'>Download minutes file</a>
 
 </div>
