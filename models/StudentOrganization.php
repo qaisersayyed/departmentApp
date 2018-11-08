@@ -34,6 +34,7 @@ class StudentOrganization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            
             [['organization_id', 'student_id','program_id'], 'integer'],
             [['date_of_joining', 'created_at', 'updated_at'], 'safe'],
             [['position'], 'string', 'max' => 25],
