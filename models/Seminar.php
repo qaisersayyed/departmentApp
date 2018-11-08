@@ -39,6 +39,7 @@ class Seminar extends \yii\db\ActiveRecord
     {
         return [
             [['speaker_name', 'start_date', 'end_date', 'participant', 'venue', 'inhouse', 'department_id', 'academic_year_id'], 'required'],
+            [['file'],'file'],
             [['speaker_name', 'participant'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['department_id', 'academic_year_id'], 'integer'],
@@ -61,11 +62,12 @@ class Seminar extends \yii\db\ActiveRecord
             'end_date' => 'End Date',
             'participant' => 'Participant',
             'venue' => 'Venue',
-            'inhouse' => 'Inhouse',
+            'inhouse' => 'Seminar Type',
             'department_id' => 'Department',
             'academic_year_id' => 'Academic Year',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'file' => 'File',
         ];
     }
 

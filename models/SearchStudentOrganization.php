@@ -22,7 +22,7 @@ class SearchStudentOrganization extends StudentOrganization
     {
         return [
             [['student_organization_id' ], 'integer'],
-            [['date_of_joining', 'position', 'created_at', 'updated_at', 'student_id' , 'organization_id'], 'safe'],
+            [['date_of_joining', 'position', 'created_at', 'updated_at', 'student_id' , 'organization_id','program_id'], 'safe'],
         ];
     }
 
@@ -61,6 +61,8 @@ class SearchStudentOrganization extends StudentOrganization
         }
         $query->joinWith('student');
         $query->joinWith('organization');
+        $query->joinWith('program');
+        
 
         if($this->to != "" && $this->from != ""){
             $query->andFilterWhere(['between', 'date_of_joining', $this->from, $this->to]);
@@ -76,6 +78,9 @@ class SearchStudentOrganization extends StudentOrganization
         $query->andFilterWhere(['like', 'student.name', $this->student_id]);
         $query->andFilterWhere(['like', 'organization.company_name', $this->organization_id]);
         $query->andFilterWhere(['like', 'date_of_joining', $this->date_of_joining]);
+        
+        
+
         return $dataProvider;
     }
 }

@@ -26,13 +26,13 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'department1',
+            'cookieValidationKey' => 'deparsdtment1',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -80,7 +80,7 @@ if (YII_ENV_DEV) {
     ]; */
     $config['bootstrap'][] = 'gii';    
     $config['modules']['gii']['class'] = 'yii\gii\Module';
-    $config['modules']['gii']['allowedIPs'] = ['127.0.0.1', '::1']; 
+    $config['modules']['gii']['allowedIPs'] = ['127.0.0.1', '::1'];
 }
 
 return $config;

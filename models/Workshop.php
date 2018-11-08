@@ -40,6 +40,7 @@ class Workshop extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'inhouse', 'cost', 'participant', 'faculty_name', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
+            [['file'],'file'],
             [['cost'], 'number'],
             [['participant', 'faculty_name'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
@@ -58,17 +59,18 @@ class Workshop extends \yii\db\ActiveRecord
     {
         return [
             'workshop_id' => 'Workshop ID',
-            'name' => 'Name',
-            'inhouse' => 'Inhouse',
+            'name' => 'Workshop Title',
+            'inhouse' => 'Workshop Type',
             'cost' => 'Cost',
             'participant' => 'Participant',
-            'faculty_name' => 'Faculty Name',
+            'faculty_name' => 'Faculty Coordinator',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
             'department_id' => 'Department',
             'academic_year_id' => 'Academic Year',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'file' => 'File',
         ];
     }
 
