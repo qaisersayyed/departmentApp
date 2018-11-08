@@ -21,6 +21,7 @@ class SearchStudent extends Student
     public function rules()
     {
         return [
+            [['roll_no'], 'unique'],
             [['student_id'], 'integer'],
             [['name', 'phone_no', 'created_at', 'updated_at', 'status','email'], 'safe'],
             

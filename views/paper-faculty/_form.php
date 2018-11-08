@@ -22,12 +22,6 @@ use app\models\AcademicYear;
         ArrayHelper::map(Program::find()->all(),'program_id','name'),
         ['prompt'=>'select ']
     )->label('Program Name')?>
-<<<<<<< HEAD
-    
-    <?= $form->field($model, 'paper_id')->dropDownList(
-       []
-    )?>
-=======
     <?php
         if($model->paper_id){
             echo  $form->field($model, 'paper_id')->dropDownList(
@@ -37,7 +31,6 @@ use app\models\AcademicYear;
             echo  $form->field($model, 'paper_id')->dropDownList([])->label('Paper Name');;
         }
     ?>
->>>>>>> 5ae68a1c4993649d05620b9a701beaa86f5aa8b3
 
     <?= $form->field($model, 'faculty_id')->dropDownList(
         ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
