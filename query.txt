@@ -25,3 +25,7 @@ ALTER TABLE `appointment` ADD `Type` VARCHAR(250) NOT NULL AFTER `appointment_id
 ------08 nov 2018 ------
 ALTER TABLE `student_organization` ADD `program_id` INT NOT NULL AFTER `position`;
 ALTER TABLE `student_organization` ADD CONSTRAINT `p1` FOREIGN KEY (`program_id`) REFERENCES `program`(`program_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `revision` ADD `program_id` INT NOT NULL AFTER `syllabus_date`;
+alter table revision add constraint p7 foreign key(program_id) REFERENCES program(program_id);
+ALTER TABLE `student_activity` ADD `activity_file` TEXT NOT NULL AFTER `student_activity_id`;

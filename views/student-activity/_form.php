@@ -16,6 +16,8 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'activity_file')->fileInput() ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'budget')->textInput(['maxlength' => true]) ?>

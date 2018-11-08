@@ -40,7 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ['class' => 'yii\grid\SerialColumn'],
 
         //'appointment_id',
-        //'faculty.name',
+        
+        [
+            'label' => 'Faculty Name',
+            'value' => 'faculty.name',
+            'attribute' => 'faculty_id',
+            ],
         [
             'label' => 'Date of joining',
             'attribute'=>'date_of_joining',
@@ -56,13 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         'Type',
-        [
-            'label' => 'Faculty Name',
-            'value' => 'faculty.name',
-            'attribute' => 'faculty_id',
-            ],
+        
             
-        [
+        /*[
             'label' => 'Contact no',
             'value' => 'faculty.phone_no',
             'attribute' => 'faculty_id',
@@ -71,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Email',
             'value' => 'faculty.email',
             'attribute' => 'faculty_id',
-            ],
+            ],*/
         [
             'label' => 'Employee ID',
             'value' => 'faculty.employee_id',

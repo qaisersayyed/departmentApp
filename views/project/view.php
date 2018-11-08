@@ -45,5 +45,5 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_at',
         ],
     ]) ?>
-
+<a class="btn btn-default" href='<?= $model->project_file ?>'>Download Project File</a>
 </div>

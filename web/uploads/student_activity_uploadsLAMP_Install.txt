@@ -1,0 +1,62 @@
+https://websiteforstudents.com/installing-apache2-mariadb-on-ubuntu-16-04-17-10-18-04-with-php-7-2-support-lamp/
+sudo apt install apache2
+sudo apt-get install mariadb-server mariadb-client
+sudo apt install php-pear php-fpm php-dev php-zip php-curl php-xmlrpc php-gd php-mysql php-mbstring php-xml libapache2-mod-php
+sudo service apache2 restart
+
+Open Firefox and browse to Localhost
+Open terminal and run this line 
+	php -r 'echo "\n\nYour PHP installation is working fine.\n\n\n";'
+It should give message Your PHP installation is working fine.
+
+sudo apt install phpmyadmin
+sudo apt install socket
+sudo apt install openssl
+
+sudo gedit /etc/php/7.2/apache2/php.ini
+uncomment extension=mysqli
+uncomment extension=soap 
+sudo gedit /etc/apache2/apache2.conf
+Add Line Include /etc/phpmyadmin/apache.conf
+ 
+sudo service apparmor stop
+sudo update-rc.d -f apparmor remove
+sudo apt-get remove apparmor apparmor-utils
+
+sudo mysql_secure_installation
+Set password as "root" and type same for confirm password
+echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" | mysql -u root
+sudo service mariadb restart
+
+****INCASE OF MARIADB NOT STARTING or localhost/phpmyadmin not logging in****
+sudo chmod 755 /var/lib/mysql/mysql
+
+sudo service mysql stop
+cd /var/run
+sudo cp mysqld/ mysqld.bc -rf
+sudo chown mysql:mysql mysqld.bc/
+sudo service mysql stop
+sudo cp mysqld.bc/ mysqld -rf
+sudo chown mysql:mysql mysqld -R
+sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+mysql -u root
+
+UPDATE user SET authentication_string=password('root') WHERE user='root';
+FLUSH PRIVILEGES;
+***DONE***
+
+cd /var/www/html
+sudo chmod 777 /var/www/html
+
+wget https://github.com/bcit-ci/CodeIgniter/archive/3.1.9.zip
+unzip 3.1.9.zip
+sudo cp -r CodeIgniter-3.1.9 /var/www/html/ci_sample
+sudo chown -R www-data:www-data /var/www/html/ci_sample
+sudo chmod -R 777 /var/www/html/ci_sample/
+
+
+TROUBLESHOOT
+sudo mysql --user=root mysql
+CREATE USER 'piphpmyadmin'@'localhost' IDENTIFIED BY 'pihome2018';
+GRANT ALL PRIVILEGES ON *.* TO 'piphpmyadmin'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;

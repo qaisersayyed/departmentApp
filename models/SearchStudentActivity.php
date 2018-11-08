@@ -21,7 +21,7 @@ class SearchStudentActivity extends StudentActivity
     {
         return [
             [['student_activity_id', 'department_id', 'academic_year_id'], 'integer'],
-            [['name', 'start_date', 'end_date', 'faculty_name', 'student_name', 'created_at', 'updated_at'], 'safe'],
+            [['name','upload_file', 'start_date', 'end_date', 'faculty_name', 'student_name', 'created_at', 'updated_at'], 'safe'],
             [['budget'], 'number'],
         ];
     }

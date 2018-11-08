@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'student_activity_id',
             'name',
-            'budget',
+            //'budget',
             
             [
                 'label'=>'Start Date',
@@ -95,20 +95,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'start_date',
             ],
           
-            [
+            /*[
                 'label'=>'End Date',
                 'value'=>function($model){
                     return date('d M Y', strtotime($model->end_date));
                 },
                 'attribute' => 'end_date',
-            ],
+            ],*/
             'faculty_name:ntext',
             'student_name:ntext',
-            [
+            /*[
                 'label' => 'Department Name',
                 'value' => 'department.name',
                 'attribute' => 'department_id',
-            ],
+            ],*/
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',
