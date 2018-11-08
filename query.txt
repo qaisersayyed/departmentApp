@@ -47,3 +47,8 @@ create table users (
     created_at datetime DEFAULT now(),
     updated_at timestamp
 )
+
+ALTER TABLE `revision` CHANGE `syllabus_file` `syllabus_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+
+ALTER TABLE `paper_presented` CHANGE `updated_at` `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `paper_presented` CHANGE `paper_presented_file` `paper_presented_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;

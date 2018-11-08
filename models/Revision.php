@@ -10,6 +10,7 @@ use Yii;
  * @property int $revision_id
  * @property string $syllabus_file
  * @property string $syllabus_date
+ * @property int $program_id
  * @property int $paper_id
  * @property string $created_at
  * @property string $updated_at
@@ -18,29 +19,28 @@ use Yii;
  *
  * @property AcademicYear $academicYear
  * @property Paper $paper
+ * @property Program $program
  */
 class Revision extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public $program_id;
     public static function tableName()
     {
         return 'revision';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['syllabus_date', 'paper_id','program_id'], 'required'],
-            [['syllabus_file'], 'file'],
+            [[ 'syllabus_date', 'program_id', 'paper_id'], 'required'],
+            [['syllabus_file'], 'string'],
             [['syllabus_date', 'created_at', 'updated_at'], 'safe'],
-            [['paper_id', 'program_id','academic_year_id'], 'integer'],
-            [['status'], 'string', 'max' => 1],
+            [['program_id', 'paper_id', 'status', 'academic_year_id'], 'integer'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['paper_id'], 'exist', 'skipOnError' => true, 'targetClass' => Paper::className(), 'targetAttribute' => ['paper_id' => 'paper_id']],
             [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],
@@ -48,7 +48,7 @@ class Revision extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -61,7 +61,7 @@ class Revision extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'status' => 'Status',
-            'academic_year_id' => 'Academic Year ',
+            'academic_year_id' => 'Academic Year ID',
         ];
     }
 
@@ -80,6 +80,10 @@ class Revision extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Paper::className(), ['paper_id' => 'paper_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getProgram()
     {
         return $this->hasOne(Program::className(), ['program_id' => 'program_id']);
