@@ -23,6 +23,7 @@ class PaperFaculty extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $program_id;
     public static function tableName()
     {
         return 'paper_faculty';
@@ -34,7 +35,7 @@ class PaperFaculty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['paper_id', 'faculty_id', 'academic_year_id'], 'integer'],
+            [['paper_id', 'faculty_id', 'academic_year_id', 'program_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
