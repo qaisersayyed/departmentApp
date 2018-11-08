@@ -40,6 +40,7 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'venue', 'inhouse', 'cost', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
+            [['file'],'file'],
             [['cost'], 'number'],
             [['participant'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
@@ -58,7 +59,7 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             'event_id' => 'Event ID',
-            'name' => 'Name',
+            'name' => 'Event Title',
             'venue' => 'Venue',
             'inhouse' => 'Inhouse',
             'cost' => 'Cost',
@@ -69,6 +70,7 @@ class Event extends \yii\db\ActiveRecord
             'academic_year_id' => 'Academic Year',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'file' => 'File',
         ];
     }
 

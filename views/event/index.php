@@ -80,28 +80,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'event_id',
             'name',
-            'venue',
+            //'venue',
             [
-                'label' => 'inhouse',
+                'label' => 'Event Type',
                 'attribute' => 'inhouse',
                 'value' => function($dataProvider){
                     if($dataProvider->inhouse == 0){
-                            return 'Not-Inhouse';
+                            return 'Attended';
                     }else{
-                        return "In-House";
+                        return "Conducted";
                     }
 
                 }
             ],
-            'cost',
+            //'cost',
             'participant:ntext',
-            'start_date',
-            'end_date',
+            [
+                'label' => 'Start Date',
+                'attribute' => 'start_date',
+                'value' => function($model){
+                    return date('d M Y', strtotime($model->start_date));
+                }
+
+            ],
+            //'end_date',
+            /*
             [
                 'label' => 'Department Name',
                 'value' => 'department.name',
                 'attribute' => 'department_id',
                 ],
+            */
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',

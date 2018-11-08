@@ -56,7 +56,7 @@ class ProgramStudent extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'status' => 'Status',
-            'academic_year_id' => 'Academic Year',
+            'academic_year_id' => 'Admission Year',
         ];
     }
 

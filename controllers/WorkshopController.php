@@ -8,6 +8,7 @@ use app\models\SearchWorkshop;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile; 
 
 /**
  * WorkshopController implements the CRUD actions for Workshop model.
@@ -76,19 +77,24 @@ class WorkshopController extends Controller
      */
     public function actionCreate()
     {
+        $model = new Workshop();
         if(!Yii::$app->user->isGuest){
-            $model = new Workshop();
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) ){
+                $model->file = UploadedFile::getInstance($model, 'file');
+                if ($model->file ) {                
+                    $model->file->saveAs('uploads/workshop/' . $model->file ->baseName . '.' . $model->file ->extension);
+                    $model->file= 'uploads/workshop/' . $model->file ->baseName . '.' . $model->file ->extension;
+                }
+	            $model->save();
                 return $this->redirect(['view', 'id' => $model->workshop_id]);
-            }
+                }
 
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        }
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;
+            }
     }
 
     /**

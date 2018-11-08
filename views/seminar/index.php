@@ -80,29 +80,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'seminar_id',
             'speaker_name:ntext',
-            'start_date',
-            'end_date',
+            [
+                'label' => 'Start Date',
+                'attribute' => 'start_date',
+                'value' => function($model){
+                    return date('d M Y', strtotime($model->start_date));
+                }
+
+            ],
+            //'end_date',
             'participant:ntext',
-            'venue',
+            //'venue',
             
             [
-                'label' => 'inhouse',
+                'label' => 'Seminar Type',
                 'attribute' => 'inhouse',
                 'value' => function($dataProvider){
                     if($dataProvider->inhouse == 0){
-                            return 'Not-Inhouse';
+                            return 'Attended';
                     }else{
-                        return "In-House";
+                        return "Conducted";
                     }
 
                 }
             ],
 
-            [
+            /*[
                 'label' => 'Department Name',
                 'value' => 'department.name',
                 'attribute' => 'department_id',
                 ],
+            */
                 
             [
                 'label' => 'Academic Year',
@@ -112,6 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             //'created_at',
             //'updated_at',
+            //'file',
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],
