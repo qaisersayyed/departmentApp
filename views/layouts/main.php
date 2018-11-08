@@ -56,6 +56,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <br />
 
                 <!-- sidebar menu -->
+                <?php if(!Yii::$app->user->isGuest){ ?>
+
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                     <div class="menu_section">
@@ -65,7 +67,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             [
                                 "items" => [
                                     ['label' => 'Student', 'icon' => 'user', 'url' => ['/program-student/index']],
-                                    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student-organization/index']],
+                                    /* ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student-organization/index']], */
                                     ['label' => 'Organization','icon' => 'briefcase', 'url' => ['/organization/index']],
                                     [
                                         'label' => 'Settings',
@@ -109,7 +111,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         
                                         ],
                                     ],
-                                    [
+                                    ['label' => 'Faculty','icon' => 'user', 'url' => ['/appointment/index']],
+                                    /* [
                                         'label' => 'Faculty',
                                         "icon" => "th",
                                         "url" => "#",
@@ -117,7 +120,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'faculty', 'url' => ['/faculty/index']],
                                             ['label' => 'Appointments', 'url' => ['/appointment/index']],
                                         ],
-                                    ],
+                                    ], */
                                     /* [
                                         "label" => "Widgets",
                                         "icon" => "th",
@@ -183,10 +186,12 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     </div>
 
                 </div>
+                <?php } ?>
+
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
+                <!-- <div class="sidebar-footer hidden-small">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     </a>
@@ -199,12 +204,13 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     <a data-toggle="tooltip" data-placement="top" title="Logout">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
-                </div>
+                </div> -->
                 <!-- /menu footer buttons -->
             </div>
         </div>
 
         <!-- top navigation -->
+        <?php if(!Yii::$app->user->isGuest){ ?>
         <div class="top_nav">
 
             <div class="nav_menu">
@@ -220,7 +226,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;">  Profile</a>
+                                <!-- <li><a href="javascript:;">  Profile</a>
                                 </li>
                                 <li>
                                     <a href="javascript:;">
@@ -230,90 +236,21 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 </li>
                                 <li>
                                     <a href="javascript:;">Help</a>
-                                </li>
+                                </li> -->
                                 <li><a href="index.php?r=site/logout" data-method="POST"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                      <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                      <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                      <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                      <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a href="/">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                      
 
                     </ul>
                 </nav>
             </div>
 
         </div>
+        <?php } ?>
+       
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -343,8 +280,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com" rel="nofollow" target="_blank">Colorlib</a><br />
-                Extension for Yii framework 2 by <a href="http://yiister.ru" rel="nofollow" target="_blank">Yiister</a>
+               Designed and Developed by Chowgule FOSS Club
             </div>
             <div class="clearfix"></div>
         </footer>
