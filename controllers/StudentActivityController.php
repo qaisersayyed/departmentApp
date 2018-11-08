@@ -79,8 +79,9 @@ class StudentActivityController extends Controller
             $model->activity_file = UploadedFile::getInstance($model, 'activity_file');
                 if ($model->activity_file ) {                
                     $model->activity_file->saveAs('uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension);
+                    $model->activity_file= 'uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension;
                 }
-                $model->activity_file= 'uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension;
+                
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->student_activity_id]);
             }

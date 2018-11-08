@@ -29,6 +29,9 @@ ALTER TABLE `student_organization` ADD CONSTRAINT `p1` FOREIGN KEY (`program_id`
 ALTER TABLE `revision` ADD `program_id` INT NOT NULL AFTER `syllabus_date`;
 alter table revision add constraint p7 foreign key(program_id) REFERENCES program(program_id);
 ALTER TABLE `student_activity` ADD `activity_file` TEXT NOT NULL AFTER `student_activity_id`;
+ALTER TABLE `student_activity` CHANGE `activity_file` `activity_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+ALTER TABLE `project` ADD `activity_file` TEXT NOT NULL AFTER `project_id`;
+ALTER TABLE `project` CHANGE `project_file` `project_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
 
 -----------------Activities:add new column:file-------08 nov 2018-------------
 ALTER TABLE `seminar` ADD `file` TEXT NULL DEFAULT NULL AFTER `updated_at`;
