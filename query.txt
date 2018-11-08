@@ -30,3 +30,9 @@ ALTER TABLE `revision` ADD `program_id` INT NOT NULL AFTER `syllabus_date`;
 alter table revision add constraint p7 foreign key(program_id) REFERENCES program(program_id);
 ALTER TABLE `student_activity` ADD `activity_file` TEXT NOT NULL AFTER `student_activity_id`;
 >>>>>>> dec98f8f03170cdd63c1ce2cbeb67157fa172865
+
+-----------------Activities:add new column:file-------08 nov 2018-------------
+ALTER TABLE `seminar` ADD `file` TEXT NULL DEFAULT NULL AFTER `updated_at`;
+ALTER TABLE `workshop` ADD `file` TEXT NULL DEFAULT NULL AFTER `updated_at`;
+ALTER TABLE `examiner` ADD `file` TEXT NULL DEFAULT NULL AFTER `updated_at`;
+ALTER TABLE `event` ADD `file` TEXT NULL DEFAULT NULL AFTER `updated_at`;
