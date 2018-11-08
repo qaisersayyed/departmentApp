@@ -44,5 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'file',
         ],
     ]) ?>
-
+    <a class="btn btn-default" href='<?= $model->file ?>'>Download file</a>
 </div>
