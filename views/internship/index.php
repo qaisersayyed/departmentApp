@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'autoXlFormat'=>true,
+        
         'export'=>[
         'label' => 'Export',
         'fontAwesome'=>true,

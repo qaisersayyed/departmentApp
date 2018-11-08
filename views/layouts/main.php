@@ -98,6 +98,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Auditing Member', 'url' => ['/auditing-member/index']],
                                             ['label' => 'Student Activity', 'url' => ['/student-activity/index']],
                                             ['label' => 'Project', 'url' => ['/project/index']],
+                                            ['label' => 'Internship', 'url' => ['/internship/index']],
+                                            ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
                         
                                         ],
                                     ],
