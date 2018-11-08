@@ -10,15 +10,16 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchProgramStudent */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Admission';
+$this->title = 'Student';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-student-index">
 
-    
+    <h1><a Style="float:right" href="index.php?r=student-organization/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Alumni</a></h1>
 
     <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=program-student/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Admission</a></h1>
+        <span class="glyphicon glyphicon-plus"></span> Add Student</a></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
@@ -86,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'student.phone_no',
             'student.email',
            [
-             'label' => 'Academic Year',
+             'label' => 'Admission Year',
              'value' => 'academicYear.year',
              'attribute' => 'academic_year_id',
              ],

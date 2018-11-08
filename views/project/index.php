@@ -92,13 +92,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'start_date',
             ],
           
-            [
+            /*[
                 'label'=>'End Date',
                 'value'=>function($model){
                     return date('d M Y', strtotime($model->end_date));
                 },
                 'attribute' => 'end_date',
-            ],
+            ],*/
             [
                 'label' => 'Agency Name',
                 'value' => 'agency.name',
@@ -106,14 +106,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             
             'duration',
-            'amount',
+            //'amount',
             'faculty_name:ntext',
-            'student_name:ntext',
-            [
+            //'student_name:ntext',
+            /*[
                 'label' => 'Department Name',
                 'value' => 'department.name',
                 'attribute' => 'department_id',
-            ],
+            ],*/
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',

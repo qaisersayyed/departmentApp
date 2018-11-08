@@ -42,7 +42,7 @@ class Type extends \yii\db\ActiveRecord
     {
         return [
             'type_id' => 'Type ID',
-            'name' => 'Type Name',
+            'name' => 'Course Type',
             'status' => 'Status',
         ];
     }

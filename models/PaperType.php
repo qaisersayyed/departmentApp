@@ -49,7 +49,7 @@ class PaperType extends \yii\db\ActiveRecord
         return [
             'paper_type_id' => 'Paper Type ID',
             'paper_id' => 'Course Name',
-            'type_id' => 'Type Name',
+            'type_id' => 'Course Type',
             'academic_year_id' => 'Academic Year ',
             'status' => 'Status',
         ];

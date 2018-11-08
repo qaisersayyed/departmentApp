@@ -24,6 +24,7 @@ class Revision extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $program_id;
     public static function tableName()
     {
         return 'revision';
@@ -35,13 +36,14 @@ class Revision extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['syllabus_file', 'syllabus_date', 'paper_id'], 'required'],
+            [['syllabus_date', 'paper_id','program_id'], 'required'],
             [['syllabus_file'], 'file'],
             [['syllabus_date', 'created_at', 'updated_at'], 'safe'],
-            [['paper_id', 'academic_year_id'], 'integer'],
+            [['paper_id', 'program_id','academic_year_id'], 'integer'],
             [['status'], 'string', 'max' => 1],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['paper_id'], 'exist', 'skipOnError' => true, 'targetClass' => Paper::className(), 'targetAttribute' => ['paper_id' => 'paper_id']],
+            [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],
         ];
     }
 
@@ -54,6 +56,7 @@ class Revision extends \yii\db\ActiveRecord
             'revision_id' => 'Revision ID',
             'syllabus_file' => 'Syllabus File',
             'syllabus_date' => 'Syllabus Date',
+            'program_id' => 'Program Name',
             'paper_id' => 'Course Name',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -76,5 +79,9 @@ class Revision extends \yii\db\ActiveRecord
     public function getPaper()
     {
         return $this->hasOne(Paper::className(), ['paper_id' => 'paper_id']);
+    }
+    public function getProgram()
+    {
+        return $this->hasOne(Program::className(), ['program_id' => 'program_id']);
     }
 }

@@ -53,6 +53,9 @@ use dosamigos\datepicker\DatePicker;
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
 
+    <?= $form->field($model, 'file')->fileInput()?>
+
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'revision_id',
             //'syllabus_file:ntext',
             'syllabus_date',
+            'program.name',
             'paper.name',
             //'created_at',
             //'updated_at',

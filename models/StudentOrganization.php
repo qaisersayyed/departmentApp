@@ -34,11 +34,12 @@ class StudentOrganization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['organization_id', 'student_id'], 'integer'],
+            [['organization_id', 'student_id','program_id'], 'integer'],
             [['date_of_joining', 'created_at', 'updated_at'], 'safe'],
             [['position'], 'string', 'max' => 25],
             [['organization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_id' => 'organization_id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['student_id' => 'student_id']],
+            [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],
         ];
     }
 
@@ -53,6 +54,7 @@ class StudentOrganization extends \yii\db\ActiveRecord
             'student_id' => 'Student Name',
             'date_of_joining' => 'Date Of Joining',
             'position' => 'Position',
+            'program_id' => 'Program',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -72,5 +74,10 @@ class StudentOrganization extends \yii\db\ActiveRecord
     public function getStudent()
     {
         return $this->hasOne(Student::className(), ['student_id' => 'student_id']);
+    }
+
+    public function getProgram()
+    {
+        return $this->hasOne(Program::className(), ['program_id' => 'program_id']);
     }
 }

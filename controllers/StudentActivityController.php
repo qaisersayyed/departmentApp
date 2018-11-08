@@ -8,6 +8,7 @@ use app\models\SearchStudentActivity;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * StudentActivityController implements the CRUD actions for StudentActivity model.
@@ -74,7 +75,13 @@ class StudentActivityController extends Controller
     {
         $model = new StudentActivity();
         if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) ){
+            $model->activity_file = UploadedFile::getInstance($model, 'activity_file');
+                if ($model->activity_file ) {                
+                    $model->activity_file->saveAs('uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension);
+                }
+                $model->activity_file= 'uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension;
+	            $model->save();
                 return $this->redirect(['view', 'id' => $model->student_activity_id]);
             }
 

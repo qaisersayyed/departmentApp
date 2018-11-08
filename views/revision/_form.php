@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use app\models\Program;
 use app\models\Paper;
 use app\models\AcademicYear;
 use dosamigos\datepicker\DatePicker;
@@ -26,7 +27,10 @@ use dosamigos\datepicker\DatePicker;
             'format' => 'yyyy-mm-dd'
         ]
 ]);?>
-    
+    <?=$form->field($model,'program_id')->dropDownList(
+		ArrayHelper::map(Program::find()->where(['status'=>1])->all(),'program_id','name'),
+        ['prompt'=>'select ']        
+)->label('Program Name')?>
 
 	<?=$form->field($model,'paper_id')->dropDownList(
 		ArrayHelper::map(Paper::find()->where(['status'=>1])->all(),'paper_id','name'),
@@ -45,3 +49,28 @@ use dosamigos\datepicker\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php 
+
+    $script = <<< HTML
+        $(document).ready(function (){
+            $("#revision-program_id").change(function (){
+                $('#revision-paper_id').empty();
+                program_id = $(this).val();
+                console.log(program_id);
+                $.ajax({
+                    'method' : 'POST',
+                    'url' : 'index.php?r=paper/get-papers&id='+program_id,
+                    'success': function(data){
+                        var data = jQuery.parseJSON(data);
+                        $.each(data, function(key, value){
+                            console.log(value.name);
+                            console.log(value.paper_id);
+                            $('#revision-paper_id').append("<option value='"+value.paper_id+"'>"+ value.name +"</option>");
+                        });
+                    }
+                })
+            });
+        });
+HTML;
+$this->registerJS($script);
+?>

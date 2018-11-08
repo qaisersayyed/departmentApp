@@ -8,6 +8,7 @@ use app\models\SearchEvent;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -76,19 +77,25 @@ class EventController extends Controller
      */
     public function actionCreate()
     {   
+        $model = new Event();
         if(!Yii::$app->user->isGuest){
-            $model = new Event();
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) ){
+                $model->file = UploadedFile::getInstance($model, 'file');
+                if ($model->file ) {                
+                    $model->file->saveAs('uploads/event/' . $model->file ->baseName . '.' . $model->file ->extension);
+                    $model->file= 'uploads/event/' . $model->file ->baseName . '.' . $model->file ->extension;
+                }
+                
+	            $model->save();
                 return $this->redirect(['view', 'id' => $model->event_id]);
-            }
+                }
 
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        }
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;
+            }
     }
 
     /**
