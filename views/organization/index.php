@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="organization-index">
 
     <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=organization/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Admission</a></h1>
+        <span class="glyphicon glyphicon-plus"></span> Add Organization</a></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
      <?=

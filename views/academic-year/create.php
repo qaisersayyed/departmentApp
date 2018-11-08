@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\AcademicYear */
 
-$this->title = 'Create Academic Year';
+$this->title = 'Create Admission Year';
 $this->params['breadcrumbs'][] = ['label' => 'Academic Years', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
