@@ -48,7 +48,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($faculty, 'employee_id')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'Type')->dropDownList(
-            [ 'lecture bases'=>'Lecture bases', 'contract bases'=>'Contract bases'])
+            [ 'lecture bases'=>'Lecture bases', 'contract '=>'Contract','permanent'=>'Permanent','junior programmer'=>'Junior Programmer'])
         ?>
     <br>
 

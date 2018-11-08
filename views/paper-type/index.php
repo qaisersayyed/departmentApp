@@ -92,9 +92,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'paper_id',
             ],
             'paper.credit',
-            'paper.marks',
+            //'paper.marks',
             [
-                'label' => 'Type Name',
+                'label' => 'Course Type',
                 'value' => 'type.name',
                 'attribute' => 'type_id',
             ],

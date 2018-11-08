@@ -110,13 +110,20 @@ class PaperTypeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $paper = Paper::find()->where(['paper_id'=>$model->paper_id])->one();
+
         if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            if ($model->load(Yii::$app->request->post()) && $paper->load(Yii::$app->request->post())) {
+                $model->save(false);
+                $model->paper_id = $paper->paper_id;
+                $paper->save(false);
+
                 return $this->redirect(['view', 'id' => $model->paper_type_id]);
             }
 
             return $this->render('update', [
                 'model' => $model,
+                'paper' => $paper,
             ]);
         }else{
             throw new \yii\web\ForbiddenHttpException;   

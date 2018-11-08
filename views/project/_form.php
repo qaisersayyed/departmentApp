@@ -17,6 +17,7 @@ use dosamigos\datepicker\DatePicker;
 <div class="project-form" style="width:50%">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field($model, 'project_file')->fileInput() ?>
 
     <?= $form->field($model, 'approval_id')->textInput(['maxlength' => true]) ?>
 

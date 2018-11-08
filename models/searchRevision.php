@@ -21,7 +21,7 @@ class searchRevision extends Revision
     {
         return [
             [['revision_id'], 'integer'],
-            [['syllabus_file', 'syllabus_date','paper_id', 'academic_year_id', 'created_at', 'updated_at', 'status'], 'safe'],
+            [['syllabus_file', 'syllabus_date','program_id','paper_id', 'academic_year_id', 'created_at', 'updated_at', 'status'], 'safe'],
         ];
     }
 
@@ -75,6 +75,7 @@ class searchRevision extends Revision
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'syllabus_date', $this->syllabus_date])
             ->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id])
+            ->andFilterWhere(['like', 'program.name', $this->program_id])
             ->andFilterWhere(['like', 'paper.name', $this->paper_id]);
 
         return $dataProvider;
