@@ -79,7 +79,7 @@ class SearchSeminar extends Seminar
         ]);
 
         if($this->inhouse){
-            if($this->inhouse[0] == "n"){
+            if($this->inhouse[0] == "a"){
                 $this->inhouse = 0;
             }else{
                 $this->inhouse = 1;

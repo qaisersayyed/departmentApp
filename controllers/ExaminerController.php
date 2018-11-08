@@ -8,6 +8,7 @@ use app\models\SearchExaminer;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ExaminerController implements the CRUD actions for Examiner model.
@@ -75,19 +76,25 @@ class ExaminerController extends Controller
      */
     public function actionCreate()
     {
+        $model = new Examiner();
         if(!Yii::$app->user->isGuest){
-            $model = new Examiner();
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) ){
+                $model->file = UploadedFile::getInstance($model, 'file');
+                if ($model->file ) {                
+                    $model->file->saveAs('uploads/examiner/' . $model->file ->baseName . '.' . $model->file ->extension);
+                    $model->file= 'uploads/examiner/' . $model->file ->baseName . '.' . $model->file ->extension;
+                }
+                
+	            $model->save();
                 return $this->redirect(['view', 'id' => $model->examiner_id]);
-            }
+                }
 
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        }
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;
+            }
     }
 
     /**

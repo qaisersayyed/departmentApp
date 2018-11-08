@@ -38,6 +38,7 @@ class Examiner extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'faculty_name', 'venue', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
+            [['file'],'file'],
             [['faculty_name'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['department_id', 'academic_year_id'], 'integer'],
@@ -54,7 +55,7 @@ class Examiner extends \yii\db\ActiveRecord
     {
         return [
             'examiner_id' => 'Examiner ID',
-            'name' => 'Name',
+            'name' => 'Examination Detail',
             'faculty_name' => 'Faculty Name',
             'venue' => 'Venue',
             'start_date' => 'Start Date',
@@ -63,6 +64,7 @@ class Examiner extends \yii\db\ActiveRecord
             'academic_year_id' => 'Academic Year',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'file' => 'File'
         ];
     }
 
