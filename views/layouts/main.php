@@ -80,6 +80,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Assign Papers', 'url' => ['/paper-faculty/index']],
                                             ['label' => 'Revision', 'url' => ['/revision/index']],
                                             ['label' => 'Agency', 'url' => ['/agency/index']],
+                                            ['label' => 'Users', 'url' => ['/users/index']],
                         
                                         ],
                                     ],
