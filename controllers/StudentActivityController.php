@@ -78,8 +78,8 @@ class StudentActivityController extends Controller
             if ($model->load(Yii::$app->request->post()) ){
             $model->activity_file = UploadedFile::getInstance($model, 'activity_file');
                 if ($model->activity_file ) {                
-                    $model->activity_file->saveAs('uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension);
-                    $model->activity_file= 'uploads/student_activity_uploads/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension;
+                    $model->activity_file->saveAs('uploads/student-activity/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension);
+                    $model->activity_file= 'uploads/student-activity/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension;
                 }
                 
 	            $model->save();

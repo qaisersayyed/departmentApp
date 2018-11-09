@@ -80,8 +80,8 @@ class RevisionController extends Controller
             if ($model->load(Yii::$app->request->post()) ){
                 $model->syllabus_file = UploadedFile::getInstance($model, 'syllabus_file');
                 if ($model->syllabus_file ) {                
-                    $model->syllabus_file->saveAs('uploads/revision_uploads/' . $model->syllabus_file ->baseName . '.' . $model->syllabus_file ->extension);
-                    $model->syllabus_file= 'uploads/revision_uploads/' . $model->syllabus_file ->baseName . '.' . $model->syllabus_file ->extension;
+                    $model->syllabus_file->saveAs('uploads/revision/' . $model->syllabus_file ->baseName . '.' . $model->syllabus_file ->extension);
+                    $model->syllabus_file= 'uploads/revision/' . $model->syllabus_file ->baseName . '.' . $model->syllabus_file ->extension;
                 }
                 
 	            $model->save();

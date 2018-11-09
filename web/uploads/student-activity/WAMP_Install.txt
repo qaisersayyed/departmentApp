@@ -1,0 +1,5 @@
+http://www.wampserver.com/en/#download-wrapper
+Install wamp from this location
+After completing installation,
+Install the packages from below link
+http://wampserver.aviatechno.net/?lang=en&prerequis=afficher
