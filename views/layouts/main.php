@@ -100,7 +100,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Project', 'url' => ['/project/index']],
                                             ['label' => 'Internship', 'url' => ['/internship/index']],
                                             ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
-                        
+                                            ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
                                         ],
                                     ],
                                     [

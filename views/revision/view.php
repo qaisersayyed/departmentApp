@@ -28,6 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
            
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->syllabus_file ?>'>Download Syllabus</a>
+    <a class="btn btn-default" href='<?= $model->syllabus_file ?>'Download>Download Syllabus</a>
 
 </div>
