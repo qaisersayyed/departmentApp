@@ -77,7 +77,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Program', 'url' => ['/program/index']],
                                             ['label' => 'Academic Year', 'url' => ['/academic-year/index']],
                                             ['label' => 'Department', 'url' => ['/department/index']],
-                                            ['label' => 'Assign Papers', 'url' => ['/paper-faculty/index']],
+                                            ['label' => 'Assign Course', 'url' => ['/paper-faculty/index']],
                                             ['label' => 'Revision', 'url' => ['/revision/index']],
                                             ['label' => 'Agency', 'url' => ['/agency/index']],
                                             ['label' => 'Users', 'url' => ['/users/index']],

@@ -53,3 +53,6 @@ create table paper_presented( paper_presented_id int primary key auto_increment,
 ALTER TABLE `paper_presented` CHANGE `status` `status` INT(11) NOT NULL DEFAULT '1';
 ALTER TABLE `paper_presented` CHANGE `paper_presented_file` `paper_presented_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
 ALTER TABLE `student` ADD `alumni` TINYINT NOT NULL DEFAULT '0' AFTER `status`;
+
+--------------09 Nov 2018------------------------------------------------
+ALTER TABLE `auditing_member` ADD `file` TEXT NOT NULL AFTER `updated_at`;

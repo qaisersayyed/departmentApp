@@ -32,7 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'program.name',
             'paper.name',
             'faculty.name',
+            'semester',
             'academicYear.year',
+
             //'created_at',
             //'updated_at',
         ],
