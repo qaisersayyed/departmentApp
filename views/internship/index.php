@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'autoXlFormat'=>true,
         
+        
         'export'=>[
         'label' => 'Export',
         'fontAwesome'=>true,
@@ -53,13 +54,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'company',
             //'start_date',
             //'end_date',
-            'hours',
+            [
+                'attribute'=>'hours',
+                'pageSummary' => true,
+            ],
+            //'hours',
             //'file:ntext',
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],
         'pjax'=>true,
-        'showPageSummary'=>false,
+        'showPageSummary'=>true,
         'panel'=>[
             
             'heading'=> $this->title,
