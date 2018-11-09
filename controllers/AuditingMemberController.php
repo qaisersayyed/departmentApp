@@ -8,6 +8,8 @@ use app\models\SearchAuditingMember;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 
 /**
  * AuditingMemberController implements the CRUD actions for AuditingMember model.
@@ -72,19 +74,25 @@ class AuditingMemberController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->isGuest){
         $model = new AuditingMember();
+        if(!Yii::$app->user->isGuest){
+            if ($model->load(Yii::$app->request->post()) ){
+                $model->file = UploadedFile::getInstance($model, 'file');
+                if ($model->file ) {                
+                    $model->file->saveAs('uploads/auditing-member/' . $model->file ->baseName . '.' . $model->file ->extension);
+                    $model->file= 'uploads/auditing-member/' . $model->file ->baseName . '.' . $model->file ->extension;
+                }
+                
+	            $model->save();
+                return $this->redirect(['view', 'id' => $model->auditing_member_id]);
+                }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->auditing_member_id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-        }else{
-        throw new \yii\web\ForbiddenHttpException;
-        }
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;
+            }
     }
 
     /**

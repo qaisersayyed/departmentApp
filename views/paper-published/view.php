@@ -33,5 +33,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'file:ntext',
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'>Download file</a>
+    <a class="btn btn-default" href='<?= $model->file ?>'Download>Download file</a>
 </div>

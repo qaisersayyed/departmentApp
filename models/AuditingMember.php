@@ -39,6 +39,7 @@ class AuditingMember extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'start_date', 'end_date', 'college_name', 'program', 'faculty_name', 'department_id', 'academic_year_id'], 'required'],
+            [['file'],'file'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['college_name', 'faculty_name'], 'string'],
             [['department_id', 'academic_year_id'], 'integer'],
@@ -66,6 +67,7 @@ class AuditingMember extends \yii\db\ActiveRecord
             'academic_year_id' => 'Academic Year ',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'file' => 'File'
         ];
     }
 
