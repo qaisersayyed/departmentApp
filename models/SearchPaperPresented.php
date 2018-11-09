@@ -43,7 +43,8 @@ class SearchPaperPresented extends PaperPresented
      */
     public function search($params)
     {
-        $query = PaperPresented::find();
+        $query = PaperPresented::find()->where(['status'=>1]);
+
 
         // add conditions that should always apply here
 
@@ -74,10 +75,10 @@ class SearchPaperPresented extends PaperPresented
         $query->andFilterWhere(['like', 'paper_presented_file', $this->paper_presented_file])
             ->andFilterWhere(['like', 'paper_title', $this->paper_title])
             ->andFilterWhere(['like', 'conference_name', $this->conference_name])
+            ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'venue', $this->venue])
-            ->andFilterWhere(['like', 'date', $this->date])
-            ->andFilterWhere(['like', 'status', $this->status]);
-
+            ->andFilterWhere(['like', 'date', $this->date]);
+            
         return $dataProvider;
     }
 }

@@ -130,9 +130,15 @@ class PaperPresentedController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(!Yii::$app->user->isGuest){
+            $model =PaperPresented::findOne($id);
+            $model->status = 0;
+            $model->save(false);
+            return $this->redirect(['index']);
+        }else{
+            throw new \yii\web\ForbiddenHttpException; 
+        }
+       
     }
 
     /**

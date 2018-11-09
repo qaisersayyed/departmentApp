@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\PaperPresented */
 
-$this->title = $model->paper_presented_id;
+$this->title = $model->paper_title;
 $this->params['breadcrumbs'][] = ['label' => 'Paper Presented', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -32,5 +32,5 @@ $this->params['breadcrumbs'][] = $this->title;
             //'status',
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'>Download file</a>
+    <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'Download>Download file</a>
 </div>
