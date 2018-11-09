@@ -65,11 +65,14 @@ class SearchPaperFaculty extends PaperFaculty
             //'academic_year_id' => $this->academic_year_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            //'semester'=>$this->semester,
         ]);
-        $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id])
-              ->andFilterWhere(['like', 'academicYear.year', $this->academic_year_id])
-              ->andFilterWhere(['like', 'paper.name', $this->paper_id])
-              ->andFilterWhere(['like', 'program.name', $this->program_id]);
+        $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
+        $query->andFilterWhere(['like', 'academicYear.year', $this->academic_year_id]);
+        $query->andFilterWhere(['like', 'paper.name', $this->paper_id]);
+        $query->andFilterWhere(['like', 'program.name', $this->program_id]);
+        $query->andFilterWhere(['like', 'semester', $this->semester]);
+
 
         return $dataProvider;
     }

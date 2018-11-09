@@ -36,7 +36,7 @@ class PaperFaculty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['program_id'], 'required'],
+            [['program_id','semester'], 'required'],
             [['program_id', 'paper_id', 'faculty_id', 'academic_year_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
@@ -59,6 +59,7 @@ class PaperFaculty extends \yii\db\ActiveRecord
             'academic_year_id' => 'Academic Year ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'semester'=>'Semester'
         ];
     }
 

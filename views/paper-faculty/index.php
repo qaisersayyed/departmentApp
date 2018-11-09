@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\SearchPaperFaculty */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Assign Paper';
+$this->title = 'Assign Course';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="paper-faculty-index">
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'program_id',
             ],
             [
-                'label' => 'Paper Name',
+                'label' => 'Course Name',
                 'value' => 'paper.name',
                 'attribute' => 'paper_id',
             ],
@@ -49,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'faculty.name',
                 'attribute' => 'faculty_id',
             ],
+            'semester',
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',
