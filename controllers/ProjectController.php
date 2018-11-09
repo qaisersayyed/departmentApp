@@ -78,8 +78,8 @@ class ProjectController extends Controller
             if ($model->load(Yii::$app->request->post()) ){
             $model->project_file = UploadedFile::getInstance($model, 'project_file');
                 if ($model->project_file ) {                
-                    $model->project_file->saveAs('uploads/project_uploads/' . $model->project_file ->baseName . '.' . $model->project_file ->extension);
-                    $model->project_file= 'uploads/project_uploads/' . $model->project_file ->baseName . '.' . $model->project_file ->extension;
+                    $model->project_file->saveAs('uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file ->extension);
+                    $model->project_file= 'uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file ->extension;
                 }
                 
 	            $model->save();
