@@ -51,7 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'academicYear.year',
             //'created_at',
             //'updated_at',
+            'file',
         ],
     ]) ?>
+
+        <a class="btn btn-default" href='<?= $model->file ?>'Download>Download file</a>
 
 </div>

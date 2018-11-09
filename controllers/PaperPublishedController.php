@@ -82,8 +82,8 @@ class PaperPublishedController extends Controller
             if ($model->load(Yii::$app->request->post()) ){
                 $model->file = UploadedFile::getInstance($model, 'file');
                 if ($model->file ) {                
-                    $model->file->saveAs('uploads/paperPublished/' . $model->file ->baseName . '.' . $model->file ->extension);
-                    $model->file= 'uploads/paperPublished/' . $model->file ->baseName . '.' . $model->file ->extension;
+                    $model->file->saveAs('uploads/paper-published/' . $model->file ->baseName . '.' . $model->file ->extension);
+                    $model->file= 'uploads/paper-published/' . $model->file ->baseName . '.' . $model->file ->extension;
                 }
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->paper_published_id]);

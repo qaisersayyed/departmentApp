@@ -1,0 +1,23 @@
+ALTER TABLE program_student ADD academic_year int;
+ALTER TABLE `program_student` ADD FOREIGN KEY (`academic_year`) REFERENCES `academic_year`(`academic_year_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `program_student` CHANGE `academic_year` `academic_year_id` INT(11) NULL DEFAULT NULL;
+-------------------setting status defualt 1 ----------------------
+ALTER TABLE `program` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1';
+ALTER TABLE `program_student` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1';
+ALTER TABLE `student` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1';
+ALTER TABLE `paper` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1';
+ALTER TABLE `type` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1';
+ALTER TABLE `revision` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1';
+ALTER TABLE `paper_type` ADD `status` TINYINT(1) NULL DEFAULT '1';
+---------------------add new col in student--------------
+ALTER TABLE `student` ADD `email` VARCHAR(254) NOT NULL AFTER `phone_no`;
+
+ALTER TABLE 'paper' ADD 'credit' int NOT NULL AFTER 'program_id';
+ALTER TABLE 'paper' ADD 'marks' int NOT NULL AFTER 'credit';
+create table agency(agency_id int primary key auto_increment not null,name varchar(255) not null);
+
+ALTER TABLE `project' DROP `agency_name`;
+ALTER TABLE `project` ADD `agency_id` INT NOT NULL AFTER `end_date`;
+
+
+ALTER TABLE `appointment` ADD `Type` VARCHAR(250) NOT NULL AFTER `appointment_id`;

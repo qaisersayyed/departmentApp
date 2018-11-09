@@ -57,6 +57,8 @@ use app\models\AcademicYear;
         ['prompt'=>'select ']
     )?>
 
+    <?= $form->field($model, 'file')->fileInput()?>
+
     
 
     <div class="form-group">
