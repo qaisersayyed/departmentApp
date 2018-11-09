@@ -13,14 +13,7 @@ use app\models\AcademicYear;
 ?>
 
 <div class="program-student-form">
-<?php $form = ActiveForm::begin([
-
-
-
-'enableAjaxValidation' => true,
-'enableClientValidation' => true,
-                    
-]); ?>
+<?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'program_id')->dropDownList(
         ArrayHelper::map(Program::find()->where(['status' => 1])->all(),'program_id','name'),
