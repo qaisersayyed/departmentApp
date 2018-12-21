@@ -61,7 +61,7 @@ class Event extends \yii\db\ActiveRecord
             'event_id' => 'Event ID',
             'name' => 'Event Title',
             'venue' => 'Venue',
-            'inhouse' => 'Inhouse',
+            'inhouse' => 'Event Type',
             'cost' => 'Cost',
             'participant' => 'Participant',
             'start_date' => 'Start Date',
