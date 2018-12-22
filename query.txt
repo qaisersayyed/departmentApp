@@ -56,3 +56,8 @@ ALTER TABLE `student` ADD `alumni` TINYINT NOT NULL DEFAULT '0' AFTER `status`;
 
 --------------09 Nov 2018------------------------------------------------
 ALTER TABLE `auditing_member` ADD `file` TEXT NOT NULL AFTER `updated_at`;
+
+
+ALTER TABLE `student_activity` ADD `activity_file2` TEXT NOT NULL AFTER `activity_file`, ADD `activity_file3` TEXT NOT NULL AFTER `activity_file2`, ADD `activity_file4` TEXT NOT NULL AFTER `activity_file3`;
+ALTER TABLE `student_activity` CHANGE `activity_file` `activity_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `activity_file2` `activity_file2` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `activity_file3` `activity_file3` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `activity_file4` `a
+ALTER TABLE `project` CHANGE `project_file2` `project_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `project_file3` `project_file2` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `project_file4` `project_file3` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `project_file` `project_file4` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
