@@ -15,6 +15,9 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'paper_presented_file')->fileInput()  ?>
+    <?= $form->field($model, 'paper_presented_file2')->fileInput()  ?>
+    <?= $form->field($model, 'paper_presented_file3')->fileInput()  ?>
+    <?= $form->field($model, 'paper_presented_file4')->fileInput()  ?>
 
     <?= $form->field($model, 'paper_title')->textInput(['maxlength' => true]) ?>
 
