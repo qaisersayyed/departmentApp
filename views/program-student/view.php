@@ -69,6 +69,7 @@ foreach($stu as $s){
   </tbody>
 </table>
 </div>
+<br>
 
 <?php 
 

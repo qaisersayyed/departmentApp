@@ -20,12 +20,12 @@ use dosamigos\datepicker\DatePicker;
    <?= $form->field($model, 'program_id')->dropDownList(
         ArrayHelper::map(Program::find()->all(),'program_id','name'),
         ['prompt'=>'select ']       
-    )  
+    )  ->label('Program Name')
     ?>
     <?= $form->field($model, 'student_id')->dropDownList(
         ArrayHelper::map(Student::find()->all(),'student_id','name'),
         ['prompt'=>'select ']       
-    )  
+    )->label('Student Name')
     ?>
 
    <?= $form->field($model, 'academic_year')->dropDownList(
