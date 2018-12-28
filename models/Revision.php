@@ -61,7 +61,7 @@ class Revision extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'status' => 'Status',
-            'academic_year_id' => 'Academic Year ID',
+            'academic_year_id' => 'Academic Year',
         ];
     }
 
