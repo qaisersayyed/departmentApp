@@ -38,7 +38,7 @@ class Revision extends \yii\db\ActiveRecord
     {
         return [
             [[ 'syllabus_date', 'program_id', 'paper_id'], 'required'],
-            [['syllabus_file'], 'string'],
+            [['syllabus_file','syllabus_file2','syllabus_file3','syllabus_file4'], 'file'],
             [['syllabus_date', 'created_at', 'updated_at'], 'safe'],
             [['program_id', 'paper_id', 'status', 'academic_year_id'], 'integer'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
@@ -54,7 +54,10 @@ class Revision extends \yii\db\ActiveRecord
     {
         return [
             'revision_id' => 'Revision ID',
-            'syllabus_file' => 'Syllabus File',
+            'syllabus_file' => 'Syllabus File 1',
+            'syllabus_file2' => 'Syllabus File 2',
+            'syllabus_file3' => 'Syllabus File 3',
+            'syllabus_file4' => 'Syllabus File 4',
             'syllabus_date' => 'Syllabus Date',
             'program_id' => 'Program Name',
             'paper_id' => 'Course Name',
