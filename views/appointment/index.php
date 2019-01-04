@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'label' => 'Employee ID',
             'value' => 'faculty.employee_id',
-            'attribute' => 'faculty_id',
+            
             ],
 
         ['class' => 'yii\grid\ActionColumn'],

@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'student_id') ?>
 
-    <?= $form->field($model, 'academic_year') ?>
+    <?= $form->field($model, 'academic_year_id') ?>
 
     <?= $form->field($model, 'company') ?>
 

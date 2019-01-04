@@ -10,7 +10,7 @@ $this->title = 'Create Internship';
 $this->params['breadcrumbs'][] = ['label' => 'Internships', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="internship-create">
+<div class="internship-create" style="width:50%">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
