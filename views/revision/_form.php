@@ -18,6 +18,9 @@ use dosamigos\datepicker\DatePicker;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'syllabus_file')->fileInput() ?>
+    <?= $form->field($model, 'syllabus_file2')->fileInput() ?>
+    <?= $form->field($model, 'syllabus_file3')->fileInput() ?>
+    <?= $form->field($model, 'syllabus_file4')->fileInput() ?>
     
     <?= $form->field($model, 'syllabus_date')->widget(DatePicker::className(), [
     'model' => $model,

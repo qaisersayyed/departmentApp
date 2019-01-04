@@ -120,6 +120,18 @@ class SiteController extends Controller
         ]);
     }
 
+    /**BACKUP */
+    public function actionBackup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            $fileName = date('d-m-y_H:i:s').'.sql';
+            exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
+            $this->redirect(['program-student/index']);
+        }
+        
+    }
+    
+
     /**
      * Displays about page.
      *

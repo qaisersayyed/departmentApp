@@ -77,11 +77,25 @@ class StudentActivityController extends Controller
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
             $model->activity_file = UploadedFile::getInstance($model, 'activity_file');
+            $model->activity_file2 = UploadedFile::getInstance($model, 'activity_file2');
+            $model->activity_file3 = UploadedFile::getInstance($model, 'activity_file3');
+            $model->activity_file4 = UploadedFile::getInstance($model, 'activity_file4');
                 if ($model->activity_file ) {                
                     $model->activity_file->saveAs('uploads/student-activity/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension);
                     $model->activity_file= 'uploads/student-activity/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension;
                 }
-                
+                if ($model->activity_file2 ) {                
+                    $model->activity_file2->saveAs('uploads/student-activity/' . $model->activity_file2 ->baseName . '.' . $model->activity_file2 ->extension);
+                    $model->activity_file2= 'uploads/student-activity/' . $model->activity_file2 ->baseName . '.' . $model->activity_file2 ->extension;
+                }
+                if ($model->activity_file3 ) {                
+                    $model->activity_file3->saveAs('uploads/student-activity/' . $model->activity_file3 ->baseName . '.' . $model->activity_file3 ->extension);
+                    $model->activity_file3= 'uploads/student-activity/' . $model->activity_file3 ->baseName . '.' . $model->activity_file3 ->extension;
+                }
+                if ($model->activity_file4 ) {                
+                    $model->activity_file4->saveAs('uploads/student-activity/' . $model->activity_file4 ->baseName . '.' . $model->activity_file3 ->extension);
+                    $model->activity_file4= 'uploads/student-activity/' . $model->activity_file4 ->baseName . '.' . $model->activity_file3 ->extension;
+                }
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->student_activity_id]);
             }

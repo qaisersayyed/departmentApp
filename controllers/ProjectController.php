@@ -77,9 +77,24 @@ class ProjectController extends Controller
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
             $model->project_file = UploadedFile::getInstance($model, 'project_file');
+            $model->project_file2 = UploadedFile::getInstance($model, 'project_file2');
+            $model->project_file3 = UploadedFile::getInstance($model, 'project_file3');
+            $model->project_file4 = UploadedFile::getInstance($model, 'project_file4');
                 if ($model->project_file ) {                
                     $model->project_file->saveAs('uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file ->extension);
                     $model->project_file= 'uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file ->extension;
+                }
+                if ($model->project_file2 ) {                
+                    $model->project_file2->saveAs('uploads/project/' . $model->project_file2 ->baseName . '.' . $model->project_file2 ->extension);
+                    $model->project_file2= 'uploads/project/' . $model->project_file2 ->baseName . '.' . $model->project_file2 ->extension;
+                }
+                if ($model->project_file3 ) {                
+                    $model->project_file3->saveAs('uploads/project/' . $model->project_file3 ->baseName . '.' . $model->project_file3 ->extension);
+                    $model->project_file3= 'uploads/project/' . $model->project_file3 ->baseName . '.' . $model->project_file3 ->extension;
+                }
+                if ($model->project_file4 ) {                
+                    $model->project_file4->saveAs('uploads/project/' . $model->project_file4 ->baseName . '.' . $model->project_file4 ->extension);
+                    $model->project_file4= 'uploads/project/' . $model->project_file4 ->baseName . '.' . $model->project_file4 ->extension;
                 }
                 
 	            $model->save();

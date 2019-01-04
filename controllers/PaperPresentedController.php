@@ -81,11 +81,25 @@ class PaperPresentedController extends Controller
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
             $model->paper_presented_file = UploadedFile::getInstance($model, 'paper_presented_file');
+            $model->paper_presented_file2 = UploadedFile::getInstance($model, 'paper_presented_file2');
+            $model->paper_presented_file3 = UploadedFile::getInstance($model, 'paper_presented_file3');
+            $model->paper_presented_file4 = UploadedFile::getInstance($model, 'paper_presented_file4');
                 if ($model->paper_presented_file ) {                
                     $model->paper_presented_file->saveAs('uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension);
                     $model->paper_presented_file= 'uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension;
                 }
-                
+                if ($model->paper_presented_file2 ) {                
+                    $model->paper_presented_file2->saveAs('uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension);
+                    $model->paper_presented_file2= 'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension;
+                }
+                if ($model->paper_presented_file3 ) {                
+                    $model->paper_presented_file3->saveAs('uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension);
+                    $model->paper_presented_file3= 'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension;
+                }
+                if ($model->paper_presented_file4 ) {                
+                    $model->paper_presented_file4->saveAs('uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension);
+                    $model->paper_presented_file4= 'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension;
+                }
 	            $model->save(false);
                 return $this->redirect(['view', 'id' => $model->paper_presented_id]);
             }
