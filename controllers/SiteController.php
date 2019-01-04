@@ -124,7 +124,9 @@ class SiteController extends Controller
     public function actionBackup()
     {
         if (!Yii::$app->user->isGuest) {
-            exec("mysqldump -u root department > /opt/lampp/htdocs/department/web/departmentbackup3.sql");
+            $fileName = date('d-m-y_H:i:s').'.sql';
+            exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
+            $this->redirect(['program-student/index']);
         }
         
     }
