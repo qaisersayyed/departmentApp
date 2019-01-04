@@ -39,7 +39,7 @@ class StudentActivity extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'budget', 'start_date', 'end_date', 'faculty_name', 'student_name', 'department_id', 'academic_year_id'], 'required'],
-            [['activity_file'], 'file'],
+            [['activity_file','activity_file2','activity_file3', 'activity_file4'], 'file'],
             [['budget'], 'number'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['faculty_name', 'student_name'], 'string'],
@@ -57,7 +57,10 @@ class StudentActivity extends \yii\db\ActiveRecord
     {
         return [
             'student_activity_id' => 'Student Activity ID',
-            'activity_file' => 'Student Activity File',
+            'activity_file' => 'Student Activity File 1',
+            'activity_file2' => 'Student Activity File 2',
+            'activity_file3' => 'Student Activity File 3',
+            'activity_file4' => 'Student Activity File 4',
             'name' => 'Activity Name',
             'budget' => 'Budget',
             'start_date' => 'Start Date',

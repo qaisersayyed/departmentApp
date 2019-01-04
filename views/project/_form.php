@@ -18,6 +18,11 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'project_file')->fileInput() ?>
+    <?= $form->field($model, 'project_file2')->fileInput() ?>
+
+    <?= $form->field($model, 'project_file3')->fileInput() ?>
+    <?= $form->field($model, 'project_file4')->fileInput() ?>
+
 
     <?= $form->field($model, 'approval_id')->textInput(['maxlength' => true]) ?>
 

@@ -38,7 +38,7 @@ class Agency extends \yii\db\ActiveRecord
     {
         return [
             'agency_id' => 'Agency ID',
-            'name' => 'Agency Name',
+            'name' => 'Company Name',
         ];
     }
 }

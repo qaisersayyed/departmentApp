@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2018 at 01:12 PM
+-- Generation Time: Dec 20, 2018 at 11:37 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -38,9 +38,9 @@ CREATE TABLE `academic_year` (
 --
 
 INSERT INTO `academic_year` (`academic_year_id`, `year`) VALUES
-(1, '2017'),
-(2, '2018'),
-(3, '2016');
+(1, '2017-2018'),
+(2, '2018-2019'),
+(3, '2018-2019');
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,14 @@ CREATE TABLE `agency` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `agency`
+--
+
+INSERT INTO `agency` (`agency_id`, `name`) VALUES
+(1, 'google'),
+(2, 'microsoft');
+
 -- --------------------------------------------------------
 
 --
@@ -61,13 +69,22 @@ CREATE TABLE `agency` (
 
 CREATE TABLE `appointment` (
   `appointment_id` int(11) NOT NULL,
+  `Type` varchar(250) NOT NULL,
   `date_of_joining` date NOT NULL,
   `date_of_leaving` date DEFAULT NULL,
   `faculty_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(1) DEFAULT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appointment_id`, `Type`, `date_of_joining`, `date_of_leaving`, `faculty_id`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'contract ', '2018-01-01', '2018-12-31', 2, '2018-11-09 10:33:21', '2018-11-09 05:06:13', 1),
+(2, 'lecture bases', '2018-11-01', '2019-11-29', 3, '2018-11-09 10:35:15', '2018-11-09 05:06:20', 1);
 
 -- --------------------------------------------------------
 
@@ -130,9 +147,7 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`department_id`, `name`) VALUES
-(1, 'computer science'),
-(2, 'maths'),
-(3, 'physics');
+(1, 'computer science');
 
 -- --------------------------------------------------------
 
@@ -152,8 +167,18 @@ CREATE TABLE `event` (
   `department_id` int(11) NOT NULL,
   `academic_year_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`event_id`, `name`, `venue`, `inhouse`, `cost`, `participant`, `start_date`, `end_date`, `department_id`, `academic_year_id`, `created_at`, `updated_at`, `file`) VALUES
+(1, 'hh', 'wee', 1, 1234, 'dfffsefef', '2018-10-16', '2018-10-24', 1, 2, '2018-10-22 13:05:55', '2018-11-09 05:45:28', ''),
+(2, 'Technobit', 'Chowgules', 1, 1000000001, 'Dipesh Tamang , Manisha Solanki , Qaiser Basha', '2018-12-15', '2018-11-16', 1, 2, '2018-11-09 10:29:50', '2018-11-09 04:59:50', 'uploads/event/firewall.png'),
+(3, 'IRIX', 'Chowgules', 1, 20000000, 'Tushar Verlekar , Shubham Naique', '2018-11-15', '2018-11-30', 1, 2, '2018-11-09 10:30:50', '2018-11-09 05:00:50', 'uploads/event/netstat.png');
 
 -- --------------------------------------------------------
 
@@ -171,7 +196,8 @@ CREATE TABLE `examiner` (
   `department_id` int(11) NOT NULL,
   `academic_year_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -197,7 +223,35 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`faculty_id`, `name`, `email`, `phone_no`, `address`, `employee_id`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'dsgd', 'hs222', '222', 'aa', '222', '2018-09-05 13:12:50', '2018-09-05 07:42:50', NULL);
+(1, 'dsgd', 'hs222', '222', 'aa', '222', '2018-09-05 13:12:50', '2018-09-05 07:42:50', NULL),
+(2, 'Castor Godinho', 'qaiserBasha@gmail.com', '9876543210', 'H.no 239 \r\nsirvodem,margao\r\nSalcete\r\nGoa', '4545454545', '2018-11-09 10:33:21', '2018-11-09 05:03:21', NULL),
+(3, 'Wendham Gray', 'WendhamGray@gmail.com', '9123456780', 'Ankur Luis,  Carmona , Salcete Goa', '345678', '2018-11-09 10:35:15', '2018-11-09 05:05:15', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `internship`
+--
+
+CREATE TABLE `internship` (
+  `internship_id` int(11) NOT NULL,
+  `program_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `academic_year` int(11) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `hours` double NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `internship`
+--
+
+INSERT INTO `internship` (`internship_id`, `program_id`, `student_id`, `academic_year`, `company`, `start_date`, `end_date`, `hours`, `file`) VALUES
+(1, 6, 37, 2, 'Google', '2018-02-04', '2019-04-18', 40, 'uploads/Auditing_Member/tcp.png'),
+(2, 6, 40, 2, 'Oracle', '2018-08-28', '2018-10-16', 20, 'uploads/Auditing_Member/tcp.png');
 
 -- --------------------------------------------------------
 
@@ -218,8 +272,9 @@ CREATE TABLE `organization` (
 --
 
 INSERT INTO `organization` (`organization_id`, `company_name`, `contact_no`, `created_at`, `updated_at`) VALUES
-(1, 'oracle', '77727262', '2018-09-02 19:42:38', '2018-09-06 10:21:45'),
-(2, 'foss', '2222', '2018-09-02 19:42:48', '2018-09-02 14:12:48');
+(1, 'Oracle', '77727262', '2018-09-02 19:42:38', '2018-11-09 04:34:59'),
+(2, 'Foss', '2222', '2018-09-02 19:42:48', '2018-11-09 04:35:09'),
+(3, 'Ksol IT solution', '767677676', '2018-11-08 10:29:39', '2018-11-09 04:35:20');
 
 -- --------------------------------------------------------
 
@@ -229,7 +284,7 @@ INSERT INTO `organization` (`organization_id`, `company_name`, `contact_no`, `cr
 
 CREATE TABLE `paper` (
   `paper_id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `program_id` int(11) DEFAULT NULL,
   `credit` int(11) NOT NULL,
   `marks` int(11) NOT NULL,
@@ -243,7 +298,10 @@ CREATE TABLE `paper` (
 --
 
 INSERT INTO `paper` (`paper_id`, `name`, `program_id`, `credit`, `marks`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'jjjj', 2, 0, 0, '2018-09-03 21:00:46', '2018-09-03 15:30:46', 1);
+(2, 'Object Oriented Prog', 6, 3, 20, '2018-11-09 10:14:51', '2018-11-09 04:44:51', 1),
+(3, 'DBMS', 6, 4, 20, '2018-11-09 10:15:21', '2018-11-09 04:45:21', 1),
+(4, 'E.V.S', 6, 2, 20, '2018-11-09 10:15:47', '2018-11-09 04:45:47', 1),
+(5, 'business com.', 6, 2, 20, '2018-11-09 10:17:34', '2018-11-09 04:47:34', 1);
 
 -- --------------------------------------------------------
 
@@ -256,6 +314,8 @@ CREATE TABLE `paper_faculty` (
   `paper_id` int(11) DEFAULT NULL,
   `faculty_id` int(11) DEFAULT NULL,
   `academic_year_id` int(11) DEFAULT NULL,
+  `semester` varchar(10) NOT NULL,
+  `program_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -264,8 +324,45 @@ CREATE TABLE `paper_faculty` (
 -- Dumping data for table `paper_faculty`
 --
 
-INSERT INTO `paper_faculty` (`paper_faculty_id`, `paper_id`, `faculty_id`, `academic_year_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '2018-09-05 13:13:04', '2018-09-05 07:43:04');
+INSERT INTO `paper_faculty` (`paper_faculty_id`, `paper_id`, `faculty_id`, `academic_year_id`, `semester`, `program_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '1', 6, '2018-11-09 20:29:38', '2018-11-09 15:00:36'),
+(2, 3, 2, 1, '2', 6, '2018-11-09 20:31:13', '2018-11-09 15:01:13'),
+(3, 5, 1, 1, '3', 6, '2018-11-09 20:32:12', '2018-11-09 15:02:12'),
+(4, 4, 3, 1, '2', 6, '2018-11-09 20:33:21', '2018-11-09 15:03:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paper_presented`
+--
+
+CREATE TABLE `paper_presented` (
+  `paper_presented_id` int(11) NOT NULL,
+  `paper_presented_file` text,
+  `paper_title` varchar(255) DEFAULT NULL,
+  `conference_name` varchar(255) DEFAULT NULL,
+  `venue` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paper_published`
+--
+
+CREATE TABLE `paper_published` (
+  `paper_published_id` int(11) NOT NULL,
+  `paper_title` varchar(100) NOT NULL,
+  `journal_name` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -286,8 +383,10 @@ CREATE TABLE `paper_type` (
 --
 
 INSERT INTO `paper_type` (`paper_type_id`, `paper_id`, `type_id`, `academic_year_id`, `status`) VALUES
-(1, 1, 1, 1, 1),
-(2, 1, 1, 2, 1);
+(3, 2, 2, 3, 1),
+(4, 3, 2, 2, 1),
+(5, 4, 3, 2, 1),
+(6, 5, 3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -309,10 +408,10 @@ CREATE TABLE `program` (
 --
 
 INSERT INTO `program` (`program_id`, `name`, `department_id`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'bvoc (software)', 1, '2018-09-02 19:28:22', '2018-09-06 16:03:49', 1),
-(2, 'algebra', 2, '2018-09-02 19:28:43', '2018-09-02 13:58:43', 1),
-(3, 'msc it', 1, '2018-09-03 21:15:18', '2018-09-05 06:24:35', 0),
-(4, 'multimedia', 1, '2018-09-05 12:17:52', '2018-09-05 06:48:25', 0);
+(6, 'B.voc Software development', 1, '2018-11-09 09:49:36', '2018-11-09 04:19:36', 1),
+(7, 'B.S.C Computer science', 1, '2018-11-09 09:49:58', '2018-11-09 04:19:58', 1),
+(8, 'M.S.C IT ', 1, '2018-11-09 09:50:14', '2018-11-09 04:20:14', 1),
+(9, 'P.G.D.C.A', 1, '2018-11-09 09:50:39', '2018-11-09 16:00:07', 0);
 
 -- --------------------------------------------------------
 
@@ -335,17 +434,12 @@ CREATE TABLE `program_student` (
 --
 
 INSERT INTO `program_student` (`program_student_id`, `program_id`, `student_id`, `created_at`, `updated_at`, `status`, `academic_year_id`) VALUES
-(1, 2, 1, '2018-09-02 19:30:41', '2018-09-05 06:51:22', 0, 3),
-(2, 2, 2, '2018-09-02 19:30:50', '2018-09-05 06:52:49', 1, 2),
-(3, 1, 2, '2018-09-03 21:17:51', '2018-09-03 15:47:51', 1, 3),
-(4, 4, 3, '2018-09-05 12:23:15', '2018-09-05 06:53:15', 1, 2),
-(5, 1, 4, '2018-09-11 10:29:21', '2018-09-11 05:00:34', 1, 1),
-(6, 1, 6, '2018-10-10 14:49:06', '2018-10-10 09:19:06', 1, 1),
-(7, 1, 7, '2018-10-10 14:53:19', '2018-10-10 09:23:19', 1, 1),
-(8, 1, 9, '2018-10-10 14:55:29', '2018-10-10 09:25:29', 1, 2),
-(9, 2, 9, '2018-10-10 15:05:44', '2018-10-10 09:35:44', 1, 3),
-(10, 1, NULL, '2018-10-10 15:35:00', '2018-10-10 10:05:00', 1, 1),
-(11, 1, 11, '2018-10-10 15:36:51', '2018-10-10 10:06:51', 1, 1);
+(34, 6, 37, '2018-11-09 09:54:32', '2018-11-09 04:24:32', 1, 2),
+(35, 6, 38, '2018-11-09 09:55:13', '2018-11-09 04:25:13', 1, 2),
+(36, 6, 39, '2018-11-09 09:56:02', '2018-11-09 04:26:02', 1, 2),
+(37, 6, 40, '2018-11-09 09:56:33', '2018-11-09 04:26:33', 1, 2),
+(38, 6, 41, '2018-11-09 09:57:16', '2018-11-09 04:27:16', 1, 2),
+(39, 6, 42, '2018-11-09 09:58:01', '2018-11-09 15:22:40', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -378,14 +472,24 @@ CREATE TABLE `project` (
 
 CREATE TABLE `revision` (
   `revision_id` int(11) NOT NULL,
-  `syllabus_file` text NOT NULL,
+  `syllabus_file` text,
   `syllabus_date` date NOT NULL,
+  `program_id` int(11) NOT NULL,
   `paper_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) DEFAULT '1',
   `academic_year_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `revision`
+--
+
+INSERT INTO `revision` (`revision_id`, `syllabus_file`, `syllabus_date`, `program_id`, `paper_id`, `created_at`, `updated_at`, `status`, `academic_year_id`) VALUES
+(1, 'uploads/revision/firewall.png', '2018-11-07', 6, 2, '2018-11-09 10:19:19', '2018-11-09 04:49:19', 1, 2),
+(2, 'uploads/revision/ifconfig.png', '2018-08-14', 6, 3, '2018-11-09 10:19:38', '2018-11-09 04:49:38', 1, 2),
+(3, 'uploads/revision/ping.png', '2018-08-21', 6, 4, '2018-11-09 10:19:59', '2018-11-09 04:49:59', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -404,8 +508,16 @@ CREATE TABLE `seminar` (
   `department_id` int(11) NOT NULL,
   `academic_year_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `seminar`
+--
+
+INSERT INTO `seminar` (`seminar_id`, `speaker_name`, `start_date`, `end_date`, `participant`, `venue`, `inhouse`, `department_id`, `academic_year_id`, `created_at`, `updated_at`, `file`) VALUES
+(1, 'Castor Godinho', '2018-11-01', '2018-11-07', 'Manisha Solanki , Qaiser Basha', 'Chowgules', 1, 1, 2, '2018-11-09 10:26:12', '2018-11-09 04:56:12', 'uploads/seminar/udp1.png');
 
 -- --------------------------------------------------------
 
@@ -421,25 +533,21 @@ CREATE TABLE `student` (
   `email` varchar(254) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(1) DEFAULT '1'
+  `status` tinyint(1) DEFAULT '1',
+  `alumni` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`, `email`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'jonhny', '1234566', '989898898', 'jonny03@gmail.com', '2018-09-02 19:29:04', '2018-09-16 06:23:30', 1),
-(2, 'abz', '4321', '676753', 'abz000@gmail.com', '2018-09-02 19:29:36', '2018-09-16 06:23:45', 1),
-(3, 'dhdh', '2121', '1232233', 'gfgf77@gmail.com', '2018-09-03 21:19:46', '2018-09-16 06:24:09', 0),
-(4, 'shubham', '86767', '78647', 'shubham787@gmail.com', '2018-09-07 19:49:21', '2018-09-16 06:24:34', 1),
-(5, 'qaiser', 'vu172821', '7474744747', 'baq001@gmail.com', '2018-09-16 11:55:10', '2018-09-16 06:25:34', 1),
-(6, 'qaiseree', '233', '656', 'sasa2SGF@', '2018-10-10 14:49:06', '2018-10-10 09:19:06', 1),
-(7, 'jedbse', '5454', 'df6565', 'szsdv', '2018-10-10 14:53:19', '2018-10-10 09:23:19', 1),
-(8, 'jedbse', '233', 'df6565', 'baq000@gmail.com', '2018-10-10 14:54:25', '2018-10-10 09:24:25', 1),
-(9, 'jedbse', '233', 'df6565', 'baq000@gmail.com', '2018-10-10 14:55:29', '2018-10-10 09:25:29', 1),
-(10, 'dipesh', 'etryryyr', '43566', 'fgchvg', '2018-10-10 15:35:00', '2018-10-10 10:05:00', 1),
-(11, 'dfghh', 'rree', 'ggg65', '54ggb', '2018-10-10 15:36:51', '2018-10-10 10:06:51', 1);
+INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`, `email`, `created_at`, `updated_at`, `status`, `alumni`) VALUES
+(37, 'manisha solanki', 'VU172801', '123456789', 'MAN000@gmail.com', '2018-11-09 09:54:32', '2018-11-09 04:34:22', 1, 1),
+(38, 'shunbham naik', 'VU172802', '987655222', 'shu000@gmail.com', '2018-11-09 09:55:13', '2018-11-09 15:04:53', 1, 1),
+(39, 'Dipesh tamang', 'VU172803', '123546', 'dip870@gmail.com', '2018-11-09 09:56:02', '2018-11-09 15:04:53', 1, 1),
+(40, 'Qaiser basha', 'VU172804', '5765455434', 'qai575@gmail.com', '2018-11-09 09:56:33', '2018-11-09 04:26:33', 1, 0),
+(41, 'Deepraj dessai', 'VU172805', '4543444432', 'dipr654@gmail.com', '2018-11-09 09:57:16', '2018-11-09 04:27:16', 1, 0),
+(42, 'Rahul nath', 'VU172806', '45432435647', 'ral5454@gmail.com', '2018-11-09 09:58:01', '2018-11-09 04:33:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -449,6 +557,7 @@ INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`, `email`, `cr
 
 CREATE TABLE `student_activity` (
   `student_activity_id` int(11) NOT NULL,
+  `activity_file` text NOT NULL,
   `name` varchar(50) NOT NULL,
   `budget` double NOT NULL,
   `start_date` date NOT NULL,
@@ -473,6 +582,7 @@ CREATE TABLE `student_organization` (
   `student_id` int(11) DEFAULT NULL,
   `date_of_joining` date DEFAULT NULL,
   `position` varchar(25) DEFAULT NULL,
+  `program_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -481,9 +591,12 @@ CREATE TABLE `student_organization` (
 -- Dumping data for table `student_organization`
 --
 
-INSERT INTO `student_organization` (`student_organization_id`, `organization_id`, `student_id`, `date_of_joining`, `position`, `created_at`, `updated_at`) VALUES
-(2, 2, 2, '2018-08-01', 'asst-manager', '2018-09-02 19:43:27', '2018-09-02 14:13:27'),
-(3, 1, 1, '2010-01-01', 'aaaaa', '2018-09-23 12:36:11', '2018-09-23 15:59:12');
+INSERT INTO `student_organization` (`student_organization_id`, `organization_id`, `student_id`, `date_of_joining`, `position`, `program_id`, `created_at`, `updated_at`) VALUES
+(2, 1, 37, '2018-10-28', 'manager', 6, '2018-11-09 10:01:57', '2018-11-09 04:31:57'),
+(3, 1, 42, '2018-11-20', 'manager', 6, '2018-11-09 10:03:41', '2018-11-09 04:33:41'),
+(4, 2, 40, '2018-10-29', 'pro', 6, '2018-11-09 20:36:31', '2018-11-09 15:06:31'),
+(5, 2, 37, '2018-11-01', 'asst-manager', 6, '2018-11-09 20:43:21', '2018-11-09 15:13:21'),
+(6, 3, 37, '2018-11-30', 'asd', 6, '2018-11-09 20:44:57', '2018-11-09 15:14:57');
 
 -- --------------------------------------------------------
 
@@ -524,7 +637,30 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`type_id`, `name`, `status`) VALUES
-(1, 'rrr', 1);
+(1, 'rrr', 0),
+(2, 'Compulsory', 1),
+(3, 'Selective', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` text,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'qaiser', '$2y$13$BBvQ7HRjK0CKmWnBiNGMp.5.Op7l.zNzHC0wjScpL6CAUXBuANwPm', '2018-11-08 14:52:27', '2018-11-08 09:22:27');
 
 -- --------------------------------------------------------
 
@@ -544,7 +680,8 @@ CREATE TABLE `workshop` (
   `department_id` int(11) NOT NULL,
   `academic_year_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -615,6 +752,15 @@ ALTER TABLE `faculty`
   ADD PRIMARY KEY (`faculty_id`);
 
 --
+-- Indexes for table `internship`
+--
+ALTER TABLE `internship`
+  ADD PRIMARY KEY (`internship_id`),
+  ADD KEY `pro1` (`program_id`),
+  ADD KEY `stud` (`student_id`),
+  ADD KEY `ay1` (`academic_year`);
+
+--
 -- Indexes for table `organization`
 --
 ALTER TABLE `organization`
@@ -634,7 +780,20 @@ ALTER TABLE `paper_faculty`
   ADD PRIMARY KEY (`paper_faculty_id`),
   ADD KEY `p4` (`paper_id`),
   ADD KEY `f2` (`faculty_id`),
-  ADD KEY `a2` (`academic_year_id`);
+  ADD KEY `a2` (`academic_year_id`),
+  ADD KEY `pro3` (`program_id`);
+
+--
+-- Indexes for table `paper_presented`
+--
+ALTER TABLE `paper_presented`
+  ADD PRIMARY KEY (`paper_presented_id`);
+
+--
+-- Indexes for table `paper_published`
+--
+ALTER TABLE `paper_published`
+  ADD PRIMARY KEY (`paper_published_id`);
 
 --
 -- Indexes for table `paper_type`
@@ -675,7 +834,8 @@ ALTER TABLE `project`
 ALTER TABLE `revision`
   ADD PRIMARY KEY (`revision_id`),
   ADD KEY `p6` (`paper_id`),
-  ADD KEY `a6` (`academic_year_id`);
+  ADD KEY `a6` (`academic_year_id`),
+  ADD KEY `p7` (`program_id`);
 
 --
 -- Indexes for table `seminar`
@@ -705,7 +865,8 @@ ALTER TABLE `student_activity`
 ALTER TABLE `student_organization`
   ADD PRIMARY KEY (`student_organization_id`),
   ADD KEY `o1` (`organization_id`),
-  ADD KEY `s3` (`student_id`);
+  ADD KEY `s3` (`student_id`),
+  ADD KEY `p1` (`program_id`);
 
 --
 -- Indexes for table `subject_expert`
@@ -720,6 +881,12 @@ ALTER TABLE `subject_expert`
 --
 ALTER TABLE `type`
   ADD PRIMARY KEY (`type_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `workshop`
@@ -743,13 +910,13 @@ ALTER TABLE `academic_year`
 -- AUTO_INCREMENT for table `agency`
 --
 ALTER TABLE `agency`
-  MODIFY `agency_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `agency_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `auditing_member`
@@ -767,13 +934,13 @@ ALTER TABLE `bos`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `examiner`
@@ -785,43 +952,61 @@ ALTER TABLE `examiner`
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `faculty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `faculty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `internship`
+--
+ALTER TABLE `internship`
+  MODIFY `internship_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `organization`
 --
 ALTER TABLE `organization`
-  MODIFY `organization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `organization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `paper_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `paper_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `paper_faculty`
 --
 ALTER TABLE `paper_faculty`
-  MODIFY `paper_faculty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `paper_faculty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `paper_presented`
+--
+ALTER TABLE `paper_presented`
+  MODIFY `paper_presented_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `paper_published`
+--
+ALTER TABLE `paper_published`
+  MODIFY `paper_published_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `paper_type`
 --
 ALTER TABLE `paper_type`
-  MODIFY `paper_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `paper_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `program_student`
 --
 ALTER TABLE `program_student`
-  MODIFY `program_student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `program_student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -833,19 +1018,19 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `revision`
 --
 ALTER TABLE `revision`
-  MODIFY `revision_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `revision_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `seminar`
 --
 ALTER TABLE `seminar`
-  MODIFY `seminar_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `seminar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `student_activity`
@@ -857,7 +1042,7 @@ ALTER TABLE `student_activity`
 -- AUTO_INCREMENT for table `student_organization`
 --
 ALTER TABLE `student_organization`
-  MODIFY `student_organization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `student_organization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subject_expert`
@@ -869,7 +1054,13 @@ ALTER TABLE `subject_expert`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `workshop`
@@ -916,6 +1107,14 @@ ALTER TABLE `examiner`
   ADD CONSTRAINT `d10` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`);
 
 --
+-- Constraints for table `internship`
+--
+ALTER TABLE `internship`
+  ADD CONSTRAINT `ay1` FOREIGN KEY (`academic_year`) REFERENCES `academic_year` (`academic_year_id`),
+  ADD CONSTRAINT `pro1` FOREIGN KEY (`program_id`) REFERENCES `program` (`program_id`),
+  ADD CONSTRAINT `stud` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
+
+--
 -- Constraints for table `paper`
 --
 ALTER TABLE `paper`
@@ -927,7 +1126,8 @@ ALTER TABLE `paper`
 ALTER TABLE `paper_faculty`
   ADD CONSTRAINT `a2` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`academic_year_id`),
   ADD CONSTRAINT `f2` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`faculty_id`),
-  ADD CONSTRAINT `p4` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`);
+  ADD CONSTRAINT `p4` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
+  ADD CONSTRAINT `pro3` FOREIGN KEY (`program_id`) REFERENCES `program` (`program_id`);
 
 --
 -- Constraints for table `paper_type`
@@ -963,7 +1163,8 @@ ALTER TABLE `project`
 --
 ALTER TABLE `revision`
   ADD CONSTRAINT `a6` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`academic_year_id`),
-  ADD CONSTRAINT `p6` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`);
+  ADD CONSTRAINT `p6` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
+  ADD CONSTRAINT `p7` FOREIGN KEY (`program_id`) REFERENCES `program` (`program_id`);
 
 --
 -- Constraints for table `seminar`
@@ -984,6 +1185,7 @@ ALTER TABLE `student_activity`
 --
 ALTER TABLE `student_organization`
   ADD CONSTRAINT `o1` FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
+  ADD CONSTRAINT `p1` FOREIGN KEY (`program_id`) REFERENCES `program` (`program_id`),
   ADD CONSTRAINT `s3` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
 
 --
