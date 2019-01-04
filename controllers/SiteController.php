@@ -120,6 +120,16 @@ class SiteController extends Controller
         ]);
     }
 
+    /**BACKUP */
+    public function actionBackup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            exec("mysqldump -u root department > /opt/lampp/htdocs/department/web/departmentbackup3.sql");
+        }
+        
+    }
+    
+
     /**
      * Displays about page.
      *

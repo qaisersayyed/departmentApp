@@ -5,6 +5,23 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'modules' => [
+        'db-manager' => [
+            'class' => 'bs\dbManager\Module',
+            // path to directory for the dumps
+            'path' => '@app/backups',
+            // list of registerd db-components
+            'dbList' => ['db'],
+            'as access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+            ],
+        ],
+    ],
+
         'gridview' =>  [
              'class' => '\kartik\grid\Module'
              // enter optional module parameters below - only if you need to  
