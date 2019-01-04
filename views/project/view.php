@@ -45,5 +45,17 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_at',
         ],
     ]) ?>
-<a class="btn btn-default" href='<?= $model->project_file ?>'Download>Download Project File</a>
+
+    <?php if ($model->project_file){?>
+        <a class="btn btn-default" href='<?= $model->project_file ?>'Download>Download Project File1</a>
+    <?php } ?>
+    <?php if ($model->project_file2){?>
+        <a class="btn btn-default" href='<?= $model->project_file2 ?>'Download>Download Project File2</a>
+    <?php }  ?>
+    <?php if ($model->project_file3){?>
+        <a class="btn btn-default" href='<?= $model->project_file3 ?>'Download>Download Project File3</a>
+    <?php } ?>
+    <?php if ($model->project_file4){?>
+        <a class="btn btn-default" href='<?= $model->project_file4 ?>'Download>Download Project File4</a>
+    <?php }  ?>
 </div>

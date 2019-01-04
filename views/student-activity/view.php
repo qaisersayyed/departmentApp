@@ -42,8 +42,19 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'updated_at',
         ],
     ]) ?>
+    <?php if ($model->activity_file){?>
         <a class="btn btn-default" href='<?= $model->activity_file ?>'Download>Download Student Activity File1</a>
+    <?php }?>
+    <?php if ($model->activity_file2){?>
         <a class="btn btn-default" href='<?= $model->activity_file2 ?>'Download>Download Student Activity File2</a>
+    <?php }?>
+    <?php if ($model->activity_file3){?>
         <a class="btn btn-default" href='<?= $model->activity_file3 ?>'Download>Download Student Activity File3</a>
+    <?php }?>
+    <?php if ($model->activity_file4){?>
         <a class="btn btn-default" href='<?= $model->activity_file4 ?>'Download>Download Student Activity File4</a>
+    <?php }?>
+        
+        
+        
 </div>
