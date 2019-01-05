@@ -27,7 +27,13 @@ use dosamigos\datepicker\DatePicker;
                 'format' => 'yyyy-mm-dd'
             ]
     ]);?>
-    <?= $form->field($model, 'file')->fileInput()?>
+    <?= $form->field($model, 'file1')->fileInput()?>
+
+    <?= $form->field($model, 'file2')->fileInput()?>
+
+    <?= $form->field($model, 'file3')->fileInput()?>
+
+    <?= $form->field($model, 'file4')->fileInput()?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

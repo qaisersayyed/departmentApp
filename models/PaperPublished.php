@@ -33,7 +33,7 @@ class PaperPublished extends \yii\db\ActiveRecord
     {
         return [
             [['paper_title', 'journal_name', 'date','file'], 'required'],
-            [['file'],'file'],
+            [['file1','file2','file3','file4'],'file'],
             [['created_at', 'updated_at'], 'safe'],
             [['file'], 'string'],
             [['paper_title', 'journal_name'], 'string', 'max' => 100],
@@ -53,7 +53,7 @@ class PaperPublished extends \yii\db\ActiveRecord
             'date' => 'Date',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'file' => 'File',
+            //'file' => 'File',
         ];
     }
 }
