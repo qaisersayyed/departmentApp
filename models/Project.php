@@ -42,7 +42,7 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'start_date', 'end_date', 'duration', 'amount', 'faculty_name', 'student_name', 'department_id', 'academic_year_id'], 'required'],
-            [['project_file'], 'file'],
+            [['project_file','project_file2','project_file3','project_file4'], 'file'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['amount'], 'number'],
             [['faculty_name', 'student_name'], 'string'],
@@ -64,6 +64,10 @@ class Project extends \yii\db\ActiveRecord
         return [
             'project_id' => 'Project ID',
             'approval_id' => 'Approval ID',
+            'project_file' => 'Project File1',
+            'project_file2' => 'Project File2',
+            'project_file3' => 'Project File3',
+            'project_file4' => 'Project File4',
             'name' => 'Project Title',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',

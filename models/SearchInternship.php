@@ -15,11 +15,13 @@ class SearchInternship extends Internship
     /**
      * {@inheritdoc}
      */
+    public $to;
+    public $from;
     public function rules()
     {
         return [
             [['internship_id'], 'integer'],
-            [['start_date', 'end_date', 'file', 'program_id', 'student_id', 'academic_year', 'company'], 'safe'],
+            [['start_date', 'end_date', 'file','file1','file2','file3', 'program_id', 'student_id', 'academic_year_id', 'company'], 'safe'],
             [['hours'], 'number'],
         ];
     }
@@ -57,27 +59,37 @@ class SearchInternship extends Internship
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        
         $query->joinWith("student");
         $query->joinWith("program");
         $query->joinWith("academicYear");
 
+
+        if($this->to != "" && $this->from != ""){
+            $query->andFilterWhere(['between', 'academic_year.year', $this->from, $this->to]);
+        }
+
+       
         // grid filtering conditions
         $query->andFilterWhere([
             'internship_id' => $this->internship_id,
             //'program_id' => $this->program_id,
             //'student_id' => $this->student_id,
             //'academic_year' => $this->academic_year,
-            'company' => $this->company,
+            //'company' => $this->company,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'hours' => $this->hours,
         ]);
 
         $query->andFilterWhere(['like', 'file', $this->file]);
+        $query->andFilterWhere(['like', 'file1', $this->file1]);
+        $query->andFilterWhere(['like', 'file2', $this->file2]);
+        $query->andFilterWhere(['like', 'file3', $this->file3]);
+        $query->andFilterWhere(['like', 'company', $this->company]);
         $query->andFilterWhere(['like', 'program.name', $this->program_id]);
         $query->andFilterWhere(['like', 'student.name', $this->student_id]);
-        $query->andFilterWhere(['like', 'academicYear.name', $this->academic_year]);
+        $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
 
         return $dataProvider;
     }

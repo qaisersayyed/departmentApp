@@ -28,6 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
            
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->syllabus_file ?>'Download>Download Syllabus</a>
+    <?php if ($model->syllabus_file){?>
+        <a class="btn btn-default" href='<?= $model->syllabus_file ?>'Download>Download Syllabus File1</a>
+    <?php } ?>
+    <?php if ($model->syllabus_file2){?>
+        <a class="btn btn-default" href='<?= $model->syllabus_file2 ?>'Download>Download Syllabus File2</a>
+    <?php }  ?>
+    <?php if ($model->syllabus_file3){?>
+        <a class="btn btn-default" href='<?= $model->syllabus_file3 ?>'Download>Download Syllabus File3</a>
+    <?php } ?>
+    <?php if ($model->syllabus_file4){?>
+        <a class="btn btn-default" href='<?= $model->syllabus_file4 ?>'Download>Download Syllabus File4</a>
+    <?php }  ?>
+    
 
 </div>

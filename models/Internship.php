@@ -37,13 +37,13 @@ class Internship extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['program_id', 'student_id', 'academic_year', 'company', 'start_date', 'end_date', 'hours', 'file'], 'required'],
-            [['program_id', 'student_id', 'academic_year'], 'integer'],
-            [['start_date', 'end_date'], 'safe'],
+            [['program_id', 'student_id', 'academic_year_id', 'company', 'start_date', 'end_date', 'hours'], 'required'],
+            [['program_id', 'student_id', 'academic_year_id'], 'integer'],
+            [['start_date', 'end_date', 'file', 'file1', 'file2', 'file3'], 'safe'],
             [['hours'], 'number'],
-            [['file'], 'string'],
+            [['file', 'file1', 'file2', 'file3'], 'string'],
             [['company'], 'string', 'max' => 255],
-            [['academic_year'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year' => 'academic_year_id']],
+            [['academic_year'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['student_id' => 'student_id']],
         ];
@@ -56,14 +56,17 @@ class Internship extends \yii\db\ActiveRecord
     {
         return [
             'internship_id' => 'Internship ID',
-            'program_id' => 'Program ID',
-            'student_id' => 'Student ID',
-            'academic_year' => 'Academic Year',
+            'program_id' => 'Program name',
+            'student_id' => 'Student name',
+            'academic_year_id' => 'Academic Year',
             'company' => 'Company',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
             'hours' => 'Hours',
             'file' => 'File',
+            'file1' => 'File',
+            'file2' => 'File',
+            'file3' => 'File',
         ];
     }
 
@@ -72,7 +75,7 @@ class Internship extends \yii\db\ActiveRecord
      */
     public function getAcademicYear()
     {
-        return $this->hasOne(AcademicYear::className(), ['academic_year_id' => 'academic_year']);
+        return $this->hasOne(AcademicYear::className(), ['academic_year_id' => 'academic_year_id']);
     }
 
     /**

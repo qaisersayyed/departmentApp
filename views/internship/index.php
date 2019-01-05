@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use dosamigos\datepicker\DatePicker;
+use yii\widgets\ActiveForm;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchInternship */
@@ -14,8 +17,45 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <a style="float:right" href="index.php?r=internship/create" class="btn btn-success">
-    <span  class="glyphicon glyphicon-plus" ></span>Add Internship</a>
+   
+
+    <?php $form = ActiveForm::begin([
+        'method' => 'GET',
+    ]); ?>
+        <div class="row" >
+            <div class="col-md-3">
+                <p>From Year: </p>
+            <?= DatePicker::widget([
+                'name' => 'from',
+                'template' => '{addon}{input}',
+
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy',
+                ]
+            ]); ?>
+            </div>
+            <div class="col-md-3" >
+            <p>To Year: </p>
+            <?= DatePicker::widget([
+                'name' => 'to',
+                'template' => '{addon}{input}',
+
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy',
+                ]
+            ]); ?>
+            
+            </div>
+            <div class="col-md-3" style="padding:29px 0px 0px 20px;">
+                <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
+                
+            </div>
+            <a style="float:right" href="index.php?r=internship/create" class="btn btn-success">
+            <span  class="glyphicon glyphicon-plus" ></span>Add Internship</a>
+
+        </div>
 
 
      <?= GridView::widget([

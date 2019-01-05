@@ -57,22 +57,10 @@ ALTER TABLE `student` ADD `alumni` TINYINT NOT NULL DEFAULT '0' AFTER `status`;
 --------------09 Nov 2018------------------------------------------------
 ALTER TABLE `auditing_member` ADD `file` TEXT NOT NULL AFTER `updated_at`;
 
--------------22 Decembeer 2018---------------------------------
-ALTER TABLE `event` CHANGE `file` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
- ALTER TABLE `event` CHANGE `participant` `participant` INT NULL DEFAULT NULL;
- ALTER TABLE `seminar` CHANGE `participant` `participant` INT NOT NULL;
- ALTER TABLE `workshop` CHANGE `participant` `participant` INT NOT NULL;
- ALTER TABLE `event` ADD `file2` TEXT NULL AFTER `file`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
 
+ALTER TABLE `student_activity` ADD `activity_file2` TEXT NOT NULL AFTER `activity_file`, ADD `activity_file3` TEXT NOT NULL AFTER `activity_file2`, ADD `activity_file4` TEXT NOT NULL AFTER `activity_file3`;
+ALTER TABLE `student_activity` CHANGE `activity_file` `activity_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `activity_file2` `activity_file2` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `activity_file3` `activity_file3` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `activity_file4` `a
+ALTER TABLE `project` CHANGE `project_file2` `project_file` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `project_file3` `project_file2` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `project_file4` `project_file3` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `project_file` `project_file4` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `paper_presented` ADD `paper_presented_file2` TEXT NULL AFTER `paper_presented_file`, ADD `paper_presented_file3` TEXT NULL AFTER `paper_presented_file2`, ADD `paper_presented_file4` TEXT NULL AFTER `paper_presented_file3`;
 
-ALTER TABLE `seminar` CHANGE `file` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
-ALTER TABLE `seminar` ADD `file2` TEXT NULL AFTER `file`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
-
-ALTER TABLE `examiner` ADD `file2` TEXT NULL AFTER `file`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
-ALTER TABLE `examiner` CHANGE `file` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
-
-ALTER TABLE `workshop` ADD `file2` TEXT NULL AFTER `file`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
-ALTER TABLE `workshop` CHANGE `file` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
-
-ALTER TABLE `paper_published` ADD `file2` TEXT NULL AFTER `file`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
-ALTER TABLE `paper_published` CHANGE `file` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `revision` ADD `syllabus_file2` TEXT NULL AFTER `syllabus_file`, ADD `syllabus_file3` TEXT NULL AFTER `syllabus_file2`, ADD `syllabus_file4` TEXT NULL AFTER `syllabus_file3`;
