@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'academicYear.year',
             //'created_at',
             //'updated_at',
-            'file',
+            //'file',
         ],
     ]) ?>
    <?php if ($model->file1){ ?>

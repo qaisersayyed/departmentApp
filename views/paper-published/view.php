@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'created_at',
             //'updated_at',
-            'file:ntext',
+            
         ],
     ]) ?>
     <?php if ($model->file1){ ?>

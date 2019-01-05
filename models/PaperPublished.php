@@ -32,10 +32,9 @@ class PaperPublished extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['paper_title', 'journal_name', 'date','file'], 'required'],
+            [['paper_title', 'journal_name', 'date'], 'required'],
             [['file1','file2','file3','file4'],'file'],
             [['created_at', 'updated_at'], 'safe'],
-            [['file'], 'string'],
             [['paper_title', 'journal_name'], 'string', 'max' => 100],
             [['date'], 'string', 'max' => 20],
         ];
@@ -53,7 +52,7 @@ class PaperPublished extends \yii\db\ActiveRecord
             'date' => 'Date',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            //'file' => 'File',
+
         ];
     }
 }

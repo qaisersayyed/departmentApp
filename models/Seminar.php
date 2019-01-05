@@ -67,7 +67,7 @@ class Seminar extends \yii\db\ActiveRecord
             'academic_year_id' => 'Academic Year',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'file' => 'File',
+            //'file' => 'File',
         ];
     }
 
