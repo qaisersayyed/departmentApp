@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+//use yii\widgets\Bootstrap;
 
 class SiteController extends Controller
 {
@@ -125,12 +126,12 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             $fileName = date('d-m-y_H:i:s').'.sql';
-             // exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
-             echo '<script language="javascript">';
-            echo 'window.prompt("sometext","defaultText");';
-            
+            exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
+           echo '<script language="javascript">';
+            echo 'alert("Backup successful ")';
             echo '</script>';
-             
+           //Alerts::setAlertType(Alerts::ALERT_WARNING);
+      //    $this->redirect(['program-student/index']);
         }
         
     }

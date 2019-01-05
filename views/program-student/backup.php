@@ -11,6 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Program Students', 'url' => ['back
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div style="width:50%;" >
-<h1>dshgjvcc</h1>
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  
+</div>
 
 </div>
