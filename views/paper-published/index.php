@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
-            //'paper_published_id',
+            //          'paper_published_id',
             'paper_title',
             'journal_name',
             [
@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'created_at',
             //'updated_at',
-            //'file:ntext',
+            
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],

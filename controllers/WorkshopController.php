@@ -80,10 +80,26 @@ class WorkshopController extends Controller
         $model = new Workshop();
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
-                $model->file = UploadedFile::getInstance($model, 'file');
-                if ($model->file ) {                
-                    $model->file->saveAs('uploads/workshop/' . $model->file ->baseName . '.' . $model->file ->extension);
-                    $model->file= 'uploads/workshop/' . $model->file ->baseName . '.' . $model->file ->extension;
+                $model->file1 = UploadedFile::getInstance($model, 'file1');
+                $model->file2 = UploadedFile::getInstance($model, 'file2');
+                $model->file3 = UploadedFile::getInstance($model, 'file3');
+                $model->file4 = UploadedFile::getInstance($model, 'file4');
+                
+                if ($model->file1 ) {                
+                    $model->file1->saveAs('uploads/workshop/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
+                    $model->file1= 'uploads/workshop/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                }
+                if ($model->file2 ) {                
+                    $model->file2->saveAs('uploads/workshop/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
+                    $model->file2= 'uploads/workshop/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                }
+                if ($model->file3 ) {                
+                    $model->file3->saveAs('uploads/workshop/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
+                    $model->file3= 'uploads/workshop/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                }
+                if ($model->file4) {                
+                    $model->file4->saveAs('uploads/workshop/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
+                    $model->file4= 'uploads/workshop/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                 }
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->workshop_id]);
