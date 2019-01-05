@@ -56,6 +56,10 @@ class SearchPaperFaculty extends PaperFaculty
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinwith('faculty');
+        $query->joinwith('program');
+        $query->joinwith('paper');
+        $query->joinwith('academicYear');
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -68,7 +72,7 @@ class SearchPaperFaculty extends PaperFaculty
             //'semester'=>$this->semester,
         ]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
-        $query->andFilterWhere(['like', 'academicYear.year', $this->academic_year_id]);
+        $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'paper.name', $this->paper_id]);
         $query->andFilterWhere(['like', 'program.name', $this->program_id]);
         $query->andFilterWhere(['like', 'semester', $this->semester]);

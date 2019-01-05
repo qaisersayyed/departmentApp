@@ -40,11 +40,11 @@ class Workshop extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'inhouse', 'cost', 'participant', 'faculty_name', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
-            [['file'],'file'],
+            [['file1','file2','file3','file4'],'file'],
             [['cost'], 'number'],
-            [['participant', 'faculty_name'], 'string'],
+            [['faculty_name','sponsor'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['department_id', 'academic_year_id'], 'integer'],
+            [['department_id', 'academic_year_id', 'participant'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['inhouse'], 'string', 'max' => 1],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
@@ -68,6 +68,7 @@ class Workshop extends \yii\db\ActiveRecord
             'end_date' => 'End Date',
             'department_id' => 'Department',
             'academic_year_id' => 'Academic Year',
+            'sponsor'=> 'Sponsors',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'file' => 'File',

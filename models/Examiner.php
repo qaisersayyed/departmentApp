@@ -38,7 +38,7 @@ class Examiner extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'faculty_name', 'venue', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
-            [['file'],'file'],
+            [['file1','file2','file3','file4'],'file'],
             [['faculty_name'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['department_id', 'academic_year_id'], 'integer'],

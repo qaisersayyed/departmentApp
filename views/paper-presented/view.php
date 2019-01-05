@@ -32,5 +32,19 @@ $this->params['breadcrumbs'][] = $this->title;
             //'status',
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'Download>Download file</a>
+
+    <?php if ($model->paper_presented_file){?>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'Download>Download file</a>
+    <?php } ?>
+    <?php if ($model->paper_presented_file2){?>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file2 ?>'Download>Download file</a>
+    <?php }  ?>
+    <?php if ($model->paper_presented_file3){?>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file3 ?>'Download>Download file</a>
+    <?php } ?>
+    <?php if ($model->paper_presented_file4){?>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file4 ?>'Download>Download file</a>
+    <?php }  ?>
+        
+    
 </div>

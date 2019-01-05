@@ -64,14 +64,15 @@ class SearchAppointment extends Appointment
             //'date_of_joining' => $this->date_of_joining,
             //'date_of_leaving' => $this->date_of_leaving,
             //'faculty_id' => $this->faculty_id,
-            'Type'=>$this->Type,
+            //'Type'=>$this->Type,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'appointment.status'=>1,
         ]);
 
         $query->andFilterWhere(['like', 'appointment.status', $this->status])
-              ->andFilterWhere(['like', 'Faculty.name', $this->faculty_id])
+              ->andFilterWhere(['like', 'faculty.name', $this->faculty_id])
+              ->andFilterWhere(['like', 'appointment.type', $this->Type])
               ->andFilterWhere(['like', 'appointment.date_of_joining', $this->date_of_joining])
               ->andFilterWhere(['like', 'appointment.date_of_leaving', $this->date_of_leaving]);
 

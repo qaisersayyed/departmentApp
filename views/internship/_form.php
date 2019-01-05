@@ -17,18 +17,16 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-   <?= $form->field($model, 'program_id')->dropDownList(
+    <?= $form->field($model, 'program_id')->dropDownList(
         ArrayHelper::map(Program::find()->all(),'program_id','name'),
         ['prompt'=>'select ']       
-    )  ->label('Program Name')
-    ?>
-    <?= $form->field($model, 'student_id')->dropDownList(
-        ArrayHelper::map(Student::find()->all(),'student_id','name'),
-        ['prompt'=>'select ']       
-    )->label('Student Name')
-    ?>
+   )  ?>
+     <?= $form->field($model, 'student_id')->dropDownList(
+        ArrayHelper::map(Student::find()->where(['status' => 1])->all(),'student_id','name'),
+        ['prompt'=>'select ']
+    ) ?>
 
-   <?= $form->field($model, 'academic_year')->dropDownList(
+   <?= $form->field($model, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->all(),'academic_year_id','year'),
         ['prompt'=>'select ']       
    )  
@@ -62,7 +60,12 @@ use dosamigos\datepicker\DatePicker;
     <br>
     <?= $form->field($model, 'file')->fileInput() ?>
     <br>
-    
+    <?= $form->field($model, 'file1')->fileInput() ?>
+    <br>
+    <?= $form->field($model, 'file2')->fileInput() ?>
+    <br>
+    <?= $form->field($model, 'file3')->fileInput() ?>
+    <br>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
@@ -70,3 +73,29 @@ use dosamigos\datepicker\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php 
+
+$script = <<< HTML
+    $(document).ready(function (){
+        $("#internship-program_id").change(function (){
+            $('#internship-student_id').empty();
+            program_id = $(this).val();
+            console.log(program_id);
+            $.ajax({
+                'method' : 'POST',
+                'url' : 'index.php?r=program-student/get-student&id='+program_id,
+                'success': function(data){
+                    var data = jQuery.parseJSON(data);
+                    $.each(data, function(key, value){
+                        console.log(value.name);
+                        console.log(value.student_id);
+                        $('#internship-student_id').append("<option value='"+value[0]+"'>"+ value[1] +"</option>");
+                    });
+                }
+            })
+        });
+    });
+HTML;
+$this->registerJS($script);
+?>
+

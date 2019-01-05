@@ -74,9 +74,8 @@ class SearchPaperPublished extends PaperPublished
 
         $query->andFilterWhere(['like', 'paper_title', $this->paper_title])
             ->andFilterWhere(['like', 'journal_name', $this->journal_name])
-            ->andFilterWhere(['like', 'date', $this->date])
-            ->andFilterWhere(['like', 'file', $this->file]);
-
+            ->andFilterWhere(['like', 'date', $this->date]);
+            
         return $dataProvider;
     }
 }
