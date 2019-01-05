@@ -125,8 +125,12 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             $fileName = date('d-m-y_H:i:s').'.sql';
-            exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
-            $this->redirect(['program-student/index']);
+             // exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
+             echo '<script language="javascript">';
+            echo 'window.prompt("sometext","defaultText");';
+            
+            echo '</script>';
+             
         }
         
     }
