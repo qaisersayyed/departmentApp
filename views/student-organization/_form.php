@@ -28,7 +28,7 @@ use dosamigos\datepicker\DatePicker;
     ) ?>
 
     <?= $form->field($model, 'student_id')->dropDownList(
-        ArrayHelper::map(Student::find()->where(['status' => 1])->all(),'student_id','name'),
+        ArrayHelper::map(Student::find()->where(['alumni' => "1"])->all(),'student_id','name'),
         ['prompt'=>'select ']
     ) ?>
 
