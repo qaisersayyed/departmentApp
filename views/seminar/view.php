@@ -55,6 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'created_at',
             //'updated_at',
             //'file',
+   
         ],
     ]) ?>
     <?php if ($model->file1){ ?>

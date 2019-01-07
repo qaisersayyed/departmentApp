@@ -84,8 +84,9 @@ class BosController extends Controller
                 $model->minutes = UploadedFile::getInstance($model, 'minutes');
                 if ($model->minutes ) {                
                     $model->minutes->saveAs('uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension);
+                    $model->minutes= 'uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension;
                 }
-                $model->minutes= 'uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension;
+                
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->bos_id]);
                 }
@@ -109,16 +110,15 @@ class BosController extends Controller
     {
         $model = $this->findModel($id);
         if(!Yii::$app->user->isGuest){
+            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+                return $this->redirect(['view', 'id' => $model->bos_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->bos_id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-        }else {
-            throw new \yii\web\ForbiddenHttpException;
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new \yii\web\ForbiddenHttpException;   
         }
     }
 
