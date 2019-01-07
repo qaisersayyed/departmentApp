@@ -77,6 +77,7 @@ class RevisionController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+
     public function actionCreate()
     {
         $model = new Revision();
@@ -125,9 +126,23 @@ class RevisionController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $old_data = $this->findModel($id);
         if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            if ($model->load(Yii::$app->request->post()) ) {
+                if($model->syllabus_file == ""){
+                    $model->syllabus_file == $old_data->syllabus_file;
+                }
+                else{
+                    $model->syllabus_file = UploadedFile::getInstance($model, 'syllabus_file');
+                    if ($model->syllabus_file ) {                
+                    $model->syllabus_file->saveAs('uploads/revision/' . $model->syllabus_file ->baseName . '.' . $model->syllabus_file ->extension);
+                    $model->syllabus_file= 'uploads/revision/' . $model->syllabus_file ->baseName . '.' . $model->syllabus_file ->extension;
+                }
+                }
+
+
                 return $this->redirect(['view', 'id' => $model->revision_id]);
+                
             }
 
             return $this->render('update', [
