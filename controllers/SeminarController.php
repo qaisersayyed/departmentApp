@@ -125,16 +125,55 @@ class SeminarController extends Controller
     {
         if(!Yii::$app->user->isGuest){
             $model = $this->findModel($id);
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $old_data= $this->findModel($id);
+    
+            if ($model->load(Yii::$app->request->post())) {
+                $model->file1 = UploadedFile::getInstance($model, 'file1');
+                
+                if (!$model->file1 ){
+                    $model->file1 = $old_data->file1;
+                    
+                }else{
+                    
+                    $model->file1->saveAs('uploads/internship/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
+                    $model->file1= 'uploads/internship/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                }
+                $model->file2 = UploadedFile::getInstance($model, 'file2');
+                if (!$model->file2){
+                    $model->file2 = $old_data->file2;
+    
+                }else{
+                    
+                    $model->file2->saveAs('uploads/internship/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
+                    $model->file2= 'uploads/internship/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                }
+                $model->file3 = UploadedFile::getInstance($model, 'file3');
+                if (!$model->file3){
+                    $model->file3 = $old_data->file3;
+    
+                }else{
+                    $model->file3->saveAs('uploads/internship/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
+                    $model->file3= 'uploads/internship/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                }
+                $model->file4 = UploadedFile::getInstance($model, 'file4');
+                
+                if (!$model->file4){
+                    $model->file4 = $old_data->file4;
+                }else{
+                    
+                    $model->file4->saveAs('uploads/internship/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
+                    $model->file4= 'uploads/internship/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                }
+                $model->save(false);
+                
                 return $this->redirect(['view', 'id' => $model->seminar_id]);
             }
-
+    
             return $this->render('update', [
                 'model' => $model,
             ]);
         }else{
-            throw new \yii\web\ForbiddenHttpException;
+        throw new \yii\web\ForbiddenHttpException;
         }
     }
 
