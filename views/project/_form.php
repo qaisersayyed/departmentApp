@@ -17,11 +17,11 @@ use dosamigos\datepicker\DatePicker;
 <div class="project-form" style="width:50%">
 
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'project_file')->fileInput() ?>
-    <?= $form->field($model, 'project_file2')->fileInput() ?>
+    <?= $form->field($model, 'project_file')->fileInput() ;echo "<br>$model->project_file</br>" ?>
+    <?= $form->field($model, 'project_file2')->fileInput() ;echo "<br>$model->project_file2</br>" ?>
 
-    <?= $form->field($model, 'project_file3')->fileInput() ?>
-    <?= $form->field($model, 'project_file4')->fileInput() ?>
+    <?= $form->field($model, 'project_file3')->fileInput() ;echo "<br>$model->project_file3</br>"?>
+    <?= $form->field($model, 'project_file4')->fileInput() ;echo "<br>$model->project_file4</br>"?>
 
 
     <?= $form->field($model, 'approval_id')->textInput(['maxlength' => true]) ?>
