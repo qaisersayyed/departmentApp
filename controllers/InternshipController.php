@@ -37,13 +37,22 @@ class InternshipController extends Controller
      */
     public function actionIndex()
     {
+    
+    if(!Yii::$app->user->isGuest){
         $searchModel = new SearchInternship();
+        if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+            $searchModel->to = Yii::$app->request->get('to');
+            $searchModel->from = Yii::$app->request->get('from');
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else{
+        throw new \yii\web\ForbiddenHttpException;
+    }
     }
 
     /**
@@ -54,9 +63,13 @@ class InternshipController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(!Yii::$app->user->isGuest){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }else{
+            throw new \yii\web\ForbiddenHttpException;
+        }    
     }
 
     /**
@@ -71,9 +84,24 @@ class InternshipController extends Controller
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
             $model->file = UploadedFile::getInstance($model, 'file');
+            $model->file1 = UploadedFile::getInstance($model, 'file1');
+            $model->file2 = UploadedFile::getInstance($model, 'file2');
+            $model->file3 = UploadedFile::getInstance($model, 'file3');
                 if ($model->file ) {                
-                    $model->file->saveAs('uploads/Auditing_Member/' . $model->file ->baseName . '.' . $model->file ->extension);
-                    $model->file= 'uploads/Auditing_Member/' . $model->file ->baseName . '.' . $model->file ->extension;
+                    $model->file->saveAs('uploads/internship/' . $model->file ->baseName . '.' . $model->file ->extension);
+                    $model->file= 'uploads/internship/' . $model->file ->baseName . '.' . $model->file ->extension;
+                }
+                if ($model->file1 ) {                
+                    $model->file1->saveAs('uploads/internship/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
+                    $model->file1= 'uploads/internship/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                }
+                if ($model->file2 ) {                
+                    $model->file2->saveAs('uploads/internship/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
+                    $model->file2= 'uploads/internship/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                }
+                if ($model->file3 ) {                
+                    $model->file3->saveAs('uploads/internship/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
+                    $model->file3= 'uploads/internship/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                 }
                 
 	            $model->save(false);

@@ -41,7 +41,7 @@ use dosamigos\datepicker\DatePicker;
             ]
     ]);?>
 
-    <?= $form->field($model, 'participant')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
 
@@ -56,7 +56,13 @@ use dosamigos\datepicker\DatePicker;
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
 
-    <?= $form->field($model, 'file')->fileInput()?>
+    <?= $form->field($model, 'file1')->fileInput()?>
+
+    <?= $form->field($model, 'file2')->fileInput()?>
+
+    <?= $form->field($model, 'file3')->fileInput()?>
+
+    <?= $form->field($model, 'file4')->fileInput()?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

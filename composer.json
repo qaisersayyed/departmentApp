@@ -25,7 +25,8 @@
         "kartik-v/yii2-export": "*",
         "yiister/yii2-gentelella": "~1.0",
         "kartik-v/mpdf": "^1.0",
-        "beaten-sect0r/yii2-db-manager": "*"
+        "beaten-sect0r/yii2-db-manager": "*",
+        "c006/yii2-alerts": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

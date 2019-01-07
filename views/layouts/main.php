@@ -115,6 +115,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         ],
                                     ],
                                     ['label' => 'Faculty','icon' => 'user', 'url' => ['/appointment/index']],
+                                    ['label' => 'Backup Data', 'icon' => 'table', 'url' => ['/site/backup']],
                                     /* [
                                         'label' => 'Faculty',
                                         "icon" => "th",

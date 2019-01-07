@@ -53,12 +53,16 @@ use app\models\AcademicYear;
     )?>
 
     <?= $form->field($model, 'academic_year_id')->dropDownList(
-        ArrayHelper::map(AcademicYear::find()->all(),'academic_year_id','year'),
-        ['prompt'=>'select ']
-    )?>
+        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
+    ) ?>
 
-    <?= $form->field($model, 'file')->fileInput()?>
+    <?= $form->field($model, 'file1')->fileInput()?>
 
+    <?= $form->field($model, 'file2')->fileInput()?>
+
+    <?= $form->field($model, 'file3')->fileInput()?>
+
+    <?= $form->field($model, 'file4')->fileInput()?>
     
 
     <div class="form-group">

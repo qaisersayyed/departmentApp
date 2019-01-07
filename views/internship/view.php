@@ -30,7 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
             //'file:ntext',
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->file ?>' Download>Download File</a>
+    
+    
+    <?php if ($model->file ){ ?>
+        <a class="btn btn-default" href='<?= $model->file ?>' Download>Download File 1</a>
+    <?php } ?>
+    <?php if ($model->file1 ){ ?>
+        <a class="btn btn-default" href='<?= $model->file1 ?>' Download>Download File 2</a>
+        <?php } ?>
+    <?php if ($model->file2 ){ ?>
+        <a class="btn btn-default" href='<?= $model->file2 ?>' Download>Download File 3</a>
+        <?php } ?>
+    <?php if ($model->file3 ){ ?> 
+        <a class="btn btn-default" href='<?= $model->file3 ?>' Download>Download File 4</a>
+  
+        <?php } ?>
 
 
 </div>

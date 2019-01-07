@@ -54,7 +54,7 @@ class Appointment extends \yii\db\ActiveRecord
             'Type'=>'Type',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'status' => 'Status',
+            'status' => 1,
         ];
     }
 
@@ -65,4 +65,5 @@ class Appointment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
     }
+
 }
