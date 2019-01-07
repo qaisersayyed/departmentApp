@@ -56,13 +56,13 @@ use dosamigos\datepicker\DatePicker;
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
 
-    <?= $form->field($model, 'file1')->fileInput()?>
+<?= $form->field($model, 'file1')->fileInput();echo "<br>$model->file1</br>" ?>
 
-    <?= $form->field($model, 'file2')->fileInput()?>
+<?= $form->field($model, 'file2')->fileInput();echo "<br>$model->file2</br>" ?>
 
-    <?= $form->field($model, 'file3')->fileInput()?>
+<?= $form->field($model, 'file3')->fileInput();echo "<br>$model->file3</br>" ?>
 
-    <?= $form->field($model, 'file4')->fileInput()?>
+<?= $form->field($model, 'file4')->fileInput();echo "<br>$model->file4</br>" ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

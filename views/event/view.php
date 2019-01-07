@@ -57,18 +57,20 @@ $this->params['breadcrumbs'][] = $this->title;
             //'file',
         ],
     ]) ?>
-    <?php if ($model->file1){ ?>
-        <a class="btn btn-default" href='<?= $model->file1 ?>'Download>Download file1</a>
+    <?php if ($model->file1 ){ echo "<h2>File 1</h2>"?>
+        
+        <a class="btn btn-default" href='<?= $model->file1 ?>' Download>Download File 1</a>
     <?php } ?>
-    <?php if ($model->file2){ ?>
-        <a class="btn btn-default" href='<?= $model->file2 ?>'Download>Download file2</a>
-    <?php } ?>
-    <?php if ($model->file3){ ?>
-        <a class="btn btn-default" href='<?= $model->file3 ?>'Download>Download file3</a>
-    <?php } ?>
-    <?php if ($model->file4){ ?>
-        <a class="btn btn-default" href='<?= $model->file4 ?>'Download>Download file4</a>
-    <?php } ?>
+    <?php if ($model->file2 ){ echo "<br><h2>File 2</h2>" ?>
+        <a class="btn btn-default" href='<?= $model->file2 ?>' Download>Download File 2</a>
+        <?php } ?>
+    <?php if ($model->file3 ){  echo "<h2>File 3</h2>" ?>
+        <a class="btn btn-default" href='<?= $model->file3 ?>' Download>Download File 3</a>
+        <?php } ?>
+    <?php if ($model->file4 ){  echo "<h2>File 4</h2>" ?> 
+        <a class="btn btn-default" href='<?= $model->file4 ?>' Download>Download File 4</a>
+  
+        <?php } ?>
     
     
 </div>

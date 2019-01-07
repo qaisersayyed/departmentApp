@@ -108,12 +108,26 @@ class BosController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
         if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            $model = $this->findModel($id);
+            $old_data= $this->findModel($id);
+    
+            if ($model->load(Yii::$app->request->post())) {
+                $model->minutes = UploadedFile::getInstance($model, 'minutes');
+                
+                if (!$model->minutes ){
+                    $model->minutes = $old_data->minutes;
+                    
+                }else{
+                    
+                    $model->minutes->saveAs('uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension);
+                    $model->minutes= 'uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension;
+                };
+                $model->save(false);
+                
                 return $this->redirect(['view', 'id' => $model->bos_id]);
             }
-
+    
             return $this->render('update', [
                 'model' => $model,
             ]);

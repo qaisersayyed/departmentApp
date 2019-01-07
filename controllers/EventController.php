@@ -135,8 +135,8 @@ class EventController extends Controller
                     
                 }else{
                     
-                    $model->file1->saveAs('uploads/internship/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
-                    $model->file1= 'uploads/internship/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                    $model->file1->saveAs('uploads/event/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
+                    $model->file1= 'uploads/event/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
                 }
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
                 if (!$model->file2){
@@ -144,16 +144,16 @@ class EventController extends Controller
     
                 }else{
                     
-                    $model->file2->saveAs('uploads/internship/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
-                    $model->file2= 'uploads/internship/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    $model->file2->saveAs('uploads/event/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
+                    $model->file2= 'uploads/event/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                 }
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
                 if (!$model->file3){
                     $model->file3 = $old_data->file3;
     
                 }else{
-                    $model->file3->saveAs('uploads/internship/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
-                    $model->file3= 'uploads/internship/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                    $model->file3->saveAs('uploads/event/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
+                    $model->file3= 'uploads/event/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                 }
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
@@ -161,8 +161,8 @@ class EventController extends Controller
                     $model->file4 = $old_data->file4;
                 }else{
                     
-                    $model->file4->saveAs('uploads/internship/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
-                    $model->file4= 'uploads/internship/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                    $model->file4->saveAs('uploads/event/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
+                    $model->file4= 'uploads/event/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                 }
                 $model->save(false);
                 
