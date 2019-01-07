@@ -140,7 +140,40 @@ class RevisionController extends Controller
                 }
                 }
 
+                if($model->syllabus_file2 == ""){
+                    $model->syllabus_file2 == $old_data->syllabus_file2;
+                }
+                else{
+                    $model->syllabus_file2 = UploadedFile::getInstance($model, 'syllabus_file2');
+                    if ($model->syllabus_file2 ) {                
+                    $model->syllabus_file2->saveAs('uploads/revision/' . $model->syllabus_file2 ->baseName . '.' . $model->syllabus_file2 ->extension);
+                    $model->syllabus_file2= 'uploads/revision/' . $model->syllabus_file2 ->baseName . '.' . $model->syllabus_file2 ->extension;
+                }
+                }
 
+                if($model->syllabus_file3 == ""){
+                    $model->syllabus_file3 == $old_data->syllabus_file3;
+                }
+                else{
+                    $model->syllabus_file3 = UploadedFile::getInstance($model, 'syllabus_file3');
+                    if ($model->syllabus_file3 ) {                
+                    $model->syllabus_file3->saveAs('uploads/revision/' . $model->syllabus_file3 ->baseName . '.' . $model->syllabus_file3 ->extension);
+                    $model->syllabus_file3= 'uploads/revision/' . $model->syllabus_file3 ->baseName . '.' . $model->syllabus_file3 ->extension;
+                }
+                }
+
+                if($model->syllabus_file4 == ""){
+                    $model->syllabus_file4 == $old_data->syllabus_file4;
+                }
+                else{
+                    $model->syllabus_file4 = UploadedFile::getInstance($model, 'syllabus_file4');
+                    if ($model->syllabus_file4 ) {                
+                    $model->syllabus_file4->saveAs('uploads/revision/' . $model->syllabus_file4 ->baseName . '.' . $model->syllabus_file4 ->extension);
+                    $model->syllabus_file4= 'uploads/revision/' . $model->syllabus_file4 ->baseName . '.' . $model->syllabus_file4 ->extension;
+                }
+                }
+                
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->revision_id]);
                 
             }
