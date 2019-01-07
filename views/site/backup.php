@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 <div style="width:50%;" >
 <div class="align-middle" class="jumbotron" >
   <h1 class="display-4">Backup Successful</h1>
-  
+
 </div>
 
 </div>

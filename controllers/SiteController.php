@@ -128,6 +128,7 @@ class SiteController extends Controller
             $fileName = date('d-m-y_H:i:s').'.sql';
             exec("/opt/lampp/bin/mysqldump -u root department > /opt/lampp/htdocs/department/web/$fileName");
             return $this->render('backup');
+            
         }
         
     }
