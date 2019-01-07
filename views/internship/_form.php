@@ -58,13 +58,13 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'hours')->textInput() ?>
     <br>
-    <?= $form->field($model, 'file')->fileInput() ?>
+    <?= $form->field($model, 'file')->fileInput() ; echo "<b>$model->file</b> <br>" ?>
     <br>
-    <?= $form->field($model, 'file1')->fileInput() ?>
+    <?= $form->field($model, 'file1')->fileInput(); echo "<b>$model->file1</b> <br>" ?>
     <br>
-    <?= $form->field($model, 'file2')->fileInput() ?>
+    <?= $form->field($model, 'file2')->fileInput(); echo "<b>$model->file2</b> <br>"?>
     <br>
-    <?= $form->field($model, 'file3')->fileInput() ?>
+    <?= $form->field($model, 'file3')->fileInput(); echo "<b>$model->file3</b> <br>"?>
     <br>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -83,7 +83,7 @@ $script = <<< HTML
             console.log(program_id);
             $.ajax({
                 'method' : 'POST',
-                'url' : 'index.php?r=program-student/get-student&id='+program_id,
+                'url' : 'index.php?r=program-student/get-student&id='+program_id ,
                 'success': function(data){
                     var data = jQuery.parseJSON(data);
                     $.each(data, function(key, value){

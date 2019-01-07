@@ -124,7 +124,8 @@ class InternshipController extends Controller
     {
         $model = $this->findModel($id);
         $old_data= $this->findModel($id);
-
+        
+        if(!Yii::$app->user->isGuest){
         if ($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
             
@@ -170,7 +171,9 @@ class InternshipController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+        }
     }
+
 
     /**
      * Deletes an existing Internship model.
