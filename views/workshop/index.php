@@ -115,7 +115,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'academicYear.year',
                 'attribute' => 'academic_year_id',
                 ],   
-                
             'sponsor:ntext', 
             //'created_at',
             //'updated_at',
