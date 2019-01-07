@@ -60,7 +60,7 @@ class searchRevision extends Revision
         }
 
         if($this->to != "" && $this->from != ""){
-            $query->andFilterWhere(['between', 'academic_year.year', $this->from, $this->to]);
+            $query->andFilterWhere(['between', 'syllabus_date', $this->from, $this->to]);
         }
 
         // grid filtering conditions

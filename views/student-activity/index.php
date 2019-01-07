@@ -25,50 +25,48 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $form = ActiveForm::begin([
     'method' => 'GET',
 ]); ?>
-    <div class="row" >
-        <div class="col-md-3">
-            <p>From Date: </p>
-        <?= DatePicker::widget([
-            'name' => 'from',
-            'template' => '{addon}{input}',
+    <div class="row">
+            <div class="col-md-3">
+                <p>From Date: </p>
+            <?= DatePicker::widget([
+                'name' => 'from',
+                'template' => '{addon}{input}',
 
-            'clientOptions' => [
-                'autoclose' => true,
-                'format' => 'yyyy-mm-dd',
-            ]
-        ]); ?>
-        </div>
-        <div class="col-md-3" >
-        <p>To Date: </p>
-        <?= DatePicker::widget([
-            'name' => 'to',
-            'template' => '{addon}{input}',
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+            ]); ?>
+            </div>
+            <div class="col-md-3">
+            <p>To Date: </p>
+            <?= DatePicker::widget([
+                'name' => 'to',
+                'template' => '{addon}{input}',
 
-            'clientOptions' => [
-                'autoclose' => true,
-                'format' => 'yyyy-mm-dd',
-            ]
-        ]); ?>
-        
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd',
+                ]
+            ]); ?>
+            </div>
+            <div class="col-md-3" style="padding:29px 0px 0px 20px;">
+                <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
+                
+            </div>
         </div>
-        <div class="col-md-3" style="padding:29px 0px 0px 20px;">
-            <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
-            
-        </div>
+     <?php ActiveForm::end(); ?>
+    <div class="text-right">
+        <p><b>Search Result: </b>
+        <?php 
+            if($searchModel->to != "" && $searchModel->from != ""){
+                echo date('d M Y', strtotime($searchModel->from)) . " - ". date('d M Y', strtotime($searchModel->to)) ;
+            }else{
+                echo "None";
+            }
+        ?>
+    </p>
     </div>
-    
- <?php ActiveForm::end(); ?>
-<div class="text-right">
-    <p><b>Search Result: </b>
-    <?php 
-        if($searchModel->to != "" && $searchModel->from != ""){
-            echo date('Y', strtotime($searchModel->from)) . " - ". date('Y', strtotime($searchModel->to)) ;
-        }else{
-            echo "None";
-        }
-    ?>
-</p>
-</div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
