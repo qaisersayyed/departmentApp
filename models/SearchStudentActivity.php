@@ -60,7 +60,7 @@ class SearchStudentActivity extends StudentActivity
             return $dataProvider;
         }
         if($this->to != "" && $this->from != ""){
-            $query->andFilterWhere(['between', 'academic_year.year', $this->from, $this->to]);
+            $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
 
         // grid filtering conditions
