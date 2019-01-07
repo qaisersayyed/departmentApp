@@ -66,12 +66,12 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ['label' => 'Student', 'icon' => 'user', 'url' => ['/program-student/index']],
+                                    ['label' => 'Student', 'icon' => 'child', 'url' => ['/program-student/index']],
                                     ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
                                     ['label' => 'Organization','icon' => 'briefcase', 'url' => ['/organization/index']],
                                     [
                                         'label' => 'Settings',
-                                        "icon" => "th",
+                                        "icon" => "gear",
                                         "url" => "#",
                                         'items' => [
                                             ['label' => 'Program', 'url' => ['/program/index']],
@@ -105,7 +105,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                     ],
                                     [
                                         'label' => 'Course',
-                                        "icon" => "th",
+                                        "icon" => "book",
                                         "url" => "#",
                                         'items' => [
                                             
