@@ -9,7 +9,8 @@ use app\models\Program;
 
 
 use yii\data\ActiveDataProvider;
-
+$this->title = 'Alumni';
+$this->params['breadcrumbs'][] = $this->title;
 
 
 $form = ActiveForm::begin([
