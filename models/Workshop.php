@@ -68,7 +68,7 @@ class Workshop extends \yii\db\ActiveRecord
             'end_date' => 'End Date',
             'department_id' => 'Department',
             'academic_year_id' => 'Academic Year',
-            'sponsor'=> 'Sponsors',
+            'sponsor'=> 'Sponsor',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'file' => 'File',
