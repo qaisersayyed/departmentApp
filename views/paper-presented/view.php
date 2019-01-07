@@ -34,16 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
     <?php if ($model->paper_presented_file){?>
-        <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'Download>Download file</a>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file ?>'Download>Download file1</a>
     <?php } ?>
     <?php if ($model->paper_presented_file2){?>
-        <a class="btn btn-default" href='<?= $model->paper_presented_file2 ?>'Download>Download file</a>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file2 ?>'Download>Download file2</a>
     <?php }  ?>
     <?php if ($model->paper_presented_file3){?>
-        <a class="btn btn-default" href='<?= $model->paper_presented_file3 ?>'Download>Download file</a>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file3 ?>'Download>Download file3</a>
     <?php } ?>
     <?php if ($model->paper_presented_file4){?>
-        <a class="btn btn-default" href='<?= $model->paper_presented_file4 ?>'Download>Download file</a>
+        <a class="btn btn-default" href='<?= $model->paper_presented_file4 ?>'Download>Download file4</a>
     <?php }  ?>
         
     

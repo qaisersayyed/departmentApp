@@ -14,10 +14,10 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'paper_presented_file')->fileInput()  ?>
-    <?= $form->field($model, 'paper_presented_file2')->fileInput()  ?>
-    <?= $form->field($model, 'paper_presented_file3')->fileInput()  ?>
-    <?= $form->field($model, 'paper_presented_file4')->fileInput()  ?>
+    <?= $form->field($model, 'paper_presented_file')->fileInput() ;echo "<br>$model->paper_presented_file</br>" ?>
+    <?= $form->field($model, 'paper_presented_file2')->fileInput() ;echo "<br>$model->paper_presented_file2</br>" ?>
+    <?= $form->field($model, 'paper_presented_file3')->fileInput() ;echo "<br>$model->paper_presented_file3</br>" ?>
+    <?= $form->field($model, 'paper_presented_file4')->fileInput()  ;echo "<br>$model->paper_presented_file4</br>"?>
 
     <?= $form->field($model, 'paper_title')->textInput(['maxlength' => true]) ?>
 

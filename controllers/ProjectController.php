@@ -123,17 +123,67 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-                return $this->redirect(['view', 'id' => $model->project_id]);
+            $old_data = $this->findModel($id);
+    
+            if(!Yii::$app->user->isGuest){
+                if ($model->load(Yii::$app->request->post()) ) {
+                    $model->project_file = UploadedFile::getInstance($model, 'project_file');
+    
+                    if(!$model->project_file){
+                        $model->project_file = $old_data->project_file;
+                    }
+                    else{
+         
+                        $model->project_file->saveAs('uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file ->extension);
+                        $model->project_file= 'uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file->extension;
+                    
+                    }
+    
+                    $model->project_file2 = UploadedFile::getInstance($model, 'project_file2');
+                    if(!$model->project_file2 ){
+                        $model->project_file2 = $old_data->project_file2;
+                    }
+                    else{
+                  
+                        $model->project_file2->saveAs('uploads/project/' . $model->project_file2 ->baseName . '.' . $model->project_file2 ->extension);
+                        $model->project_file2= 'uploads/project/' . $model->project_file2 ->baseName . '.' . $model->project_file2 ->extension;
+                    
+                    }
+    
+                    $model->project_file3 = UploadedFile::getInstance($model, 'project_file3');
+                    if(!$model->project_file3){
+                        $model->project_file3 = $old_data->project_file3;
+                    }
+                    else{
+                              
+                        $model->project_file3->saveAs('uploads/project/' . $model->project_file3 ->baseName . '.' . $model->project_file3 ->extension);
+                        $model->project_file3= 'uploads/project/' . $model->project_file3 ->baseName . '.' . $model->project_file3 ->extension;
+                    
+                    }
+    
+                     $model->project_file4 = UploadedFile::getInstance($model, 'project_file4');
+                    if(!$model->project_file4 ){
+                        $model->project_file4 = $old_data->project_file4;
+                    }
+                    else{
+                       
+                        $model->project_file4->saveAs('uploads/project/' . $model->project_file4 ->baseName . '.' . $model->project_file4 ->extension);
+                        $model->project_file4= 'uploads/project/' . $model->project_file4 ->baseName . '.' . $model->project_file4 ->extension;
+                    }
+                
+                    $model->save();
+                    return $this->redirect(['view', 'id' => $model->project_id]);
+                    
+                }
+    
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;   
             }
+        
 
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        } 
     }
 
     /**

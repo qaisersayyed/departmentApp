@@ -121,19 +121,68 @@ class StudentActivityController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-                return $this->redirect(['view', 'id' => $model->student_activity_id]);
+    
+            $model = $this->findModel($id);
+            $old_data = $this->findModel($id);
+    
+            if(!Yii::$app->user->isGuest){
+                if ($model->load(Yii::$app->request->post()) ) {
+                    $model->activity_file = UploadedFile::getInstance($model, 'activity_file');
+    
+                    if(!$model->activity_file){
+                        $model->activity_file = $old_data->activity_file;
+                    }
+                    else{
+         
+                        $model->activity_file->saveAs('uploads/student-activity/' . $model->activity_file ->baseName . '.' . $model->activity_file ->extension);
+                        $model->activity_file= 'uploads/student-activity/' . $model->activity_file ->baseName . '.' . $model->activity_file->extension;
+                    
+                    }
+    
+                    $model->activity_file2 = UploadedFile::getInstance($model, 'activity_file2');
+                    if(!$model->activity_file2 ){
+                        $model->activity_file2 = $old_data->activity_file2;
+                    }
+                    else{
+                  
+                        $model->activity_file2->saveAs('uploads/student-activity/' . $model->activity_file2 ->baseName . '.' . $model->activity_file2 ->extension);
+                        $model->activity_file2= 'uploads/student-activity/' . $model->activity_file2 ->baseName . '.' . $model->activity_file2 ->extension;
+                    
+                    }
+    
+                    $model->activity_file3 = UploadedFile::getInstance($model, 'activity_file3');
+                    if(!$model->activity_file3){
+                        $model->activity_file3 = $old_data->activity_file3;
+                    }
+                    else{
+                              
+                        $model->activity_file3->saveAs('uploads/student-activity/' . $model->activity_file3 ->baseName . '.' . $model->activity_file3 ->extension);
+                        $model->activity_file3= 'uploads/student-activity/' . $model->activity_file3 ->baseName . '.' . $model->activity_file3 ->extension;
+                    
+                    }
+    
+                     $model->activity_file4 = UploadedFile::getInstance($model, 'activity_file4');
+                    if(!$model->activity_file4 ){
+                        $model->activity_file4 == $old_data->activity_file4;
+                    }
+                    else{
+                       
+                        $model->activity_file4->saveAs('uploads/student-activity/' . $model->activity_file4 ->baseName . '.' . $model->activity_file4 ->extension);
+                        $model->activity_file4= 'uploads/student-activity/' . $model->activity_file4 ->baseName . '.' . $model->activity_file4 ->extension;
+                    }
+                
+                    $model->save();
+                    return $this->redirect(['view', 'id' => $model->student_activity_id]);
+                    
+                }
+    
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;   
             }
-
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
         }
-    }
 
     /**
      * Deletes an existing StudentActivity model.
