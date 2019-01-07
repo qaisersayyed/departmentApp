@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Internship */
 
-$this->title = $model->student->name;
+//$this->title = $model->student->name;
 $this->params['breadcrumbs'][] = ['label' => 'Internships', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
