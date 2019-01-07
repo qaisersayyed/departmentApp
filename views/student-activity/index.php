@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy',
+                'format' => 'yyyy-mm-dd',
             ]
         ]); ?>
         </div>
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy',
+                'format' => 'yyyy-mm-dd',
             ]
         ]); ?>
         
