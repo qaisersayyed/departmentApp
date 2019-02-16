@@ -96,6 +96,14 @@ $this->params['breadcrumbs'][] = $this->title;
             //'cost',
             'participant:ntext',
             [
+                'label' => 'Faculty Coordinator',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+                
+            ],
+            'faculty_coordinator',
+            'student_coordinator',
+            [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
                 'value' => function($model){

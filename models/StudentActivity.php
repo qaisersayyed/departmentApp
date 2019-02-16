@@ -38,15 +38,16 @@ class StudentActivity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'budget', 'start_date', 'end_date', 'faculty_name', 'student_name', 'department_id', 'academic_year_id'], 'required'],
+            [['name', 'budget', 'start_date', 'end_date', 'faculty_name', 'student_name', 'department_id', 'academic_year_id','faculty_id'], 'required'],
             [['activity_file','activity_file2','activity_file3', 'activity_file4'], 'file'],
             [['budget'], 'number'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['faculty_name', 'student_name'], 'string'],
-            [['department_id', 'academic_year_id'], 'integer'],
+            [['department_id', 'academic_year_id','faculty_id'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
+            [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
         ];
     }
 
@@ -57,15 +58,16 @@ class StudentActivity extends \yii\db\ActiveRecord
     {
         return [
             'student_activity_id' => 'Student Activity ID',
-            'activity_file' => 'Student Activity File 1',
-            'activity_file2' => 'Student Activity File 2',
-            'activity_file3' => 'Student Activity File 3',
-            'activity_file4' => 'Student Activity File 4',
+            'activity_file' => 'File 1',
+            'activity_file2' => 'File 2',
+            'activity_file3' => 'File 3',
+            'activity_file4' => 'File 4',
             'name' => 'Activity Name',
             'budget' => 'Budget',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
-            'faculty_name' => 'Faculty Coordinator',
+            'faculty_id' => 'Faculty Coordinator',
+            'faculty_name' => 'Other Faculty Coordinators',
             'student_name' => 'Student Coordinator',
             'department_id' => 'Department Name',
             'academic_year_id' => 'Academic Year ',
@@ -88,5 +90,13 @@ class StudentActivity extends \yii\db\ActiveRecord
     public function getDepartment()
     {
         return $this->hasOne(Department::className(), ['department_id' => 'department_id']);
+    }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFaculty()
+    {
+        return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
     }
 }

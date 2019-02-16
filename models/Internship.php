@@ -43,7 +43,7 @@ class Internship extends \yii\db\ActiveRecord
             [['hours'], 'number'],
             [['file', 'file1', 'file2', 'file3'], 'string'],
             [['company'], 'string', 'max' => 255],
-            [['academic_year'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
+            [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['student_id' => 'student_id']],
         ];
@@ -63,10 +63,10 @@ class Internship extends \yii\db\ActiveRecord
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
             'hours' => 'Hours',
-            'file' => 'File',
-            'file1' => 'File',
-            'file2' => 'File',
-            'file3' => 'File',
+            'file' => 'File1',
+            'file1' => 'File2',
+            'file2' => 'File3',
+            'file3' => 'File4',
         ];
     }
 

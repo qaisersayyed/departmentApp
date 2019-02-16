@@ -94,6 +94,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'cost',
             'participant:ntext',
+            [
+                'label' => 'Faculty Coordinator',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+                ],
             'faculty_name:ntext',
             [
                 'label' => 'Start Date',

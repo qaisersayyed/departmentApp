@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\AcademicYear;
 use app\models\Department;
+use app\models\Faculty;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 
@@ -15,11 +16,6 @@ use yii\helpers\ArrayHelper;
 <div class="student-activity-form" style="width:50%">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'activity_file')->fileInput() ;echo "<br>$model->activity_file</br>" ?>
-    <?= $form->field($model, 'activity_file2')->fileInput() ;echo "<br>$model->activity_file2</br>" ?>
-    <?= $form->field($model, 'activity_file3')->fileInput() ;echo "<br>$model->activity_file3</br>" ?>
-    <?= $form->field($model, 'activity_file4')->fileInput();echo "<br>$model->activity_file</br> " ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -43,6 +39,12 @@ use yii\helpers\ArrayHelper;
         ]
 ]);?>
 
+    <?= $form->field($model, 'faculty_id')->dropDownList(
+		ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ['prompt'=>'select']
+    )?>
+
+
     <?= $form->field($model, 'faculty_name')->textarea() ?>
 
     <?= $form->field($model, 'student_name')->textarea() ?>
@@ -56,7 +58,11 @@ use yii\helpers\ArrayHelper;
 		ArrayHelper::map(AcademicYear::find()->orderBy(['year'=>SORT_DESC])->all(),'academic_year_id','year')
 	) ?>
 
-    
+<?= $form->field($model, 'activity_file')->fileInput() ;echo "<br>$model->activity_file</br>" ?>
+    <?= $form->field($model, 'activity_file2')->fileInput() ;echo "<br>$model->activity_file2</br>" ?>
+    <?= $form->field($model, 'activity_file3')->fileInput() ;echo "<br>$model->activity_file3</br>" ?>
+    <?= $form->field($model, 'activity_file4')->fileInput();echo "<br>$model->activity_file</br> " ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

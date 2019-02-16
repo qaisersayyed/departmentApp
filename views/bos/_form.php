@@ -17,7 +17,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'program')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'minutes')->fileInput()?>
+    <?= $form->field($model, 'minutes')->fileInput();echo "<br>$model->minutes</br>" ?>
 
     <?= $form->field($model, 'date')->widget(
     DatePicker::className(), [

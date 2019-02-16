@@ -49,10 +49,10 @@ class PaperPresented extends \yii\db\ActiveRecord
     {
         return [
             'paper_presented_id' => 'Paper Presented ID',
-            'paper_presented_file' => 'Paper Presented File 1',
-            'paper_presented_file2' => 'Paper Presented File 2',
-            'paper_presented_file3' => 'Paper Presented File 3',
-            'paper_presented_file4' => 'Paper Presented File 4',
+            'paper_presented_file' => 'File 1',
+            'paper_presented_file2' => 'File 2',
+            'paper_presented_file3' => 'File 3',
+            'paper_presented_file4' => 'File 4',
             'paper_title' => 'Paper Title',
             'conference_name' => 'Conference Name',
             'venue' => 'Venue',

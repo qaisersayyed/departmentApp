@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'cost',
+            'faculty.name',
             'participant:ntext',
             'faculty_name:ntext',
             [

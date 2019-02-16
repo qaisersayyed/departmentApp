@@ -20,7 +20,7 @@ class SearchStudentActivity extends StudentActivity
     public function rules()
     {
         return [
-            [['student_activity_id', 'department_id', 'academic_year_id'], 'integer'],
+            [['student_activity_id', 'department_id', 'academic_year_id','faculty_id'], 'integer'],
             [['name','upload_file', 'start_date', 'end_date', 'faculty_name', 'student_name', 'created_at', 'updated_at'], 'safe'],
             [['budget'], 'number'],
         ];
@@ -63,6 +63,9 @@ class SearchStudentActivity extends StudentActivity
             $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
 
+        $query->joinWith('faculty');
+
+
         // grid filtering conditions
         $query->andFilterWhere([
             'student_activity_id' => $this->student_activity_id,
@@ -78,6 +81,8 @@ class SearchStudentActivity extends StudentActivity
             ->andFilterWhere(['like', 'student_name', $this->student_name])
             ->andFilterWhere(['like', 'start_date', $this->start_date])
             ->andFilterWhere(['like', 'end_date', $this->end_date]);
+        $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
+        $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
 
         return $dataProvider;
     }

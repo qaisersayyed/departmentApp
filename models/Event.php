@@ -39,16 +39,17 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'venue', 'inhouse', 'cost', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
+            [['name', 'venue', 'inhouse', 'cost','student_coordinator', 'faculty_coordinator','faculty_id', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
             [['file1','file2','file3','file4'],'file'],
             [['cost'], 'number'],
-            //[['participant'], 'string'],
+            [['faculty_coordinator','student_coordinator'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['department_id', 'academic_year_id', 'participant'], 'integer'],
+            [['department_id', 'academic_year_id', 'faculty_id', 'participant'], 'integer'],
             [['name', 'venue'], 'string', 'max' => 50],
             [['inhouse'], 'string', 'max' => 1],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
+            [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
         ];
     }
 
@@ -64,6 +65,9 @@ class Event extends \yii\db\ActiveRecord
             'inhouse' => 'Event Type',
             'cost' => 'Cost',
             'participant' => 'Participant',
+            'faculty_id' => 'Faculty Coordinator',
+            'faculty_coordinator' => 'Other Faculty Coordinators',
+            'student_coordinator' => 'Student Coordinator',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
             'department_id' => 'Department Name',
@@ -88,5 +92,13 @@ class Event extends \yii\db\ActiveRecord
     public function getDepartment()
     {
         return $this->hasOne(Department::className(), ['department_id' => 'department_id']);
+    }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFaculty()
+    {
+        return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
     }
 }

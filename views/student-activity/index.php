@@ -100,6 +100,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'attribute' => 'end_date',
             ],*/
+            [
+                'label' => 'Faculty Coordinator',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+            ],
             'faculty_name:ntext',
             'student_name:ntext',
             /*[

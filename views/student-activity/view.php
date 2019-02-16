@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'attribute' => 'end_date',
             ],
+            'faculty.name',
             'faculty_name:ntext',
             'student_name:ntext',
             'department.name',
