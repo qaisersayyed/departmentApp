@@ -19,7 +19,7 @@ class SearchSubjectExpert extends SubjectExpert
     {
         return [
             [['subject_expert_id'], 'integer'],
-            [['faculty_name', 'created_at', 'updated_at', 'department_id', 'academic_year_id'], 'safe'],
+            [['faculty_id', 'created_at', 'updated_at', 'department_id', 'academic_year_id'], 'safe'],
         ];
     }
 
@@ -58,6 +58,7 @@ class SearchSubjectExpert extends SubjectExpert
         }
         $query->joinWith('department');
         $query->joinWith('academicYear');
+        $query->joinWith('faculty');
         // grid filtering conditions
         $query->andFilterWhere([
             'subject_expert_id' => $this->subject_expert_id,
@@ -65,7 +66,7 @@ class SearchSubjectExpert extends SubjectExpert
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'faculty_name', $this->faculty_name]);
+        $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
         $query->andFilterWhere(['like', 'department.name', $this->department_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
 

@@ -51,6 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'college_name:ntext',
             'program',
+            [
+                'label' => 'Faculty Name',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+            ],
             'faculty_name:ntext',
             [
                 'label' => 'Department Name',

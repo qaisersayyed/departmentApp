@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use app\models\Department;
+use app\models\Faculty;
 use app\models\AcademicYear;
 
 /* @var $this yii\web\View */
@@ -44,6 +45,11 @@ use app\models\AcademicYear;
     <?= $form->field($model, 'college_name')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'program')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'faculty_id')->dropDownList(
+        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ['prompt'=>'select ']
+    )?>
 
     <?= $form->field($model, 'faculty_name')->textarea(['rows' => 6]) ?>
 

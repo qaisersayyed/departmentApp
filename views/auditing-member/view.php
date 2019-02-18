@@ -46,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'college_name:ntext',
             'program',
+            'faculty.name',
             'faculty_name:ntext',
             'department.name',
             'academicYear.year',

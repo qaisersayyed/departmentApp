@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'agency.name',
             'duration',
             'amount',
+            'faculty.name',
             'faculty_name:ntext',
             'student_name:ntext',
             'department.name',

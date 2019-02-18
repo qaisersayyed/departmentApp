@@ -41,18 +41,20 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'start_date', 'end_date', 'duration', 'amount', 'faculty_name', 'student_name', 'department_id', 'academic_year_id'], 'required'],
+            [['name', 'start_date', 'end_date', 'duration', 'amount', 'faculty_name', 'student_name', 'department_id', 'academic_year_id','faculty_id'], 'required'],
             [['project_file','project_file2','project_file3','project_file4'], 'file'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['amount'], 'number'],
             [['faculty_name', 'student_name'], 'string'],
-            [['department_id', 'academic_year_id','agency_id'], 'integer'],
+            [['department_id', 'academic_year_id','agency_id','faculty_id'], 'integer'],
             [['approval_id'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],
             [['duration'], 'string', 'max' => 50],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
             [['agency_id'], 'exist', 'skipOnError' => true, 'targetClass' => Agency::className(), 'targetAttribute' => ['agency_id' => 'agency_id']],
+            [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
+
         ];
     }
 
@@ -74,7 +76,8 @@ class Project extends \yii\db\ActiveRecord
             'agency_id' => 'Agency Name',
             'duration' => 'Duration',
             'amount' => 'Amount',
-            'faculty_name' => 'Faculty Name',
+            'faculty_id' => 'Faculty Name',
+            'faculty_name' => 'Other Faculty Names',
             'student_name' => 'Student Name',
             'department_id' => 'Department Name',
             'academic_year_id' => 'Academic Year',
@@ -105,6 +108,15 @@ class Project extends \yii\db\ActiveRecord
     public function getAgency()
     {
         return $this->hasOne(Agency::className(), ['agency_id' => 'agency_id']);
+
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFaculty()
+    {
+        return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
 
     }
 }

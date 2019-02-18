@@ -19,7 +19,7 @@ class SearchAuditingMember extends AuditingMember
     {
         return [
             [['auditing_member_id',], 'integer'],
-            [['name', 'start_date', 'end_date', 'college_name', 'program', 'faculty_name', 'department_id', 'academic_year_id', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'start_date', 'end_date', 'college_name', 'program', 'faculty_name', 'department_id', 'academic_year_id','faculty_id', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -57,6 +57,10 @@ class SearchAuditingMember extends AuditingMember
             return $dataProvider;
         }
 
+        $query->joinWith('academicYear');
+        $query->joinWith('department');
+        $query->joinWith('faculty');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'auditing_member_id' => $this->auditing_member_id,
@@ -72,8 +76,9 @@ class SearchAuditingMember extends AuditingMember
             ->andFilterWhere(['like', 'college_name', $this->college_name])
             ->andFilterWhere(['like', 'program', $this->program])
             ->andFilterWhere(['like', 'faculty_name', $this->faculty_name])
-            ->andFilterWhere(['like', 'academicYear.year', $this->academic_year_id])
+            ->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id])
             ->andFilterWhere(['like', 'department.name', $this->department_id])
+            ->andFilterWhere(['like', 'faculty.name', $this->faculty_id])
             ->andFilterWhere(['like', 'start_date', $this->start_date])
             ->andFilterWhere(['like', 'end_date', $this->end_date]);
 

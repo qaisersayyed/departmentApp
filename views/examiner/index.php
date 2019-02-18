@@ -80,6 +80,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'examiner_id',
             'name',
+            [
+                'label' => 'Faculty Name',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+                ],  
             'faculty_name:ntext',
             //'venue',
             [

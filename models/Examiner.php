@@ -37,14 +37,16 @@ class Examiner extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'faculty_name', 'venue', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
+            [['name', 'faculty_id', 'venue', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
             [['file1','file2','file3','file4'],'file'],
             [['faculty_name'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['department_id', 'academic_year_id'], 'integer'],
+            [['department_id', 'academic_year_id','faculty_id'], 'integer'],
             [['name', 'venue'], 'string', 'max' => 50],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
+            [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
+
         ];
     }
 
@@ -56,7 +58,8 @@ class Examiner extends \yii\db\ActiveRecord
         return [
             'examiner_id' => 'Examiner ID',
             'name' => 'Examination Detail',
-            'faculty_name' => 'Faculty Name',
+            'faculty_id' => 'Faculty Name',
+            'faculty_name' => 'Other Faculty Names',
             'venue' => 'Venue',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
@@ -82,5 +85,13 @@ class Examiner extends \yii\db\ActiveRecord
     public function getDepartment()
     {
         return $this->hasOne(Department::className(), ['department_id' => 'department_id']);
+    }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFaculty()
+    {
+        return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
     }
 }

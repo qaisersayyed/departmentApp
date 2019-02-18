@@ -20,8 +20,8 @@ class SearchProject extends Project
     public function rules()
     {
         return [
-            [['project_id', 'department_id', 'academic_year_id','agency_id'], 'integer'],
-            [['approval_id', 'name', 'start_date', 'end_date',  'duration', 'faculty_name', 'student_name', 'created_at', 'updated_at'], 'safe'],
+            [['project_id'], 'integer'],
+            [['approval_id', 'name', 'start_date', 'end_date',  'duration','faculty_id','agency_id', 'faculty_name', 'student_name', 'created_at', 'updated_at','academic_year_id'], 'safe'],
             [['amount'], 'number'],
         ];
     }
@@ -62,13 +62,19 @@ class SearchProject extends Project
         if($this->to != "" && $this->from != ""){
             $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
+
+        $query->joinWith('academicYear');
+        $query->joinWith('department');
+        $query->joinWith('faculty');
+        $query->joinWith('agency');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'project_id' => $this->project_id,
             'amount' => $this->amount,
-            'agency_id' => $this->agency_id,
+            //'agency_id' => $this->agency_id,
             'department_id' => $this->department_id,
-            'academic_year_id' => $this->academic_year_id,
+           // 'academic_year_id' => $this->academic_year_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
@@ -78,6 +84,9 @@ class SearchProject extends Project
                        
             ->andFilterWhere(['like', 'duration', $this->duration])
             ->andFilterWhere(['like', 'faculty_name', $this->faculty_name])
+            ->andFilterWhere(['like', 'agency.name', $this->agency_id])
+            ->andFilterWhere(['like', 'faculty.name', $this->faculty_id])
+            ->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id])
             ->andFilterWhere(['like', 'student_name', $this->student_name])
             ->andFilterWhere(['like', 'start_date', $this->start_date])
             ->andFilterWhere(['like', 'end_date', $this->end_date]);

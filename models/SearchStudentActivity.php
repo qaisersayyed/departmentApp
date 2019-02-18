@@ -20,8 +20,8 @@ class SearchStudentActivity extends StudentActivity
     public function rules()
     {
         return [
-            [['student_activity_id', 'department_id', 'academic_year_id','faculty_id'], 'integer'],
-            [['name','upload_file', 'start_date', 'end_date', 'faculty_name', 'student_name', 'created_at', 'updated_at'], 'safe'],
+            [['student_activity_id'], 'integer'],
+            [['name','upload_file', 'start_date', 'end_date', 'faculty_name', 'student_name', 'created_at', 'updated_at','department_id','faculty_id','academic_year_id'], 'safe'],
             [['budget'], 'number'],
         ];
     }
@@ -64,14 +64,15 @@ class SearchStudentActivity extends StudentActivity
         }
 
         $query->joinWith('faculty');
-
+        $query->joinWith('academicYear');
+        $query->joinWith('department');
 
         // grid filtering conditions
         $query->andFilterWhere([
             'student_activity_id' => $this->student_activity_id,
             'budget' => $this->budget,
             'department_id' => $this->department_id,
-            'academic_year_id' => $this->academic_year_id,
+            //'academic_year_id' => $this->academic_year_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Department;
 use app\models\AcademicYear;
+use app\models\Faculty;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SubjectExpert */
@@ -15,7 +16,11 @@ use app\models\AcademicYear;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'faculty_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'faculty_id')->dropDownList(
+        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ['prompt'=>'select ']
+    )?>
+
 
     <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),

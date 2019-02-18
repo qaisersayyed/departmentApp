@@ -33,7 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'subject_expert_id',
-            'faculty_name',
+            [
+                'label' => 'Faculty Name',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+            ],
             [
                 'label' => 'Department Name',
                 'value' => 'department.name',

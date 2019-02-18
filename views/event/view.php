@@ -36,8 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'participant:ntext',
             [
                 'label' => 'Faculty Coordinator',
-                'value' => 'faculty.name',
-                'attribute' => 'faculty_id',
+                'attribute' => 'faculty.name',
                 
             ],
             'faculty_coordinator',
