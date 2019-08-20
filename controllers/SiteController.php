@@ -121,7 +121,7 @@ class SiteController extends Controller
         ]);
     }
 
-    /**BACKUP */
+    /* BACKUP */
     public function actionBackup()
     {
         if (!Yii::$app->user->isGuest) {
