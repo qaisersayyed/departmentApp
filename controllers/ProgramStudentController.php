@@ -171,7 +171,7 @@ class ProgramStudentController extends Controller
         $model1=student::findone($model->student_id);
         $model1->status = 0;
         $model->status = 0;
-        $model1-save(false);
+        $model1->save(false);
         $model->save(false);
 
         return $this->redirect(['index']);
