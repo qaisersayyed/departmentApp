@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Bos */
 
-$this->title = 'Add Bos';
+$this->title = 'Add BOS';
 $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

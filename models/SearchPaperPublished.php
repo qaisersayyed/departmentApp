@@ -22,7 +22,7 @@ class SearchPaperPublished extends PaperPublished
     {
         return [
             [['paper_published_id'], 'integer'],
-            [['paper_title', 'journal_name', 'date', 'created_at', 'updated_at', 'file'], 'safe'],
+            [['paper_title', 'journal_name', 'date', 'faculty_id', 'co_author', 'created_at', 'updated_at', 'file'], 'safe'],
         ];
     }
 
@@ -66,6 +66,8 @@ class SearchPaperPublished extends PaperPublished
             $query->andFilterWhere(['between', 'date', $this->from, $this->to]);
         }
 
+        $query->joinWith('faculty');
+
         $query->andFilterWhere([
             'paper_published_id' => $this->paper_published_id,
             'created_at' => $this->created_at,
@@ -74,7 +76,10 @@ class SearchPaperPublished extends PaperPublished
 
         $query->andFilterWhere(['like', 'paper_title', $this->paper_title])
             ->andFilterWhere(['like', 'journal_name', $this->journal_name])
-            ->andFilterWhere(['like', 'date', $this->date]);
+            ->andFilterWhere(['like', 'date', $this->date])
+            ->andFilterWhere(['like', 'faculty.name', $this->faculty_id])
+            ->andFilterWhere(['like', 'co_author', $this->co_author])
+            ;
             
         return $dataProvider;
     }

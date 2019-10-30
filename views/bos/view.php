@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
             ],
             'department.name',
             'academicYear.year',
+            'description'
             //'created_at',
             //'updated_at',
         ],

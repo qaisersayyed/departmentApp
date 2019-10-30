@@ -88,8 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            'faculty_name:ntext',
             //'end_date',
-            'participant:ntext',
+            'participant',
+            'participant_name:ntext',
             //'venue',
             
             [

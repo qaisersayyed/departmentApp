@@ -10,7 +10,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchWorkshop */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Workshops';
+$this->title = 'Workshop';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workshop-index">
@@ -92,14 +92,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 }
             ],
-            //'cost',
-            'participant:ntext',
-            [
-                'label' => 'Faculty Coordinator',
-                'value' => 'faculty.name',
-                'attribute' => 'faculty_id',
-                ],
-            'faculty_name:ntext',
             [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
@@ -108,6 +100,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            //'cost',
+            'participant:ntext',
+            'participant_name:ntext',
+            [
+                'label' => 'Faculty Coordinator',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',
+                ],
+            'faculty_name:ntext',
             //'end_date',
             /*[
                 'label' => 'Department Name',
@@ -120,7 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'academicYear.year',
                 'attribute' => 'academic_year_id',
                 ],   
-            'sponsor:ntext', 
+            //'sponsor:ntext', 
             //'created_at',
             //'updated_at',
 

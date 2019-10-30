@@ -19,8 +19,6 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'budget')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'start_date')->widget(DatePicker::className(), [
     'model' => $model,
     'attribute' => 'start_date',
@@ -45,9 +43,11 @@ use yii\helpers\ArrayHelper;
     )?>
 
 
-    <?= $form->field($model, 'faculty_name')->textarea() ?>
+    <?= $form->field($model, 'faculty_name')->textarea(['rows'=> 6]) ?>
 
-    <?= $form->field($model, 'student_name')->textarea() ?>
+    <?= $form->field($model, 'student_name')->textarea(['rows'=> 6]) ?>
+
+    <?= $form->field($model, 'budget')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'department_id')->dropDownList(
 		ArrayHelper::map(Department::find()->all(),'department_id','name'),
@@ -58,7 +58,9 @@ use yii\helpers\ArrayHelper;
 		ArrayHelper::map(AcademicYear::find()->orderBy(['year'=>SORT_DESC])->all(),'academic_year_id','year')
 	) ?>
 
-<?= $form->field($model, 'activity_file')->fileInput() ;echo "<br>$model->activity_file</br>" ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'activity_file')->fileInput() ;echo "<br>$model->activity_file</br>" ?>
     <?= $form->field($model, 'activity_file2')->fileInput() ;echo "<br>$model->activity_file2</br>" ?>
     <?= $form->field($model, 'activity_file3')->fileInput() ;echo "<br>$model->activity_file3</br>" ?>
     <?= $form->field($model, 'activity_file4')->fileInput();echo "<br>$model->activity_file</br> " ?>

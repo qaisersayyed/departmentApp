@@ -9,7 +9,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchBos */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bos';
+$this->title = 'BOS';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bos-index">

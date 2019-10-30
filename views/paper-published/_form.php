@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
+use yii\helpers\ArrayHelper;
+use app\models\Faculty;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\PaperPublished */
@@ -27,6 +29,15 @@ use dosamigos\datepicker\DatePicker;
                 'format' => 'yyyy-mm-dd'
             ]
     ]);?>
+
+<?= $form->field($model, 'faculty_id')->dropDownList(
+        ArrayHelper::map(Faculty::find()->orderBy(['name' => SORT_ASC ])->all(),'faculty_id','name')
+    ) ?>
+
+<?= $form->field($model, 'co_author')->textarea(['rows' => 6]) ?>
+
+<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
 <?= $form->field($model, 'file1')->fileInput();echo "<br>$model->file1</br>" ?>
 
 <?= $form->field($model, 'file2')->fileInput();echo "<br>$model->file2</br>" ?>

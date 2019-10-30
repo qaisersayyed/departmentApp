@@ -42,7 +42,7 @@ class StudentActivity extends \yii\db\ActiveRecord
             [['activity_file','activity_file2','activity_file3', 'activity_file4'], 'file'],
             [['budget'], 'number'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['faculty_name', 'student_name'], 'string'],
+            [['faculty_name', 'student_name', 'description'], 'string'],
             [['department_id', 'academic_year_id','faculty_id'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],

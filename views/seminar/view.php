@@ -37,6 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             'participant:ntext',
+            'participant_name:ntext',
+            'faculty_name:ntext',
             'venue',
             [
                 'label' => 'Seminar Type',
@@ -52,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'department.name',
             'academicYear.year',
+            'description:ntext'
             //'created_at',
             //'updated_at',
             //'file',

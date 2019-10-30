@@ -19,16 +19,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'faculty_id')->dropDownList(
-        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
-        ['prompt'=>'select ']
-    )?>
-
-    <?= $form->field($model, 'faculty_name')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
-
-<?= $form->field($model, 'start_date')->widget(
+    <?= $form->field($model, 'start_date')->widget(
     DatePicker::className(), [
             // inline too, not bad
             'inline' => false, 
@@ -49,6 +40,15 @@ use dosamigos\datepicker\DatePicker;
                 'format' => 'yyyy-mm-dd'
             ]
     ]);?>
+
+    <?= $form->field($model, 'faculty_id')->dropDownList(
+        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ['prompt'=>'select ']
+    )?>
+
+    <?= $form->field($model, 'faculty_name')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),

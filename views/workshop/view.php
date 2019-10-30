@@ -31,10 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 }
             ],
-            'cost',
-            'faculty.name',
-            'participant:ntext',
-            'faculty_name:ntext',
             [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
@@ -51,6 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            'participant:ntext',
+            'participant_name:ntext',
+            [
+                'label' => 'Faculty Name',
+                'attribute' => 'faculty.name',
+            ],
+            'faculty_name:ntext',
+            'cost',
             'department.name',
             'academicYear.year',
             //'created_at',

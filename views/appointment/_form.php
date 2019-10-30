@@ -24,7 +24,8 @@ use dosamigos\datepicker\DatePicker;
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'clearBtn' => true,
             ]
     ]);?>
     <br>
@@ -35,7 +36,8 @@ use dosamigos\datepicker\DatePicker;
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'clearBtn' => true,
             ]
     ]);?>
     <br>
