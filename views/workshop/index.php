@@ -16,7 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="workshop-index">
 
     <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=workshop/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Workshop</a></h1>
+        <span class="glyphicon glyphicon-plus"></span> Add Workshop</a><a Style="float:right" href="index.php?r=workshop/report" class="btn btn-success">
+    </span> Report </a></h1>
+
+   
+
+    
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php $form = ActiveForm::begin([
