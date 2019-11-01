@@ -17,8 +17,6 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'program')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'minutes')->fileInput();echo "<br>$model->minutes</br>" ?>
-
     <?= $form->field($model, 'date')->widget(
     DatePicker::className(), [
             // inline too, not bad
@@ -38,6 +36,10 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
+
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'minutes')->fileInput();echo "<br>$model->minutes</br>" ?> 
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

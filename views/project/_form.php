@@ -51,16 +51,16 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'duration')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'faculty_id')->dropDownList(
 		ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
         ['prompt'=>'select ']
     )?>
 
-    <?= $form->field($model, 'faculty_name')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'faculty_name')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'student_name')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'student_name')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>    
 
     <?= $form->field($model, 'department_id')->dropDownList(
 		ArrayHelper::map(Department::find()->all(),'department_id','name'),
@@ -72,7 +72,10 @@ use dosamigos\datepicker\DatePicker;
 		
     ) ?>
 
-<?= $form->field($model, 'project_file')->fileInput() ;echo "<br>$model->project_file</br>" ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+
+    <?= $form->field($model, 'project_file')->fileInput() ;echo "<br>$model->project_file</br>" ?>
     <?= $form->field($model, 'project_file2')->fileInput() ;echo "<br>$model->project_file2</br>" ?>
 
     <?= $form->field($model, 'project_file3')->fileInput() ;echo "<br>$model->project_file3</br>"?>

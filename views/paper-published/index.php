@@ -89,6 +89,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            [
+                'label' => 'Author',
+                'value' => 'faculty.name',
+                'attribute' => 'faculty_id',    
+            ],
+            'co_author:ntext',
             //'created_at',
             //'updated_at',
             

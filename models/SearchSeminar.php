@@ -23,7 +23,7 @@ class SearchSeminar extends Seminar
     {
         return [
             [['seminar_id'], 'integer'],
-            [['speaker_name', 'start_date', 'end_date', 'participant', 'venue', 'inhouse', 'created_at', 'updated_at', 'department_id', 'academic_year_id'], 'safe'],
+            [['speaker_name', 'start_date', 'end_date', 'participant', 'venue', 'inhouse', 'created_at', 'updated_at', 'department_id', 'academic_year_id','participant_name', 'faculty_name'], 'safe'],
         ];
     }
 
@@ -89,6 +89,8 @@ class SearchSeminar extends Seminar
 
         $query->andFilterWhere(['like', 'speaker_name', $this->speaker_name])
             ->andFilterWhere(['like', 'participant', $this->participant])
+            ->andFilterWhere(['like', 'participant_name', $this->participant_name])
+            ->andFilterWhere(['like', 'faculty_name', $this->faculty_name])
             ->andFilterWhere(['like', 'venue', $this->venue])
             ->andFilterWhere(['like', 'inhouse', $this->inhouse]);
         $query->andFilterWhere(['like', 'department.name', $this->department_id]);

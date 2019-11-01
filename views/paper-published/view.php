@@ -28,6 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            [
+                'label' => 'Faculty Name',
+                'attribute' => 'faculty.name',    
+            ],
+            'co_auther',
+            'description'
             //'created_at',
             //'updated_at',
             

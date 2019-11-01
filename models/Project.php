@@ -45,7 +45,7 @@ class Project extends \yii\db\ActiveRecord
             [['project_file','project_file2','project_file3','project_file4'], 'file'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['amount'], 'number'],
-            [['faculty_name', 'student_name'], 'string'],
+            [['faculty_name', 'student_name', 'description'], 'string'],
             [['department_id', 'academic_year_id','agency_id','faculty_id'], 'integer'],
             [['approval_id'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],

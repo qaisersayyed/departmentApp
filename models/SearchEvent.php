@@ -22,7 +22,7 @@ class SearchEvent extends Event
     {
         return [
             [['event_id'], 'integer'],
-            [['name', 'venue', 'inhouse', 'participant', 'faculty_coordinator', 'student_coordinator', 'start_date', 'end_date', 'created_at', 'updated_at', 'department_id', 'academic_year_id','faculty_id'], 'safe'],
+            [['name', 'venue', 'inhouse', 'participant', 'participant_name', 'faculty_coordinator', 'student_coordinator', 'start_date', 'end_date', 'created_at', 'updated_at', 'department_id', 'academic_year_id','faculty_id'], 'safe'],
             [['cost'], 'number'],
         ];
     }
@@ -75,8 +75,6 @@ class SearchEvent extends Event
         $query->andFilterWhere([
             'event_id' => $this->event_id,
             'cost' => $this->cost,
-            'faculty_coordinator' => $this->faculty_coordinator,
-            'student_coordinator' => $this->student_coordinator,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'created_at' => $this->created_at,
@@ -95,6 +93,7 @@ class SearchEvent extends Event
             ->andFilterWhere(['like', 'venue', $this->venue])
             ->andFilterWhere(['like', 'inhouse', $this->inhouse])
             ->andFilterWhere(['like', 'participant', $this->participant])
+            ->andFilterWhere(['like', 'participant_name', $this->participant])
             ->andFilterWhere(['like', 'faculty_coordinator', $this->faculty_coordinator])
             ->andFilterWhere(['like', 'student_coordinator', $this->student_coordinator]);
         $query->andFilterWhere(['like', 'department.name', $this->department_id]);

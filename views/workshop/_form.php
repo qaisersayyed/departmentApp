@@ -22,20 +22,6 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'inhouse')->dropDownList(['1' => 'Conducted', '0' => 'Attended'])?>
     
-    <?= $form->field($model, 'cost')->textInput() ?>
-
-    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'faculty_id')->dropDownList(
-        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
-        ['prompt'=>'select ']
-    )?>
-
-    <?= $form->field($model, 'faculty_name')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'sponsor')->textarea(['rows' => 6]) ?>
-
-
     <?= $form->field($model, 'start_date')->widget(
     DatePicker::className(), [
             // inline too, not bad
@@ -58,6 +44,21 @@ use dosamigos\datepicker\DatePicker;
             ]
     ]);?>
 
+    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'faculty_id')->dropDownList(
+        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ['prompt'=>'select ']
+    )?>
+
+    <?= $form->field($model, 'faculty_name')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'sponsor')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'cost')->textInput() ?>
+
     <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),
         ['prompt'=>'select ']
@@ -66,6 +67,8 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
+
+<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
 <?= $form->field($model, 'file1')->fileInput();echo "<br>$model->file1</br>" ?>
 
