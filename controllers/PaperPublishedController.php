@@ -86,20 +86,20 @@ class PaperPublishedController extends Controller
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
                 if ($model->file1 ) {                
-                    $model->file1->saveAs('uploads/event/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
-                    $model->file1= 'uploads/event/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                    $model->file1->saveAs('uploads/paper-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
+                    $model->file1= 'uploads/paper-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
                 }
                 if ($model->file2 ) {                
-                    $model->file2->saveAs('uploads/event/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
-                    $model->file2= 'uploads/event/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    $model->file2->saveAs('uploads/paper-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
+                    $model->file2= 'uploads/paper-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                 }
                 if ($model->file3 ) {                
-                    $model->file3->saveAs('uploads/event/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
-                    $model->file3= 'uploads/event/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                    $model->file3->saveAs('uploads/paper-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
+                    $model->file3= 'uploads/paper-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                 }
                 if ($model->file4) {                
-                    $model->file4->saveAs('uploads/event/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
-                    $model->file4= 'uploads/event/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                    $model->file4->saveAs('uploads/paper-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
+                    $model->file4= 'uploads/paper-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                 }
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->paper_published_id]);

@@ -36,6 +36,7 @@ class SubjectExpert extends \yii\db\ActiveRecord
             [['faculty_id', 'department_id', 'academic_year_id'], 'required'],
             [['department_id', 'academic_year_id', 'faculty_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
+            [['description'], 'string'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
             [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
@@ -53,6 +54,7 @@ class SubjectExpert extends \yii\db\ActiveRecord
             'faculty_id' => 'Faculty Name',
             'department_id' => 'Department ',
             'academic_year_id' => 'Academic Year',
+            'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

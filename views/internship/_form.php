@@ -57,6 +57,9 @@ use dosamigos\datepicker\DatePicker;
     ]);?>
 
     <?= $form->field($model, 'hours')->textInput() ?>
+
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
     <br>
     <?= $form->field($model, 'file')->fileInput() ; echo "<b>$model->file</b> <br>" ?>
     <br>
