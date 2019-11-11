@@ -18,9 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><a Style="float:right" href="index.php?r=student-organization/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Alumni Details</a></h1>
 
+    <h1><a Style="float:right" href="index.php?r=student/alumni" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Alumni</a></h1>
+
     <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=program-student/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Student</a></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
 
    <?php $form = ActiveForm::begin([
@@ -40,10 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
      <?php ActiveForm::end(); ?>
     <div class="text-right">
         <p><b>Search Result: </b>
-        <?php 
-            if($searchModel->roll_no != ""){
+        <?php
+            if ($searchModel->roll_no != "") {
                 echo $searchModel->roll_no ;
-            }else{
+            } else {
                 echo "None";
             }
         ?>
@@ -59,8 +62,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'label' => 'Export',
         'fontAwesome'=>true,
         'showConfirmAlert'=>false,
-        'target'=>GridView::TARGET_BLANK
+        'target'=>GridView::TARGET_BLANK,
+        
         ],
+        'rowOptions' => function ($dataProvider) {
+            if ($dataProvider->student->alumni == 0) {
+                return ['class' => 'success'];
+            } else {
+                return ['class' => 'warning'];
+            }
+        },
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
@@ -77,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
              ],
            // 'created_at',
            // 'updated_at',
-           // 'status',
+          
            [
             'label' => 'Roll No.',
             'value' => 'student.roll_no',
@@ -86,6 +97,18 @@ $this->params['breadcrumbs'][] = $this->title;
           
             'student.phone_no',
             'student.email',
+            [
+                'label' => 'Status',
+                'value' => function ($dataProvider) {
+                    if ($dataProvider->student->alumni == 0) {
+                        return 'Studying';
+                    } else {
+                        return "Alumni";
+                    }
+                },
+                'attribute' => 'alumni',
+                
+            ],
            [
              'label' => 'Admission Year',
              'value' => 'academicYear.year',
