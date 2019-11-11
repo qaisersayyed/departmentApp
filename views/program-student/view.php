@@ -16,6 +16,13 @@ $this->params['breadcrumbs'][] = ['label' => 'Admission', 'url' => ['index']];
     ['student-organization/create','p_id' => $model->program_id,'s_id' => $model->student_id],
     ['class' => 'btn btn-primary','Style' => 'float-right']
 ); ?>
+<?= Html::a(
+    'Add Student Education',
+    ['student-education/create', 'program_id' => $model->program_id,'student_id' =>$model->student_id],
+    ['class' => "btn btn-success", 'Style'=>"float:right"]
+); ?>
+<!-- <h1><?php //= Html::encode($this->title)?> <a Style="float:right" href="index.php?r=student-education/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Student Education</a></h1> -->
 <div class="program-student-view">
 
     <?= DetailView::widget([

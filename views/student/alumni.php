@@ -1,3 +1,5 @@
+
+
 <?php
 use app\models\AcademicYear;
 use yii\helpers\Html;
@@ -91,46 +93,46 @@ $form = ActiveForm::begin([
             ]
         ]);
      ?>
-     <?=
-     GridView::widget([
+     <?php //=
+    //  GridView::widget([
      
-     'dataProvider' => $dataProvider,
-     'autoXlFormat'=>true,
-     'export'=>[
-     'label' => 'Export',
-     'fontAwesome'=>true,
-     'showConfirmAlert'=>false,
-     'target'=>GridView::TARGET_BLANK
-     ],
-     'columns' => [
-         ['class' => 'kartik\grid\SerialColumn'],
+    //  'dataProvider' => $dataProvider,
+    //  'autoXlFormat'=>true,
+    //  'export'=>[
+    //  'label' => 'Export',
+    //  'fontAwesome'=>true,
+    //  'showConfirmAlert'=>false,
+    //  'target'=>GridView::TARGET_BLANK
+    //  ],
+    //  'columns' => [
+    //      ['class' => 'kartik\grid\SerialColumn'],
 
-         [
-            'label' => 'Program Name',
-            'value' => 'program.name',
-            'attribute' => 'program_id',
-        ],
-        [
-         'label' => 'Student Name',
-         'value' => 'student.name',
-         'attribute' => 'student_id',
-         ],
+        //  [
+        //     'label' => 'Program Name',
+        //     'value' => 'program.name',
+        //     'attribute' => 'program_id',
+        // ],
+        // [
+        //  'label' => 'Student Name',
+        //  'value' => 'student.name',
+        //  'attribute' => 'student_id',
+        //  ],
        // 'created_at',
        // 'updated_at',
        // 'status',
-       [
-        'label' => 'Roll No.',
-        'value' => 'student.roll_no',
-        'attribute' => 'roll_no',
-        ],
+    //    [
+    //     'label' => 'Roll No.',
+    //     'value' => 'student.roll_no',
+    //     'attribute' => 'roll_no',
+    //     ],
       
-        'student.phone_no',
-        'student.email',
-       [
-         'label' => 'Admission Year',
-         'value' => 'academicYear.year',
-         'attribute' => 'academic_year_id',
-         ],
+    //     'student.phone_no',
+    //     'student.email',
+    //    [
+    //      'label' => 'Admission Year',
+    //      'value' => 'academicYear.year',
+    //      'attribute' => 'academic_year_id',
+    //      ],
         
          //'created_at',
          //'updated_at',
@@ -138,12 +140,13 @@ $form = ActiveForm::begin([
          
 
          
-     ],
-     'pjax'=>true,
-     'showPageSummary'=>false,
-     'panel'=>[
+//      ],
+//      'pjax'=>true,
+//      'showPageSummary'=>false,
+//      'panel'=>[
          
-         'heading'=> $this->title,
+//          'heading'=> $this->title,
         
-     ]
- ]); ?>
+//      ]
+//  ]);
+//?>
