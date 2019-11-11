@@ -4,11 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-<<<<<<< HEAD:views/academic-year/_search.php
-/* @var $model app\models\SearchAcademicYear */
-=======
 /* @var $model app\models\SearchPaperFaculty */
->>>>>>> 3a39d20b29e21678f8e1dcbcc810e7e8f6231aea:views/paper-faculty/_search.php
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -29,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'created_at') ?>
 
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <?php // echo $form->field($model, 'updated_at')?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

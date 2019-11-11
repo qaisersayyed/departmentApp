@@ -59,6 +59,8 @@ use dosamigos\datepicker\DatePicker;
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
 
+<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
 <?= $form->field($model, 'file1')->fileInput();echo "<br>$model->file1</br>" ?>
 
 <?= $form->field($model, 'file2')->fileInput();echo "<br>$model->file2</br>" ?>
