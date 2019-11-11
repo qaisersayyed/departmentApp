@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\StudentOrganization;
-
+use app\models\StudentEducation;
 /* @var $this yii\web\View */
 /* @var $model app\models\ProgramStudent */
 
@@ -76,6 +76,50 @@ foreach ($stu as $s) {
      <td><?php echo $position ?></td>
     
    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+
+<?php
+}
+?>
+
+
+<?php
+
+$stu_edu= StudentEducation::find()->where(['student_id'=>$model->student_id])->all();
+?>
+<h4>Student Education Details</h4>
+<?php
+foreach ($stu_edu as $se) {
+    $institution_name =  $se->institution_name;
+    $degree = $se->degree;
+    $doj = $se->date_of_joining;
+     ?>
+<div>
+<table class="table table-striped table-bordered">
+  <tbody>
+    <tr>
+     
+      <td><b>Institution Name</b> </td>
+      <td><?php echo $institution_name ?></td>
+     
+    </tr>
+    <tr>
+     
+     <td><b>Degree</b> </td>
+     <td><?php echo $degree ?></td>
+    
+   </tr>
+    <tr>
+     
+      <td><b> Date of joining</b></td>
+      <td><?php echo Yii::$app->formatter->asDate($doj); ?></td>
+     
+    </tr>
+
+    
   </tbody>
 </table>
 </div>

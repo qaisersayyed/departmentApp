@@ -13,10 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-education-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->student_education_id], ['class' => 'btn btn-primary']) ?>
+    <!-- <p>
+        <?// = Html::a('Update', ['update', 'id' => $model->student_education_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->student_education_id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+    </p> -->
 
     <?= DetailView::widget([
         'model' => $model,
@@ -32,9 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'student_education_id',
             'institution_name:ntext',
             'degree',
-            'date_of_joining',
-            'created_at',
-            'updated_at',
+            // 'date_of_joining',
+            [
+                'label' => 'Date of joining',
+                'attribute' => 'date_of_joining',
+                'value' => function($model){
+                    return date('d M Y', strtotime($model->date_of_joining));
+                }
+
+            ],
+            // 'created_at',
+            // 'updated_at',
         ],
     ]) ?>
 
