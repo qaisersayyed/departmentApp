@@ -18,6 +18,7 @@ class SearchProgramStudent extends ProgramStudent
     public $to;
     public $from;
     public $roll_no;
+    public $alumni;
     public function rules()
     {
         return [
@@ -70,8 +71,15 @@ class SearchProgramStudent extends ProgramStudent
         $query->joinWith('student');
         $query->joinWith('academicYear');
 
-        if($this->roll_no != ""){
+        if ($this->roll_no != "") {
             $query->andFilterWhere(['like', 'student.roll_no', $this->roll_no]);
+        }
+        if ($this->alumni != "") {
+            if ($this->alumni == 1) {
+                $query->andFilterWhere(['student.alumni' => 1]);
+            } else {
+                $query->andFilterWhere(['student.alumni' => 0]);
+            }
         }
         // grid filtering conditions
         $query->andFilterWhere([

@@ -11,6 +11,11 @@ $this->title = 'Admission';
 $this->params['breadcrumbs'][] = ['label' => 'Admission', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+ <?= Html::a(
+    'Add Alumni Details',
+    ['student-organization/create','p_id' => $model->program_id,'s_id' => $model->student_id],
+    ['class' => 'btn btn-primary','Style' => 'float-right']
+); ?>
 <div class="program-student-view">
 
     <?= DetailView::widget([
@@ -32,18 +37,16 @@ $this->params['breadcrumbs'][] = ['label' => 'Admission', 'url' => ['index']];
 </div>
 
 
-<?php 
+<?php
 
 $stu= StudentOrganization::find()->where(['student_id'=>$model->student_id])->all();
 ?>
 <h4>Alumni Details</h4>
 <?php
-foreach($stu as $s){
-        $cname =  $s->organization->company_name;
-         $doj = $s->date_of_joining;
-        $position = $s->position;
-
-?>
+foreach ($stu as $s) {
+    $cname =  $s->organization->company_name;
+    $doj = $s->date_of_joining;
+    $position = $s->position; ?>
 <div>
 <table class="table table-striped table-bordered">
   <tbody>
@@ -71,7 +74,6 @@ foreach($stu as $s){
 </div>
 <br>
 
-<?php 
-
+<?php
 }
 ?>

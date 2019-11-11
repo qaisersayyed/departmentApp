@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\StudentOrganization */
 
@@ -16,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        's_id' => $s_id,
+            'p_id' => $p_id
     ]) ?>
 
 </div>

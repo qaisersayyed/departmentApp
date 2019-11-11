@@ -35,9 +35,9 @@ class StudentOrganizationController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $searchModel = new SearchStudentOrganization();
-            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+            if (Yii::$app->request->get('from') && Yii::$app->request->get('to')) {
                 $searchModel->to = Yii::$app->request->get('to');
                 $searchModel->from = Yii::$app->request->get('from');
             }
@@ -47,7 +47,7 @@ class StudentOrganizationController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -60,12 +60,11 @@ class StudentOrganizationController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -75,19 +74,20 @@ class StudentOrganizationController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($s_id, $p_id)
     {
         $model = new StudentOrganization();
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->student_organization_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->student_organization_id]);
-        }
-
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
+            's_id' => $s_id,
+            'p_id' => $p_id
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -102,16 +102,15 @@ class StudentOrganizationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->student_organization_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->student_organization_id]);
-        }
-
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -125,12 +124,11 @@ class StudentOrganizationController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            $this->findModel($id)->delete();
 
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-        }else {
+            return $this->redirect(['index']);
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

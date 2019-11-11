@@ -14,15 +14,14 @@ $this->title = 'Student';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-student-index">
-
-    <h1><a Style="float:right" href="index.php?r=student-organization/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Alumni Details</a></h1>
+    <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=program-student/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Student</a></h1>
+   
 
     <h1><a Style="float:right" href="index.php?r=student/alumni" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Alumni</a></h1>
 
-    <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=program-student/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Student</a></h1>
+   
     <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
 
@@ -34,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 <input type="text" name='roll_no' class='form-control' placeholder="Search Roll No.">
             </div>
+           
         
             <div class="col-md-3">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
@@ -41,6 +41,30 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
      <?php ActiveForm::end(); ?>
+     <?php $form = ActiveForm::begin([
+        'method' => 'GET',
+    ]); ?>
+        <div class="row"  >
+            <div class="col-md-2">
+            <div class="form-group">
+            <select class="form-control" name="a_status">
+                
+                <option  value=1>Alumni</option>
+                <option value=2>Studying</option>
+   
+            </select>
+            </div>
+            
+            </div>
+          
+        
+            <div class="col-sm-2">
+                <?= Html::submitButton('Search', ['class' => 'btn btn-success ']) ?>
+                
+            </div>
+        </div>
+     <?php ActiveForm::end(); ?>
+
     <div class="text-right">
         <p><b>Search Result: </b>
         <?php
