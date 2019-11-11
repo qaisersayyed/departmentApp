@@ -76,17 +76,6 @@ class StudentController extends Controller
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams); */
             $students = null;
             $aid = null;
-            if(Yii::$app->request->get('a_id')){
-                $aid = Yii::$app->request->get('a_id');
-                $pid = Yii::$app->request->get('program_id');
-                $students = ProgramStudent::find()
-                                    ->joinWith('student')
-                                    ->where(['academic_year_id' => $aid])
-                                    ->andWhere(['student.alumni' => 0])
-                                    ->andWhere(['student.status' => 1])
-                                    ->andWhere(['program_id' => $pid])
-                                    ->all();
-            }
             if(Yii::$app->request->get('aid')){  
                 $aid = Yii::$app->request->get('aid');
                 $students = ProgramStudent::find()
@@ -103,7 +92,21 @@ class StudentController extends Controller
                         $s->save(false);
                     }
                 }
+                return $this->redirect(array('program-student/index'
+                ));
             }
+            if(Yii::$app->request->get('a_id')){
+                $aid = Yii::$app->request->get('a_id');
+                $pid = Yii::$app->request->get('program_id');
+                $students = ProgramStudent::find()
+                                    ->joinWith('student')
+                                    ->where(['academic_year_id' => $aid])
+                                    ->andWhere(['student.alumni' => 0])
+                                    ->andWhere(['student.status' => 1])
+                                    ->andWhere(['program_id' => $pid])
+                                    ->all();
+            }
+            
             return $this->render('alumni', [
                 'students' => $students,
                 'aid' => $aid,
