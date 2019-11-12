@@ -71,6 +71,7 @@ class SearchStudent extends Student
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'status'=>1,
+            'user_id' => Yii::$app->user->id;
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

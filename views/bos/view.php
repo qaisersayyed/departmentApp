@@ -18,7 +18,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
         'attributes' => [
             //'bos_id',
             'program',
-            'minutes:ntext',
             [
                 'label' => 'Date',
                 
@@ -27,8 +26,22 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
                 }
             ],
             'department.name',
+            [
+                'label' => 'Revision',
+                'attribute' => 'revision',
+                'value' => function($dataProvider){
+                    if($dataProvider->revision == 0){
+                            return 'Revised';
+                    }else{
+                        return "Not Revised";
+                    }
+
+                }
+            ],
             'academicYear.year',
-            'description'
+            'description',
+            'minutes:ntext',
+
             //'created_at',
             //'updated_at',
         ],

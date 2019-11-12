@@ -18,7 +18,7 @@ class SearchAgency extends Agency
     public function rules()
     {
         return [
-            [['agency_id'], 'integer'],
+            [['agency_id', 'user_id'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -63,6 +63,11 @@ class SearchAgency extends Agency
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+
+         // Displaying data related to particular user
+         if(yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }

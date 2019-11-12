@@ -39,6 +39,7 @@ class Bos extends \yii\db\ActiveRecord
             [['minutes'], 'file'],
             [['date', 'created_at', 'updated_at'], 'safe'],
             [['department_id', 'academic_year_id'], 'integer'],
+            [['revision'], 'boolean'],
             [['description'], 'string'],
             [['program'], 'string', 'max' => 100],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
@@ -59,6 +60,7 @@ class Bos extends \yii\db\ActiveRecord
             'department_id' => 'Department',
             'academic_year_id' => 'Academic Year',
             'description' => 'Description',
+            'revision' => 'Revision',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

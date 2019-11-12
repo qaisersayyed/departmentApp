@@ -28,6 +28,8 @@ use dosamigos\datepicker\DatePicker;
             ]
     ]);?>
 
+    <?= $form->field($model, 'revision')->checkbox() ?>
+
     <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),
         ['prompt'=>'select ']

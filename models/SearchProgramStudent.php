@@ -18,10 +18,11 @@ class SearchProgramStudent extends ProgramStudent
     public $to;
     public $from;
     public $roll_no;
+
     public function rules()
     {
         return [
-            [['program_student_id'], 'integer'],
+            [['program_student_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at', 'status', 'program_id','student_id', 'academic_year_id'], 'safe'],
             
         ];
@@ -80,11 +81,13 @@ class SearchProgramStudent extends ProgramStudent
             'updated_at' => $this->updated_at,
            //'student.roll_no'=> $this.roll_no,
             'program_student.status'=>1,
-            
         ]);
         $query->andFilterWhere(['like', 'program.name', $this->program_id]);
         $query->andFilterWhere(['like', 'student.name', $this->student_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
+        if(yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['program_student.user_id' => Yii::$app->user->id]);
+        }
         return $dataProvider;
     }
 }

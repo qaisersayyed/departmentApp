@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Students', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-view">
-
     <?php foreach($model as $m){
         echo DetailView::widget([
             'model' => $m,

@@ -18,7 +18,7 @@ class SearchOrganization extends Organization
     public function rules()
     {
         return [
-            [['organization_id'], 'integer'],
+            [['organization_id', 'user_id'], 'integer'],
             [['company_name', 'contact_no', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -66,6 +66,11 @@ class SearchOrganization extends Organization
 
         $query->andFilterWhere(['like', 'company_name', $this->company_name])
             ->andFilterWhere(['like', 'contact_no', $this->contact_no]);
+
+        // Displaying data related to particular user
+        if(yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }

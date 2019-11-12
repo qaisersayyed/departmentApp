@@ -21,6 +21,10 @@ use app\models\Department;
     
     <?php $model->status = 1; ?>
 
+    <?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

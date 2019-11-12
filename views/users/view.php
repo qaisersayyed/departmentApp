@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'username',
             'password',
+            'department_name',
             'created_at',
             'updated_at',
         ],

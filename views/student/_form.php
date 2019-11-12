@@ -30,8 +30,6 @@ use app\models\AcademicYear;
         ['prompt'=>'select ']
     ) ?>
 
-    
-
     <?= $form->field($admission, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
         

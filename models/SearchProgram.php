@@ -18,7 +18,7 @@ class SearchProgram extends Program
     public function rules()
     {
         return [
-            [['program_id', ], 'integer'],
+            [['program_id', 'user_id'], 'integer'],
             [['name', 'created_at', 'updated_at', 'status' ,'department_id'], 'safe'],
         ];
     }
@@ -68,6 +68,11 @@ class SearchProgram extends Program
 
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'department.name', $this->department_id]);
+
+        // Displaying data related to particular user
+        if(yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }

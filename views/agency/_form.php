@@ -14,6 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
