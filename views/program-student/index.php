@@ -14,12 +14,15 @@ $this->title = 'Student';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-student-index">
-    <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=program-student/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Student</a></h1>
+
+    <h1><?= Html::encode($this->title) ?> </h1>
+    <a Style="float:right;" href="index.php?r=program-student/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Student</a>
    
 
-    <h1><a Style="float:right" href="index.php?r=student/alumni" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Alumni</a></h1>
+    <a Style="float:right;" href="index.php?r=student/alumni" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Alumni</a>
+
 
    
     <?php // echo $this->render('_search', ['model' => $searchModel]);?>
@@ -47,8 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row"  >
             <div class="col-md-2">
             <div class="form-group">
-            <select class="form-control" name="a_status">
-                
+            <select class="form-control" value="ssk" name="a_status">
+               <option value="" disabled selected>Search by status</option>
                 <option  value=1>Alumni</option>
                 <option value=2>Studying</option>
    

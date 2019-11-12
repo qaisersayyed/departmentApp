@@ -89,6 +89,4 @@ ALTER TABLE `auditing_member` ADD `file1` TEXT NULL AFTER `updated_at`, ADD `fil
 
 ---11 Nov---
 
-ALTER TABLE `student_education` ADD `program_id` INT NOT NULL AFTER `student_education_id`, ADD `student_id` INT NOT NULL AFTER `program_id`;
-ALTER TABLE `student_education` ADD CONSTRAINT `f11` FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `student_education` ADD CONSTRAINT `
-ALTER TABLE `student_education` CHANGE `created_at` `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `student_education` ADD CONSTRAINT `f11` FOREIGN KEY (`program_id`) REFERENCES `program`(`program_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `student_education` ADD CONSTRAINT `f22` FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

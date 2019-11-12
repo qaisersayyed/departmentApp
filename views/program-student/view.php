@@ -4,23 +4,37 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\StudentOrganization;
 use app\models\StudentEducation;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\ProgramStudent */
 
 $this->title = 'Admission';
 $this->params['breadcrumbs'][] = ['label' => 'Admission', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
+if ($model->student->alumni == 1) {
+    ?>
+
+<div class="row" style="float:right">
+  <div class="col-md-6">
+  <?= Html::a(
+        'Add Alumni Details',
+        ['student-organization/create','p_id' => $model->program_id,'s_id' => $model->student_id],
+        ['class' => 'btn btn-primary']
+    ); ?>
+  </div>
+  <div class="col-md-6">
+  <?= Html::a(
+        'Add Student Education',
+        ['student-education/create', 'program_id' => $model->program_id,'student_id' =>$model->student_id],
+        ['class' => "btn btn-primary"]
+    ); ?>
+  </div>
+</div>
+<?php
+}
 ?>
- <?= Html::a(
-    'Add Alumni Details',
-    ['student-organization/create','p_id' => $model->program_id,'s_id' => $model->student_id],
-    ['class' => 'btn btn-primary','Style' => 'float-right']
-); ?>
-<?= Html::a(
-    'Add Student Education',
-    ['student-education/create', 'program_id' => $model->program_id,'student_id' =>$model->student_id],
-    ['class' => "btn btn-success", 'Style'=>"float:right"]
-); ?>
+ 
+
 <!-- <h1><?php //= Html::encode($this->title)?> <a Style="float:right" href="index.php?r=student-education/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Student Education</a></h1> -->
 <div class="program-student-view">
@@ -47,9 +61,12 @@ $this->params['breadcrumbs'][] = ['label' => 'Admission', 'url' => ['index']];
 <?php
 
 $stu= StudentOrganization::find()->where(['student_id'=>$model->student_id])->all();
-?>
+if ($stu != null) {
+    ?>
+
 <h4>Alumni Details</h4>
 <?php
+}
 foreach ($stu as $s) {
     $cname =  $s->organization->company_name;
     $doj = $s->date_of_joining;
@@ -89,14 +106,16 @@ foreach ($stu as $s) {
 <?php
 
 $stu_edu= StudentEducation::find()->where(['student_id'=>$model->student_id])->all();
-?>
+if ($stu_edu != null) {
+    ?>
+
 <h4>Student Education Details</h4>
 <?php
+}
 foreach ($stu_edu as $se) {
     $institution_name =  $se->institution_name;
     $degree = $se->degree;
-    $doj = $se->date_of_joining;
-     ?>
+    $doj = $se->date_of_joining; ?>
 <div>
 <table class="table table-striped table-bordered">
   <tbody>
