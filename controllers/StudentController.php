@@ -101,6 +101,7 @@ class StudentController extends Controller
                                     ->joinWith('student')
                                     ->where(['academic_year_id' => $aid])
                                     ->andWhere(['student.alumni' => 0])
+                                    ->andWhere(['user_id' => Yii::$app->user->id])
                                     ->andWhere(['student.status' => 1])
                                     ->andWhere(['program_id' => $pid])
                                     ->all();

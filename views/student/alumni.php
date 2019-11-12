@@ -68,7 +68,7 @@ $form = ActiveForm::begin([
                     <?php
                         if ($students) {
                             foreach ($students as $student) {
-                                echo "<input type='checkbox' class='form-control' name='". $student->student->roll_no ."' />";
+                                echo "<input type='checkbox' class='form-check-input' name='". $student->student->roll_no ."' />";
                             }
                             echo '<br>';
                             echo Html::submitButton('Add Alumni', ['class' => 'btn btn-success']);

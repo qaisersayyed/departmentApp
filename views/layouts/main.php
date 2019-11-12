@@ -37,7 +37,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DSM beta</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DMS v1.0</span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -72,7 +72,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         "url" => "#",
                                         'items' => [
                                             ['label' => 'Student', 'url' => ['/program-student/index']],
-                                            ['label' => 'Internship', 'url' => ['/internship/index']],                        
+                                            ['label' => 'Internship', 'url' => ['/internship/index']],
                                         ],
                                     ],
                                     // ['label' => 'Student', 'icon' => 'child', 'url' => ['/program-student/index']],
@@ -305,7 +305,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-               Designed and Developed by Chowgule FOSS Club
+              <a href="http://www.fossclubgoa.com/chowgulefossclub/"> Designed and Developed by Chowgule FOSS Club</a>
             </div>
             <div class="clearfix"></div>
         </footer>

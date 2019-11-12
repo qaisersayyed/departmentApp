@@ -14,20 +14,12 @@ $this->title = 'Student';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-student-index">
-    <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
-        <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
-        <div class="col-md-3">
-            <label>Choose Excel File</label><br> <input type="file" name="file" id="file" accept=".csv">
-            <br>
-        </div>
-        <div class="col-md-3">
-            <br>
-            <button type="submit" id="submit" name="import" class="btn btn-success">Import</button>
-        </div>
+<h1><?= Html::encode($this->title) ?> </h1>
+<?php
 
-    </form>
-
-    <h1><?= Html::encode($this->title) ?> </h1>
+if (Yii::$app->user->identity->username != 'admin') {
+    ?>
+    
     <a Style="float:right;" href="index.php?r=program-student/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Student</a>
    
@@ -37,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
    
-    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
+<?php
+}// echo $this->render('_search', ['model' => $searchModel]);?>
 
 
     <?php $form = ActiveForm::begin([
@@ -60,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'method' => 'GET',
     ]); ?>
         <div class="row"  >
-            <div class="col-md-2">
+            <div class="col-md-3">
             <div class="form-group">
             <select class="form-control" value="ssk" name="a_status">
                <option value="" disabled selected>Search by status</option>
@@ -73,12 +66,28 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           
         
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success ']) ?>
                 
             </div>
+        </div><br>
+        <?php
+        if (Yii::$app->user->identity->username == 'admin') {
+            ?>
+        <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
+        <div class="col-md-3">
+            <label>Choose Excel File</label><br> <input type="file" name="file" id="file" accept=".csv">
+            <br>
         </div>
-     <?php ActiveForm::end(); ?>
+        <div class="col-md-3">
+            <br>
+            <button type="submit" id="submit" name="import" class="btn btn-success">Import</button>
+        </div>
+
+    </form>
+        <?php
+        } ActiveForm::end(); ?>
 
     <div class="text-right">
         <p><b>Search Result: </b>
@@ -170,17 +179,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     $mysqli = new mysqli("localhost", "root", "", "department");
     if (isset($_POST["import"])) {
-
-
         echo $filename = $_FILES["file"]["tmp_name"];
 
 
         if ($_FILES["file"]["size"] > 0) {
-
             $file = fopen($filename, "r");
 
             $flag = true;
-            while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE) {
+            while (($emapData = fgetcsv($file, 10000, ",")) !== false) {
                 if ($flag) {
                     $flag = false;
                     continue;
