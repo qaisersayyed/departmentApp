@@ -17,11 +17,6 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'syllabus_file')->fileInput();echo "<br>$model->syllabus_file</br>" ?>
-    <?= $form->field($model, 'syllabus_file2')->fileInput();echo "<br>$model->syllabus_file2</br>" ?>
-    <?= $form->field($model, 'syllabus_file3')->fileInput();echo "<br>$model->syllabus_file3</br>" ?>
-    <?= $form->field($model, 'syllabus_file4')->fileInput();echo "<br>$model->syllabus_file4</br>" ?>
-    
     <?= $form->field($model, 'syllabus_date')->widget(DatePicker::className(), [
     'model' => $model,
     'attribute' => 'syllabus_date',
@@ -44,6 +39,12 @@ use dosamigos\datepicker\DatePicker;
 		<?=$form->field($model,'academic_year_id')->dropDownList(
 		ArrayHelper::map(AcademicYear::find()->orderBy(['year'=>SORT_DESC])->all(),'academic_year_id','year')
 )?>
+
+<?= $form->field($model, 'syllabus_file')->fileInput();echo "<br>$model->syllabus_file</br>" ?>
+    <?= $form->field($model, 'syllabus_file2')->fileInput();echo "<br>$model->syllabus_file2</br>" ?>
+    <?= $form->field($model, 'syllabus_file3')->fileInput();echo "<br>$model->syllabus_file3</br>" ?>
+    <?= $form->field($model, 'syllabus_file4')->fileInput();echo "<br>$model->syllabus_file4</br>" ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

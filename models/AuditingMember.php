@@ -68,7 +68,7 @@ class AuditingMember extends \yii\db\ActiveRecord
             'faculty_name' => 'Other Faculty Names',
             'department_id' => 'Department ',
             'academic_year_id' => 'Academic Year ',
-            'description' => 'Description'
+            'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'file' => 'File'

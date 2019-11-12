@@ -37,7 +37,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DCS</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DSM beta</span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -56,7 +56,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <br />
 
                 <!-- sidebar menu -->
-                <?php if(!Yii::$app->user->isGuest){ ?>
+                <?php if (!Yii::$app->user->isGuest) { ?>
 
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
@@ -66,9 +66,18 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ['label' => 'Student', 'icon' => 'child', 'url' => ['/program-student/index']],
-                                    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
-                                    ['label' => 'Organization','icon' => 'briefcase', 'url' => ['/organization/index']],
+                                    [
+                                        'label' => 'Student Details',
+                                        "icon" => "child",
+                                        "url" => "#",
+                                        'items' => [
+                                            ['label' => 'Student', 'url' => ['/program-student/index']],
+                                            ['label' => 'Internship', 'url' => ['/internship/index']],                        
+                                        ],
+                                    ],
+                                    // ['label' => 'Student', 'icon' => 'child', 'url' => ['/program-student/index']],
+                                //    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
+                                   
                                     [
                                         'label' => 'Settings',
                                         "icon" => "gear",
@@ -76,12 +85,35 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'items' => [
                                             ['label' => 'Program', 'url' => ['/program/index']],
                                             ['label' => 'Academic Year', 'url' => ['/academic-year/index']],
-                                            ['label' => 'Department', 'url' => ['/department/index']],
-                                            ['label' => 'Assign Course', 'url' => ['/paper-faculty/index']],
-                                            ['label' => 'Revision', 'url' => ['/revision/index']],
+                                            ['label' => 'Organization', 'url' => ['/organization/index']],
+                                            // ['label' => 'Department', 'url' => ['/department/index']],
+                                            
                                             ['label' => 'Agency', 'url' => ['/agency/index']],
                                             ['label' => 'Users', 'url' => ['/users/index']],
                         
+                                        ],
+                                    ],
+                                    
+                                    // [
+                                    //     'label' => 'Course',
+                                    //     "icon" => "book",
+                                    //     "url" => "#",
+                                    //     'items' => [
+                                           
+                        
+                                    //     ],
+                                    // ],
+                                    [
+                                        'label' => 'Faculty',
+                                        "icon" => "user",
+                                        "url" => "#",
+                                        'items' => [
+                                            ['label' => 'Type', 'url' => ['/type/index']],
+                                            ['label' => 'Course', 'url' => ['/paper-type/index']],
+                                            ['label' => 'Assign Course', 'url' => ['/paper-faculty/index']],
+                                            ['label' => 'Revision', 'url' => ['/revision/index']],
+                                            ['label' => 'Faculty', 'url' => ['/appointment/index']],
+                                            
                                         ],
                                     ],
                                     [
@@ -103,18 +135,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
                                         ],
                                     ],
-                                    [
-                                        'label' => 'Course',
-                                        "icon" => "book",
-                                        "url" => "#",
-                                        'items' => [
-                                            
-                                            ['label' => 'Type', 'url' => ['/type/index']],
-                                            ['label' => 'Course', 'url' => ['/paper-type/index']],
-                        
-                                        ],
-                                    ],
-                                    ['label' => 'Faculty','icon' => 'user', 'url' => ['/appointment/index']],
+                                    // ['label' => 'Faculty','icon' => 'user', 'url' => ['/appointment/index']],
                                     ['label' => 'Backup Data', 'icon' => 'arrow-circle-down', 'url' => ['/site/backup']],
                                     /* [
                                         'label' => 'Faculty',
@@ -214,7 +235,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
         </div>
 
         <!-- top navigation -->
-        <?php if(!Yii::$app->user->isGuest){ ?>
+        <?php if (!Yii::$app->user->isGuest) { ?>
         <div class="top_nav">
 
             <div class="nav_menu">

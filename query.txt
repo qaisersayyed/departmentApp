@@ -86,3 +86,7 @@ ALTER TABLE `paper_published` ADD `file2` TEXT NULL AFTER `file`, ADD `file3` TE
 ALTER TABLE `paper_published` CHANGE `file` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
 
 ALTER TABLE `auditing_member` ADD `file1` TEXT NULL AFTER `updated_at`, ADD `file2` TEXT NULL AFTER `file1`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
+
+---11 Nov---
+
+ALTER TABLE `student_education` ADD CONSTRAINT `f11` FOREIGN KEY (`program_id`) REFERENCES `program`(`program_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `student_education` ADD CONSTRAINT `f22` FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
