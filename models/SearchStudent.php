@@ -62,7 +62,7 @@ class SearchStudent extends Student
             return $dataProvider;
         }
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'academic_year.year', $this->from, $this->to]);
         }
         // grid filtering conditions
