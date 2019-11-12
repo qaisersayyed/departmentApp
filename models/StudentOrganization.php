@@ -37,6 +37,7 @@ class StudentOrganization extends \yii\db\ActiveRecord
             
             [['organization_id', 'student_id','program_id'], 'integer'],
             [['date_of_joining', 'created_at', 'updated_at'], 'safe'],
+            [['date_of_joining', 'organization_id', 'student_id','program_id'], 'required'],
             [['position'], 'string', 'max' => 25],
             [['organization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_id' => 'organization_id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['student_id' => 'student_id']],
