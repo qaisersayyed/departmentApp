@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
         <div class="col-md-3">
-            <label>Choose Excel File</label><br> <input type="file" name="file" id="file">
+            <label>Choose Excel File</label><br> <input type="file" name="file" id="file" accept=".csv">
             <br>
         </div>
         <div class="col-md-3">
