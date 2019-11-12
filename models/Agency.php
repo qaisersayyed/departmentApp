@@ -26,7 +26,7 @@ class Agency extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'user_id'], 'required'],
             [['name'], 'string', 'max' => 255],
         ];
     }

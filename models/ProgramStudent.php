@@ -35,7 +35,7 @@ class ProgramStudent extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['program_id', 'student_id', 'academic_year_id'], 'integer'],
+            [['program_id', 'student_id', 'academic_year_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['status'], 'string', 'max' => 1],
             [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],

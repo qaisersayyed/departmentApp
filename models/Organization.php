@@ -31,7 +31,7 @@ class Organization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_name', 'contact_no'], 'required'],
+            [['company_name', 'contact_no', 'user_id'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['company_name'], 'string', 'max' => 50],
             [['contact_no'], 'string', 'max' => 20],

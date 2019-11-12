@@ -35,7 +35,7 @@ class Program extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'department_id'], 'required'],
-            [['department_id'], 'integer'],
+            [['department_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 50],
             [['status'], 'string', 'max' => 1],

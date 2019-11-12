@@ -19,8 +19,8 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
-          
+            [['username', 'password', 'department_name'], 'required'],
+            [['oit_id'], 'integer']
         ];
     }
     /**

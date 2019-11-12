@@ -90,3 +90,17 @@ ALTER TABLE `auditing_member` ADD `file1` TEXT NULL AFTER `updated_at`, ADD `fil
 ---11 Nov---
 
 ALTER TABLE `student_education` ADD CONSTRAINT `f11` FOREIGN KEY (`program_id`) REFERENCES `program`(`program_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `student_education` ADD CONSTRAINT `f22` FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+----12 Nov 2019 ------
+
+ALTER TABLE `users` ADD `department_name` VARCHAR(150) NOT NULL AFTER `password`, ADD `oit_id` INT NULL AFTER `department_name`;
+
+ALTER TABLE `bos` ADD `revision` BOOLEAN NOT NULL AFTER `description`;
+
+ALTER TABLE `program_student` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
+
+ALTER TABLE `program` ADD `user_id` INT NOT NULL AFTER `department_id`;
+
+ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
+
+ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;

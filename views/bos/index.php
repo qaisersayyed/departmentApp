@@ -82,6 +82,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     return date('d M Y', strtotime($model->date));
                 }
             ],
+
+            [
+                'label' => 'Revision',
+                'attribute' => 'revision',
+                'value' => function($dataProvider){
+                    if($dataProvider->revision == 0){
+                            return 'Revised';
+                    }else{
+                        return "Not Revised";
+                    }
+
+                }
+            ],
+
             [
                 'label' => 'Department Name',
                 'value' => 'department.name',
