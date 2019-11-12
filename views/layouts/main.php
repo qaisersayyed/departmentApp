@@ -124,6 +124,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Seminar', 'url' => ['/seminar/index']],
                                             ['label' => 'Subject Expert', 'url' => ['/subject-expert/index']],
                                             ['label' => 'Workshop', 'url' => ['/workshop/index']],
+                                            ['label' => 'Extension Activities', 'url' => ['/extension-activities/index']],
                                             ['label' => 'Examiner', 'url' => ['/examiner/index']],
                                             ['label' => 'Event', 'url' => ['/event/index']],
                                             ['label' => 'BOS', 'url' => ['/bos/index']],

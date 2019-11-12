@@ -13,12 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="extension-activities-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?>
+    <a Style="float:right" href="index.php?r=extension-activities/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Extension Activity</a>
+  </h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
-    <p>
-        <?= Html::a('Create Extension Activities', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
     
 
     <?= GridView::widget([
@@ -58,9 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'scheme_name',
             //'created_at',
             //'updated_at',
-            //'sponsor:ntext',
-            //'created_at',
-            //'updated_at',
+            
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],
@@ -73,5 +72,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]); ?>
     
-    ?>
+    
 </div>

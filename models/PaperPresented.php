@@ -33,11 +33,12 @@ class PaperPresented extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['paper_presented_id', 'paper_title', 'conference_name', 'venue', 'date', 'status'], 'required'],
-            [['paper_presented_id', 'status'], 'integer'],
+            [['paper_presented_id', 'paper_title', 'conference_name', 'venue', 'date', 'status','type', 'level', 'student_involved', 'paper_presented_file'], 'required'],
+            [['paper_presented_id', 'status', 'level'], 'integer'],
+            [['type', 'student_involved'], 'boolean'],
             [['paper_presented_file','paper_presented_file2','paper_presented_file3','paper_presented_file4'], 'file'],
             [['date', 'created_at', 'updated_at'], 'safe'],
-            [['paper_title', 'conference_name', 'venue'], 'string', 'max' => 255],
+            [['paper_title', 'conference_name', 'venue', 'student_name'], 'string', 'max' => 250],
             [['paper_presented_id'], 'unique'],
         ];
     }
@@ -57,6 +58,10 @@ class PaperPresented extends \yii\db\ActiveRecord
             'conference_name' => 'Conference Name',
             'venue' => 'Venue',
             'date' => 'Date',
+            'type' => 'Paper Type',
+            'level' => 'Level',
+            'student_involved' => 'Were students involved ?',
+            'student_name' => 'Student Name',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'status' => 'Status',

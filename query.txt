@@ -112,3 +112,8 @@ CREATE TABLE `department`.`extension_activities` ( `extension_activities_id` INT
 ALTER TABLE `extension_activities` CHANGE `description` `description` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `scheme_name` `scheme_name` VARCHAR(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
 
 ALTER TABLE `extension_activities` ADD `user_id` INT NOT NULL AFTER `is_awarded`;
+---Paper Presented ( Add column type, level, student_involved and student_name)---
+
+ALTER TABLE `paper_presented` ADD `type` BOOLEAN NOT NULL AFTER `description`, ADD `level` VARCHAR(50) NOT NULL AFTER `type`, ADD `student_involved` BOOLEAN NOT NULL AFTER `level`, ADD `student_name` VARCHAR(250) NULL AFTER `student_involved`;
+
+ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;

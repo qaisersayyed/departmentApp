@@ -91,6 +91,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            
+            [
+                'label' => 'Type',
+                'attribute' => 'type',
+                'value' => function($dataProvider){
+                    if($dataProvider->type == 0){
+                            return 'Oral';
+                    }else{
+                        return 'Poster';
+                    }
+
+                }
+            ],
+            
+            [
+                'label' => 'Level',
+                'attribute' => 'level',
+                'value' => function($dataProvider){
+                    if($dataProvider->level == 0){
+                            return 'State';
+                    }elseif($dataProvider->level == 1){
+                        return "National";
+                    }elseif($dataProvider->level == 2){
+                        return "International";
+                    }
+
+                }
+            ],
+
+            'student_name',
             //'created_at',
             //'updated_at',
             //'status',
