@@ -104,3 +104,11 @@ ALTER TABLE `program` ADD `user_id` INT NOT NULL AFTER `department_id`;
 ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
 
 ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;
+
+
+//12 nov 2019
+CREATE TABLE `department`.`extension_activities` ( `extension_activities_id` INT NOT NULL AUTO_INCREMENT ,  `title` VARCHAR(100) NOT NULL ,  `organising_unit` TEXT NOT NULL ,  `contact_no` INT(15) NOT NULL ,  `teacher_no` INT NOT NULL ,  `student_no` INT NOT NULL ,  `teachers` TEXT NOT NULL ,  `date` DATE NOT NULL ,  `description` TEXT NOT NULL ,  `is_awarded` INT NOT NULL DEFAULT '0' ,  `scheme_name` VARCHAR(150) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL ,    PRIMARY KEY  (`extension_activities_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `extension_activities` CHANGE `description` `description` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `scheme_name` `scheme_name` VARCHAR(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+
+ALTER TABLE `extension_activities` ADD `user_id` INT NOT NULL AFTER `is_awarded`;
