@@ -56,6 +56,12 @@ class StudentEducationController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    // public function actionStudentEducationView($id)
+    // {
+    //     return $this->redirect('program-student/view',[
+    //         'model' => $this->findModel($id),
+    //     ]);
+    // }
 
     /**
      * Creates a new StudentEducation model.
