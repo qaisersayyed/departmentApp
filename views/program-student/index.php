@@ -14,6 +14,18 @@ $this->title = 'Student';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-student-index">
+    <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
+        <div class="col-md-3">
+            <label>Choose Excel File</label><br> <input type="file" name="file" id="file">
+            <br>
+        </div>
+        <div class="col-md-3">
+            <br>
+            <button type="submit" id="submit" name="import" class="btn btn-success">Import</button>
+        </div>
+
+    </form>
 
     <h1><?= Html::encode($this->title) ?> </h1>
     <a Style="float:right;" href="index.php?r=program-student/create" class="btn btn-success">
@@ -28,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
 
-   <?php $form = ActiveForm::begin([
+    <?php $form = ActiveForm::begin([
         'method' => 'GET',
     ]); ?>
         <div class="row"  >
@@ -76,12 +88,12 @@ $this->params['breadcrumbs'][] = $this->title;
             } else {
                 echo "None";
             }
-        ?>
-    </p>
+            ?>
+        </p>
     </div>
 
     <?= GridView::widget([
-     
+
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'autoXlFormat'=>true,
@@ -121,7 +133,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => 'student.roll_no',
             'attribute' => 'roll_no',
             ],
-          
+
             'student.phone_no',
             'student.email',
             [
@@ -145,14 +157,58 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],
-        'pjax'=>true,
-        'showPageSummary'=>false,
-        'panel'=>[
-            
-            'heading'=> $this->title,
-           
+        'pjax' => true,
+        'showPageSummary' => false,
+        'panel' => [
+
+            'heading' => $this->title,
+
         ]
     ]); ?>
+
+    <?php
+
+    $mysqli = new mysqli("localhost", "root", "", "department");
+    if (isset($_POST["import"])) {
+
+
+        echo $filename = $_FILES["file"]["tmp_name"];
+
+
+        if ($_FILES["file"]["size"] > 0) {
+
+            $file = fopen($filename, "r");
+
+            $flag = true;
+            while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE) {
+                if ($flag) {
+                    $flag = false;
+                    continue;
+                }
+                $sql = "INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`,`email`) VALUES (NULL,'$emapData[2]','$emapData[3]','$emapData[4]','$emapData[5]')";
+
+                $sql1 = "INSERT INTO `program_student` (`program_student_id`, `program_id`, `student_id`, `created_at`, `updated_at`, `status`, `academic_year_id`) VALUES (NULL, (SELECT `program_id` FROM `program` WHERE `name` = '$emapData[1]'), (SELECT `student_id` FROM `student` WHERE `roll_no` = '$emapData[3]' ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', (SELECT `academic_year_id` FROM `academic_year` WHERE `year` = '$emapData[6]' ))";
+                $mysqli->query($sql);
+                $mysqli->query($sql1);
+                $result=$mysqli->store_result();
+                if (!empty($result)) {
+                    echo "<script type=\"text/javascript\">
+                        alert(\"Invalid File:Please Upload CSV File.\");
+                        window.location.replace('index.php?r=program-student');
+                    </script>";
+                }
+            }
+            fclose($file);
+            echo "<script type=\"text/javascript\">
+                            alert(\"CSV File has been successfully Imported.\");
+                            window.location.replace('index.php?r=program-student');
+    					</script>";
+
+
+            $mysqli->close();
+        }
+    }
+    ?>
 
 
 </div>
