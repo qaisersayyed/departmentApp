@@ -132,7 +132,12 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+<<<<<<< HEAD
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
+=======
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "shasum": null
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
@@ -213,7 +218,12 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
+<<<<<<< HEAD
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
+=======
+                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
+                "shasum": null
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
             },
             "type": "bower-asset",
             "license": [
@@ -1244,6 +1254,7 @@
                 "storage"
             ],
             "time": "2019-10-16T21:01:05+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "markbaker/complex",
@@ -1408,6 +1419,8 @@
                 "vector"
             ],
             "time": "2019-10-06T11:29:25+00:00"
+=======
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
         },
         {
             "name": "mikemccabe/json-patch-php",
@@ -1502,6 +1515,7 @@
                 "php",
                 "utf-8"
             ],
+<<<<<<< HEAD
             "time": "2019-02-06T13:32:19+00:00"
         },
         {
@@ -1551,6 +1565,9 @@
                 "object graph"
             ],
             "time": "2019-08-09T12:45:53+00:00"
+=======
+            "time": "2016-12-12T10:42:18+00:00"
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
         },
         {
             "name": "paragonie/random_compat",
@@ -1736,6 +1753,7 @@
                 "psr-3"
             ],
             "time": "2019-11-01T11:05:21+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "psr/simple-cache",
@@ -1784,6 +1802,8 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+=======
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
         },
         {
             "name": "rackspace/php-opencloud",
@@ -2978,6 +2998,8 @@
             "autoload": {
                 "psr-4": {
                     "GuzzleHttp\\Psr7\\": "src/"
+<<<<<<< HEAD
+=======
                 },
                 "files": [
                     "src/functions_include.php"
@@ -3010,6 +3032,73 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "myclabs/deep-copy",
+            "version": "1.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "007c053ae6f31bba39dfa19a7726f56e9763bbea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/007c053ae6f31bba39dfa19a7726f56e9763bbea",
+                "reference": "007c053ae6f31bba39dfa19a7726f56e9763bbea",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "replace": {
+                "myclabs/deep-copy": "self.version"
+            },
+            "require-dev": {
+                "doctrine/collections": "^1.0",
+                "doctrine/common": "^2.6",
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DeepCopy\\": "src/DeepCopy/"
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "PSR-7 message implementation that also provides common utility methods",
+            "keywords": [
+                "http",
+                "message",
+                "psr-7",
+                "request",
+                "response",
+                "stream",
+                "uri",
+                "url"
+            ],
+<<<<<<< HEAD
+            "time": "2019-07-01T23:21:34+00:00"
+=======
+            "time": "2019-08-09T12:45:53+00:00"
+>>>>>>> dd092ce05f4f3db03c2f582e50fdeffe2f2f589c
         },
         {
             "name": "phar-io/manifest",

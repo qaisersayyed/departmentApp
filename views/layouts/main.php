@@ -56,7 +56,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <br />
 
                 <!-- sidebar menu -->
-                <?php if(!Yii::$app->user->isGuest){ ?>
+                <?php if (!Yii::$app->user->isGuest) { ?>
 
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
@@ -67,7 +67,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             [
                                 "items" => [
                                     ['label' => 'Student', 'icon' => 'child', 'url' => ['/program-student/index']],
-                                    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
+                                //    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
                                     ['label' => 'Organization','icon' => 'briefcase', 'url' => ['/organization/index']],
                                     [
                                         'label' => 'Settings',
@@ -214,7 +214,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
         </div>
 
         <!-- top navigation -->
-        <?php if(!Yii::$app->user->isGuest){ ?>
+        <?php if (!Yii::$app->user->isGuest) { ?>
         <div class="top_nav">
 
             <div class="nav_menu">

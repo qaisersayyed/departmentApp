@@ -1,4 +1,6 @@
-<?php 
+
+
+<?php
 use app\models\AcademicYear;
 use yii\helpers\Html;
 use kartik\grid\GridView;
@@ -9,6 +11,7 @@ use app\models\Program;
 
 
 use yii\data\ActiveDataProvider;
+
 $this->title = 'Alumni';
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -18,17 +21,23 @@ $form = ActiveForm::begin([
     ]); ?>
         <div class="row">
             <div class="col-md-3">
-                <?= Html::dropDownList('a_id', null,
-                    ArrayHelper::map(AcademicYear::find()->all(), 'academic_year_id', 'year'),
-                    ['class' => 'form-control',
-                    'prompt' => 'Select a year']) 
+                <?= Html::dropDownList(
+        'a_id',
+        null,
+        ArrayHelper::map(AcademicYear::find()->all(), 'academic_year_id', 'year'),
+        ['class' => 'form-control',
+                    'prompt' => 'Select a year']
+    )
                 ?>
             </div>
             <div class="col-md-3">
-                <?= Html::dropDownList('program_id', null,
+                <?= Html::dropDownList(
+                    'program_id',
+                    null,
                     ArrayHelper::map(Program::find()->all(), 'program_id', 'name'),
                     ['class' => 'form-control',
-                    'prompt' => 'Select a program']) 
+                    'prompt' => 'Select a program']
+                )
                 ?>
             </div>
             <div class="col-md-3" >
@@ -41,9 +50,9 @@ $form = ActiveForm::begin([
      <div class="row">
          <div class="col-md-3">
             <ul class="list-group">
-                <?php 
-                    if($students){
-                        foreach($students as $student){
+                <?php
+                    if ($students) {
+                        foreach ($students as $student) {
                             echo "<li class='list-group-item'>" .$student->student->name ."</li>";
                         }
                     }
@@ -56,14 +65,13 @@ $form = ActiveForm::begin([
                     'method' => 'GET',
                 ]); ?>
                 <input type="hidden" name="aid" value="<?= $aid ?>">
-                    <?php 
-                        if($students){
-                            foreach($students as $student){
+                    <?php
+                        if ($students) {
+                            foreach ($students as $student) {
                                 echo "<input type='checkbox' class='form-control' name='". $student->student->roll_no ."' />";
                             }
                             echo '<br>';
                             echo Html::submitButton('Add Alumni', ['class' => 'btn btn-success']);
-
                         }
                     ?>
                 <div class="col-md-3" >
@@ -72,7 +80,7 @@ $form = ActiveForm::begin([
             </ul>
          </div>
      </div>
-     <?php 
+     <?php
 
         $query = ProgramStudent::find()->joinwith('student')->where(['program_student.status'=>1])->andWhere(['alumni' => 1]);
 
@@ -85,46 +93,46 @@ $form = ActiveForm::begin([
             ]
         ]);
      ?>
-     <?=
-     GridView::widget([
+     <?php //=
+    //  GridView::widget([
      
-     'dataProvider' => $dataProvider,
-     'autoXlFormat'=>true,
-     'export'=>[
-     'label' => 'Export',
-     'fontAwesome'=>true,
-     'showConfirmAlert'=>false,
-     'target'=>GridView::TARGET_BLANK
-     ],
-     'columns' => [
-         ['class' => 'kartik\grid\SerialColumn'],
+    //  'dataProvider' => $dataProvider,
+    //  'autoXlFormat'=>true,
+    //  'export'=>[
+    //  'label' => 'Export',
+    //  'fontAwesome'=>true,
+    //  'showConfirmAlert'=>false,
+    //  'target'=>GridView::TARGET_BLANK
+    //  ],
+    //  'columns' => [
+    //      ['class' => 'kartik\grid\SerialColumn'],
 
-         [
-            'label' => 'Program Name',
-            'value' => 'program.name',
-            'attribute' => 'program_id',
-        ],
-        [
-         'label' => 'Student Name',
-         'value' => 'student.name',
-         'attribute' => 'student_id',
-         ],
+        //  [
+        //     'label' => 'Program Name',
+        //     'value' => 'program.name',
+        //     'attribute' => 'program_id',
+        // ],
+        // [
+        //  'label' => 'Student Name',
+        //  'value' => 'student.name',
+        //  'attribute' => 'student_id',
+        //  ],
        // 'created_at',
        // 'updated_at',
        // 'status',
-       [
-        'label' => 'Roll No.',
-        'value' => 'student.roll_no',
-        'attribute' => 'roll_no',
-        ],
+    //    [
+    //     'label' => 'Roll No.',
+    //     'value' => 'student.roll_no',
+    //     'attribute' => 'roll_no',
+    //     ],
       
-        'student.phone_no',
-        'student.email',
-       [
-         'label' => 'Admission Year',
-         'value' => 'academicYear.year',
-         'attribute' => 'academic_year_id',
-         ],
+    //     'student.phone_no',
+    //     'student.email',
+    //    [
+    //      'label' => 'Admission Year',
+    //      'value' => 'academicYear.year',
+    //      'attribute' => 'academic_year_id',
+    //      ],
         
          //'created_at',
          //'updated_at',
@@ -132,12 +140,13 @@ $form = ActiveForm::begin([
          
 
          
-     ],
-     'pjax'=>true,
-     'showPageSummary'=>false,
-     'panel'=>[
+//      ],
+//      'pjax'=>true,
+//      'showPageSummary'=>false,
+//      'panel'=>[
          
-         'heading'=> $this->title,
+//          'heading'=> $this->title,
         
-     ]
- ]); ?>
+//      ]
+//  ]);
+//?>

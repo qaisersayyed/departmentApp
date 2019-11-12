@@ -10,7 +10,8 @@ use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\StudentOrganization */
-/* @var $form yii\widgets\ActiveForm */// 
+/* @var $form yii\widgets\ActiveForm *///
+
 ?>
 
 <div class="student-organization-form">
@@ -18,30 +19,30 @@ use dosamigos\datepicker\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'program_id')->dropDownList(
-        ArrayHelper::map(Program::find()->all(),'program_id','name'),
-        ['prompt'=>'select ']       
-   )  ?>
+    ArrayHelper::map(Program::find()->where(['program_id' => $p_id])->all(), 'program_id', 'name')
+)  ?>
 
     <?= $form->field($model, 'organization_id')->dropDownList(
-        ArrayHelper::map(Organization::find()->all(),'organization_id','company_name'),
-        ['prompt'=>'select ']
-    ) ?>
+    ArrayHelper::map(Organization::find()->all(), 'organization_id', 'company_name'),
+    ['prompt'=>'select ']
+) ?>
 
     <?= $form->field($model, 'student_id')->dropDownList(
-        ArrayHelper::map(Student::find()->where(['alumni' => "1"])->all(),'student_id','name'),
-        ['prompt'=>'select ']
-    ) ?>
+    ArrayHelper::map(Student::find()->where(['student_id' => $s_id,])->all(), 'student_id', 'name')
+) ?>
 
     <?= $form->field($model, 'date_of_joining')->widget(
-    DatePicker::className(), [
+    DatePicker::className(),
+    [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+);?>
 
 
     <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
@@ -54,7 +55,7 @@ use dosamigos\datepicker\DatePicker;
 
 </div>
 
-<?php 
+<?php
 
 $script = <<< HTML
     $(document).ready(function (){

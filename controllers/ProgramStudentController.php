@@ -35,18 +35,18 @@ class ProgramStudentController extends Controller
 
     public function actionGetStudent($id)
     {
-        if(!Yii::$app->user->isGuest){
-           $student = ProgramStudent::find()->joinWith('student')->where(['program_id' => $id])->all();
-           $studentArray = Array();
-           foreach($student as $s){
-                $tmp = Array();
+        if (!Yii::$app->user->isGuest) {
+            $student = ProgramStudent::find()->joinWith('student')->where(['program_id' => $id])->all();
+            $studentArray = array();
+            foreach ($student as $s) {
+                $tmp = array();
                 array_push($tmp, $s->student_id);
                 array_push($tmp, $s->student->name);
                 array_push($studentArray, $tmp);
-           }
-           return Json::encode($studentArray);
-        }else{
-            throw new \yii\web\ForbiddenHttpException; 
+            }
+            return Json::encode($studentArray);
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
     /**
@@ -55,10 +55,19 @@ class ProgramStudentController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $searchModel = new SearchProgramStudent();
-            if(Yii::$app->request->get('roll_no')){
+            if (Yii::$app->request->get('roll_no')) {
                 $searchModel->roll_no = Yii::$app->request->get('roll_no');
+            }
+            if (Yii::$app->request->get('a_status')) {
+                $searchModel->alumni = Yii::$app->request->get('a_status');
+                if (Yii::$app->request->get('a_status') == 1) {
+                    $searchModel->alumni = 1;
+                } else {
+                    $searchModel->alumni = 2;
+                }
+                // echo Yii::$app->request->get('a_status');
             }
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -66,7 +75,7 @@ class ProgramStudentController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -80,11 +89,11 @@ class ProgramStudentController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -98,25 +107,25 @@ class ProgramStudentController extends Controller
     {
         $model = new ProgramStudent();
         $student = new Student();
-        if(!Yii::$app->user->isGuest){
-            if (Yii::$app->request->isAjax && $student->load(Yii::$app->request>post())) { 
-                Yii::$app->response->format = Response::FORMAT_JSON; 
-                return ActiveForm::validate($student); 
-             } 
-        if ($model->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
-            $student->save(false);
-            $model->student_id = $student->student_id;
-            $model->save();
+        if (!Yii::$app->user->isGuest) {
+            if (Yii::$app->request->isAjax && $student->load(Yii::$app->request>post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($student);
+            }
+            if ($model->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
+                $student->save(false);
+                $model->student_id = $student->student_id;
+                $model->save();
            
          
-            return $this->redirect(['view', 'id' => $model->program_student_id]);
-        }
+                return $this->redirect(['view', 'id' => $model->program_student_id]);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
             'student' => $student,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -129,29 +138,27 @@ class ProgramStudentController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
-    {   
+    {
         $model = $this->findModel($id);
         $student = Student::find()->where(['student_id'=>$model->student_id])->one();
-       // $student = $this->findModel($id);
+        // $student = $this->findModel($id);
        
         
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
+                $student->save(false);
+                $model->student_id = $student->student_id;
+                $model->save(false);
+            
+            
+                return $this->redirect(['view', 'id' => $model->program_student_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
-            $student->save(false);
-            $model->student_id = $student->student_id;
-            $model->save(false);
-            
-            
-            return $this->redirect(['view', 'id' => $model->program_student_id]);
-            
-        }
-
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
             'student' => $student,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -165,17 +172,16 @@ class ProgramStudentController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            $model=programstudent::findone($id);
+            $model1=student::findone($model->student_id);
+            $model1->status = 0;
+            $model->status = 0;
+            $model1->save(false);
+            $model->save(false);
 
-        $model=programstudent::findone($id);
-        $model1=student::findone($model->student_id);
-        $model1->status = 0;
-        $model->status = 0;
-        $model1->save(false);
-        $model->save(false);
-
-        return $this->redirect(['index']);
-        }else{
+            return $this->redirect(['index']);
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

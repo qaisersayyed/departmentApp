@@ -11,7 +11,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-
 /**
  * StudentController implements the CRUD actions for Student model.
  */
@@ -38,7 +37,7 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $searchModel = new SearchStudent();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -46,7 +45,7 @@ class StudentController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -59,24 +58,43 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-        $model = ProgramStudent::find()->where(['student_id' => $id])->all();
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            $model = ProgramStudent::find()->where(['student_id' => $id])->all();
+            return $this->render('view', [
             'model' => $model,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
 
     public function actionAlumni()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             /* $searchModel = new SearchStudent();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams); */
             $students = null;
             $aid = null;
-            if(Yii::$app->request->get('a_id')){
+            if (Yii::$app->request->get('aid')) {
+                $aid = Yii::$app->request->get('aid');
+                $students = ProgramStudent::find()
+                                    ->joinWith('student')
+                                    ->where(['academic_year_id' => $aid])
+                                    ->andWhere(['student.alumni' => 0])
+                                    ->andWhere(['student.status' => 1])
+                                    ->all();
+                foreach ($students as $student) {
+                    $student_roll = Yii::$app->request->get($student->student->roll_no);
+                    if ($student_roll) {
+                        $s = Student::find()->where(['roll_no' => $student->student->roll_no])->one();
+                        $s->alumni = 1;
+                        $s->save(false);
+                    }
+                }
+                return $this->redirect(array('program-student/index'
+                ));
+            }
+            if (Yii::$app->request->get('a_id')) {
                 $aid = Yii::$app->request->get('a_id');
                 $pid = Yii::$app->request->get('program_id');
                 $students = ProgramStudent::find()
@@ -87,30 +105,12 @@ class StudentController extends Controller
                                     ->andWhere(['program_id' => $pid])
                                     ->all();
             }
-            if(Yii::$app->request->get('aid')){  
-                $aid = Yii::$app->request->get('aid');
-                $students = ProgramStudent::find()
-                                    ->joinWith('student')
-                                    ->where(['academic_year_id' => $aid])
-                                    ->andWhere(['student.alumni' => 0])
-                                    ->andWhere(['student.status' => 1])
-                                    ->all();
-                foreach($students as $student){
-                    $student_roll = Yii::$app->request->get($student->student->roll_no);
-                    if($student_roll){
-                        $s = Student::find()->where(['roll_no' => $student->student->roll_no])->one();
-                        $s->alumni = 1;
-                        $s->save(false);
-                    }
-                }
-            }
+            
             return $this->render('alumni', [
                 'students' => $students,
                 'aid' => $aid,
             ]);
-
-            
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -124,20 +124,19 @@ class StudentController extends Controller
     {
         $model = new Student();
         $admission = new ProgramStudent();
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post()) && $admission->load(Yii::$app->request->post())) {
+                $model->save();
+                $admission->student_id = $model->student_id;
+                $admission->save(false);
+                return $this->redirect(['view', 'id' => $model->student_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $admission->load(Yii::$app->request->post())) {
-            $model->save();
-            $admission->student_id = $model->student_id;
-            $admission->save(false);
-            return $this->redirect(['view', 'id' => $model->student_id]);
-        }
-
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
             'admission' => $admission,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -152,16 +151,15 @@ class StudentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+                return $this->redirect(['view', 'id' => $model->student_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->student_id]);
-        }
-
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -175,13 +173,13 @@ class StudentController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $model =student::findOne($id);
             $model->status = 0;
             $model->save(false);
 
-        return $this->redirect(['index']);
-        }else {
+            return $this->redirect(['index']);
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

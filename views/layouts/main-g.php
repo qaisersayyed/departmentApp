@@ -25,7 +25,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?php 
+<?php
 
 ?>
 <div class="wrap">
@@ -37,7 +37,7 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    if(!Yii::$app->user->isGuest){
+    if (!Yii::$app->user->isGuest) {
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
@@ -104,7 +104,7 @@ AppAsset::register($this);
                 )
             ],
         ]);
-    }else{
+    } else {
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
