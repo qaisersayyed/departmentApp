@@ -19,14 +19,14 @@ if ($model->student->alumni == 1) {
   <?= Html::a(
         'Add Alumni Details',
         ['student-organization/create','p_id' => $model->program_id,'s_id' => $model->student_id],
-        ['class' => 'btn btn-primary']
+        ['class' => 'btn btn-success']
     ); ?>
   </div>
   <div class="col-md-6">
   <?= Html::a(
         'Add Student Education',
         ['student-education/create', 'program_id' => $model->program_id,'student_id' =>$model->student_id],
-        ['class' => "btn btn-primary"]
+        ['class' => "btn btn-success"]
     ); ?>
   </div>
 </div>
