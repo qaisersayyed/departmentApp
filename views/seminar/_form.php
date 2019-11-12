@@ -16,10 +16,29 @@ use dosamigos\datepicker\DatePicker;
 <div class="seminar-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?php  echo $model->seminar_id; ?>
+    <?// = $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'conducted_type')->dropDownList(['1' => 'Intelectual Property Right', '2' => 'Industry Association',
+    '3'=> 'Workshop','4'=>'Seminar','5'=>'Environment Related','6'=>'Gender','7'=>'Women Empowerment'])?>
 
-    <?= $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'level')->dropDownList(['1' => 'National Level', '2' => 'State Level',
+    '3'=> 'Local Level','4'=>'International Level'])?>
 
-    <?= $form->field($model, 'inhouse')->dropDownList(['1' => 'Conducted', '0' => 'Attended'])?>
+    <?= $form->field($model, 'faculty_organizer')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'faculty_attended')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
+
+
+    <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'no_of_male')->textInput() ?>
+
+    <?= $form->field($model, 'no_of_female')->textInput() ?>
 
     <?= $form->field($model, 'start_date')->widget(
     DatePicker::className(), [
@@ -43,18 +62,12 @@ use dosamigos\datepicker\DatePicker;
             ]
     ]);?>
 
-    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
+   
 
-    <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'faculty_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'department_id')->dropDownList(
+    <!-- <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),
         ['prompt'=>'select ']
-    )?>
+    )?> -->
 
     <?= $form->field($model, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')

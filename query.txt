@@ -104,3 +104,11 @@ ALTER TABLE `program` ADD `user_id` INT NOT NULL AFTER `department_id`;
 ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
 
 ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;
+
+
+ALTER TABLE `seminar` DROP `speaker_name`, DROP `inhouse`;
+ALTER TABLE `seminar` ADD `conducted_type` VARCHAR(100) NULL AFTER `seminar_id`, ADD `level` VARCHAR(50) NULL AFTER `conducted_type`;
+ALTER TABLE `seminar` CHANGE `faculty_name` `faculty_organizer` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `seminar` ADD `faculty_attended` TEXT NOT NULL AFTER `faculty_organizer`;
+ALTER TABLE `seminar` ADD `no_of_female` INT NOT NULL AFTER `faculty_attended`;
+ALTER TABLE `seminar` ADD `no_of_male` INT NOT NULL AFTER `no_of_female`;

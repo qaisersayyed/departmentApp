@@ -78,6 +78,7 @@ class SeminarController extends Controller
     public function actionCreate()
     {
         $model = new Seminar();
+        
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
                 $model->file1 = UploadedFile::getInstance($model, 'file1');
@@ -102,9 +103,10 @@ class SeminarController extends Controller
                     $model->file4= 'uploads/seminar/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                 }
                 
-	            $model->save();
-                return $this->redirect(['view', 'id' => $model->seminar_id]);
-                }
+                 $model->save(false);
+                 echo $model->seminar_id;
+                  return $this->redirect(['view', 'id' => $model->seminar_id]);
+                 }
 
                 return $this->render('create', [
                     'model' => $model,

@@ -19,7 +19,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'seminar_id',
-            'speaker_name:ntext',
+            // 'speaker_name:ntext',
+            'conducted_type:ntext',
+            'faculty_organizer:ntext',
+            'faculty_attended:ntext',
+            'participant:ntext',
+            'participant_name:ntext',
+            'no_of_male',
+            'no_of_female',
+            'academicYear.year',
+            'description:ntext',
+            'venue',
             [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
@@ -36,25 +46,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
-            'participant:ntext',
-            'participant_name:ntext',
-            'faculty_name:ntext',
-            'venue',
-            [
-                'label' => 'Seminar Type',
-                'attribute' => 'inhouse',
-                'value' => function($model){
-                    if($model->inhouse == 0){
-                            return 'Attended';
-                    }else{
-                        return "Conducted";
-                    }
+            
+            
 
-                }
-            ],
-            'department.name',
-            'academicYear.year',
-            'description:ntext'
+            // [
+            //     'label' => 'Seminar Type',
+            //     'attribute' => 'inhouse',
+            //     'value' => function($model){
+            //         if($model->inhouse == 0){
+            //                 return 'Attended';
+            //         }else{
+            //             return "Conducted";
+            //         }
+
+            //     }
+            // ],
+            // 'department.name',
+            
             //'created_at',
             //'updated_at',
             //'file',
