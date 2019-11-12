@@ -104,3 +104,10 @@ ALTER TABLE `program` ADD `user_id` INT NOT NULL AFTER `department_id`;
 ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
 
 ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;
+
+
+---Paper Presented ( Add column type, level, student_involved and student_name)---
+
+ALTER TABLE `paper_presented` ADD `type` BOOLEAN NOT NULL AFTER `description`, ADD `level` VARCHAR(50) NOT NULL AFTER `type`, ADD `student_involved` BOOLEAN NOT NULL AFTER `level`, ADD `student_name` VARCHAR(250) NULL AFTER `student_involved`;
+
+ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
