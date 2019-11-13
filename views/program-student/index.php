@@ -20,12 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 if (Yii::$app->user->identity->username != 'admin') {
     ?>
     
-    <a Style="float:right;" href="index.php?r=program-student/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Student</a>
    
-
-    <a Style="float:right;" href="index.php?r=student/alumni" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Alumni</a>
 
 
    
@@ -37,22 +32,23 @@ if (Yii::$app->user->identity->username != 'admin') {
         'method' => 'GET',
     ]); ?>
         <div class="row"  >
-            <div class="col-md-3">
-                
-                <input type="text" name='roll_no' class='form-control' placeholder="Search Roll No.">
-            </div>
-           
-        
-            <div class="col-md-3">
-                <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
-                
-            </div>
+            
         </div>
      <?php ActiveForm::end(); ?>
      <?php $form = ActiveForm::begin([
         'method' => 'GET',
     ]); ?>
         <div class="row"  >
+            <div class="col-md-3">
+                
+                <input type="text" name='roll_no' class='form-control' placeholder="Search Roll No.">
+            </div>
+           
+        
+            <div class="col-md-1">
+                <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
+                
+            </div>
             <div class="col-md-3">
             <div class="form-group">
             <select class="form-control" value="ssk" name="a_status">
@@ -66,13 +62,21 @@ if (Yii::$app->user->identity->username != 'admin') {
             </div>
           
         
-            <div class="col-sm-3">
+            <div class="col-sm-1">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success ']) ?>
                 
             </div>
+            <div class="col-md-4">
+            <a Style="float:right;" href="index.php?r=program-student/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Student</a>
+   
+
+    <a Style="float:right;" href="index.php?r=student/alumni" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Alumni</a>
+            </div>
         </div><br>
         <?php
-        if (Yii::$app->user->identity->username == 'admin') {
+        if (Yii::$app->user->identity->username != 'admin') {
             ?>
         <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
@@ -133,7 +137,7 @@ if (Yii::$app->user->identity->username != 'admin') {
              'label' => 'Student Name',
              'value' => 'student.name',
              'attribute' => 'student_id',
-             ],
+            ],
            // 'created_at',
            // 'updated_at',
           
@@ -147,6 +151,7 @@ if (Yii::$app->user->identity->username != 'admin') {
             'student.email',
             [
                 'label' => 'Status',
+                'attribute' => 'alumini',
                 'value' => function ($dataProvider) {
                     if ($dataProvider->student->alumni == 0) {
                         return 'Studying';
@@ -154,7 +159,6 @@ if (Yii::$app->user->identity->username != 'admin') {
                         return "Alumni";
                     }
                 },
-                'attribute' => 'alumni',
                 
             ],
            [
