@@ -23,7 +23,7 @@ use dosamigos\datepicker\DatePicker;
         ArrayHelper::map(Student::find('name')->where(['student_id' => $student_id])->all(),'student_id','name')
         
     ) ?>
-    <?= $form->field($model, 'institution_name')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'institution_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'degree')->textInput(['maxlength' => true]) ?>
 
