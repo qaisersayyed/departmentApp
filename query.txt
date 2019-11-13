@@ -127,3 +127,13 @@ ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
 ---13 Nov -----
 
 ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+ 
+ALTER TABLE department.seminar DROP FOREIGN KEY d12;
+
+---13 nov 2019---
+ALTER TABLE `paper_presented` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL;
+
+ALTER TABLE `paper_presented` CHANGE `created_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+////  EVENTS ATTENDED TABLE /////
+CREATE TABLE `department`.`events_attended` ( `event_attended_id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(100) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NULL , `participants` TEXT NOT NULL , `student_involved` BOOLEAN NOT NULL DEFAULT FALSE , `students` TEXT NULL , `file1` TEXT NULL , `file2` TEXT NULL , `file3` TEXT NULL , `file4` TEXT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL , `user_id` INT NOT NULL , PRIMARY KEY (`event_attended_id`)) ENGINE = InnoDB;
