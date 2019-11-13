@@ -22,8 +22,8 @@ class SearchWorkshop extends Workshop
     public function rules()
     {
         return [
-            [['workshop_id'], 'integer'],
-            [['name', 'inhouse', 'participant','participant_name', 'faculty_name', 'start_date', 'end_date', 'created_at', 'updated_at', 'department_id', 'academic_year_id','faculty_id','sponsor'], 'safe'],
+            [['workshop_id', 'male_count', 'female_count'], 'integer'],
+            [['name', 'participant','participant_name', 'faculty_name', 'start_date', 'end_date', 'created_at', 'updated_at', 'academic_year_id','faculty_id','sponsor'], 'safe'],
             [['cost'], 'number'],
         ];
     }
@@ -63,7 +63,6 @@ class SearchWorkshop extends Workshop
         }
 
         $query->joinWith('academicYear');
-        $query->joinWith('department');
         $query->joinWith('faculty');
 
         // grid filtering conditions
@@ -81,22 +80,14 @@ class SearchWorkshop extends Workshop
             'updated_at' => $this->updated_at,
         ]);
 
-        if($this->inhouse){
-            if($this->inhouse[0] == "a"){
-                $this->inhouse = 0;
-            }else{
-                $this->inhouse = 1;
-            }
-        }
-
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'inhouse', $this->inhouse])
             ->andFilterWhere(['like', 'participant', $this->participant])
             ->andFilterWhere(['like', 'faculty_name', $this->faculty_name])
             ->andFilterWhere(['like', 'sponsor', $this->sponsor])
-            ->andFilterWhere(['like', 'participant_name', $this->participant_name]);
-        $query->andFilterWhere(['like', 'department.name', $this->department_id]);
+            ->andFilterWhere(['like', 'participant_name', $this->participant_name])
+            ->andFilterWhere(['like', 'male_count', $this->male_count])
+            ->andFilterWhere(['like', 'female_count', $this->female_count]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
 
