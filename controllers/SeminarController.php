@@ -95,7 +95,7 @@ class SeminarController extends Controller
                     $model->file2= 'uploads/seminar/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                 }
                 if ($model->file3 ) {                
-                    $model->file3->saveAs('uploads/event/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
+                    $model->file3->saveAs('uploads/seminar/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
                     $model->file3= 'uploads/seminar/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                 }
                 if ($model->file4) {                
@@ -104,7 +104,7 @@ class SeminarController extends Controller
                 }
                 
                  $model->save(false);
-                 echo $model->seminar_id;
+                //  echo $model->seminar_id;
                   return $this->redirect(['view', 'id' => $model->seminar_id]);
                  }
 
