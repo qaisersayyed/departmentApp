@@ -22,7 +22,7 @@ class SearchEvent extends Event
     {
         return [
             [['event_id'], 'integer'],
-            [['name', 'venue', 'inhouse', 'participant', 'participant_name', 'faculty_coordinator', 'student_coordinator', 'start_date', 'end_date', 'created_at', 'updated_at', 'department_id', 'academic_year_id','faculty_id'], 'safe'],
+            [['name', 'user_id','venue', 'participant', 'participant_name', 'faculty_coordinator', 'student_coordinator', 'start_date', 'end_date', 'created_at', 'updated_at', 'academic_year_id','faculty_id'], 'safe'],
             [['cost'], 'number'],
         ];
     }
@@ -62,12 +62,12 @@ class SearchEvent extends Event
         }
 
         $query->joinWith('academicYear');
-        $query->joinWith('department');
+       
         $query->joinWith('faculty');
 
         // grid filtering conditions
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
 
@@ -81,26 +81,20 @@ class SearchEvent extends Event
             'updated_at' => $this->updated_at,
         ]);
 
-        if($this->inhouse){
-            if($this->inhouse[0] == "n"){
-                $this->inhouse = 0;
-            }else{
-                $this->inhouse = 1;
-            }
-        }
-
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'venue', $this->venue])
-            ->andFilterWhere(['like', 'inhouse', $this->inhouse])
+          
             ->andFilterWhere(['like', 'participant', $this->participant])
             ->andFilterWhere(['like', 'participant_name', $this->participant])
             ->andFilterWhere(['like', 'faculty_coordinator', $this->faculty_coordinator])
             ->andFilterWhere(['like', 'student_coordinator', $this->student_coordinator]);
-        $query->andFilterWhere(['like', 'department.name', $this->department_id]);
+        
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
     
-
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id ]);
+        }
         return $dataProvider;
     }
 }

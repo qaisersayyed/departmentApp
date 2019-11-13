@@ -8,7 +8,6 @@ use app\models\AcademicYear;
 use app\models\Faculty;
 use dosamigos\datepicker\DatePicker;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Event */
 /* @var $form yii\widgets\ActiveForm */
@@ -20,36 +19,39 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'inhouse')->dropDownList(['1' => 'Conducted', '0' => 'Attended'])?>
 
     <?= $form->field($model, 'start_date')->widget(
-    DatePicker::className(), [
+    DatePicker::className(),
+    [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+);?>
 
     <?= $form->field($model, 'end_date')->widget(
-    DatePicker::className(), [
+    DatePicker::className(),
+    [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+);?>
 
     <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'faculty_id')->dropDownList(
-        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ArrayHelper::map(Faculty::find()->all(), 'faculty_id', 'name'),
         ['prompt'=>'select ']
     )?>
 
@@ -62,13 +64,8 @@ use dosamigos\datepicker\DatePicker;
 <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
 
 
-    <?= $form->field($model, 'department_id')->dropDownList(
-        ArrayHelper::map(Department::find()->all(),'department_id','name'),
-        ['prompt'=>'select ']
-    )?>
-
 <?= $form->field($model, 'academic_year_id')->dropDownList(
-        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
+        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(), 'academic_year_id', 'year')
     ) ?>
 
 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>

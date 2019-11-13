@@ -36,9 +36,9 @@ class BosController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $searchModel = new SearchBos();
-            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+            if (Yii::$app->request->get('from') && Yii::$app->request->get('to')) {
                 $searchModel->to = Yii::$app->request->get('to');
                 $searchModel->from = Yii::$app->request->get('from');
             }
@@ -48,7 +48,7 @@ class BosController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -61,12 +61,11 @@ class BosController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -79,24 +78,25 @@ class BosController extends Controller
     public function actionCreate()
     {
         $model = new BOS();
-        if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) ){
+        
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post())) {
                 $model->minutes = UploadedFile::getInstance($model, 'minutes');
-                if ($model->minutes ) {                
+                if ($model->minutes) {
                     $model->minutes->saveAs('uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension);
                     $model->minutes= 'uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension;
                 }
-                
-	            $model->save();
+                $model->user_id = Yii::$app->user->id;
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->bos_id]);
-                }
+            }
 
-                return $this->render('create', [
+            return $this->render('create', [
                     'model' => $model,
                 ]);
-            }else{
-                throw new \yii\web\ForbiddenHttpException;
-            }
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
+        }
     }
 
     /**
@@ -108,18 +108,16 @@ class BosController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $model = $this->findModel($id);
             $old_data= $this->findModel($id);
     
             if ($model->load(Yii::$app->request->post())) {
                 $model->minutes = UploadedFile::getInstance($model, 'minutes');
                 
-                if (!$model->minutes ){
+                if (!$model->minutes) {
                     $model->minutes = $old_data->minutes;
-                    
-                }else{
-                    
+                } else {
                     $model->minutes->saveAs('uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension);
                     $model->minutes= 'uploads/bos/' . $model->minutes ->baseName . '.' . $model->minutes ->extension;
                 };
@@ -131,8 +129,8 @@ class BosController extends Controller
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;   
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
 
@@ -145,12 +143,11 @@ class BosController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
+            $this->findModel($id)->delete();
 
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-        }else {
+            return $this->redirect(['index']);
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

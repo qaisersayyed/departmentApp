@@ -25,7 +25,7 @@ use dosamigos\datepicker\DatePicker;
     ]);?>
 
 
-    <?= $form->field($model, 'end_date')->widget(DatePicker::className(), [
+<?= $form->field($model, 'end_date')->widget(DatePicker::className(), [
     'model' => $model,
     'attribute' => 'date',
         'clientOptions' => [
@@ -51,9 +51,6 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'file4')->fileInput() ;echo "<br>$model->file4</br>" ?>
   
-
-    
-    
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

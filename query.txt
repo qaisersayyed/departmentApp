@@ -137,3 +137,11 @@ ALTER TABLE `paper_presented` CHANGE `created_at` `created_at` DATETIME NOT NULL
 
 ////  EVENTS ATTENDED TABLE /////
 CREATE TABLE `department`.`events_attended` ( `event_attended_id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(100) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NULL , `participants` TEXT NOT NULL , `student_involved` BOOLEAN NOT NULL DEFAULT FALSE , `students` TEXT NULL , `file1` TEXT NULL , `file2` TEXT NULL , `file3` TEXT NULL , `file4` TEXT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL , `user_id` INT NOT NULL , PRIMARY KEY (`event_attended_id`)) ENGINE = InnoDB;
+    ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+
+ALTER TABLE `department`.`event` DROP FOREIGN KEY `d11`;
+ALTER TABLE `event` DROP `inhouse`, DROP `department_id`;
+ALTER TABLE `event` ADD `user_id` INT NOT NULL AFTER `file4`;
+ALTER TABLE `department`.`bos` DROP FOREIGN KEY `d9`;
+ALTER TABLE `bos` DROP `department_id`;
+ALTER TABLE `bos` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;

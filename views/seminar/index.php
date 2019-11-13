@@ -10,7 +10,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchSeminar */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Conducted Seminars';
+$this->title = 'Seminars Conducted ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-index">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 if (Yii::$app->user->identity->username != 'admin') {
     ?>
     <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Conducted Seminar</a></h1>
+        <span class="glyphicon glyphicon-plus"></span> Add Seminar</a></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <?php } ?>

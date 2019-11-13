@@ -43,7 +43,7 @@ class Event extends \yii\db\ActiveRecord
             [['file1','file2','file3','file4'],'file'],
             [['cost'], 'number'],
             [['faculty_coordinator','student_coordinator', 'participant_name', 'description'], 'string'],
-            [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
+            [['start_date', 'end_date', 'created_at', 'updated_at','user_id'], 'safe'],
             [['department_id', 'academic_year_id', 'faculty_id', 'participant'], 'integer'],
             [['name', 'venue'], 'string', 'max' => 50],
             [['inhouse'], 'string', 'max' => 1],
@@ -96,9 +96,9 @@ class Event extends \yii\db\ActiveRecord
         return $this->hasOne(Department::className(), ['department_id' => 'department_id']);
     }
 
-     /**
-     * @return \yii\db\ActiveQuery
-     */
+    /**
+    * @return \yii\db\ActiveQuery
+    */
     public function getFaculty()
     {
         return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);

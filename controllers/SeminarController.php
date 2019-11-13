@@ -86,9 +86,15 @@ class SeminarController extends Controller
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
-                if ($model->file1 ) {                
-                    $model->file1->saveAs('uploads/seminar/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
-                    $model->file1= 'uploads/seminar/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                if ($model->file1 ) {       
+                    $cnt = 1;
+                    $filename =  'uploads/seminar/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/seminar/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file1->saveAs($filename);
+                    $model->file1= $filename;
                 }
                 if ($model->file2 ) {                
                     $model->file2->saveAs('uploads/seminar/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);

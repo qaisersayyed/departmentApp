@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Department;
 use app\models\AcademicYear;
 use dosamigos\datepicker\DatePicker;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Bos */
 /* @var $form yii\widgets\ActiveForm */
@@ -18,25 +19,22 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'program')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'date')->widget(
-    DatePicker::className(), [
+    DatePicker::className(),
+    [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+);?>
 
     <?= $form->field($model, 'revision')->checkbox() ?>
 
-    <?= $form->field($model, 'department_id')->dropDownList(
-        ArrayHelper::map(Department::find()->all(),'department_id','name'),
-        ['prompt'=>'select ']
-    )?>
-
     <?= $form->field($model, 'academic_year_id')->dropDownList(
-        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
+        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(), 'academic_year_id', 'year')
     ) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>

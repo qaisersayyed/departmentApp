@@ -23,7 +23,7 @@ class SearchBos extends Bos
     {
         return [
             [['bos_id' ], 'integer'],
-            [['program', 'minutes', 'date', 'created_at', 'updated_at', 'department_id',  'academic_year_id'], 'safe'],
+            [['program', 'minutes', 'user_id','date', 'created_at', 'updated_at', 'department_id',  'academic_year_id'], 'safe'],
         ];
     }
 
@@ -60,11 +60,11 @@ class SearchBos extends Bos
             // $query->where('0=1');
             return $dataProvider;
         }
-        $query->joinWith('department');
+       
         $query->joinWith('academicYear');
         // grid filtering conditions
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'date', $this->from, $this->to]);
         }
 
@@ -76,11 +76,12 @@ class SearchBos extends Bos
 
         $query->andFilterWhere(['like', 'program', $this->program])
               ->andFilterWhere(['like', 'minutes', $this->minutes]);
-        $query->andFilterWhere(['like', 'department.name', $this->department_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'date', $this->date]);
 
-
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id ]);
+        }
         return $dataProvider;
     }
 }
