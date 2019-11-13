@@ -10,14 +10,20 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchSeminar */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Seminars';
+$this->title = 'Conducted Seminars';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-index">
 
-<h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Seminar</a></h1>
+<h1><?= Html::encode($this->title) ?> </h1>
+<?php 
+if (Yii::$app->user->identity->username != 'admin') {
+    ?>
+    <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Conducted Seminar</a></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+<?php } ?>
 
     <?php $form = ActiveForm::begin([
         'method' => 'GET',
@@ -77,9 +83,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
-
+            'conducted_type:ntext',
+            'level:ntext',
             //'seminar_id',
-            'speaker_name:ntext',
+            
+            // // 'speaker_name:ntext',
             [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
@@ -88,24 +96,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
-            'faculty_name:ntext',
+            'faculty_organizer:ntext',
             //'end_date',
             'participant',
             'participant_name:ntext',
             //'venue',
             
-            [
-                'label' => 'Seminar Type',
-                'attribute' => 'inhouse',
-                'value' => function($dataProvider){
-                    if($dataProvider->inhouse == 0){
-                            return 'Attended';
-                    }else{
-                        return "Conducted";
-                    }
+            // [
+            //     'label' => 'Seminar Type',
+            //     'attribute' => 'inhouse',
+            //     'value' => function($dataProvider){
+            //         if($dataProvider->inhouse == 0){
+            //                 return 'Attended';
+            //         }else{
+            //             return "Conducted";
+            //         }
 
-                }
-            ],
+            //     }
+            // ],
 
             /*[
                 'label' => 'Department Name',

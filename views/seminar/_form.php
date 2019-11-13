@@ -16,10 +16,29 @@ use dosamigos\datepicker\DatePicker;
 <div class="seminar-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?php // echo $model->seminar_id; ?>
+    <?// = $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'conducted_type')->dropDownList(['Intellectual Property Right' => 'Intellectual Property Right', 'Industry Association' => 'Industry Association',
+    'Workshop'=> 'Workshop','Seminar'=>'Seminar','Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment'])?>
 
-    <?= $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'level')->dropDownList(['National Level' => 'National Level', 'State Level' => 'State Level',
+    'Local Level'=> 'Local Level','International Level'=>'International Level'])?>
 
-    <?= $form->field($model, 'inhouse')->dropDownList(['1' => 'Conducted', '0' => 'Attended'])?>
+    <?= $form->field($model, 'faculty_organizer')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'faculty_attended')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
+
+
+    <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'no_of_male')->textInput() ?>
+
+    <?= $form->field($model, 'no_of_female')->textInput() ?>
 
     <?= $form->field($model, 'start_date')->widget(
     DatePicker::className(), [
@@ -43,18 +62,12 @@ use dosamigos\datepicker\DatePicker;
             ]
     ]);?>
 
-    <?= $form->field($model, 'participant')->textInput(['maxlength' => true]) ?>
+   
 
-    <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'faculty_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'department_id')->dropDownList(
+    <!-- <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),
         ['prompt'=>'select ']
-    )?>
+    )?> -->
 
     <?= $form->field($model, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
@@ -69,6 +82,11 @@ use dosamigos\datepicker\DatePicker;
 <?= $form->field($model, 'file3')->fileInput();echo "<br>$model->file3</br>" ?>
 
 <?= $form->field($model, 'file4')->fileInput();echo "<br>$model->file4</br>" ?>
+
+<?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

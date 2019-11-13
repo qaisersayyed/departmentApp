@@ -106,6 +106,12 @@ ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
 ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;
 
 
+ALTER TABLE `seminar` DROP `speaker_name`, DROP `inhouse`;
+ALTER TABLE `seminar` ADD `conducted_type` VARCHAR(100) NULL AFTER `seminar_id`, ADD `level` VARCHAR(50) NULL AFTER `conducted_type`;
+ALTER TABLE `seminar` CHANGE `faculty_name` `faculty_organizer` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `seminar` ADD `faculty_attended` TEXT NOT NULL AFTER `faculty_organizer`;
+ALTER TABLE `seminar` ADD `no_of_female` INT NOT NULL AFTER `faculty_attended`;
+ALTER TABLE `seminar` ADD `no_of_male` INT NOT NULL AFTER `no_of_female`;
 //12 nov 2019
 CREATE TABLE `department`.`extension_activities` ( `extension_activities_id` INT NOT NULL AUTO_INCREMENT ,  `title` VARCHAR(100) NOT NULL ,  `organising_unit` TEXT NOT NULL ,  `contact_no` INT(15) NOT NULL ,  `teacher_no` INT NOT NULL ,  `student_no` INT NOT NULL ,  `teachers` TEXT NOT NULL ,  `date` DATE NOT NULL ,  `description` TEXT NOT NULL ,  `is_awarded` INT NOT NULL DEFAULT '0' ,  `scheme_name` VARCHAR(150) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL ,    PRIMARY KEY  (`extension_activities_id`)) ENGINE = InnoDB;
 
@@ -117,3 +123,7 @@ ALTER TABLE `extension_activities` ADD `user_id` INT NOT NULL AFTER `is_awarded`
 ALTER TABLE `paper_presented` ADD `type` BOOLEAN NOT NULL AFTER `description`, ADD `level` VARCHAR(50) NOT NULL AFTER `type`, ADD `student_involved` BOOLEAN NOT NULL AFTER `level`, ADD `student_name` VARCHAR(250) NULL AFTER `student_involved`;
 
 ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
+
+---13 Nov -----
+
+ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
