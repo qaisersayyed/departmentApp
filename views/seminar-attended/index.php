@@ -12,16 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-attended-index">
 
-    <h1><?= Html::encode($this->title) ?> </h1>
-    <?php 
-    if (Yii::$app->user->identity->username != 'admin') {
-        ?>
-        <a Style="float:right" href="index.php?r=seminar-attended/create" class="btn btn-success">
-            <span class="glyphicon glyphicon-plus"></span> Add Seminar Attended</a>
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <h1 ><?= Html::encode($this->title) ?>
+        <a style="float:right" href="index.php?r=seminar-attended/create" class="btn btn-success">
+        <span  class="glyphicon glyphicon-plus" ></span> Add Seminar Attended</a>
 
-    <?php } ?>
-    
+    </h1>
+
+      
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

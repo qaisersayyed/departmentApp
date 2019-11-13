@@ -136,3 +136,11 @@ ALTER TABLE `seminar_attended` ADD `created_at` DATETIME NOT NULL DEFAULT CURREN
 
 ALTER TABLE `seminar_attended` CHANGE `seminar_id` `seminar_attended_id` INT(11) NOT NULL AUTO_INCREMENT;
     ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+
+ALTER TABLE `seminar` ADD `title` VARCHAR(100) NOT NULL AFTER `level`;
+
+ALTER TABLE `project` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
+
+ALTER TABLE department.project DROP FOREIGN KEY d6;
+
+ALTER TABLE `revision` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;

@@ -101,7 +101,7 @@ class ProjectController extends Controller
                     $model->project_file4= 'uploads/project/' . $model->project_file4 ->baseName . '.' . $model->project_file4 ->extension;
                 }
                 
-	            $model->save();
+	            $model->save(false);
                 return $this->redirect(['view', 'id' => $model->project_id]);
             }
 

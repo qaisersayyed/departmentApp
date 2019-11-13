@@ -20,7 +20,7 @@ class SearchProject extends Project
     public function rules()
     {
         return [
-            [['project_id'], 'integer'],
+            [['project_id','user_id'], 'integer'],
             [['approval_id', 'name', 'start_date', 'end_date',  'duration','faculty_id','agency_id', 'faculty_name', 'student_name', 'created_at', 'updated_at','academic_year_id'], 'safe'],
             [['amount'], 'number'],
         ];
@@ -64,7 +64,7 @@ class SearchProject extends Project
         }
 
         $query->joinWith('academicYear');
-        $query->joinWith('department');
+        // $query->joinWith('department');
         $query->joinWith('faculty');
         $query->joinWith('agency');
 
@@ -73,7 +73,7 @@ class SearchProject extends Project
             'project_id' => $this->project_id,
             'amount' => $this->amount,
             //'agency_id' => $this->agency_id,
-            'department_id' => $this->department_id,
+            // 'department_id' => $this->department_id,
            // 'academic_year_id' => $this->academic_year_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -91,6 +91,9 @@ class SearchProject extends Project
             ->andFilterWhere(['like', 'start_date', $this->start_date])
             ->andFilterWhere(['like', 'end_date', $this->end_date]);
 
+            if(yii::$app->user->identity->username != 'admin'){
+                $query->andFilterWhere(['project.user_id' => Yii::$app->user->id]);
+            }
         return $dataProvider;
     }
 }
