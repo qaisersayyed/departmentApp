@@ -15,19 +15,20 @@ if ($model->student->alumni == 1) {
     ?>
 
 <div class="row" style="float:right">
-  <div class="col-md-6">
+  <div class="col-md-12">
   <?= Html::a(
-        'Add Alumni Details',
+        'Add Work Details',
         ['student-organization/create','p_id' => $model->program_id,'s_id' => $model->student_id],
-        ['class' => 'btn btn-success']
+        ['class' => 'btn btn-success', 'style' => 'float: left']
+    ); ?>
+    <?= Html::a(
+        'Add Higher Education',
+        ['student-education/create', 'program_id' => $model->program_id,'student_id' =>$model->student_id],
+        ['class' => "btn btn-success", 'style' => 'float: left']
     ); ?>
   </div>
   <div class="col-md-6">
-  <?= Html::a(
-        'Add Student Education',
-        ['student-education/create', 'program_id' => $model->program_id,'student_id' =>$model->student_id],
-        ['class' => "btn btn-success"]
-    ); ?>
+  
   </div>
 </div>
 <?php
@@ -64,7 +65,7 @@ $stu= StudentOrganization::find()->where(['student_id'=>$model->student_id])->al
 if ($stu != null) {
     ?>
 
-<h4>Alumni Details</h4>
+<h4><u>Work Details</u></h4>
 <?php
 }
 foreach ($stu as $s) {
@@ -109,7 +110,7 @@ $stu_edu= StudentEducation::find()->where(['student_id'=>$model->student_id])->a
 if ($stu_edu != null) {
     ?>
 
-<h4>Student Education Details</h4>
+<h4><u>Education Details</u></h4>
 <?php
 }
 foreach ($stu_edu as $se) {
