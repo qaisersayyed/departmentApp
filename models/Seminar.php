@@ -42,7 +42,7 @@ class Seminar extends \yii\db\ActiveRecord
             [['file1','file2','file3','file4'],'file'],
             [['participant_name', 'faculty_attended','faculty_organizer', 'description'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['department_id', 'academic_year_id','no_of_female','no_of_male', 'participant'], 'integer'],
+            [['department_id','user_id', 'academic_year_id','no_of_female','no_of_male', 'participant'], 'integer'],
             [['venue'], 'string', 'max' => 50],
             [['faculty_organizer'], 'string', 'max' => 100],
             [['conducted_type'], 'string', 'max' => 100],

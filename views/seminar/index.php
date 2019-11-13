@@ -15,9 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-index">
 
-<h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
+<h1><?= Html::encode($this->title) ?> </h1>
+<?php 
+if (Yii::$app->user->identity->username != 'admin') {
+    ?>
+    <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Conducted Seminar</a></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+<?php } ?>
 
     <?php $form = ActiveForm::begin([
         'method' => 'GET',
@@ -77,10 +83,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
-
+            'conducted_type:ntext',
+            'level:ntext',
             //'seminar_id',
-            'conducted_type',
-            // 'speaker_name:ntext',
+            
+            // // 'speaker_name:ntext',
             [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
@@ -94,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'participant',
             'participant_name:ntext',
             //'venue',
-            'level',
+            
             // [
             //     'label' => 'Seminar Type',
             //     'attribute' => 'inhouse',

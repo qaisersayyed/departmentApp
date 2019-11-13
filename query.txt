@@ -123,3 +123,7 @@ ALTER TABLE `extension_activities` ADD `user_id` INT NOT NULL AFTER `is_awarded`
 ALTER TABLE `paper_presented` ADD `type` BOOLEAN NOT NULL AFTER `description`, ADD `level` VARCHAR(50) NOT NULL AFTER `type`, ADD `student_involved` BOOLEAN NOT NULL AFTER `level`, ADD `student_name` VARCHAR(250) NULL AFTER `student_involved`;
 
 ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
+
+---13 Nov -----
+
+ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`

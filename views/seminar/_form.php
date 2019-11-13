@@ -16,14 +16,14 @@ use dosamigos\datepicker\DatePicker;
 <div class="seminar-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <?php  echo $model->seminar_id; ?>
+    <?php // echo $model->seminar_id; ?>
     <?// = $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
     
-    <?= $form->field($model, 'conducted_type')->dropDownList(['1' => 'Intelectual Property Right', '2' => 'Industry Association',
-    '3'=> 'Workshop','4'=>'Seminar','5'=>'Environment Related','6'=>'Gender','7'=>'Women Empowerment'])?>
+    <?= $form->field($model, 'conducted_type')->dropDownList(['Intellectual Property Right' => 'Intellectual Property Right', 'Industry Association' => 'Industry Association',
+    'Workshop'=> 'Workshop','Seminar'=>'Seminar','Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment'])?>
 
-    <?= $form->field($model, 'level')->dropDownList(['1' => 'National Level', '2' => 'State Level',
-    '3'=> 'Local Level','4'=>'International Level'])?>
+    <?= $form->field($model, 'level')->dropDownList(['National Level' => 'National Level', 'State Level' => 'State Level',
+    'Local Level'=> 'Local Level','International Level'=>'International Level'])?>
 
     <?= $form->field($model, 'faculty_organizer')->textInput(['maxlength' => true]) ?>
 
@@ -82,6 +82,11 @@ use dosamigos\datepicker\DatePicker;
 <?= $form->field($model, 'file3')->fileInput();echo "<br>$model->file3</br>" ?>
 
 <?= $form->field($model, 'file4')->fileInput();echo "<br>$model->file4</br>" ?>
+
+<?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
