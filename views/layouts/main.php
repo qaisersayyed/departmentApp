@@ -120,11 +120,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Book Published', 'url' => ['/book-published/index']],
                                             ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
                                             ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
-<<<<<<< HEAD
                                             ['label' => 'Events Attended', 'url' => ['/events-attended/index']],
-=======
                                             ['label' => 'Workshop Attended', 'url' => ['/workshop-attended/index']],
->>>>>>> 47a8c83d58067f1667667f87c3c6225481415aa1
                                             ['label' => 'Seminar Attended', 'url' => ['/seminar-attended/index']],
                                         ],
                                     ],
