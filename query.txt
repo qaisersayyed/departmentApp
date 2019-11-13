@@ -128,6 +128,7 @@ ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
 
 ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
 
+<<<<<<< HEAD
 ----dip------
 
 CREATE TABLE `department`.`book_published` ( `book_published_id` INT NOT NULL AUTO_INCREMENT ,  `book_title` VARCHAR(250) NOT NULL ,  `author` VARCHAR(250) NOT NULL ,  `edited_volume` VARCHAR(250) NULL ,  `date` DATE NOT NULL ,  `publisher` VARCHAR(250) NULL ,  `isbn` VARCHAR(100) NULL ,  `student_involved` BOOLEAN NOT NULL ,  `student_name` VARCHAR(250) NULL ,  `description` TEXT NULL ,  `created_at` DATETIME NOT NULL ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL ,  `file1` TEXT NOT NULL ,  `file2` INT NULL ,  `file3` INT NULL ,  `file4` INT NULL ,    PRIMARY KEY  (`book_published_id`)) ENGINE = InnoDB;
@@ -147,3 +148,21 @@ ALTER TABLE `workshop_attended` ADD FOREIGN KEY (`academic_year`) REFERENCES `ac
 ALTER TABLE `workshop_attended` CHANGE `student_involved` `student_involved` BOOLEAN NOT NULL, CHANGE `student_name` `student_name` VARCHAR(250) NULL, CHANGE `description` `description` TEXT NULL;
 
 ALTER TABLE `workshop_attended` CHANGE `file1` `file1` TEXT NOT NULL, CHANGE `file2` `file2` TEXT NULL, CHANGE `file3` `file3` TEXT NULL, CHANGE `file4` `file4` TEXT NULL;
+=======
+CREATE TABLE `department`.`seminar_attended` ( `seminar_id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(100) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NOT NULL , `level` VARCHAR(50) NULL , `attendee` TEXT NOT NULL , `attended_as` VARCHAR(100) NOT NULL , `student_present` BOOLEAN NOT NULL , `student_name` TEXT NULL , `user_id` INT NOT NULL , `file1` TEXT NULL , `file2` TEXT NULL , `file3` TEXT NULL , `file4` TEXT NULL , PRIMARY KEY (`seminar_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `student_education` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `seminar_attended` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `file4`, ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
+
+ALTER TABLE `seminar_attended` CHANGE `seminar_id` `seminar_attended_id` INT(11) NOT NULL AUTO_INCREMENT;
+    ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+
+ALTER TABLE `seminar` ADD `title` VARCHAR(100) NOT NULL AFTER `level`;
+
+ALTER TABLE `project` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
+
+ALTER TABLE department.project DROP FOREIGN KEY d6;
+
+ALTER TABLE `revision` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
+>>>>>>> 6283282173dc01ac9000df2fb70a149ec45382d9

@@ -20,7 +20,7 @@ class searchRevision extends Revision
     public function rules()
     {
         return [
-            [['revision_id'], 'integer'],
+            [['revision_id','user_id'], 'integer'],
             [['syllabus_file', 'syllabus_date','program_id','paper_id', 'academic_year_id', 'created_at', 'updated_at', 'status'], 'safe'],
         ];
     }
@@ -78,6 +78,9 @@ class searchRevision extends Revision
             ->andFilterWhere(['like', 'program.name', $this->program_id])
             ->andFilterWhere(['like', 'paper.name', $this->paper_id]);
 
+            if(yii::$app->user->identity->username != 'admin'){
+                $query->andFilterWhere(['revision.user_id' => Yii::$app->user->id]);
+            }
         return $dataProvider;
     }
 }

@@ -38,13 +38,14 @@ class Seminar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['conducted_type','faculty_attended','no_of_female','no_of_male', 'start_date', 'end_date', 'participant', 'venue', 'level', 'department_id', 'academic_year_id'], 'required'],
+            [['title','conducted_type','faculty_attended','no_of_female','no_of_male', 'start_date', 'end_date', 'participant', 'venue', 'level', 'department_id', 'academic_year_id'], 'required'],
             [['file1','file2','file3','file4'],'file'],
-            [['participant_name', 'faculty_attended','faculty_organizer', 'description'], 'string'],
+            [['title','participant_name', 'faculty_attended','faculty_organizer', 'description'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['department_id','user_id', 'academic_year_id','no_of_female','no_of_male', 'participant'], 'integer'],
             [['venue'], 'string', 'max' => 50],
             [['faculty_organizer'], 'string', 'max' => 100],
+            [['title'], 'string', 'max' => 100],
             [['conducted_type'], 'string', 'max' => 100],
             [['level'], 'string', 'max' => 50],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
@@ -59,6 +60,7 @@ class Seminar extends \yii\db\ActiveRecord
     {
         return [
             'seminar_id' => 'Seminar ID',
+            'title' => 'Title',
             'conducted_type'=>'Seminar Type',
             // 'speaker_name' => 'Speaker Name',
             'start_date' => 'Start Date',

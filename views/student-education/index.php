@@ -14,10 +14,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p >
-        <?= Html::a('Add Student Education', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php 
+    if (Yii::$app->user->identity->username != 'admin') {
+            ?>
+            <a  href="index.php?r=student-education/create" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span> Add Student Education</a>
+        <!-- <p >
+            <?= Html::a('Add Student Education', ['create'], ['class' => 'btn btn-success']) ?>
+        </p> -->
+    <?php } ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -42,5 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],
+        'pjax'=>true,
+        'showPageSummary'=>false,
+        'panel'=>[
+            
+            'heading'=> $this->title,
+           
+        ]
     ]); ?>
 </div>

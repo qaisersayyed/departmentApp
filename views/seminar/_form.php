@@ -18,7 +18,8 @@ use dosamigos\datepicker\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
     <?php // echo $model->seminar_id; ?>
     <?// = $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
-    
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'conducted_type')->dropDownList(['Intellectual Property Right' => 'Intellectual Property Right', 'Industry Association' => 'Industry Association',
     'Workshop'=> 'Workshop','Seminar'=>'Seminar','Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment'])?>
 
