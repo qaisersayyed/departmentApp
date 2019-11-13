@@ -10,7 +10,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchSeminar */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Seminars Conducted ';
+$this->title = 'Conducted Seminars';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-index">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 if (Yii::$app->user->identity->username != 'admin') {
     ?>
     <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Seminar</a></h1>
+        <span class="glyphicon glyphicon-plus"></span> Add Conducted Seminar</a>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <?php } ?>
@@ -83,6 +83,7 @@ if (Yii::$app->user->identity->username != 'admin') {
         ],
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
+            'title:ntext',
             'conducted_type:ntext',
             'level:ntext',
             //'seminar_id',
@@ -101,27 +102,7 @@ if (Yii::$app->user->identity->username != 'admin') {
             'participant',
             'participant_name:ntext',
             //'venue',
-            
-            // [
-            //     'label' => 'Seminar Type',
-            //     'attribute' => 'inhouse',
-            //     'value' => function($dataProvider){
-            //         if($dataProvider->inhouse == 0){
-            //                 return 'Attended';
-            //         }else{
-            //             return "Conducted";
-            //         }
-
-            //     }
-            // ],
-
-            /*[
-                'label' => 'Department Name',
-                'value' => 'department.name',
-                'attribute' => 'department_id',
-                ],
-            */
-                
+                            
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',

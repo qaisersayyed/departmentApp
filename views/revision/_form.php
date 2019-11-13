@@ -46,6 +46,11 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'syllabus_file4')->fileInput();echo "<br>$model->syllabus_file4</br>" ?>
     
 
+<?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
