@@ -70,71 +70,71 @@ class WorkshopController extends Controller
         }
     }
 
-    public function actionReport()
-    {
-        $searchModel = new SearchWorkshop();
-        $model = new Workshop();
-        $month = Array();
-        $conducted = Array();
-        $attended = Array();
-        if(!Yii::$app->user->isGuest){
-            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
-              $to = Yii::$app->request->get('to');
-              $from = Yii::$app->request->get('from');
-            $month = Array();
-            $conducted = Array();
-            $attended = Array();
+    // public function actionReport()
+    // {
+    //     $searchModel = new SearchWorkshop();
+    //     $model = new Workshop();
+    //     $month = Array();
+    //     $conducted = Array();
+    //     $attended = Array();
+    //     if(!Yii::$app->user->isGuest){
+    //         if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+    //           $to = Yii::$app->request->get('to');
+    //           $from = Yii::$app->request->get('from');
+    //         $month = Array();
+    //         $conducted = Array();
+    //         $attended = Array();
 
-            $start    = new \DateTime($from);
-            $start->modify('first day of this month');
-            $end      = new \DateTime($to);
-            $end->modify('first day of next month');
-            $interval = \DateInterval::createFromDateString('1 month');
-            $period   = new \DatePeriod($start, $interval, $end);
+    //         $start    = new \DateTime($from);
+    //         $start->modify('first day of this month');
+    //         $end      = new \DateTime($to);
+    //         $end->modify('first day of next month');
+    //         $interval = \DateInterval::createFromDateString('1 month');
+    //         $period   = new \DatePeriod($start, $interval, $end);
         
-            foreach ($period as $dt) {
-                array_push($month, $dt->format("F Y"));
-            }
-            foreach ($period as $dt) {
-                $m = $dt->format("m");
-                $y = $dt->format("Y");
-                $c = Workshop::find()
-                            ->where(['inhouse' => 0])
-                            ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
-                            ->count();
-                array_push($attended, $c);
-            }
+    //         foreach ($period as $dt) {
+    //             array_push($month, $dt->format("F Y"));
+    //         }
+    //         foreach ($period as $dt) {
+    //             $m = $dt->format("m");
+    //             $y = $dt->format("Y");
+    //             $c = Workshop::find()
+    //                         ->where(['inhouse' => 0])
+    //                         ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
+    //                         ->count();
+    //             array_push($attended, $c);
+    //         }
 
-            foreach ($period as $dt) {
-                $m = $dt->format("m");
-                $y = $dt->format("Y");
-                $c = Workshop::find()
-                            ->where(['inhouse' => 1])
-                            ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
-                            ->count();
-                array_push($conducted, $c);
-            }
+    //         foreach ($period as $dt) {
+    //             $m = $dt->format("m");
+    //             $y = $dt->format("Y");
+    //             $c = Workshop::find()
+    //                         ->where(['inhouse' => 1])
+    //                         ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
+    //                         ->count();
+    //             array_push($conducted, $c);
+    //         }
 
-            return $this->render('report', [
-                'model' => $model,
-                'month' => $month,
-                'attended' => $attended,
-                'conducted' => $conducted,
-            ]);
-            }else{
-                return $this->render('report', [
-                'model' => $model,
-                'month' => $month,
-                'attended' => $attended,
-                'conducted' => $conducted,
-                ]);
-            }
+    //         return $this->render('report', [
+    //             'model' => $model,
+    //             'month' => $month,
+    //             'attended' => $attended,
+    //             'conducted' => $conducted,
+    //         ]);
+    //         }else{
+    //             return $this->render('report', [
+    //             'model' => $model,
+    //             'month' => $month,
+    //             'attended' => $attended,
+    //             'conducted' => $conducted,
+    //             ]);
+    //         }
 
             
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        }
-    }
+    //     }else{
+    //         throw new \yii\web\ForbiddenHttpException;
+    //     }
+    // }
 
     /**
      * Creates a new Workshop model.

@@ -37,7 +37,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DMS v1.0</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DMS <small>(v1.0)</small></span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -117,8 +117,10 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Subject Expert', 'url' => ['/subject-expert/index']],
                                             ['label' => 'Auditing Member', 'url' => ['/auditing-member/index']],
                                             ['label' => 'Examiner', 'url' => ['/examiner/index']],
+                                            ['label' => 'Book Published', 'url' => ['/book-published/index']],
                                             ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
                                             ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
+                                            ['label' => 'Workshop Attended', 'url' => ['/workshop-attended/index']],
                                         ],
                                     ],
                                     [

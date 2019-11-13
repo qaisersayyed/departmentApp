@@ -20,18 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'workshop_id',
             'name',
             [
-                'label' => 'Workshop Type',
-                'attribute' => 'inhouse',
-                'value' => function($model){
-                    if($model->inhouse == 0){
-                            return 'Attended';
-                    }else{
-                        return "Conducted";
-                    }
-
-                }
-            ],
-            [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
                 'value' => function($model){
@@ -48,6 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             'participant:ntext',
+            'male_count',
+            'female_count',
             'participant_name:ntext',
             [
                 'label' => 'Faculty Name',
@@ -55,7 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'faculty_name:ntext',
             'cost',
-            'department.name',
             'academicYear.year',
             //'created_at',
             //'updated_at',

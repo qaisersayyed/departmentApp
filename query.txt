@@ -127,3 +127,23 @@ ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
 ---13 Nov -----
 
 ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+
+----dip------
+
+CREATE TABLE `department`.`book_published` ( `book_published_id` INT NOT NULL AUTO_INCREMENT ,  `book_title` VARCHAR(250) NOT NULL ,  `author` VARCHAR(250) NOT NULL ,  `edited_volume` VARCHAR(250) NULL ,  `date` DATE NOT NULL ,  `publisher` VARCHAR(250) NULL ,  `isbn` VARCHAR(100) NULL ,  `student_involved` BOOLEAN NOT NULL ,  `student_name` VARCHAR(250) NULL ,  `description` TEXT NULL ,  `created_at` DATETIME NOT NULL ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL ,  `file1` TEXT NOT NULL ,  `file2` INT NULL ,  `file3` INT NULL ,  `file4` INT NULL ,    PRIMARY KEY  (`book_published_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `book_published` CHANGE `file2` `file2` TEXT NULL DEFAULT NULL, CHANGE `file3` `file3` TEXT NULL DEFAULT NULL, CHANGE `file4` `file4` TEXT NULL DEFAULT NULL;
+
+ALTER TABLE `workshop` DROP `inhouse`;
+
+ALTER TABLE `workshop` DROP `department_id`;
+
+ALTER TABLE `workshop` ADD `male_count` INT NOT NULL AFTER `participant_name`, ADD `female_count` INT NOT NULL AFTER `male_count`;
+
+CREATE TABLE `department`.`workshop_attended` ( `workshop_attended_id` INT NOT NULL AUTO_INCREMENT ,  `workshop_title` VARCHAR(150) NOT NULL ,  `start_date` DATE NOT NULL ,  `end_date` DATE NOT NULL ,  `participant_name` VARCHAR(250) NOT NULL ,  `student_involved` INT NOT NULL ,  `student_name` INT NOT NULL ,  `academic_year` INT NOT NULL ,  `description` INT NOT NULL ,  `file1` INT NOT NULL ,  `file2` INT NOT NULL ,  `file3` INT NOT NULL ,  `file4` INT NOT NULL ,  `created_at` DATETIME NOT NULL ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL ,    PRIMARY KEY  (`workshop_attended_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `workshop_attended` ADD FOREIGN KEY (`academic_year`) REFERENCES `academic_year`(`academic_year_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `workshop_attended` CHANGE `student_involved` `student_involved` BOOLEAN NOT NULL, CHANGE `student_name` `student_name` VARCHAR(250) NULL, CHANGE `description` `description` TEXT NULL;
+
+ALTER TABLE `workshop_attended` CHANGE `file1` `file1` TEXT NOT NULL, CHANGE `file2` `file2` TEXT NULL, CHANGE `file3` `file3` TEXT NULL, CHANGE `file4` `file4` TEXT NULL;
