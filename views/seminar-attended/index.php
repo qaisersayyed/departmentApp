@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\SearchSeminarAttended */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Seminar Attendeds';
+$this->title = 'Seminar Attended';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-attended-index">
