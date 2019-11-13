@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <?php ActiveForm::end(); ?>
             <a style="float:right" href="index.php?r=internship/create" class="btn btn-success">
-            <span  class="glyphicon glyphicon-plus" ></span> Add Internship</a>
+            <span  class="glyphicon glyphicon-plus" ></span> Add Internship Details</a>
 
         </div>
 

@@ -126,4 +126,4 @@ ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
 
 ---13 Nov -----
 
-ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+    ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`

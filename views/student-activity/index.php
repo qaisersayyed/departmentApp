@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="student-activity-index">
 
 <h1 ><?= Html::encode($this->title) ?>
+<p style="font-size: 14px;"><i>All the activities conducted by the students in the department. For example - I-RIX is a one day tech fest organized by the students of the Department of Computer Science</i></p>
+<br>
 <a style="float:right" href="index.php?r=student-activity/create" class="btn btn-success">
 <span  class="glyphicon glyphicon-plus"></span> Add Student Activity</a>
 
