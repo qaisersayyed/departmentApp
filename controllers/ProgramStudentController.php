@@ -79,6 +79,37 @@ class ProgramStudentController extends Controller
             throw new \yii\web\ForbiddenHttpException;
         }
     }
+    public function actionAttendance()
+    {
+        if (!Yii::$app->user->isGuest) {
+            if (Yii::$app->request->get('a_id')) {
+                $aid = Yii::$app->request->get('a_id');
+                $pid = Yii::$app->request->get('program_id');
+                $sem = Yii::$app->request->get('sem');
+                $course = Yii::$app->request->get('course');
+                $instructor = Yii::$app->request->get('instructor');
+                $students = ProgramStudent::find()
+                                    ->joinWith('student')
+                                    ->where(['academic_year_id' => $aid])
+                                    ->andWhere(['student.status' => 1])
+                                    ->andWhere(['program_id' => $pid])
+                                    ->all();
+                return $this->render('attendance',[
+                    'students' => $students,
+                    'aid' => $aid,
+                    'pid' => $pid,
+                    'instructor' => $instructor,
+                    'sem' => $sem,
+                    'course' => $course,
+                ]);
+                
+            }else{
+                return $this->render('attendance');
+            }
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
+        }
+    }
 
 
     /**
