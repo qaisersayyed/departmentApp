@@ -105,6 +105,17 @@ ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
 
 ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;
 
+ALTER TABLE `paper_published` CHANGE `dgc_flag` `dgc_flag` BOOLEAN NOT NULL;
+
+ALTER TABLE `paper_published` ADD `isbn` VARCHAR(257) NOT NULL AFTER `description`;
+
+ALTER TABLE `paper_published` ADD `doi_link` TEXT NOT NULL AFTER `isbn`;
+
+ALTER TABLE `paper_published` ADD `h_index_author` VARCHAR(50) NOT NULL AFTER `updated_at`;
+
+ALTER TABLE `paper_published` ADD `h_index_journal` VARCHAR(50) NOT NULL AFTER `updated_at`;
+
+ALTER TABLE `paper_published` ADD `institute_affiliation` TEXT NOT NULL AFTER `h_index_author`;
 
 ALTER TABLE `seminar` DROP `speaker_name`, DROP `inhouse`;
 ALTER TABLE `seminar` ADD `conducted_type` VARCHAR(100) NULL AFTER `seminar_id`, ADD `level` VARCHAR(50) NULL AFTER `conducted_type`;
@@ -127,41 +138,6 @@ ALTER TABLE `paper_presented` CHANGE `level` `level` INT NOT NULL;
 ---13 Nov -----
 
 ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
- 
-ALTER TABLE department.seminar DROP FOREIGN KEY d12;
-
----13 nov 2019---
-ALTER TABLE `paper_presented` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL;
-
-ALTER TABLE `paper_presented` CHANGE `created_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
-////  EVENTS ATTENDED TABLE /////
-CREATE TABLE `department`.`events_attended` ( `event_attended_id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(100) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NULL , `participants` TEXT NOT NULL , `student_involved` BOOLEAN NOT NULL DEFAULT FALSE , `students` TEXT NULL , `file1` TEXT NULL , `file2` TEXT NULL , `file3` TEXT NULL , `file4` TEXT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL , `user_id` INT NOT NULL , PRIMARY KEY (`event_attended_id`)) ENGINE = InnoDB;
-    ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
-
-ALTER TABLE `department`.`event` DROP FOREIGN KEY `d11`;
-ALTER TABLE `event` DROP `inhouse`, DROP `department_id`;
-ALTER TABLE `event` ADD `user_id` INT NOT NULL AFTER `file4`;
-ALTER TABLE `department`.`bos` DROP FOREIGN KEY `d9`;
-ALTER TABLE `bos` DROP `department_id`;
-ALTER TABLE `bos` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
-
-CREATE TABLE `department`.`seminar_attended` ( `seminar_id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(100) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NOT NULL , `level` VARCHAR(50) NULL , `attendee` TEXT NOT NULL , `attended_as` VARCHAR(100) NOT NULL , `student_present` BOOLEAN NOT NULL , `student_name` TEXT NULL , `user_id` INT NOT NULL , `file1` TEXT NULL , `file2` TEXT NULL , `file3` TEXT NULL , `file4` TEXT NULL , PRIMARY KEY (`seminar_id`)) ENGINE = InnoDB;
-
-ALTER TABLE `student_education` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
-
-ALTER TABLE `seminar_attended` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `file4`, ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
-
-ALTER TABLE `seminar_attended` CHANGE `seminar_id` `seminar_attended_id` INT(11) NOT NULL AUTO_INCREMENT;
-//ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
-
-ALTER TABLE `seminar` ADD `title` VARCHAR(100) NOT NULL AFTER `level`;
-
-ALTER TABLE `project` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
-
-ALTER TABLE department.project DROP FOREIGN KEY d6;
-
-ALTER TABLE `revision` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
 
 ----dip------
 
@@ -182,3 +158,46 @@ ALTER TABLE `workshop_attended` ADD FOREIGN KEY (`academic_year`) REFERENCES `ac
 ALTER TABLE `workshop_attended` CHANGE `student_involved` `student_involved` BOOLEAN NOT NULL, CHANGE `student_name` `student_name` VARCHAR(250) NULL, CHANGE `description` `description` TEXT NULL;
 
 ALTER TABLE `workshop_attended` CHANGE `file1` `file1` TEXT NOT NULL, CHANGE `file2` `file2` TEXT NULL, CHANGE `file3` `file3` TEXT NULL, CHANGE `file4` `file4` TEXT NULL;
+
+CREATE TABLE `department`.`seminar_attended` ( `seminar_id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(100) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NOT NULL , `level` VARCHAR(50) NULL , `attendee` TEXT NOT NULL , `attended_as` VARCHAR(100) NOT NULL , `student_present` BOOLEAN NOT NULL , `student_name` TEXT NULL , `user_id` INT NOT NULL , `file1` TEXT NULL , `file2` TEXT NULL , `file3` TEXT NULL , `file4` TEXT NULL , PRIMARY KEY (`seminar_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `student_education` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `seminar_attended` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `file4`, ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
+
+ALTER TABLE `seminar_attended` CHANGE `seminar_id` `seminar_attended_id` INT(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `seminar` ADD `user_id` INT NOT NULL AFTER `department_id`
+
+ALTER TABLE `seminar` ADD `title` VARCHAR(100) NOT NULL AFTER `level`;
+
+ALTER TABLE `project` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
+
+ALTER TABLE department.project DROP FOREIGN KEY d6;
+
+ALTER TABLE `revision` ADD `user_id` INT NOT NULL AFTER `academic_year_id`;
+
+
+---(14 Nov 2019) adding user_id to workshop workshop attended, book_published and paper_presented------------------
+
+ALTER TABLE `workshop` ADD `user_id` INT NOT NULL AFTER `file4`;
+
+ALTER TABLE `workshop_attended` ADD `user_id` INT NOT NULL AFTER `updated_at`;
+
+ALTER TABLE `book_published` ADD `user_id` INT NOT NULL AFTER `file4`;
+
+ALTER TABLE `paper_presented` ADD `user` INT NOT NULL AFTER `status`;
+
+ALTER TABLE `workshop_attended` CHANGE `file1` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+
+ALTER TABLE `workshop_attended` CHANGE `created_at` `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `workshop_attended` CHANGE `student_involved` `student_involved` TINYINT(1) NULL;
+
+ALTER TABLE `book_published` CHANGE `student_involved` `student_involved` TINYINT(1) NULL;
+
+ALTER TABLE `book_published` CHANGE `created_at` `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `paper_presented` CHANGE `user` `user_id` INT(11) NOT NULL;
+
+-----------------------------------------------------------------------------------------------------

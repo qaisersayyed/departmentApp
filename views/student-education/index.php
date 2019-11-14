@@ -12,17 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-education-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <?php 
-    if (Yii::$app->user->identity->username != 'admin') {
-            ?>
-            <a  href="index.php?r=student-education/create" class="btn btn-success">
-            <span class="glyphicon glyphicon-plus"></span> Add Student Education</a>
-        <!-- <p >
-            <?= Html::a('Add Student Education', ['create'], ['class' => 'btn btn-success']) ?>
-        </p> -->
-    <?php } ?>
+    
+            <a  style ="float:right" href="index.php?r=student-education/create" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span> Add Student Education</a></h1>
+       
+    
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

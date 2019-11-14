@@ -34,7 +34,7 @@ class PaperPresented extends \yii\db\ActiveRecord
     {
         return [
             [['paper_presented_id', 'paper_title', 'conference_name', 'venue', 'date', 'status','type', 'level', 'student_involved', 'paper_presented_file'], 'required'],
-            [['paper_presented_id', 'status', 'level'], 'integer'],
+            [['paper_presented_id', 'status', 'level', 'user_id'], 'integer'],
             [['type', 'student_involved'], 'boolean'],
             [['paper_presented_file','paper_presented_file2','paper_presented_file3','paper_presented_file4'], 'file'],
             [['date', 'created_at', 'updated_at'], 'safe'],
