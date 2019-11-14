@@ -193,3 +193,4 @@ ALTER TABLE `workshop_attended` ADD FOREIGN KEY (`academic_year`) REFERENCES `ac
 ALTER TABLE `workshop_attended` CHANGE `student_involved` `student_involved` BOOLEAN NOT NULL, CHANGE `student_name` `student_name` VARCHAR(250) NULL, CHANGE `description` `description` TEXT NULL;
 
 ALTER TABLE `workshop_attended` CHANGE `file1` `file1` TEXT NOT NULL, CHANGE `file2` `file2` TEXT NULL, CHANGE `file3` `file3` TEXT NULL, CHANGE `file4` `file4` TEXT NULL;
+
