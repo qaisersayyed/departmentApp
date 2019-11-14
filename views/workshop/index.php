@@ -10,13 +10,13 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchWorkshop */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Workshop';
+$this->title = 'Workshop Conducted';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workshop-index">
 
     <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=workshop/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Workshop</a><a Style="float:right" href="index.php?r=workshop/report" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Add Workshop Conducted</a><a Style="float:right" href="index.php?r=workshop/report" class="btn btn-success">
     </span> Report </a></h1>
 
    
@@ -87,18 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'workshop_id',
             'name',
             [
-                'label' => 'Workshop Type',
-                'attribute' => 'inhouse',
-                'value' => function($dataProvider){
-                    if($dataProvider->inhouse == 0){
-                            return 'Attended';
-                    }else{
-                        return "Conducted";
-                    }
-
-                }
-            ],
-            [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
                 'value' => function($model){
@@ -116,12 +104,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             'faculty_name:ntext',
             //'end_date',
-            /*[
-                'label' => 'Department Name',
-                'value' => 'department.name',
-                'attribute' => 'department_id',
-                ],
-            */
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',

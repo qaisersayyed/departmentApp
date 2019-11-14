@@ -8,7 +8,7 @@ use app\models\SearchWorkshop;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile; 
+use yii\web\UploadedFile;
 
 /**
  * WorkshopController implements the CRUD actions for Workshop model.
@@ -36,9 +36,9 @@ class WorkshopController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $searchModel = new SearchWorkshop();
-            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+            if (Yii::$app->request->get('from') && Yii::$app->request->get('to')) {
                 $searchModel->to = Yii::$app->request->get('to');
                 $searchModel->from = Yii::$app->request->get('from');
             }
@@ -48,7 +48,7 @@ class WorkshopController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -61,80 +61,80 @@ class WorkshopController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
 
-    public function actionReport()
-    {
-        $searchModel = new SearchWorkshop();
-        $model = new Workshop();
-        $month = Array();
-        $conducted = Array();
-        $attended = Array();
-        if(!Yii::$app->user->isGuest){
-            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
-              $to = Yii::$app->request->get('to');
-              $from = Yii::$app->request->get('from');
-            $month = Array();
-            $conducted = Array();
-            $attended = Array();
+    // public function actionReport()
+    // {
+    //     $searchModel = new SearchWorkshop();
+    //     $model = new Workshop();
+    //     $month = Array();
+    //     $conducted = Array();
+    //     $attended = Array();
+    //     if(!Yii::$app->user->isGuest){
+    //         if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+    //           $to = Yii::$app->request->get('to');
+    //           $from = Yii::$app->request->get('from');
+    //         $month = Array();
+    //         $conducted = Array();
+    //         $attended = Array();
 
-            $start    = new \DateTime($from);
-            $start->modify('first day of this month');
-            $end      = new \DateTime($to);
-            $end->modify('first day of next month');
-            $interval = \DateInterval::createFromDateString('1 month');
-            $period   = new \DatePeriod($start, $interval, $end);
+    //         $start    = new \DateTime($from);
+    //         $start->modify('first day of this month');
+    //         $end      = new \DateTime($to);
+    //         $end->modify('first day of next month');
+    //         $interval = \DateInterval::createFromDateString('1 month');
+    //         $period   = new \DatePeriod($start, $interval, $end);
         
-            foreach ($period as $dt) {
-                array_push($month, $dt->format("F Y"));
-            }
-            foreach ($period as $dt) {
-                $m = $dt->format("m");
-                $y = $dt->format("Y");
-                $c = Workshop::find()
-                            ->where(['inhouse' => 0])
-                            ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
-                            ->count();
-                array_push($attended, $c);
-            }
+    //         foreach ($period as $dt) {
+    //             array_push($month, $dt->format("F Y"));
+    //         }
+    //         foreach ($period as $dt) {
+    //             $m = $dt->format("m");
+    //             $y = $dt->format("Y");
+    //             $c = Workshop::find()
+    //                         ->where(['inhouse' => 0])
+    //                         ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
+    //                         ->count();
+    //             array_push($attended, $c);
+    //         }
 
-            foreach ($period as $dt) {
-                $m = $dt->format("m");
-                $y = $dt->format("Y");
-                $c = Workshop::find()
-                            ->where(['inhouse' => 1])
-                            ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
-                            ->count();
-                array_push($conducted, $c);
-            }
+    //         foreach ($period as $dt) {
+    //             $m = $dt->format("m");
+    //             $y = $dt->format("Y");
+    //             $c = Workshop::find()
+    //                         ->where(['inhouse' => 1])
+    //                         ->andWhere('MONTH(start_date) = '.$m .' AND YEAR(start_date) = '.$y)
+    //                         ->count();
+    //             array_push($conducted, $c);
+    //         }
 
-            return $this->render('report', [
-                'model' => $model,
-                'month' => $month,
-                'attended' => $attended,
-                'conducted' => $conducted,
-            ]);
-            }else{
-                return $this->render('report', [
-                'model' => $model,
-                'month' => $month,
-                'attended' => $attended,
-                'conducted' => $conducted,
-                ]);
-            }
+    //         return $this->render('report', [
+    //             'model' => $model,
+    //             'month' => $month,
+    //             'attended' => $attended,
+    //             'conducted' => $conducted,
+    //         ]);
+    //         }else{
+    //             return $this->render('report', [
+    //             'model' => $model,
+    //             'month' => $month,
+    //             'attended' => $attended,
+    //             'conducted' => $conducted,
+    //             ]);
+    //         }
 
             
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        }
-    }
+    //     }else{
+    //         throw new \yii\web\ForbiddenHttpException;
+    //     }
+    // }
 
     /**
      * Creates a new Workshop model.
@@ -144,39 +144,39 @@ class WorkshopController extends Controller
     public function actionCreate()
     {
         $model = new Workshop();
-        if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) ){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post())) {
                 $model->file1 = UploadedFile::getInstance($model, 'file1');
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
-                if ($model->file1 ) {                
+                if ($model->file1) {
                     $model->file1->saveAs('uploads/workshop/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
                     $model->file1= 'uploads/workshop/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
                 }
-                if ($model->file2 ) {                
+                if ($model->file2) {
                     $model->file2->saveAs('uploads/workshop/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
                     $model->file2= 'uploads/workshop/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                 }
-                if ($model->file3 ) {                
+                if ($model->file3) {
                     $model->file3->saveAs('uploads/workshop/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
                     $model->file3= 'uploads/workshop/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                 }
-                if ($model->file4) {                
+                if ($model->file4) {
                     $model->file4->saveAs('uploads/workshop/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
                     $model->file4= 'uploads/workshop/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                 }
-	            $model->save();
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->workshop_id]);
-                }
+            }
 
-                return $this->render('create', [
+            return $this->render('create', [
                     'model' => $model,
                 ]);
-            }else{
-                throw new \yii\web\ForbiddenHttpException;
-            }
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
+        }
     }
 
     /**
@@ -188,57 +188,47 @@ class WorkshopController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $model = $this->findModel($id);
             $old_data= $this->findModel($id);
-    
             if ($model->load(Yii::$app->request->post())) {
                 $model->file1 = UploadedFile::getInstance($model, 'file1');
-                
-                if (!$model->file1 ){
+                if (!$model->file1) {
                     $model->file1 = $old_data->file1;
-                    
-                }else{
-                    
+                } else {
                     $model->file1->saveAs('uploads/workshop/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
                     $model->file1= 'uploads/workshop/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
                 }
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
-                if (!$model->file2){
+                if (!$model->file2) {
                     $model->file2 = $old_data->file2;
-    
-                }else{
-                    
+                } else {
                     $model->file2->saveAs('uploads/workshop/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
                     $model->file2= 'uploads/workshop/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                 }
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
-                if (!$model->file3){
+                if (!$model->file3) {
                     $model->file3 = $old_data->file3;
-    
-                }else{
+                } else {
                     $model->file3->saveAs('uploads/workshop/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
                     $model->file3= 'uploads/workshop/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                 }
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
-                
-                if (!$model->file4){
+                if (!$model->file4) {
                     $model->file4 = $old_data->file4;
-                }else{
-                    
+                } else {
                     $model->file4->saveAs('uploads/workshop/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
                     $model->file4= 'uploads/workshop/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                 }
                 $model->save(false);
-                
                 return $this->redirect(['view', 'id' => $model->workshop_id]);
             }
     
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }else{
-        throw new \yii\web\ForbiddenHttpException;
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
 
@@ -251,11 +241,23 @@ class WorkshopController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
-            $this->findModel($id)->delete();
-
+        if (!Yii::$app->user->isGuest) {
+            $model = $this->findModel($id);
+            if ($model->file1) {
+                unset($model->file1);
+            }
+            if ($model->file2) {
+                unset($model->file2);
+            }
+            if ($model->file3) {
+                unset($model->file3);
+            }
+            if ($model->file4) {
+                unset($model->file4);
+            }
+            $model->delete();
             return $this->redirect(['index']);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

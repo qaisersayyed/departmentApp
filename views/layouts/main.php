@@ -37,7 +37,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DSM beta</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>DMS <small>(v1.0)</small></span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -72,12 +72,59 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         "url" => "#",
                                         'items' => [
                                             ['label' => 'Student', 'url' => ['/program-student/index']],
-                                            ['label' => 'Internship', 'url' => ['/internship/index']],                        
+                                            ['label' => 'Internship', 'url' => ['/internship/index']],
+                                            ['label' => 'Student Activity', 'url' => ['/student-activity/index']],
                                         ],
                                     ],
                                     // ['label' => 'Student', 'icon' => 'child', 'url' => ['/program-student/index']],
                                 //    ['label' => 'Alumni', 'icon' => 'send', 'url' => ['/student/alumni']],
                                    
+                                    
+                                    
+                                    // [
+                                    //     'label' => 'Course',
+                                    //     "icon" => "book",
+                                    //     "url" => "#",
+                                    //     'items' => [
+                                           
+                        
+                                    //     ],
+                                    // ],
+                                    
+                                    [
+                                        'label' => 'Department',
+                                        "icon" => "th",
+                                        "url" => "#",
+                                        'items' => [
+                                            ['label' => 'Seminars Organized', 'url' => ['/seminar/index']],
+                                            ['label' => 'Workshop', 'url' => ['/workshop/index']],
+                                            ['label' => 'Extension Activities', 'url' => ['/extension-activities/index']],
+                                            ['label' => 'Event', 'url' => ['/event/index']],
+                                            ['label' => 'BOS', 'url' => ['/bos/index']],
+                                            ['label' => 'Revision', 'url' => ['/revision/index']],
+                                            ['label' => 'Project', 'url' => ['/project/index']],
+                                        ],
+                                    ],
+                                    [
+                                        'label' => 'Faculty',
+                                        "icon" => "user",
+                                        "url" => "#",
+                                        'items' => [
+                                            //['label' => 'Type', 'url' => ['/type/index']],
+                                           // ['label' => 'Course', 'url' => ['/paper-type/index']],
+                                            ////['label' => 'Assign Course', 'url' => ['/paper-faculty/index']],
+                                            ['label' => 'Faculty', 'url' => ['/appointment/index']],
+                                            ['label' => 'Subject Expert', 'url' => ['/subject-expert/index']],
+                                            ['label' => 'Auditing Member', 'url' => ['/auditing-member/index']],
+                                            ['label' => 'Examiner', 'url' => ['/examiner/index']],
+                                            ['label' => 'Book Published', 'url' => ['/book-published/index']],
+                                            ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
+                                            ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
+                                            ['label' => 'Events Attended', 'url' => ['/events-attended/index']],
+                                            ['label' => 'Workshop Attended', 'url' => ['/workshop-attended/index']],
+                                            ['label' => 'Seminar Attended', 'url' => ['/seminar-attended/index']],
+                                        ],
+                                    ],
                                     [
                                         'label' => 'Settings',
                                         "icon" => "gear",
@@ -93,50 +140,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         
                                         ],
                                     ],
-                                    
-                                    // [
-                                    //     'label' => 'Course',
-                                    //     "icon" => "book",
-                                    //     "url" => "#",
-                                    //     'items' => [
-                                           
-                        
-                                    //     ],
-                                    // ],
-                                    [
-                                        'label' => 'Faculty',
-                                        "icon" => "user",
-                                        "url" => "#",
-                                        'items' => [
-                                            ['label' => 'Type', 'url' => ['/type/index']],
-                                            ['label' => 'Course', 'url' => ['/paper-type/index']],
-                                            ['label' => 'Assign Course', 'url' => ['/paper-faculty/index']],
-                                            ['label' => 'Revision', 'url' => ['/revision/index']],
-                                            ['label' => 'Faculty', 'url' => ['/appointment/index']],
-                                            
-                                        ],
-                                    ],
-                                    [
-                                        'label' => 'Activities',
-                                        "icon" => "th",
-                                        "url" => "#",
-                                        'items' => [
-                                            ['label' => 'Seminar', 'url' => ['/seminar/index']],
-                                            ['label' => 'Subject Expert', 'url' => ['/subject-expert/index']],
-                                            ['label' => 'Workshop', 'url' => ['/workshop/index']],
-                                            ['label' => 'Examiner', 'url' => ['/examiner/index']],
-                                            ['label' => 'Event', 'url' => ['/event/index']],
-                                            ['label' => 'BOS', 'url' => ['/bos/index']],
-                                            ['label' => 'Auditing Member', 'url' => ['/auditing-member/index']],
-                                            ['label' => 'Student Activity', 'url' => ['/student-activity/index']],
-                                            ['label' => 'Project', 'url' => ['/project/index']],
-                                            ['label' => 'Internship', 'url' => ['/internship/index']],
-                                            ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
-                                            ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
-                                        ],
-                                    ],
                                     // ['label' => 'Faculty','icon' => 'user', 'url' => ['/appointment/index']],
-                                    ['label' => 'Backup Data', 'icon' => 'arrow-circle-down', 'url' => ['/site/backup']],
+                                    //['label' => 'Backup Data', 'icon' => 'arrow-circle-down', 'url' => ['/site/backup']],
                                     /* [
                                         'label' => 'Faculty',
                                         "icon" => "th",
@@ -305,7 +310,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-               Designed and Developed by Chowgule FOSS Club
+              <a href="http://www.fossclubgoa.com/chowgulefossclub/"> Designed and Developed by Chowgule FOSS Club</a>
             </div>
             <div class="clearfix"></div>
         </footer>

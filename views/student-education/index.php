@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StudentEducationSearch */
@@ -14,16 +14,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Student Education', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php 
+    if (Yii::$app->user->identity->username != 'admin') {
+            ?>
+            <a  href="index.php?r=student-education/create" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span> Add Student Education</a>
+        <!-- <p >
+            <?= Html::a('Add Student Education', ['create'], ['class' => 'btn btn-success']) ?>
+        </p> -->
+    <?php } ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'autoXlFormat'=>true,
+        'export'=>[
+        'label' => 'Export',
+        'fontAwesome'=>true,
+        'showConfirmAlert'=>false,
+        'target'=>GridView::TARGET_BLANK
+        ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
+
 
             'student_education_id',
             'institution_name:ntext',
@@ -32,7 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at',
             //'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn'],
         ],
+        'pjax'=>true,
+        'showPageSummary'=>false,
+        'panel'=>[
+            
+            'heading'=> $this->title,
+           
+        ]
     ]); ?>
 </div>

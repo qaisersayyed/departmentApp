@@ -40,7 +40,7 @@ class Revision extends \yii\db\ActiveRecord
             [[ 'syllabus_date', 'program_id', 'paper_id'], 'required'],
             [['syllabus_file','syllabus_file2','syllabus_file3','syllabus_file4'], 'file'],
             [['syllabus_date', 'created_at', 'updated_at'], 'safe'],
-            [['program_id', 'paper_id', 'status', 'academic_year_id'], 'integer'],
+            [['program_id', 'user_id','paper_id', 'status', 'academic_year_id'], 'integer'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
             [['paper_id'], 'exist', 'skipOnError' => true, 'targetClass' => Paper::className(), 'targetAttribute' => ['paper_id' => 'paper_id']],
             [['program_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'program_id']],

@@ -21,7 +21,7 @@ class SearchPaperPresented extends PaperPresented
     {
         return [
             [['paper_presented_id', 'status'], 'integer'],
-            [['paper_presented_file', 'paper_title', 'conference_name', 'venue', 'date', 'created_at', 'updated_at'], 'safe'],
+            [['paper_presented_file', 'paper_title', 'conference_name', 'venue', 'date', 'type', 'level', 'student_name', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -72,12 +72,34 @@ class SearchPaperPresented extends PaperPresented
             'status'=>1,
         ]);
 
+        
+        if($this->type){
+            if($this->type[0] == "o"){
+                $this->type = 0;
+            }elseif($this->type[0] == "p"){
+                $this->type = 1;
+            }
+        }   
+
+        if($this->level){
+            if($this->level[0] == "s"){
+                $this->level = 0;
+            }elseif($this->level[0] == "n"){
+                $this->level = 1;
+            }elseif($this->level[0] == "i"){
+                $this->level = 2;
+            }
+        }
+
         $query->andFilterWhere(['like', 'paper_presented_file', $this->paper_presented_file])
             ->andFilterWhere(['like', 'paper_title', $this->paper_title])
             ->andFilterWhere(['like', 'conference_name', $this->conference_name])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'venue', $this->venue])
-            ->andFilterWhere(['like', 'date', $this->date]);
+            ->andFilterWhere(['like', 'date', $this->date])
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'level', $this->level])
+            ->andFilterWhere(['like', 'student_name', $this->student_name]);
             
         return $dataProvider;
     }

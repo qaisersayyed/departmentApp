@@ -62,7 +62,7 @@ class SearchStudent extends Student
             return $dataProvider;
         }
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'academic_year.year', $this->from, $this->to]);
         }
         // grid filtering conditions
@@ -71,7 +71,7 @@ class SearchStudent extends Student
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'status'=>1,
-            'user_id' => Yii::$app->user->id;
+            'user_id' => Yii::$app->user->id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -21,21 +21,20 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
             [
                 'label' => 'Date',
                 
-                'value' => function($model){
+                'value' => function ($model) {
                     return date('d M Y', strtotime($model->date));
                 }
             ],
-            'department.name',
+
             [
                 'label' => 'Revision',
                 'attribute' => 'revision',
-                'value' => function($dataProvider){
-                    if($dataProvider->revision == 0){
-                            return 'Revised';
-                    }else{
+                'value' => function ($dataProvider) {
+                    if ($dataProvider->revision == 1) {
+                        return 'Revised';
+                    } else {
                         return "Not Revised";
                     }
-
                 }
             ],
             'academicYear.year',

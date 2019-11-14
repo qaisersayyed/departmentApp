@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
    <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=bos/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add BOS</a></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <?php $form = ActiveForm::begin([
         'method' => 'GET',
@@ -56,10 +56,10 @@ $this->params['breadcrumbs'][] = $this->title;
      <?php ActiveForm::end(); ?>
     <div class="text-right">
         <p><b>Search Result: </b>
-        <?php 
-            if($searchModel->to != "" && $searchModel->from != ""){
+        <?php
+            if ($searchModel->to != "" && $searchModel->from != "") {
                 echo date('d M Y', strtotime($searchModel->from)) . " - ". date('d M Y', strtotime($searchModel->to)) ;
-            }else{
+            } else {
                 echo "None";
             }
         ?>
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Date',
                 'attribute' => 'date',
-                'value' => function($model){
+                'value' => function ($model) {
                     return date('d M Y', strtotime($model->date));
                 }
             ],
@@ -86,26 +86,21 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Revision',
                 'attribute' => 'revision',
-                'value' => function($dataProvider){
-                    if($dataProvider->revision == 0){
-                            return 'Revised';
-                    }else{
+                'value' => function ($dataProvider) {
+                    if ($dataProvider->revision == 1) {
+                        return 'Revised';
+                    } else {
                         return "Not Revised";
                     }
-
                 }
             ],
 
-            [
-                'label' => 'Department Name',
-                'value' => 'department.name',
-                'attribute' => 'department_id',
-                ],
+            
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',
                 'attribute' => 'academic_year_id',
-                ],    
+                ],
             //'created_at',
             //'updated_at',
 

@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=event/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Event</a></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <?php $form = ActiveForm::begin([
         'method' => 'GET',
@@ -55,10 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
      <?php ActiveForm::end(); ?>
     <div class="text-right">
         <p><b>Search Result: </b>
-        <?php 
-            if($searchModel->to != "" && $searchModel->from != ""){
+        <?php
+            if ($searchModel->to != "" && $searchModel->from != "") {
                 echo date('d M Y', strtotime($searchModel->from)) . " - ". date('d M Y', strtotime($searchModel->to)) ;
-            }else{
+            } else {
                 echo "None";
             }
         ?>
@@ -82,21 +82,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             //'venue',
             [
-                'label' => 'Event Type',
-                'attribute' => 'inhouse',
-                'value' => function($dataProvider){
-                    if($dataProvider->inhouse == 0){
-                            return 'Attended';
-                    }else{
-                        return "Conducted";
-                    }
-
-                }
-            ],
-            [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',
-                'value' => function($model){
+                'value' => function ($model) {
                     return date('d M Y', strtotime($model->start_date));
                 }
 
@@ -125,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',
                 'attribute' => 'academic_year_id',
-                ],    
+                ],
             //'created_at',
             //'updated_at',
 

@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'faculty.name',
             'faculty_name:ntext',
             'student_name:ntext',
-            'department.name',
+            // 'department.name',
             'academicYear.year',
             //'created_at',
             //'updated_at',

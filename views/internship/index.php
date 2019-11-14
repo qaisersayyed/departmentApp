@@ -5,7 +5,6 @@ use kartik\grid\GridView;
 use dosamigos\datepicker\DatePicker;
 use yii\widgets\ActiveForm;
 
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchInternship */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -16,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="internship-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
    
 
     <?php $form = ActiveForm::begin([
@@ -29,9 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'name' => 'from',
                 'template' => '{addon}{input}',
 
+
                 'clientOptions' => [
                     'autoclose' => true,
                     'format' => 'yyyy',
+                    'minViewMode' => 'years',
                 ]
             ]); ?>
             </div>
@@ -44,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'clientOptions' => [
                     'autoclose' => true,
                     'format' => 'yyyy',
+                    'minViewMode' => 'years',
                 ]
             ]); ?>
             
@@ -54,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <?php ActiveForm::end(); ?>
             <a style="float:right" href="index.php?r=internship/create" class="btn btn-success">
-            <span  class="glyphicon glyphicon-plus" ></span> Add Internship</a>
+            <span  class="glyphicon glyphicon-plus" ></span> Add Internship Details</a>
 
         </div>
 
