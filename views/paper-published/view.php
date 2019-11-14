@@ -29,10 +29,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             [
-                'label' => 'Faculty Name',
-                'attribute' => 'faculty.name',    
+                'label' => 'Author',
+                'attribute' => 'faculty',    
             ],
-            'co_auther',
+            [
+                'label' => 'Indexed in UGC Care List',
+                'attribute' => 'dgc_flag', 
+                'value' => $model->dgc_flag == 0 ? 'false' : 'true',   
+            ],
+            [
+                'label' => 'Group',
+                'attribute' => 'group',    
+            ],
+            [
+                'label' => 'ISBN',
+                'attribute' => 'isbn',    
+            ],
+            [
+                'label' => 'Doi Link',
+                'attribute' => 'doi_link',    
+            ],
+            [
+                'label' => 'H Index of Author',
+                'attribute' => 'h_index_author',    
+            ],
+            [
+                'label' => 'H Index of Journal',
+                'attribute' => 'h_index_journal',    
+            ],
+            [
+                'label' => 'Institutional Affiliation',
+                'attribute' => 'institute_affiliation',    
+            ],
+
+        
+            // 'co_auther',
             'description'
             //'created_at',
             //'updated_at',

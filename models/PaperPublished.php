@@ -32,13 +32,16 @@ class PaperPublished extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['paper_title', 'journal_name', 'date', 'file1'], 'required'],
-            [['co_author', 'description'], 'string'],
+            [['paper_title', 'journal_name', 'date','faculty'], 'required'],
+            [['description','group','isbn','doi_link','h_index_journal','h_index_author','institute_affiliation'], 'string'],
             [['file1','file2','file3','file4'],'file'],
             [['created_at', 'updated_at'], 'safe'],
+            [['dgc_flag'], 'boolean'],
+            [['user_id'], 'integer'],
             [['paper_title', 'journal_name'], 'string', 'max' => 100],
+            [['faculty',], 'string', 'max' => 257],
             [['date'], 'string', 'max' => 20],
-            [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']]
+            //[['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']]
         ];
     }
 
@@ -52,8 +55,14 @@ class PaperPublished extends \yii\db\ActiveRecord
             'paper_title' => 'Paper Title',
             'journal_name' => 'Journal Name',
             'date' => 'Date',
-            'faculty_id' => 'Author',
-            'co_author' => 'Co-author',
+            'faculty' => 'Author',
+            'isbn' => 'ISBN',
+            'doi_link' => 'Doi Link',
+            'h_index_journal' => 'H Index of Journal',
+            'h_index_author' => 'H Index of Author',
+            'institute_affiliation' => 'Institutional Affiliation',
+            'group'=>'Group',
+            'dgc_flag'=>'Indexed in UGC Care List',
             'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -64,8 +73,8 @@ class PaperPublished extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFaculty()
-    {
-        return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
-    }
+    // public function getFaculty()
+    // {
+    //     return $this->hasOne(Faculty::className(), ['faculty_id' => 'faculty_id']);
+    // }
 }
