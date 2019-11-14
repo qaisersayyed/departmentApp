@@ -97,7 +97,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         "url" => "#",
                                         'items' => [
                                             ['label' => 'Seminars Organized', 'url' => ['/seminar/index']],
-                                            ['label' => 'Workshop', 'url' => ['/workshop/index']],
+                                            ['label' => 'Workshop Conducted', 'url' => ['/workshop/index']],
                                             ['label' => 'Extension Activities', 'url' => ['/extension-activities/index']],
                                             ['label' => 'Event', 'url' => ['/event/index']],
                                             ['label' => 'BOS', 'url' => ['/bos/index']],

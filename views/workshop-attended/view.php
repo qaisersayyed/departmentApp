@@ -13,19 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workshop-attended-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->workshop_attended_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->workshop_attended_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -34,14 +21,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'start_date',
             'end_date',
             'participant_name',
-            'student_involved',
+            // 'student_involved',
+            [
+                'label' => 'Academic Year',
+                'attribute' => 'academicYear.year',
+            ],      
             'student_name',
-            'academicYear.year',            
             'description',
-            'file1',
-            'file2',
-            'file3',
-            'file4',
+            // 'file1',
+            // 'file2',
+            // 'file3',
+            // 'file4',
             // 'created_at',
             // 'updated_at',
         ],

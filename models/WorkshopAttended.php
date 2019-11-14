@@ -41,9 +41,9 @@ class WorkshopAttended extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['workshop_title', 'start_date', 'end_date', 'participant_name', 'student_involved', 'academic_year', 'file1', 'created_at'], 'required'],
+            [['workshop_title', 'start_date', 'end_date', 'participant_name', 'academic_year'], 'required'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['academic_year', 'file1', 'file2', 'file3', 'file4'], 'integer'],
+            [['academic_year', 'user_id'], 'integer'],
             [['student_involved'], 'boolean'],
             [['description', 'file1', 'file2', 'file3', 'file4'], 'string'],
             [['workshop_title'], 'string', 'max' => 150],

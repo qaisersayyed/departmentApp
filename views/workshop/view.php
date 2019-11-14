@@ -45,7 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'faculty_name:ntext',
             'cost',
-            'academicYear.year',
+            [
+                'label' => 'Academic Year',
+                'attribute' => 'academicYear.year',
+            ],
             //'created_at',
             //'updated_at',
             //'file',
