@@ -194,10 +194,8 @@ ALTER TABLE `workshop_attended` CHANGE `created_at` `created_at` DATETIME NULL D
 
 ALTER TABLE `workshop_attended` CHANGE `student_involved` `student_involved` TINYINT(1) NULL;
 
-<<<<<<< HEAD
 ALTER TABLE `workshop_attended` CHANGE `file1` `file1` TEXT NOT NULL, CHANGE `file2` `file2` TEXT NULL, CHANGE `file3` `file3` TEXT NULL, CHANGE `file4` `file4` TEXT NULL;
 
-=======
 ALTER TABLE `book_published` CHANGE `student_involved` `student_involved` TINYINT(1) NULL;
 
 ALTER TABLE `book_published` CHANGE `created_at` `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
@@ -205,4 +203,3 @@ ALTER TABLE `book_published` CHANGE `created_at` `created_at` DATETIME NULL DEFA
 ALTER TABLE `paper_presented` CHANGE `user` `user_id` INT(11) NOT NULL;
 
 -----------------------------------------------------------------------------------------------------
->>>>>>> 919fe8f909eac426044d719b8d044901129b690d
