@@ -100,6 +100,10 @@ class SearchPaperPresented extends PaperPresented
             ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'level', $this->level])
             ->andFilterWhere(['like', 'student_name', $this->student_name]);
+
+        if(Yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }   
             
         return $dataProvider;
     }

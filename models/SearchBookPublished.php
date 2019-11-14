@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\BookPublished;
@@ -84,6 +85,10 @@ class SearchBookPublished extends BookPublished
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'file1', $this->file1]);
 
+        if(Yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
+        
         return $dataProvider;
     }
 }

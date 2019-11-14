@@ -92,7 +92,7 @@ class SearchProgramStudent extends ProgramStudent
         $query->andFilterWhere(['like', 'program.name', $this->program_id]);
         $query->andFilterWhere(['like', 'student.name', $this->student_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
-        if(yii::$app->user->identity->username != 'admin'){
+        if(Yii::$app->user->identity->username != 'admin'){
             $query->andFilterWhere(['program_student.user_id' => Yii::$app->user->id]);
         }
         return $dataProvider;

@@ -91,6 +91,10 @@ class SearchWorkshop extends Workshop
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
 
+        if(Yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['program_student.user_id' => Yii::$app->user->id]);
+        }
+
         return $dataProvider;
     }
 }
