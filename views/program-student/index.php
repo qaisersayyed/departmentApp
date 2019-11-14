@@ -63,6 +63,9 @@ if (Yii::$app->user->identity->username != 'admin') {
 
             <a Style="float:right;" href="index.php?r=student/alumni" class="btn btn-success">
                 <span class="glyphicon glyphicon-plus"></span> Add Alumni</a>
+
+            <a Style="float:right;" href="index.php?r=program-student/attendance" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span> Attendance Sheet</a>
             </div>
        
         <?php
