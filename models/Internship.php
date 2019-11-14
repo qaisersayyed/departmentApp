@@ -39,7 +39,7 @@ class Internship extends \yii\db\ActiveRecord
         return [
             [['program_id', 'student_id', 'academic_year_id', 'company', 'start_date', 'end_date', 'hours'], 'required'],
             [['program_id', 'student_id', 'academic_year_id'], 'integer'],
-            [['start_date', 'end_date', 'file', 'file1', 'file2', 'file3'], 'safe'],
+            [['start_date', 'end_date', 'user_id','file', 'file1', 'file2', 'file3'], 'safe'],
             [['hours'], 'number'],
             [['description'], 'string'],
             [['file', 'file1', 'file2', 'file3'], 'file'],

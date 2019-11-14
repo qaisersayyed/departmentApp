@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
    <h1><?= Html::encode($this->title) ?> <a Style="float:right" href="index.php?r=program/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Program</a></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <?=
         GridView::widget([
@@ -34,11 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'program_id',
             'name',
-            [
-                'label' => 'Department Name',
-                'value' => 'department.name',
-                'attribute' => 'department_id',
-            ],
+            'department_id',
+           
             //'created_at',
             //'updated_at',
             //'status',

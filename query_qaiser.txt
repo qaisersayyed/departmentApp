@@ -1,0 +1,9 @@
+ALTER TABLE `extension_activities` ADD `participant_no` INT NULL AFTER `student_no`;
+ALTER TABLE `extension_activities` ADD `type` VARCHAR(50) NOT NULL AFTER `participant_no`;
+ALTER TABLE `extension_activities` CHANGE `date` `start_date` DATE NULL;
+ALTER TABLE `extension_activities` ADD `end_date` DATE NULL AFTER `start_date`;
+ALTER TABLE `extension_activities` CHANGE `is_awarded` `is_awarded` VARCHAR(60) NULL;
+ALTER TABLE `extension_activities` ADD `male` INT NULL AFTER `is_awarded`, ADD `female` INT NULL AFTER `male`;
+ALTER TABLE `extension_activities` ADD `file1` TEXT NULL AFTER `female`, ADD `file2` TEXT NULL AFTER `file1`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
+ALTER TABLE `internship` ADD `user_id` INT NOT NULL AFTER `description`;
+ALTER TABLE `program` CHANGE `department_id` `department_id` VARCHAR(50) NOT NULL;

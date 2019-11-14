@@ -60,18 +60,18 @@ class SearchProgram extends Program
         // grid filtering conditions
         $query->andFilterWhere([
             'program_id' => $this->program_id,
-            //'department_id' => $this->department_id,
+            'department_id' => $this->department_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'status'=>1,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
-        $query->andFilterWhere(['like', 'department.name', $this->department_id]);
+        $query->andFilterWhere(['like', 'department_id', $this->department_id]);
 
         // Displaying data related to particular user
-        if(yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        if (yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['program.user_id' => Yii::$app->user->id]);
         }
 
         return $dataProvider;
