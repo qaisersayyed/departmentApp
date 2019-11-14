@@ -56,7 +56,7 @@ class BookPublished extends \yii\db\ActiveRecord
     {
         return [
             'book_published_id' => 'Book Published ID',
-            'book_title' => 'Book Title',
+            'book_title' => 'Book / Chapter Title',
             'author' => 'Author',
             'edited_volume' => 'Edited Volume',
             'date' => 'Year / Month',
@@ -67,7 +67,7 @@ class BookPublished extends \yii\db\ActiveRecord
             'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'file1' => 'File1',
+            'file1' => 'Cover Page',
             'file2' => 'File2',
             'file3' => 'File3',
             'file4' => 'File4',
