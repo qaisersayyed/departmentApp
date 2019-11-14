@@ -30,13 +30,28 @@ use app\models\Faculty;
             ]
     ]);?>
 
-<?= $form->field($model, 'faculty_id')->dropDownList(
-        ArrayHelper::map(Faculty::find()->orderBy(['name' => SORT_ASC ])->all(),'faculty_id','name')
-    ) ?>
+<?= $form->field($model, 'faculty')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'co_author')->textarea(['rows' => 6]) ?>
+<?= $form->field($model, 'dgc_flag')->checkbox()?>
+
+<div id="dropdown" style="display:none">
+    <?= $form->field($model, 'group' )->dropDownList(
+        array('A'=>'Group A', 'B'=>'Group B','C'=>'Group C','D'=>'Group D',),
+            ['prompt'=>'select ']       
+    )  ?>
+</div>
 
 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+<?= $form->field($model, 'isbn')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'doi_link')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'h_index_author')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'h_index_journal')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'institute_affiliation')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'file1')->fileInput();echo "<br>$model->file1</br>" ?>
 
@@ -53,4 +68,18 @@ use app\models\Faculty;
 
     <?php ActiveForm::end(); ?>
 
+    <?php
+        $script= <<< JS
+        
+        $(document).ready(function(){
+        $('#paperpublished-dgc_flag').change(function(){
+            $('#dropdown').slideToggle();
+        });
+    });
+        
+
+JS;
+$this->registerJS($script);
+        
+    ?>
 </div>

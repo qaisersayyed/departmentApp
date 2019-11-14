@@ -91,10 +91,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label' => 'Author',
-                'value' => 'faculty.name',
-                'attribute' => 'faculty_id',    
+                'value' => 'faculty',
+                'attribute' => 'faculty',    
             ],
-            'co_author:ntext',
+            [
+                'label' => 'ISBN',
+                'value' => 'isbn',
+                'attribute' => 'isbn',    
+            ],
+            // 'co_author:ntext',
             //'created_at',
             //'updated_at',
             

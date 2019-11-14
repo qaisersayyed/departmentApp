@@ -104,3 +104,15 @@ ALTER TABLE `program` ADD `user_id` INT NOT NULL AFTER `department_id`;
 ALTER TABLE `agency` ADD `user_id` INT NOT NULL AFTER `name`;
 
 ALTER TABLE `organization` ADD `user_id` INT NOT NULL AFTER `contact_no`;
+
+ALTER TABLE `paper_published` CHANGE `dgc_flag` `dgc_flag` BOOLEAN NOT NULL;
+
+ALTER TABLE `paper_published` ADD `isbn` VARCHAR(257) NOT NULL AFTER `description`;
+
+ALTER TABLE `paper_published` ADD `doi_link` TEXT NOT NULL AFTER `isbn`;
+
+ALTER TABLE `paper_published` ADD `h_index_author` VARCHAR(50) NOT NULL AFTER `updated_at`;
+
+ALTER TABLE `paper_published` ADD `h_index_journal` VARCHAR(50) NOT NULL AFTER `updated_at`;
+
+ALTER TABLE `paper_published` ADD `institute_affiliation` TEXT NOT NULL AFTER `h_index_author`;

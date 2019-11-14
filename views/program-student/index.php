@@ -14,10 +14,12 @@ $this->title = 'Student';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-student-index">
+    <h1><?= Html::encode($this->title) ?> </h1>
+    <br>
     <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
         <div class="col-md-3">
-            <label>Choose Excel File</label><br> <input type="file" name="file" id="file" accept=".csv">
+            <label>Choose Excel File</label><br><br><input type="file" class="form-control-file" name="file" id="file" accept=".csv">
             <br>
         </div>
         <div class="col-md-3">
@@ -26,8 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     </form>
+    <br>
 
-    <h1><?= Html::encode($this->title) ?> </h1>
+    
     <a Style="float:right;" href="index.php?r=program-student/create" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Add Student</a>
    
