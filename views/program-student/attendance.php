@@ -50,27 +50,39 @@ use yii\data\ActiveDataProvider;
     <?php 
         if(isset($students)){
     ?>
-
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" id="name" class="form-control" placeholder="Student Name" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="roll"  class="form-control" placeholder="Roll Number">
+        </div>
+        <div class="col-md-3">
+            <input type="button" id="add-student" value="Add" class="btn btn-default">
+        </div>
+    </div>
+    <br>
         <div id="sheet" class="container" style="color: black">
             <div class="text-center">
                 <h2>PARVATIBAI CHOWGULE COLLEGE AUTONOMOUS</h2>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Program: <?= Program::findOne($pid)->name ?></h5>
-                    <h5>Course: <?= $course ?></h5>
+                    <h5>Program: <?= strtoupper(Program::findOne($pid)->name) ?></h5>
+                    <h5>Course: <?= strtoupper($course) ?></h5>
                     
                 </div>
                 <div class="col-md-4">
-                    <h5>Academic Year: <?= AcademicYear::findOne($aid)->year; ?></h5>
-                    <h5>Instructor: <?= $instructor ?></h5>
+                    <h5>Academic Year: <?= strtoupper(AcademicYear::findOne($aid)->year); ?></h5>
+                    <h5>Instructor: <?= strtoupper($instructor) ?></h5>
                 </div>
                 <div class="col-md-4">
                     <h5>Semester: <?= $sem ?></h5>
                 </div>
             </div>
-            <table class="table table-bordered">
-                <tr style="font-weight: bloder">
+            <table class="name-table table table-bordered">
+                <tr style="font-weight: bloder" class="students">
                     <td><b>Sr. No</b></td>
                     <td><b>Name</b></td>
                     <td><b>Roll No</b></td>
@@ -85,10 +97,10 @@ use yii\data\ActiveDataProvider;
                     
                     foreach($students as $key => $value){
                 ?>
-                <tr>
+                <tr class="students">
                     <td><?= $key + 1 ?></td>
-                    <td><?= $value->student->name ?></td>
-                    <td><?= $value->student->roll_no ?></td>
+                    <td><?= strtoupper($value->student->name) ?></td>
+                    <td><?= strtoupper($value->student->roll_no) ?></td>
                     <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
                     <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
                     <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
@@ -108,6 +120,8 @@ use yii\data\ActiveDataProvider;
     <?php
         }
     ?>
+    <br><br>
+    
 <script>
     function printDiv(divName) {
      var printContents = document.getElementById(divName).innerHTML;
@@ -120,3 +134,22 @@ use yii\data\ActiveDataProvider;
      document.body.innerHTML = originalContents;
 }
 </script>
+
+<?php 
+
+    $script = <<< JS
+        
+        $(document).ready(function(){
+            $("#add-student").click(function(){
+                srno = $(".students").length;
+                console.log($(".students").length);
+                roll = $('#roll').val();
+                name = $('#name').val();
+               // console.log(name);
+                var tr = "<tr class='students'><td>"+srno+"</td><td>"+ name.toUpperCase() +"</td><td>"+ roll.toUpperCase() +"</td><td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td><td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td><td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td><td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>  <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>  </tr>";
+                $(".name-table").append(tr);
+            });
+        });
+JS;
+    $this->registerJS($script);
+?>
