@@ -37,11 +37,15 @@ use app\models\Faculty;
 <div id="dropdown" style="display:none">
     <?= $form->field($model, 'group' )->dropDownList(
         array('A'=>'Group A', 'B'=>'Group B','C'=>'Group C','D'=>'Group D',),
-            ['prompt'=>'select ']       
+                 
     )  ?>
+
+    <?= $form->field($model, 'ugc_no')->textInput(['maxlength' => true]) ?>
 </div>
 
 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+<?= $form->field($model, 'orcid')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'isbn')->textInput(['maxlength' => true]) ?>
 
@@ -72,10 +76,19 @@ use app\models\Faculty;
         $script= <<< JS
         
         $(document).ready(function(){
-        $('#paperpublished-dgc_flag').change(function(){
-            $('#dropdown').slideToggle();
+            var checkBox = document.getElementById("#paperpublished-dgc_flag");
+ 
+             var text = document.getElementById("#dropdown");
+
+  
+            if (checkBox.checked == true){
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
         });
     });
+
         
 
 JS;
