@@ -16,6 +16,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'paper_title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'author')->textInput() ?>
+
     <?= $form->field($model, 'conference_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
