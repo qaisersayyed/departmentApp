@@ -41,7 +41,7 @@ class SeminarAttended extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'start_date', 'end_date', 'attendee', 'attended_as', 'student_present', 'user_id'], 'required'],
-            [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
+            [['start_date','type', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['attendee', 'student_name', 'file1', 'file2', 'file3', 'file4'], 'string'],
             [['student_present','seminar_attended_id', 'user_id'], 'integer'],
             [['title', 'attended_as'], 'string', 'max' => 100],
@@ -56,6 +56,7 @@ class SeminarAttended extends \yii\db\ActiveRecord
     {
         return [
             'seminar_attended_id' => 'Seminar Attended ID',
+            'type' => 'Type',
             'title' => 'Title',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',

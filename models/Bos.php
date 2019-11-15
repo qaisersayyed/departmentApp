@@ -36,7 +36,7 @@ class Bos extends \yii\db\ActiveRecord
     {
         return [
             [['program', 'minutes', 'date', 'academic_year_id'], 'required'],
-            [['minutes'], 'file'],
+            [['file1', 'file2', 'file3', 'file4'], 'file'],
             [['date', 'created_at', 'updated_at','user_id'], 'safe'],
             [['academic_year_id'], 'integer'],
             [['revision'], 'boolean'],
@@ -55,12 +55,12 @@ class Bos extends \yii\db\ActiveRecord
         return [
             'bos_id' => 'Bos ID',
             'program' => 'Program',
-            'minutes' => 'Minutes',
+            // 'minutes' => 'Minutes',
             'date' => 'Date',
            
             'academic_year_id' => 'Academic Year',
             'description' => 'Description',
-            'revision' => 'Revision',
+            'revision' => 'Revision of structure',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
