@@ -49,6 +49,7 @@ class SearchPaperPublished extends PaperPublished
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['paper_published_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
