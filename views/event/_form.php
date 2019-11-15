@@ -51,9 +51,9 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'faculty_id')->dropDownList(
-        ArrayHelper::map(Faculty::find()->all(), 'faculty_id', 'name'),
-        ['prompt'=>'select ']
-    )?>
+    ArrayHelper::map(Faculty::find()->all(), 'faculty_id', 'name'),
+    ['prompt'=>'select ']
+)?>
 
     <?= $form->field($model, 'faculty_coordinator')->textarea(['rows' => 6]) ?>
 
