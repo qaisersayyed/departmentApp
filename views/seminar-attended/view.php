@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\SeminarAttended */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Seminar Attendeds', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Seminars/Workshop/Conference Attendeds', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             // 'seminar_id',
+            'type:ntext',
             'title',
             [
                 'label' => 'Start Date',
@@ -50,7 +51,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'level:ntext',
             'attendee:ntext',
             'attended_as:ntext',
-            'student_present',
+            [
+                'label' => 'Student Present',
+                'value' => function ($dataProvider) {
+                    if ($dataProvider->student_present == 0) {
+                        return 'No';
+                    } else {
+                        return "Yes";
+                    }
+                },
+                'attribute' => 'student_present',
+            ],
+        
+            // 'student_present',
             'student_name:ntext',
             // 'user_id',
             // 'file1:ntext',

@@ -36,7 +36,7 @@ class AppointmentController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $searchModel = new SearchAppointment();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -44,7 +44,7 @@ class AppointmentController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -57,11 +57,11 @@ class AppointmentController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -73,24 +73,25 @@ class AppointmentController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->isGuest){
-        $model = new Appointment();
-        $faculty = new Faculty();
+        if (!Yii::$app->user->isGuest) {
+            $model = new Appointment();
+            $faculty = new Faculty();
 
-        if ($model->load(Yii::$app->request->post()) && $faculty->load(Yii::$app->request->post()) ) {
-            $faculty->save();
-            $model->faculty_id = $faculty->faculty_id;
-            $model->save();
+
+            if ($model->load(Yii::$app->request->post()) && $faculty->load(Yii::$app->request->post())) {
+                $faculty->save();
+                $model->faculty_id = $faculty->faculty_id;
+                $model->save();
            
 
-            return $this->redirect(['view', 'id' => $model->appointment_id]);
-        }
+                return $this->redirect(['view', 'id' => $model->appointment_id]);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
             'faculty'=> $faculty,
         ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -104,23 +105,23 @@ class AppointmentController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->isGuest){
-        $model = $this->findModel($id);
-        $faculty = Faculty::find()->where(['faculty_id'=>$model->faculty_id])->one();
+        if (!Yii::$app->user->isGuest) {
+            $model = $this->findModel($id);
+            $faculty = Faculty::find()->where(['faculty_id'=>$model->faculty_id])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $faculty->load(Yii::$app->request->post()) ) {
-            $model->save(false);
-            $model->faculty_id = $faculty->faculty_id;
-            $faculty->save(false);
+            if ($model->load(Yii::$app->request->post()) && $faculty->load(Yii::$app->request->post())) {
+                $model->save(false);
+                $model->faculty_id = $faculty->faculty_id;
+                $faculty->save(false);
 
-            return $this->redirect(['view', 'id' => $model->appointment_id]);
-        }
+                return $this->redirect(['view', 'id' => $model->appointment_id]);
+            }
 
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
             'faculty' => $faculty,
         ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -134,16 +135,16 @@ class AppointmentController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
-        $model =Appointment::findOne($id);
-        $faculty = Faculty::find()->where(['faculty_id'=>$model->faculty_id])->one();
-        $model->status = 0;
-        $model->save(false);
-        $faculty->status = 0;
-        $faculty->save(false);
+        if (!Yii::$app->user->isGuest) {
+            $model =Appointment::findOne($id);
+            $faculty = Faculty::find()->where(['faculty_id'=>$model->faculty_id])->one();
+            $model->status = 0;
+            $model->save(false);
+            $faculty->status = 0;
+            $faculty->save(false);
 
-        return $this->redirect(['index']);
-        }else{
+            return $this->redirect(['index']);
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

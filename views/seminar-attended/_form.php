@@ -12,7 +12,13 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'type')->dropDownList([ 'Workshop' => 'Workshop','Seminar' => 'Seminar',
+    'Conference'=> 'Conference'],['prompt'=>'select '])?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+    
+
 
     <?= $form->field($model, 'start_date')->widget(
     DatePicker::className(), [
@@ -37,11 +43,11 @@ use dosamigos\datepicker\DatePicker;
     ]);?>
 
     <?= $form->field($model, 'level')->dropDownList(['National Level' => 'National Level', 'State Level' => 'State Level',
-    'Local Level'=> 'Local Level','International Level'=>'International Level'])?>
+    'Local Level'=> 'Local Level','International Level'=>'International Level'],['prompt'=>'select '])?>
 
     <?= $form->field($model, 'attendee')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'attended_as')->dropDownList(['Speaker' => 'Speaker', 'Attendee' => 'Attendee'])?>
+    <?= $form->field($model, 'attended_as')->dropDownList(['Speaker' => 'Speaker', 'Attendee' => 'Attendee'],['prompt'=>'select '])?>
 
     <?= $form->field($model, 'student_present')->checkBox() ?>
     
@@ -78,11 +84,30 @@ use dosamigos\datepicker\DatePicker;
 
     <?php 
         $script = <<< JS
-        $(document).ready(function(){
-            $('#seminarattended-student_present').change(function(){ // 
-            $('#hiddenDiv').slideToggle(); // hiddenDiv replace our Dcl_nilaiblksk as model & table (model_table)
-            }); 
+        // $(document).ready(function(){
+
+            $(document).ready(function(){
+            length = $('#seminarattended-student_present:checked').length;
+            if(length == 1){
+                $('#hiddenDiv').show();
+            }
+            $('#seminarattended-student_present').change(function(){
+                $('#hiddenDiv').slideToggle();
+            });
         });
+        //     $('#seminarattended-student_present').change(function(){ // 
+        //         if(document.getElementById("seminarattended-student_present").checked == true){
+        //             $('#hiddenDiv').show();
+
+        //         }else{
+        //             console.log(document.getElementById("seminarattended-student_present").value);
+        //             $('#hiddenDiv').hide();
+                   
+        //         }
+                
+        //     // $('#hiddenDiv').slideToggle(); // hiddenDiv replace our Dcl_nilaiblksk as model & table (model_table)
+        //     }); 
+        // });
 JS;
 $this->registerJS($script);
     ?>

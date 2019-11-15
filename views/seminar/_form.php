@@ -20,11 +20,16 @@ use dosamigos\datepicker\DatePicker;
     <?// = $form->field($model, 'speaker_name')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'conducted_type')->dropDownList(['Intellectual Property Right' => 'Intellectual Property Right', 'Industry Association' => 'Industry Association',
-    'Workshop'=> 'Workshop','Seminar'=>'Seminar','Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment'])?>
+    <?= $form->field($model, 'type')->dropDownList([ 'Workshop' => 'Workshop','Seminar' => 'Seminar',
+    'Conference'=> 'Conference'], ['prompt'=>'select '])?>
+
+    <div id="hiddenDiv" style="display: none">
+        <?= $form->field($model, 'conducted_type')->dropDownList(['Others'=>'Others','Intellectual Property Right' => 'Intellectual Property Right', 'Industry Academics' => 'Industry Academics',
+        'Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment'])?>
+    </div>
 
     <?= $form->field($model, 'level')->dropDownList(['National Level' => 'National Level', 'State Level' => 'State Level',
-    'Local Level'=> 'Local Level','International Level'=>'International Level'])?>
+    'Local Level'=> 'Local Level','International Level'=>'International Level'], ['prompt'=>'select '])?>
 
     <?= $form->field($model, 'faculty_organizer')->textInput(['maxlength' => true]) ?>
 
@@ -94,5 +99,24 @@ use dosamigos\datepicker\DatePicker;
     </div>
 
     <?php ActiveForm::end(); ?>
+
+    <?php 
+        $script = <<< JS
+        $(document).ready(function(){
+            $('#seminar-type').change(function(){ 
+                if(document.getElementById("seminar-type").value == 'Seminar'){
+                    $('#hiddenDiv').show();
+
+                }else{
+                    console.log(document.getElementById("seminar-conducted_type").value);
+                    $('#hiddenDiv').hide();
+                   
+                }
+                
+            });
+        });
+JS;
+$this->registerJS($script);
+    ?>
 
 </div>

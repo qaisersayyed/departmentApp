@@ -19,7 +19,7 @@ class SearchExtensionActivities extends ExtensionActivities
     {
         return [
             [['extension_activities_id', 'contact_no', 'teacher_no', 'student_no'], 'integer'],
-            [['title', 'organising_unit','user_id' ,'teachers', 'date','is_awarded' ,'description', 'scheme_name', 'created_at', 'updated_at'], 'safe'],
+            [['title','type','start_date','end_date','male','female','participant_no ','organising_unit','user_id' ,'teachers','is_awarded' ,'description', 'scheme_name', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -63,27 +63,30 @@ class SearchExtensionActivities extends ExtensionActivities
             'contact_no' => $this->contact_no,
             'teacher_no' => $this->teacher_no,
             'student_no' => $this->student_no,
-            'date' => $this->date,
-           
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'user_id' => Yii::$app->user->id,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'male' => $this->male,
+            'female' => $this->female,
+            'type' => $this->type,
+            'participant_no' => $this->participant_no,
+           
         ]);
-
-        if ($this->is_awarded) {
-            if ($this->is_awarded[0] == "y") {
-                $this->is_awarded = 1;
-            } else {
-                $this->is_awarded = 0;
-            }
-        }
 
         $query->andFilterWhere(['like', 'title', $this->title])
         ->andFilterWhere(['like', 'is_awarded', $this->is_awarded])
             ->andFilterWhere(['like', 'organising_unit', $this->organising_unit])
+            ->andFilterWhere(['like', 'male', $this->male])
+            ->andFilterWhere(['like', 'female', $this->female])
+            ->andFilterWhere(['like', 'end_date', $this->end_date])
+            ->andFilterWhere(['like', 'end_date', $this->end_date])
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'participant_no', $this->participant_no])
             ->andFilterWhere(['like', 'teachers', $this->teachers])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'scheme_name', $this->scheme_name]);
+            
         if (Yii::$app->user->identity->username != 'admin') {
             $query->andFilterWhere(['user_id' => Yii::$app->user->id ]);
         }

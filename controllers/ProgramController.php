@@ -38,15 +38,15 @@ class ProgramController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
-        $searchModel = new SearchProgram();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (!Yii::$app->user->isGuest) {
+            $searchModel = new SearchProgram();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+            return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-        }else{
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -59,11 +59,11 @@ class ProgramController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -77,17 +77,18 @@ class ProgramController extends Controller
     {
         $model = new Program();
 
-        if(!Yii::$app->user->isGuest){
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post())) {
+                $model->department_id = yii::$app->user->identity->department_name;
+                $model->save();
             
-            return $this->redirect(['view', 'id' => $model->program_id]);
-        }
+                return $this->redirect(['view', 'id' => $model->program_id]);
+            }
         
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -102,16 +103,16 @@ class ProgramController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if(!Yii::$app->user->isGuest){
-        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->program_id]);
-        }
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+                return $this->redirect(['view', 'id' => $model->program_id]);
+            }
 
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
             
         ]);
-        }else {
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }
@@ -125,13 +126,13 @@ class ProgramController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
-        $model= program::findone($id);
-        $model->status = 0;
-        $model->save(false);
+        if (!Yii::$app->user->isGuest) {
+            $model= program::findone($id);
+            $model->status = 0;
+            $model->save(false);
 
-        return $this->redirect(['index']);
-        }else {
+            return $this->redirect(['index']);
+        } else {
             throw new \yii\web\ForbiddenHttpException;
         }
     }

@@ -25,9 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'start_date',
             'end_date',
             'participants:ntext',
-            'student_involved',
+           // 'student_involved',
              [
-                'label' => 'Student Involved',
+                'label' => 'Student Involved ',
                 'value' => function ($dataProvider) {
                     if ($dataProvider->student_involved == 0) {
                         return 'No';

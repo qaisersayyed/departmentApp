@@ -64,9 +64,9 @@ if (Yii::$app->user->identity->username != 'admin') {
             <a Style="float:right;" href="index.php?r=student/alumni" class="btn btn-success">
                 <span class="glyphicon glyphicon-plus"></span> Add Alumni</a>
 
-            <a Style="float:right;" href="index.php?r=program-student/attendance" class="btn btn-success">
+            <!-- <a Style="float:right;" href="index.php?r=program-student/attendance" class="btn btn-success">
                 <span class="glyphicon glyphicon glyphicon-list-alt"></span> Attendance Sheet</a>
-            </div>
+            </div> -->
        
         <?php
         if (Yii::$app->user->identity->username != 'admin') {
@@ -191,7 +191,6 @@ if (Yii::$app->user->identity->username != 'admin') {
                     continue;
                 }
                 $sql = "INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`,`email`) VALUES (NULL,'$emapData[2]','$emapData[3]','$emapData[4]','$emapData[5]')";
-
                 $sql1 = "INSERT INTO `program_student` (`program_student_id`, `program_id`, `student_id`, `created_at`, `updated_at`, `status`, `academic_year_id`) VALUES (NULL, (SELECT `program_id` FROM `program` WHERE `name` = '$emapData[1]'), (SELECT `student_id` FROM `student` WHERE `roll_no` = '$emapData[3]' ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', (SELECT `academic_year_id` FROM `academic_year` WHERE `year` = '$emapData[6]' ))";
                 $mysqli->query($sql);
                 $mysqli->query($sql1);

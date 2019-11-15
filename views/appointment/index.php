@@ -57,7 +57,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Date of leaving',
             'attribute'=>'date_of_leaving',
             'value' => function($model){
-                return date('d M Y', strtotime($model->date_of_leaving));
+                if ($model->date_of_leaving != null) {
+                    return date('d M Y', strtotime($model->date_of_leaving));
+                } else {
+                    return "Working";
+                }
             }
         ],
         'Type',

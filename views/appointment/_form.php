@@ -18,28 +18,31 @@ use dosamigos\datepicker\DatePicker;
 
     
     <?= $form->field($model, 'date_of_joining')->widget(
-    DatePicker::className(), [
+    DatePicker::className(),
+    [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
                 'clearBtn' => true,
             ]
-    ]);?>
+    ]
+);?>
     <br>
     <?= $form->field($model, 'date_of_leaving')->widget(
-    DatePicker::className(), [
-            // inline too, not bad
-            'inline' => false, 
-            // modify template for custom rendering
-            'clientOptions' => [
-                'autoclose' => true,
-                'format' => 'yyyy-mm-dd',
-                'clearBtn' => true,
-            ]
-    ]);?>
+        DatePicker::className(),
+        [
+        // inline too, not bad
+        'inline' => false,
+        // modify template for custom rendering
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+        ]
+    ]
+    );?>
     <br>
     
     <?= $form->field($faculty, 'email')->textInput(['maxlength' => true]) ?>
@@ -50,7 +53,8 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($faculty, 'employee_id')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'Type')->dropDownList(
-            [ 'lecture bases'=>'Lecture bases', 'contract '=>'Contract','permanent'=>'Permanent','junior programmer'=>'Junior Programmer'])
+        [ 'lecture bases'=>'Lecture bases', 'contract '=>'Contract','permanent'=>'Permanent','junior programmer'=>'Junior Programmer']
+    )
         ?>
     <br>
 
