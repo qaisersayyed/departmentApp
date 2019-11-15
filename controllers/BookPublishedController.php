@@ -8,6 +8,7 @@ use app\models\SearchBookPublished;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * BookPublishedController implements the CRUD actions for BookPublished model.
@@ -74,7 +75,7 @@ class BookPublishedController extends Controller
     {
         $model = new BookPublished();
 
-        if(!!Yii::$app->user->isGuest){
+        if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ){
                 $model->file1 = UploadedFile::getInstance($model, 'file1');
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
@@ -118,7 +119,7 @@ class BookPublishedController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!!Yii::$app->user->isGuest){
+        if(!Yii::$app->user->isGuest){
             $model = $this->findModel($id);
             $old_data= $this->findModel($id);
     

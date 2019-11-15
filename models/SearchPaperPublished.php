@@ -12,7 +12,6 @@ use app\models\PaperPublished;
  */
 class SearchPaperPublished extends PaperPublished
 {
-
     public $to;
     public $from;
     /**
@@ -62,7 +61,7 @@ class SearchPaperPublished extends PaperPublished
 
         // grid filtering conditions
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'date', $this->from, $this->to]);
         }
 
@@ -87,9 +86,9 @@ class SearchPaperPublished extends PaperPublished
             ->andFilterWhere(['like', 'institute_affiliation', $this->institute_affiliation])
             ;
             
-        if(yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['paper_published.user_id' => Yii::$app->user->id]);
-        }    
+        if (yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
         return $dataProvider;
     }
 }

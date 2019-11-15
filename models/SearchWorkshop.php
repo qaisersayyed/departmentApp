@@ -67,7 +67,7 @@ class SearchWorkshop extends Workshop
 
         // grid filtering conditions
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
         
@@ -90,6 +90,10 @@ class SearchWorkshop extends Workshop
             ->andFilterWhere(['like', 'female_count', $this->female_count]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
+
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }

@@ -20,24 +20,26 @@ use app\models\Faculty;
     <?= $form->field($model, 'journal_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'date')->widget(
-    DatePicker::className(), [
+    DatePicker::className(),
+    [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+);?>
 
 <?= $form->field($model, 'faculty')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'dgc_flag')->checkbox()?>
 
 <div id="dropdown" style="display:none">
-    <?= $form->field($model, 'group' )->dropDownList(
+    <?= $form->field($model, 'group')->dropDownList(
         array('A'=>'Group A', 'B'=>'Group B','C'=>'Group C','D'=>'Group D',),
-                 
+        ['prompt'=>'select ']
     )  ?>
 
     <?= $form->field($model, 'ugc_no')->textInput(['maxlength' => true]) ?>
@@ -64,6 +66,11 @@ use app\models\Faculty;
 <?= $form->field($model, 'file3')->fileInput();echo "<br>$model->file3</br>" ?>
 
 <?= $form->field($model, 'file4')->fileInput();echo "<br>$model->file4</br>" ?>
+<?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
+
 
 
     <div class="form-group">

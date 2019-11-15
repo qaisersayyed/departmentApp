@@ -40,9 +40,9 @@ class BookPublished extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['book_title', 'author', 'date', 'student_involved', 'created_at', 'file1'], 'required'],
+            [['book_title', 'author', 'date', 'file1'], 'required'],
             [['date', 'created_at', 'updated_at'], 'safe'],
-            [['student_involved'], 'integer'],
+            [['student_involved', 'user_id'], 'integer'],
             [['description', 'file1', 'file2', 'file3', 'file4'], 'string'],
             [['book_title', 'author', 'edited_volume', 'publisher', 'student_name'], 'string', 'max' => 250],
             [['isbn'], 'string', 'max' => 100],
@@ -56,10 +56,10 @@ class BookPublished extends \yii\db\ActiveRecord
     {
         return [
             'book_published_id' => 'Book Published ID',
-            'book_title' => 'Book Title',
+            'book_title' => 'Book / Chapter Title',
             'author' => 'Author',
             'edited_volume' => 'Edited Volume',
-            'date' => 'Date',
+            'date' => 'Year / Month',
             'publisher' => 'Publisher',
             'isbn' => 'Isbn',
             'student_involved' => 'Student Involved',
@@ -67,7 +67,7 @@ class BookPublished extends \yii\db\ActiveRecord
             'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'file1' => 'File1',
+            'file1' => 'Cover Page',
             'file2' => 'File2',
             'file3' => 'File3',
             'file4' => 'File4',

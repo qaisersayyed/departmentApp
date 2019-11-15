@@ -13,19 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="book-published-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->book_published_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->book_published_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -36,15 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'publisher',
             'isbn',
-            'student_involved',
+            // 'student_involved',
             'student_name',
             'description:ntext',
-            'created_at',
-            'updated_at',
-            'file1:ntext',
-            'file2',
-            'file3',
-            'file4',
+            // 'created_at',
+            // 'updated_at',
+            // 'file1:ntext',
+            // 'file2',
+            // 'file3',
+            // 'file4',
         ],
     ]) ?>
 

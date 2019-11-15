@@ -16,6 +16,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'paper_title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'author')->textInput() ?>
+
     <?= $form->field($model, 'conference_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'venue')->textInput(['maxlength' => true]) ?>
@@ -44,7 +46,11 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'paper_presented_file3')->fileInput() ;echo "<br>$model->paper_presented_file3</br>" ?>
     <?= $form->field($model, 'paper_presented_file4')->fileInput()  ;echo "<br>$model->paper_presented_file4</br>"?>
 
-
+    <?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

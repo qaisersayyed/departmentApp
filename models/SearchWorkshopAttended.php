@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\WorkshopAttended;
@@ -11,7 +12,6 @@ use app\models\WorkshopAttended;
  */
 class SearchWorkshopAttended extends WorkshopAttended
 {
-
     public $to;
     public $from;
 
@@ -61,7 +61,7 @@ class SearchWorkshopAttended extends WorkshopAttended
             return $dataProvider;
         }
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
 
@@ -87,6 +87,10 @@ class SearchWorkshopAttended extends WorkshopAttended
         $query->andFilterWhere(['like', 'workshop_title', $this->workshop_title])
             ->andFilterWhere(['like', 'participant_name', $this->participant_name])
             ->andFilterWhere(['like', 'academic_year.year', $this->academic_year]);
+
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }
