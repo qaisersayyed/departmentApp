@@ -7,14 +7,14 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\SearchSeminarAttended */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Seminar Attended';
+$this->title = 'Seminars/Workshop/Conference Attended';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-attended-index">
 
     <h1 ><?= Html::encode($this->title) ?>
         <a style="float:right" href="index.php?r=seminar-attended/create" class="btn btn-success">
-        <span  class="glyphicon glyphicon-plus" ></span> Add Seminar Attended</a>
+        <span  class="glyphicon glyphicon-plus" ></span> Add Seminars/Workshop/Conference Attended</a>
 
     </h1>
 
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'kartik\grid\SerialColumn'],
 
             // 'seminar_id',
+            'type:ntext',
             'title',
             [
                 'label' => 'Start Date',

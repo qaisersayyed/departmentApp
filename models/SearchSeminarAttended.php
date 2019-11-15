@@ -18,7 +18,7 @@ class SearchSeminarAttended extends SeminarAttended
     {
         return [
             [['seminar_attended_id', 'student_present', 'user_id'], 'integer'],
-            [['title', 'start_date', 'end_date', 'level', 'attendee', 'attended_as', 'student_name', 'file1', 'file2', 'file3', 'file4', 'created_at', 'updated_at'], 'safe'],
+            [['title','type', 'start_date', 'end_date', 'level', 'attendee', 'attended_as', 'student_name', 'file1', 'file2', 'file3', 'file4', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -67,7 +67,8 @@ class SearchSeminarAttended extends SeminarAttended
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
+        $query->andFilterWhere(['like', 'type', $this->type])
+               -> andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'level', $this->level])
             ->andFilterWhere(['like', 'attendee', $this->attendee])
             ->andFilterWhere(['like', 'attended_as', $this->attended_as])

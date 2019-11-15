@@ -127,6 +127,7 @@ class SeminarController extends Controller
                     $model->file4= $filename;
                 }
                 
+                
                  $model->save(false);
                 //  echo $model->seminar_id;
                   return $this->redirect(['view', 'id' => $model->seminar_id]);
@@ -211,6 +212,10 @@ class SeminarController extends Controller
                     }         
                     $model->file4->saveAs($filename);
                     $model->file4= $filename;
+                }
+                if($model->conducted_type != 'Seminar'){
+                    $model->conducted_type = " ";
+                   
                 }
                 $model->save(false);
                 

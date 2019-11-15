@@ -96,8 +96,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         "icon" => "th",
                                         "url" => "#",
                                         'items' => [
-                                            ['label' => 'Seminars Organized', 'url' => ['/seminar/index']],
-                                            ['label' => 'Workshop Conducted', 'url' => ['/workshop/index']],
+                                            ['label' => 'Seminars/Workshop/Conferences Organized', 'url' => ['/seminar/index']],
+                                            // ['label' => 'Workshop Conducted', 'url' => ['/workshop/index']],
                                             ['label' => 'Extension Activities', 'url' => ['/extension-activities/index']],
                                             ['label' => 'Event', 'url' => ['/event/index']],
                                             ['label' => 'BOS', 'url' => ['/bos/index']],
@@ -121,8 +121,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Paper Published', 'url' => ['/paper-published/index']],
                                             ['label' => 'Paper Presented', 'url' => ['/paper-presented/index']],
                                             ['label' => 'Events Attended', 'url' => ['/events-attended/index']],
-                                            ['label' => 'Workshop Attended', 'url' => ['/workshop-attended/index']],
-                                            ['label' => 'Seminar Attended', 'url' => ['/seminar-attended/index']],
+                                            // ['label' => 'Workshop Attended', 'url' => ['/workshop-attended/index']],
+                                            ['label' => 'Seminars/Workshop/Conferences Attended', 'url' => ['/seminar-attended/index']],
                                         ],
                                     ],
                                     [

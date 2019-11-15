@@ -10,7 +10,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchSeminar */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Conducted Seminars';
+$this->title = 'Seminars/Workshop/Conference Conducted';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seminar-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <h1><?= Html::encode($this->title) ?> </h1>
 
     <a Style="float:right" href="index.php?r=seminar/create" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span> Add Conducted Seminar</a>
+        <span class="glyphicon glyphicon-plus"></span> Add Seminar/Workshop/Conference conducted</a>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
@@ -80,6 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
+            'type:ntext',
             'title:ntext',
             'conducted_type:ntext',
             'level:ntext',

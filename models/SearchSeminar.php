@@ -23,7 +23,7 @@ class SearchSeminar extends Seminar
     {
         return [
             [['seminar_id','user_id'], 'integer'],
-            [['title','conducted_type','level', 'start_date', 'end_date', 'participant', 'venue', 'created_at', 'updated_at', 'department_id', 'academic_year_id','participant_name', 'faculty_organizer','faculty_attended','no_of_female','no_of_male'], 'safe'],
+            [['title','type','conducted_type','level', 'start_date', 'end_date', 'participant', 'venue', 'created_at', 'updated_at', 'department_id', 'academic_year_id','participant_name', 'faculty_organizer','faculty_attended','no_of_female','no_of_male'], 'safe'],
         ];
     }
 
@@ -72,7 +72,7 @@ class SearchSeminar extends Seminar
 
         $query->andFilterWhere([
             'seminar_id' => $this->seminar_id,
-            'start_date' => $this->start_date,
+            // 'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -94,18 +94,18 @@ class SearchSeminar extends Seminar
             ->andFilterWhere(['like', 'participant_name', $this->participant_name])
             ->andFilterWhere(['like', 'faculty_organizer', $this->faculty_organizer])
             ->andFilterWhere(['like', 'faculty_attended', $this->faculty_attended])
+            ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'venue', $this->venue])
-            ->andFilterWhere(['like', 'title', $this->title]);
-            
-
-        $query->andFilterWhere(['like', 'conducted_type', $this->conducted_type]);
-        $query->andFilterWhere(['like', 'level', $this->level]);
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'start_date', $this->start_date])
+            ->andFilterWhere(['like', 'conducted_type', $this->conducted_type])
+            ->andFilterWhere(['like', 'level', $this->level]);
         
         $query->andFilterWhere(['like', 'department.name', $this->department_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
 
         if(yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['seminar.user_id' => Yii::$app->user->id]);
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
         }
         return $dataProvider;
         
