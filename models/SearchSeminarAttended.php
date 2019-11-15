@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\SeminarAttended;
@@ -14,6 +14,8 @@ class SearchSeminarAttended extends SeminarAttended
     /**
      * {@inheritdoc}
      */
+    public $to;
+    public $from;
     public function rules()
     {
         return [
@@ -56,6 +58,9 @@ class SearchSeminarAttended extends SeminarAttended
             return $dataProvider;
         }
 
+        if($this->to != "" && $this->from != ""){
+            $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
+        }
         // grid filtering conditions
         $query->andFilterWhere([
             'seminar_attended_id' => $this->seminar_attended_id,
@@ -78,6 +83,10 @@ class SearchSeminarAttended extends SeminarAttended
             ->andFilterWhere(['like', 'file3', $this->file3])
             ->andFilterWhere(['like', 'file4', $this->file4]);
 
+        
+        if(yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
         return $dataProvider;
     }
 }

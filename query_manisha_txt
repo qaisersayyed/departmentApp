@@ -3,3 +3,17 @@
 ALTER TABLE `seminar` ADD `type` VARCHAR(50) NOT NULL AFTER `seminar_id`;
 
 ALTER TABLE `seminar_attended` ADD `type` VARCHAR(50) NOT NULL AFTER `seminar_attended_id`;
+
+15nov ---
+
+ALTER TABLE `subject_expert` ADD `user_id` INT NOT NULL AFTER `description`;
+
+ALTER TABLE department.subject_expert DROP FOREIGN KEY d2;
+
+ALTER TABLE `subject_expert` DROP `faculty_name`;
+
+ALTER TABLE `bos` ADD `file2` TEXT NULL AFTER `minutes`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
+
+ALTER TABLE `bos` CHANGE `minutes` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+ALTER TABLE `bos` CHANGE `file1` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;

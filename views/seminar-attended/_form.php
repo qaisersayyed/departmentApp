@@ -84,20 +84,30 @@ use dosamigos\datepicker\DatePicker;
 
     <?php 
         $script = <<< JS
-        $(document).ready(function(){
-            $('#seminarattended-student_present').change(function(){ // 
-                if(document.getElementById("seminarattended-student_present").checked == true){
-                    $('#hiddenDiv').show();
+        // $(document).ready(function(){
 
-                }else{
-                    console.log(document.getElementById("seminarattended-student_present").value);
-                    $('#hiddenDiv').hide();
-                   
-                }
-                
-            // $('#hiddenDiv').slideToggle(); // hiddenDiv replace our Dcl_nilaiblksk as model & table (model_table)
-            }); 
+            $(document).ready(function(){
+            length = $('#seminarattended-student_present:checked').length;
+            if(length == 1){
+                $('#hiddenDiv').show();
+            }
+            $('#seminarattended-student_present').change(function(){
+                $('#hiddenDiv').slideToggle();
+            });
         });
+        //     $('#seminarattended-student_present').change(function(){ // 
+        //         if(document.getElementById("seminarattended-student_present").checked == true){
+        //             $('#hiddenDiv').show();
+
+        //         }else{
+        //             console.log(document.getElementById("seminarattended-student_present").value);
+        //             $('#hiddenDiv').hide();
+                   
+        //         }
+                
+        //     // $('#hiddenDiv').slideToggle(); // hiddenDiv replace our Dcl_nilaiblksk as model & table (model_table)
+        //     }); 
+        // });
 JS;
 $this->registerJS($script);
     ?>

@@ -37,6 +37,10 @@ class SeminarAttendedController extends Controller
     {
         if(!Yii::$app->user->isGuest){
             $searchModel = new SearchSeminarAttended();
+            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+                $searchModel->to = Yii::$app->request->get('to');
+                $searchModel->from = Yii::$app->request->get('from');
+            }
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -171,9 +175,9 @@ class SeminarAttendedController extends Controller
                 }else{
                     
                     $cnt = 1;
-                    $filename =  'uploads/seminar/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    $filename =  'uploads/seminar-attended/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/seminar/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
+                        $filename =  'uploads/seminar-attended/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
                         $cnt++;
                     }         
                     $model->file2->saveAs($filename);
@@ -208,6 +212,10 @@ class SeminarAttendedController extends Controller
                     }         
                     $model->file4->saveAs($filename);
                     $model->file4= $filename;
+                }
+                if($model->student_present == 0){
+                    $model->student_name = " ";
+                   
                 }
                 $model->save(false);
                 

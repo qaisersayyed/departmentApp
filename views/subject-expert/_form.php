@@ -22,16 +22,21 @@ use app\models\Faculty;
     )?>
 
 
-    <?= $form->field($model, 'department_id')->dropDownList(
+    <!-- <?= $form->field($model, 'department_id')->dropDownList(
         ArrayHelper::map(Department::find()->all(),'department_id','name'),
         ['prompt'=>'select ']
-    )?>
+    )?> -->
 
     <?= $form->field($model, 'academic_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
     ) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?php
+        $id= Yii::$app->user->id;
+        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

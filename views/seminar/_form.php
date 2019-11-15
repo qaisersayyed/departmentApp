@@ -112,6 +112,7 @@ use dosamigos\datepicker\DatePicker;
                     $('#hiddenDiv').hide();
                    
                 }
+                
             });
         });
 JS;

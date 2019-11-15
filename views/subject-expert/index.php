@@ -38,16 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'faculty.name',
                 'attribute' => 'faculty_id',
             ],
-            [
-                'label' => 'Department Name',
-                'value' => 'department.name',
-                'attribute' => 'department_id',
-            ],
+            // [
+            //     'label' => 'Department Name',
+            //     'value' => 'department.name',
+            //     'attribute' => 'department_id',
+            // ],
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',
                 'attribute' => 'academic_year_id',
                 ],
+            'description',
             //'created_at',
             //'updated_at',
 
