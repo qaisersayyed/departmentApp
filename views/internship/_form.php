@@ -18,8 +18,7 @@ use dosamigos\datepicker\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'program_id')->dropDownList(
-    ArrayHelper::map(Program::find()->where(['user_id' => Yii::$app->user->id])->all(), 'program_id', 'name'),
-    ['prompt'=>'select ']
+    ArrayHelper::map(Program::find()->where(['user_id' => Yii::$app->user->id])->all(), 'program_id', 'name')
 )  ?>
      <?= $form->field($model, 'student_id')->dropDownList(
     ArrayHelper::map(ProgramStudent::find()->where(['status' => 1])->where(['user_id' => Yii::$app->user->id])->all(), 'program_student_id', 'student.name'),
