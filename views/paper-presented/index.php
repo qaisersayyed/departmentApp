@@ -81,6 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'paper_presented_id',
             //'paper_presented_file:ntext',
             'paper_title',
+            'author',
             'conference_name',
             'venue',
             [

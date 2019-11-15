@@ -15,9 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <a style="float:right" href="index.php?r=users/create" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span>
+         Add User
+    </a>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
