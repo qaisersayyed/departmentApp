@@ -24,8 +24,8 @@ use dosamigos\datepicker\DatePicker;
     'Conference'=> 'Conference'], ['prompt'=>'select '])?>
 
     <div id="hiddenDiv" style="display: none">
-        <?= $form->field($model, 'conducted_type')->dropDownList(['Intellectual Property Right' => 'Intellectual Property Right', 'Industry Academics' => 'Industry Academics',
-        'Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment','Others'=>'Others'],['prompt'=>'Select'])?>
+        <?= $form->field($model, 'conducted_type')->dropDownList(['Others'=>'Others','Intellectual Property Right' => 'Intellectual Property Right', 'Industry Academics' => 'Industry Academics',
+        'Environment Related'=>'Environment Related','Gender'=>'Gender','Women Empowerment'=>'Women Empowerment'])?>
     </div>
 
     <?= $form->field($model, 'level')->dropDownList(['National Level' => 'National Level', 'State Level' => 'State Level',

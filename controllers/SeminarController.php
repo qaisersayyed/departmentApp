@@ -213,7 +213,7 @@ class SeminarController extends Controller
                     $model->file4->saveAs($filename);
                     $model->file4= $filename;
                 }
-                if($model->conducted_type != 'Seminar'){
+                if($model->type != 'Seminar'){
                     $model->conducted_type = " ";
                    
                 }
@@ -240,8 +240,20 @@ class SeminarController extends Controller
     public function actionDelete($id)
     {
         if(!Yii::$app->user->isGuest){
-            $this->findModel($id)->delete();
-
+            $model = $this->findModel($id);
+            if ($model->file1) {
+                unset($model->file1);
+            }
+            if ($model->file2) {
+                unset($model->file2);
+            }
+            if ($model->file3) {
+                unset($model->file3);
+            }
+            if ($model->file4) {
+                unset($model->file4);
+            }
+            $model->delete();
             return $this->redirect(['index']);
         }else{
             throw new \yii\web\ForbiddenHttpException;

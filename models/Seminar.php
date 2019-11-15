@@ -38,7 +38,7 @@ class Seminar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title','conducted_type','type','faculty_attended','no_of_female','no_of_male', 'start_date', 'end_date', 'participant', 'venue', 'level', 'department_id', 'academic_year_id'], 'required'],
+            [['title','type','faculty_attended','no_of_female','no_of_male', 'start_date', 'end_date', 'participant', 'venue', 'level', 'department_id', 'academic_year_id'], 'required'],
             [['file1','file2','file3','file4'],'file'],
             [['title','participant_name', 'faculty_attended','faculty_organizer', 'description'], 'string'],
             [['start_date','conducted_type', 'end_date', 'created_at', 'updated_at'], 'safe'],
