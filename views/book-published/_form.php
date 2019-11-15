@@ -55,11 +55,6 @@ use dosamigos\datepicker\DatePicker;
         echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
     ?>
 
-    <?php
-        $id= Yii::$app->user->id;
-        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
-    ?>
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
@@ -70,7 +65,7 @@ use dosamigos\datepicker\DatePicker;
         $script = <<< JS
         $(document).ready(function(){
             $('#bookpublished-student_involved').change(function(){ // 
-            $('#hiddenDiv').slideToggle(); // hiddenDiv replace our Dcl_nilaiblksk as model & table (model_table)
+            $('#hiddenDiv').slideToggle(); 
             }); 
         });
 JS;

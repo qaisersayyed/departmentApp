@@ -21,7 +21,7 @@ class SearchPaperPresented extends PaperPresented
     {
         return [
             [['paper_presented_id', 'status'], 'integer'],
-            [['paper_presented_file', 'paper_title', 'conference_name', 'venue', 'date', 'type', 'level', 'student_name', 'created_at', 'updated_at'], 'safe'],
+            [['paper_presented_file', 'paper_title', 'author', 'conference_name', 'venue', 'date', 'type', 'level', 'student_name', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -93,6 +93,7 @@ class SearchPaperPresented extends PaperPresented
 
         $query->andFilterWhere(['like', 'paper_presented_file', $this->paper_presented_file])
             ->andFilterWhere(['like', 'paper_title', $this->paper_title])
+            ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'conference_name', $this->conference_name])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'venue', $this->venue])
