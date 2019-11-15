@@ -41,6 +41,8 @@ use yii\helpers\ArrayHelper;
         <?= $form->field($model, 'student_name')->textInput(); ?> 
     </div>
 
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
     <?= $form->field($model, 'paper_presented_file')->fileInput() ;echo "<br>$model->paper_presented_file</br>" ?>
     <?= $form->field($model, 'paper_presented_file2')->fileInput() ;echo "<br>$model->paper_presented_file2</br>" ?>
     <?= $form->field($model, 'paper_presented_file3')->fileInput() ;echo "<br>$model->paper_presented_file3</br>" ?>

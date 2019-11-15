@@ -84,22 +84,46 @@ class PaperPresentedController extends Controller
             $model->paper_presented_file2 = UploadedFile::getInstance($model, 'paper_presented_file2');
             $model->paper_presented_file3 = UploadedFile::getInstance($model, 'paper_presented_file3');
             $model->paper_presented_file4 = UploadedFile::getInstance($model, 'paper_presented_file4');
-                if ($model->paper_presented_file ) {                
-                    $model->paper_presented_file->saveAs('uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension);
-                    $model->paper_presented_file= 'uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension;
-                }
-                if ($model->paper_presented_file2 ) {                
-                    $model->paper_presented_file2->saveAs('uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension);
-                    $model->paper_presented_file2= 'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension;
-                }
-                if ($model->paper_presented_file3 ) {                
-                    $model->paper_presented_file3->saveAs('uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension);
-                    $model->paper_presented_file3= 'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension;
-                }
-                if ($model->paper_presented_file4 ) {                
-                    $model->paper_presented_file4->saveAs('uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension);
-                    $model->paper_presented_file4= 'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension;
-                }
+            if ($model->paper_presented_file ) {       
+                $cnt = 1;
+                $filename =  'uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension;
+                while (file_exists($filename)) {
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file ->baseName. $cnt . '.' . $model->paper_presented_file ->extension ; 
+                    $cnt++;
+                }         
+                $model->paper_presented_file->saveAs($filename);
+                $model->paper_presented_file= $filename;
+            }
+            if ($model->paper_presented_file2 ) {                
+                $cnt = 1;
+                $filename =  'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension;
+                while (file_exists($filename)) {
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName. $cnt . '.' . $model->paper_presented_file2 ->extension ; 
+                    $cnt++;
+                }         
+                $model->paper_presented_file2->saveAs($filename);
+                $model->paper_presented_file2= $filename;
+            }
+            if ($model->paper_presented_file3 ) {                
+                $cnt = 1;
+                $filename =  'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension;
+                while (file_exists($filename)) {
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName. $cnt . '.' . $model->paper_presented_file3 ->extension ; 
+                    $cnt++;
+                }         
+                $model->paper_presented_file3->saveAs($filename);
+                $model->paper_presented_file3= $filename;
+            }
+            if ($model->paper_presented_file4) {                
+                $cnt = 1;
+                $filename =  'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension;
+                while (file_exists($filename)) {
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName. $cnt . '.' . $model->paper_presented_file4 ->extension ; 
+                    $cnt++;
+                }         
+                $model->paper_presented_file4->saveAs($filename);
+                $model->paper_presented_file4= $filename;
+            }
 	            $model->save(false);
                 return $this->redirect(['view', 'id' => $model->paper_presented_id]);
             }
@@ -121,68 +145,81 @@ class PaperPresentedController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-            $old_data = $this->findModel($id);
+        if(!Yii::$app->user->isGuest){
+            $model = $this->findModel($id);
+            $old_data= $this->findModel($id);
     
-            if(!Yii::$app->user->isGuest){
-                if ($model->load(Yii::$app->request->post()) ) {
-                    $model->paper_presented_file = UploadedFile::getInstance($model, 'paper_presented_file');
-    
-                    if(!$model->paper_presented_file){
-                        $model->paper_presented_file = $old_data->paper_presented_file;
-                    }
-                    else{
-         
-                        $model->paper_presented_file->saveAs('uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension);
-                        $model->paper_presented_file= 'uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file->extension;
-                    
-                    }
-    
-                    $model->paper_presented_file2 = UploadedFile::getInstance($model, 'paper_presented_file2');
-                    if(!$model->paper_presented_file2 ){
-                        $model->paper_presented_file2 = $old_data->paper_presented_file2;
-                    }
-                    else{
-                  
-                        $model->paper_presented_file2->saveAs('uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension);
-                        $model->paper_presented_file2= 'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension;
-                    
-                    }
-    
-                    $model->paper_presented_file3 = UploadedFile::getInstance($model, 'paper_presented_file3');
-                    if(!$model->paper_presented_file3){
-                        $model->paper_presented_file3 = $old_data->paper_presented_file3;
-                    }
-                    else{
-                              
-                        $model->paper_presented_file3->saveAs('uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension);
-                        $model->paper_presented_file3= 'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension;
-                    
-                    }
-    
-                     $model->paper_presented_file4 = UploadedFile::getInstance($model, 'paper_presented_file4');
-                    if(!$model->paper_presented_file4 ){
-                        $model->paper_presented_file4 = $old_data->paper_presented_file4;
-                    }
-                    else{
-                       
-                        $model->paper_presented_file4->saveAs('uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension);
-                        $model->paper_presented_file4= 'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension;
-                    }
+            if ($model->load(Yii::$app->request->post())) {
+                $model->paper_presented_file = UploadedFile::getInstance($model, 'paper_presented_file');
                 
-                    $model->save();
-                    return $this->redirect(['view', 'id' => $model->paper_presented_id]);
+                if (!$model->paper_presented_file ){
+                    $model->paper_presented_file = $old_data->paper_presented_file;
                     
+                }else{
+                    $cnt = 1;
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file ->baseName . '.' . $model->paper_presented_file ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/paper-presented/' . $model->paper_presented_file ->baseName. $cnt . '.' . $model->paper_presented_file ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->paper_presented_file->saveAs($filename);
+                    $model->paper_presented_file= $filename;
                 }
+                $model->paper_presented_file2 = UploadedFile::getInstance($model, 'paper_presented_file2');
+                if (!$model->paper_presented_file2){
+                    $model->paper_presented_file2 = $old_data->paper_presented_file2;
     
-                return $this->render('update', [
-                    'model' => $model,
-                ]);
-            }else{
-                throw new \yii\web\ForbiddenHttpException;   
+                }else{
+                    $cnt = 1;
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName . '.' . $model->paper_presented_file2 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/paper-presented/' . $model->paper_presented_file2 ->baseName. $cnt . '.' . $model->paper_presented_file2 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->paper_presented_file2->saveAs($filename);
+                    $model->paper_presented_file2= $filename;
+                }
+                $model->paper_presented_file3 = UploadedFile::getInstance($model, 'paper_presented_file3');
+                if (!$model->paper_presented_file3){
+                    $model->paper_presented_file3 = $old_data->paper_presented_file3;
+    
+                }else{
+                    $cnt = 1;
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName . '.' . $model->paper_presented_file3 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/paper-presented/' . $model->paper_presented_file3 ->baseName. $cnt . '.' . $model->paper_presented_file3 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->paper_presented_file3->saveAs($filename);
+                    $model->paper_presented_file3= $filename;
+                }
+                $model->paper_presented_file4 = UploadedFile::getInstance($model, 'paper_presented_file4');
+                
+                if (!$model->paper_presented_file4){
+                    $model->paper_presented_file4 = $old_data->paper_presented_file4;
+                }else{
+                    
+                    $cnt = 1;
+                    $filename =  'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName . '.' . $model->paper_presented_file4 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/paper-presented/' . $model->paper_presented_file4 ->baseName. $cnt . '.' . $model->paper_presented_file4 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->paper_presented_file4->saveAs($filename);
+                    $model->paper_presented_file4= $filename;
+                }
+                $model->save(false);
+                
+                return $this->redirect(['view', 'id' => $model->paper_presented_id]);
             }
-        
+    
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new \yii\web\ForbiddenHttpException;
         }
+    }
     /**
      * Deletes an existing PaperPresented model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

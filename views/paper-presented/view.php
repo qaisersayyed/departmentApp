@@ -56,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'student_name',
+            'description',
             //'created_at',
             //'updated_at',
             //'status',

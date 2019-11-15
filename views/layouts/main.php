@@ -62,6 +62,13 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
 
                     <div class="menu_section">
                         <h3>General</h3>
+                        <?php 
+                            if(Yii::$app->user->identity->username == 'admin'){
+                                $visibility = true;
+                            }else{
+                                $visibility = false;
+                            }
+                        ?>
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
@@ -136,7 +143,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             // ['label' => 'Department', 'url' => ['/department/index']],
                                             
                                             ['label' => 'Agency', 'url' => ['/agency/index']],
-                                            ['label' => 'Users', 'url' => ['/users/index']],
+                                            ['label' => 'Users', 'url' => ['/users/index'], 'visible' => $visibility],
                         
                                         ],
                                     ],

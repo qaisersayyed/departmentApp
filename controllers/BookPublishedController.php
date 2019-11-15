@@ -82,21 +82,45 @@ class BookPublishedController extends Controller
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
-                if ($model->file1 ) {                
-                    $model->file1->saveAs('uploads/book-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
-                    $model->file1= 'uploads/book-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                if ($model->file1 ) {       
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file1->saveAs($filename);
+                    $model->file1= $filename;
                 }
                 if ($model->file2 ) {                
-                    $model->file2->saveAs('uploads/book-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
-                    $model->file2= 'uploads/book-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file2->saveAs($filename);
+                    $model->file2= $filename;
                 }
                 if ($model->file3 ) {                
-                    $model->file3->saveAs('uploads/book-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
-                    $model->file3= 'uploads/book-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file3 ->baseName. $cnt . '.' . $model->file3 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file3->saveAs($filename);
+                    $model->file3= $filename;
                 }
                 if ($model->file4) {                
-                    $model->file4->saveAs('uploads/book-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
-                    $model->file4= 'uploads/book-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file4 ->baseName. $cnt . '.' . $model->file4 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file4->saveAs($filename);
+                    $model->file4= $filename;
                 }
 	            $model->save();
                 return $this->redirect(['view', 'id' => $model->book_published_id]);
@@ -130,26 +154,42 @@ class BookPublishedController extends Controller
                     $model->file1 = $old_data->file1;
                     
                 }else{
-                    
-                    $model->file1->saveAs('uploads/book-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension);
-                    $model->file1= 'uploads/book-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file1->saveAs($filename);
+                    $model->file1= $filename;
                 }
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
                 if (!$model->file2){
                     $model->file2 = $old_data->file2;
     
                 }else{
-                    
-                    $model->file2->saveAs('uploads/book-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension);
-                    $model->file2= 'uploads/book-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file2->saveAs($filename);
+                    $model->file2= $filename;
                 }
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
                 if (!$model->file3){
                     $model->file3 = $old_data->file3;
     
                 }else{
-                    $model->file3->saveAs('uploads/book-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension);
-                    $model->file3= 'uploads/book-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file3 ->baseName. $cnt . '.' . $model->file3 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file3->saveAs($filename);
+                    $model->file3= $filename;
                 }
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
@@ -157,8 +197,14 @@ class BookPublishedController extends Controller
                     $model->file4 = $old_data->file4;
                 }else{
                     
-                    $model->file4->saveAs('uploads/book-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension);
-                    $model->file4= 'uploads/book-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                    $cnt = 1;
+                    $filename =  'uploads/book-published/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
+                    while (file_exists($filename)) {
+                        $filename =  'uploads/book-published/' . $model->file4 ->baseName. $cnt . '.' . $model->file4 ->extension ; 
+                        $cnt++;
+                    }         
+                    $model->file4->saveAs($filename);
+                    $model->file4= $filename;
                 }
                 $model->save(false);
                 
@@ -169,7 +215,7 @@ class BookPublishedController extends Controller
                 'model' => $model,
             ]);
         }else{
-        throw new \yii\web\ForbiddenHttpException;
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
 

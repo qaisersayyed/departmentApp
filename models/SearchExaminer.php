@@ -22,7 +22,7 @@ class SearchExaminer extends Examiner
     {
         return [
             [['examiner_id'], 'integer'],
-            [['name', 'faculty_id', 'faculty_name', 'venue', 'start_date', 'end_date', 'created_at', 'updated_at', 'department_id', 'academic_year_id'], 'safe'],
+            [['name', 'faculty_id', 'faculty_name', 'venue', 'start_date', 'end_date', 'created_at', 'updated_at', 'academic_year_id'], 'safe'],
         ];
     }
 
@@ -55,13 +55,12 @@ class SearchExaminer extends Examiner
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
+            // uncomment the following line if youp do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
         $query->joinWith('academicYear');
-        $query->joinWith('department');
         $query->joinWith('faculty');
 
         // grid filtering conditions
@@ -79,12 +78,15 @@ class SearchExaminer extends Examiner
         ]);
 
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'examiner.name', $this->name])
             ->andFilterWhere(['like', 'faculty_name', $this->faculty_name])
             ->andFilterWhere(['like', 'venue', $this->venue]);
-        $query->andFilterWhere(['like', 'department.name', $this->department_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
+
+        if(Yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }

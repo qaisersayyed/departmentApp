@@ -71,14 +71,12 @@ class SearchBookPublished extends BookPublished
             'student_involved' => $this->student_involved,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'file2' => $this->file2,
-            'file3' => $this->file3,
-            'file4' => $this->file4,
         ]);
 
         $query->andFilterWhere(['like', 'book_title', $this->book_title])
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'edited_volume', $this->edited_volume])
+            ->andFilterWhere(['like', 'date', $this->date])
             ->andFilterWhere(['like', 'publisher', $this->publisher])
             ->andFilterWhere(['like', 'isbn', $this->isbn])
             ->andFilterWhere(['like', 'student_name', $this->student_name])

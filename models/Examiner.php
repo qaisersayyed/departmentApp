@@ -13,13 +13,11 @@ use Yii;
  * @property string $venue
  * @property string $start_date
  * @property string $end_date
- * @property int $department_id
  * @property int $academic_year_id
  * @property string $created_at
  * @property string $updated_at
  *
  * @property AcademicYear $academicYear
- * @property Department $department
  */
 class Examiner extends \yii\db\ActiveRecord
 {
@@ -37,14 +35,13 @@ class Examiner extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'faculty_id', 'venue', 'start_date', 'end_date', 'department_id', 'academic_year_id'], 'required'],
+            [['name', 'faculty_id', 'venue', 'start_date', 'end_date', 'academic_year_id'], 'required'],
             [['file1','file2','file3','file4'],'file'],
             [['faculty_name', 'description'], 'string'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
-            [['department_id', 'academic_year_id','faculty_id'], 'integer'],
+            [['academic_year_id','faculty_id', 'user_id'], 'integer'],
             [['name', 'venue'], 'string', 'max' => 50],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
-            [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
             [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
 
         ];
@@ -63,9 +60,8 @@ class Examiner extends \yii\db\ActiveRecord
             'venue' => 'Venue',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
-            'department_id' => 'Department',
             'academic_year_id' => 'Academic Year',
-            'description' => 'Decription',
+            'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'file' => 'File'
@@ -78,14 +74,6 @@ class Examiner extends \yii\db\ActiveRecord
     public function getAcademicYear()
     {
         return $this->hasOne(AcademicYear::className(), ['academic_year_id' => 'academic_year_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDepartment()
-    {
-        return $this->hasOne(Department::className(), ['department_id' => 'department_id']);
     }
 
      /**

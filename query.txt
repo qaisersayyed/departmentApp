@@ -203,3 +203,21 @@ ALTER TABLE `book_published` CHANGE `created_at` `created_at` DATETIME NULL DEFA
 ALTER TABLE `paper_presented` CHANGE `user` `user_id` INT(11) NOT NULL;
 
 -----------------------------------------------------------------------------------------------------
+
+dip------------------
+
+ALTER TABLE `paper_presented` ADD `author` VARCHAR(100) NOT NULL AFTER `conference_name`;
+
+ALTER TABLE `auditing_member` ADD `user_id` INT NOT NULL AFTER `file4`;
+
+ALTER TABLE `examiner` ADD `user_id` INT NOT NULL AFTER `file4`;
+
+ALTER TABLE `department`.`auditing_member` DROP FOREIGN KEY `d7`;
+
+ALTER TABLE `auditing_member` DROP `department_id`;
+
+ALTER TABLE `department`.`examiner` DROP FOREIGN KEY `d10`;
+
+ALTER TABLE `examiner` DROP `department_id`;
+
+-------------------------------
