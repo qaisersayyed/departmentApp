@@ -51,7 +51,7 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'participant_name')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'faculty_id')->dropDownList(
-    ArrayHelper::map(Faculty::find()->all(), 'faculty_id', 'name'),
+    ArrayHelper::map(Faculty::find()->where(['user_id' => yii::$app->user->id])->all(), 'faculty_id', 'name'),
     ['prompt'=>'select ']
 )?>
 

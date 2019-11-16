@@ -57,7 +57,10 @@ use dosamigos\datepicker\DatePicker;
     )
         ?>
     <br>
-
+    <?php
+            $id= Yii::$app->user->id;
+            echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+        ?>
     
    
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -22,8 +22,8 @@ class SearchBos extends Bos
     public function rules()
     {
         return [
-            [['bos_id' ], 'integer'],
-            [['program', 'user_id','date', 'created_at', 'updated_at', 'department_id',  'academic_year_id'], 'safe'],
+            [['bos_id', 'user_id' ], 'integer'],
+            [['program','date', 'created_at', 'updated_at', 'department_id',  'academic_year_id'], 'safe'],
         ];
     }
 

@@ -93,7 +93,7 @@ class SearchEvent extends Event
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
     
         if (Yii::$app->user->identity->username != 'admin') {
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id ]);
+            $query->andFilterWhere(['event.user_id' => Yii::$app->user->id ]);
         }
         return $dataProvider;
     }

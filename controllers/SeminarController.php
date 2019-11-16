@@ -241,19 +241,24 @@ class SeminarController extends Controller
     {
         if(!Yii::$app->user->isGuest){
             $model = $this->findModel($id);
-            if ($model->file1) {
-                unset($model->file1);
+            $file1 = $model->file1;
+            $file2 = $model->file2;
+            $file3 = $model->file3;
+            $file4 = $model->file4;
+
+            if(file_exists($file1)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file1);
             }
-            if ($model->file2) {
-                unset($model->file2);
+            if(file_exists($file2)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file2);
             }
-            if ($model->file3) {
-                unset($model->file3);
+            if(file_exists($file3)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file3);
             }
-            if ($model->file4) {
-                unset($model->file4);
+            if(file_exists($file4)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file4);
             }
-            $model->delete();
+            $this->findModel($id)->delete();
             return $this->redirect(['index']);
         }else{
             throw new \yii\web\ForbiddenHttpException;
