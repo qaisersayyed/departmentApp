@@ -83,16 +83,12 @@ use app\models\Faculty;
         $script= <<< JS
         
         $(document).ready(function(){
-            var checkBox = document.getElementById("#paperpublished-dgc_flag");
- 
-             var text = document.getElementById("#dropdown");
-
-  
-            if (checkBox.checked == true){
-                text.style.display = "block";
-            } else {
-                text.style.display = "none";
-            }
+        length = $('#paperpublished-dgc_flag:checked').length;
+        if(length == 1){
+            $('#dropdown').show();
+        }
+        $('#paperpublished-dgc_flag').change(function(){
+            $('#dropdown').slideToggle();
         });
     });
 

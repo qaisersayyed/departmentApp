@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\db;
 use app\models\ProgramStudent;
 use app\models\SearchProgramStudent;
 use yii\web\Controller;
@@ -89,12 +90,12 @@ class ProgramStudentController extends Controller
                 $course = Yii::$app->request->get('course');
                 $instructor = Yii::$app->request->get('instructor');
                 $students = ProgramStudent::find()
-                                    ->joinWith('student')
-                                    ->where(['academic_year_id' => $aid])
-                                    ->andWhere(['student.status' => 1])
-                                    ->andWhere(['program_id' => $pid])
-                                    ->all();
-                return $this->render('attendance',[
+                    ->joinWith('student')
+                    ->where(['academic_year_id' => $aid])
+                    ->andWhere(['student.status' => 1])
+                    ->andWhere(['program_id' => $pid])
+                    ->all();
+                return $this->render('attendance', [
                     'students' => $students,
                     'aid' => $aid,
                     'pid' => $pid,
@@ -102,12 +103,73 @@ class ProgramStudentController extends Controller
                     'sem' => $sem,
                     'course' => $course,
                 ]);
-                
-            }else{
+            } else {
                 return $this->render('attendance');
             }
         } else {
             throw new \yii\web\ForbiddenHttpException;
+        }
+    }
+
+    public function actionImport()
+    {
+        if (!Yii::$app->user->isGuest) {
+
+            if (!Yii::$app->user->isGuest) {
+                if (Yii::$app->request->get('a_id')) {
+
+                    echo $aid = Yii::$app->request->get('a_id');
+                    echo $pid = Yii::$app->request->get('program_id');
+                    echo $file = Yii::$app->request->get('file');
+
+
+                    // return $this->render('import', [
+                    //     'aid' => $aid,
+                    //     'pid' => $pid,
+                    //     'file' => $file,
+                    // ]);
+                    
+                    //echo $filename = $_FILES['file']['tmp_name'];
+                    $filename =  'uploads/paper-published/' .$file ;
+                    //$mysqli = new mysqli("localhost", "root", "", "department");
+                    if (!empty($file)) {
+                        $file1 = fopen($filename, "r");
+
+                        $flag = true;
+                        while (($emapData = fgetcsv($file1, 10000, ",")) !== false) {
+                            if ($flag) {
+                                $flag = false;
+                                continue;
+                            }
+                            $sql = "INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`,`email`) VALUES (NULL,'$emapData[2]','$emapData[3]','$emapData[4]','$emapData[5]')";
+                            $sql1 = "INSERT INTO `program_student` (`program_student_id`, `program_id`, `student_id`, `created_at`, `updated_at`, `status`, `academic_year_id`) VALUES (NULL, (SELECT `program_id` FROM `program` WHERE `name` = '$emapData[1]'), (SELECT `student_id` FROM `student` WHERE `roll_no` = '$emapData[3]' ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', (SELECT `academic_year_id` FROM `academic_year` WHERE `year` = '$emapData[6]' ))";
+                            // $mysqli->query($sql);
+                            // $mysqli->query($sql1);
+                            // $result = $mysqli->store_result();
+                            Yii::$app->db->createCommand($sql)->execute();
+                            Yii::$app->db->createCommand($sql1)->execute();
+                            // if (!empty($result)) {
+                            //     echo "<script type=\"text/javascript\">
+                            //             alert(\"Invalid File:Please Upload CSV File.\");
+                            //             window.location.replace('index.php?r=program-student');
+                            //         </script>";
+                            // }
+                        }
+                        fclose($file);
+                        echo "<script type=\"text/javascript\">
+                                                alert(\"CSV File has been successfully Imported.\");
+                                                window.location.replace('index.php?r=program-student');
+                                            </script>";
+
+
+                        
+                    }
+                } else {
+                    return $this->render('import');
+                }
+            } else {
+                throw new \yii\web\ForbiddenHttpException;
+            }
         }
     }
 
@@ -122,8 +184,8 @@ class ProgramStudentController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+                'model' => $this->findModel($id),
+            ]);
         } else {
             throw new \yii\web\ForbiddenHttpException;
         }
@@ -139,7 +201,7 @@ class ProgramStudentController extends Controller
         $model = new ProgramStudent();
         $student = new Student();
         if (!Yii::$app->user->isGuest) {
-            if (Yii::$app->request->isAjax && $student->load(Yii::$app->request>post())) {
+            if (Yii::$app->request->isAjax && $student->load(Yii::$app->request > post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($student);
             }
@@ -147,15 +209,15 @@ class ProgramStudentController extends Controller
                 $student->save(false);
                 $model->student_id = $student->student_id;
                 $model->save();
-           
-         
+
+
                 return $this->redirect(['view', 'id' => $model->program_student_id]);
             }
 
             return $this->render('create', [
-            'model' => $model,
-            'student' => $student,
-        ]);
+                'model' => $model,
+                'student' => $student,
+            ]);
         } else {
             throw new \yii\web\ForbiddenHttpException;
         }
@@ -171,24 +233,24 @@ class ProgramStudentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $student = Student::find()->where(['student_id'=>$model->student_id])->one();
+        $student = Student::find()->where(['student_id' => $model->student_id])->one();
         // $student = $this->findModel($id);
-       
-        
+
+
         if (!Yii::$app->user->isGuest) {
             if ($model->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
                 $student->save(false);
                 $model->student_id = $student->student_id;
                 $model->save(false);
-            
-            
+
+
                 return $this->redirect(['view', 'id' => $model->program_student_id]);
             }
 
             return $this->render('update', [
-            'model' => $model,
-            'student' => $student,
-        ]);
+                'model' => $model,
+                'student' => $student,
+            ]);
         } else {
             throw new \yii\web\ForbiddenHttpException;
         }
@@ -204,8 +266,8 @@ class ProgramStudentController extends Controller
     public function actionDelete($id)
     {
         if (!Yii::$app->user->isGuest) {
-            $model=programstudent::findone($id);
-            $model1=student::findone($model->student_id);
+            $model = programstudent::findone($id);
+            $model1 = student::findone($model->student_id);
             $model1->status = 0;
             $model->status = 0;
             $model1->save(false);
