@@ -24,7 +24,8 @@ use yii\helpers\ArrayHelper;
     'attribute' => 'start_date',
         'clientOptions' => [
             'autoclose' => false,
-            'format' => 'yyyy-mm-dd'
+            'format' => 'yyyy-mm-dd',
+            'clearBtn' => true,
         ]
 ]);?>
 
@@ -33,7 +34,8 @@ use yii\helpers\ArrayHelper;
     'attribute' => 'end_date',
         'clientOptions' => [
             'autoclose' => false,
-            'format' => 'yyyy-mm-dd'
+            'format' => 'yyyy-mm-dd',
+            'clearBtn' => true,
         ]
 ]);?>
 

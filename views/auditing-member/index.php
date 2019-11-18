@@ -90,13 +90,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return date('d M Y', strtotime($model->start_date));
                 }
             ],
-            [
-                'label' => 'End Date',
-                'attribute'=>'end_date',
-                'value' => function($model){
-                    return date('d M Y', strtotime($model->end_date));
-                }
-            ],
+            // [
+            //     'label' => 'End Date',
+            //     'attribute'=>'end_date',
+            //     'value' => function($model){
+            //         return date('d M Y', strtotime($model->end_date));
+            //     }
+            // ],
             'college_name:ntext',
             'program',
             [

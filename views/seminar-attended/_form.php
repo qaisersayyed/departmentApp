@@ -8,7 +8,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="seminar-attended-form">
+<div class="seminar-attended-form" style="width:50%">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -27,7 +27,8 @@ use dosamigos\datepicker\DatePicker;
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'clearBtn' => true,
             ]
     ]);?>
 
@@ -38,7 +39,8 @@ use dosamigos\datepicker\DatePicker;
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'clearBtn' => true,
             ]
     ]);?>
 

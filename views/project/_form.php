@@ -29,7 +29,8 @@ use dosamigos\datepicker\DatePicker;
     'attribute' => 'start_date',
         'clientOptions' => [
             'autoclose' => false,
-            'format' => 'yyyy-mm-dd'
+            'format' => 'yyyy-mm-dd',
+            'clearBtn' => true,
         ],  
 ]);?>
 
@@ -38,7 +39,8 @@ use dosamigos\datepicker\DatePicker;
     'attribute' => 'end_date',
         'clientOptions' => [
             'autoclose' => false,
-            'format' => 'yyyy-mm-dd'
+            'format' => 'yyyy-mm-dd',
+            'clearBtn' => true,
         ],
     
 ]);?>

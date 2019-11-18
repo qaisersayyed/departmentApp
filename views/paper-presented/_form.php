@@ -27,7 +27,9 @@ use yii\helpers\ArrayHelper;
     'attribute' => 'date',
         'clientOptions' => [
             'autoclose' => false,
-            'format' => 'yyyy-mm-dd'
+            'format' => 'yyyy-mm-dd',
+            'clearBtn' => true,
+
         ]
     ]);?>
 
