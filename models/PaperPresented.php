@@ -38,7 +38,7 @@ class PaperPresented extends \yii\db\ActiveRecord
             [['type', 'student_involved'], 'boolean'],
             [['paper_presented_file','paper_presented_file2','paper_presented_file3','paper_presented_file4'], 'file'],
             [['date', 'created_at', 'updated_at'], 'safe'],
-            [['author'], 'string'],
+            [['author', 'description'], 'string'],
             [['paper_title', 'conference_name', 'venue', 'student_name'], 'string', 'max' => 250],
             [['paper_presented_id'], 'unique'],
         ];
@@ -64,6 +64,7 @@ class PaperPresented extends \yii\db\ActiveRecord
             'level' => 'Level',
             'student_involved' => 'Were students involved ?',
             'student_name' => 'Student Name',
+            'description' => 'Description',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'status' => 'Status',

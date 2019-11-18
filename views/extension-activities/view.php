@@ -21,28 +21,44 @@ $this->params['breadcrumbs'][] = $this->title;
          //   'extension_activities_id',
             'title',
             'organising_unit:ntext',
+            'type',
             'contact_no',
             'teacher_no',
             'student_no',
             'teachers:ntext',
-            'date',
+            'participant_no',
+            'start_date',
+            'end_date',
+            'male',
+            'female',
             'description:ntext',
-            [
-                'label' => 'Awarded by govt.',
-                'value' => function ($dataProvider) {
-                    if ($dataProvider->is_awarded == 0) {
-                        return 'No';
-                    } else {
-                        return "Yes";
-                    }
-                },
-                'attribute' => 'is_awarded',
-            ],
-        
+            'is_awarded',
             'scheme_name',
         //    'created_at',
         //    'updated_at',
         ],
     ]) ?>
+ <?php if ($model->file1) {
+        echo "<h2>File 1</h2>"?>
+        
+        <a class="btn btn-default" href='<?= $model->file1 ?>' Download>Download File 1</a>
+    <?php
+    } ?>
+    <?php if ($model->file2) {
+        echo "<br><h2>File 2</h2>" ?>
+        <a class="btn btn-default" href='<?= $model->file2 ?>' Download>Download File 2</a>
+        <?php
+    } ?>
+    <?php if ($model->file3) {
+        echo "<h2>File 3</h2>" ?>
+        <a class="btn btn-default" href='<?= $model->file3 ?>' Download>Download File 3</a>
+        <?php
+    } ?>
+    <?php if ($model->file4) {
+        echo "<h2>File 4</h2>" ?> 
+        <a class="btn btn-default" href='<?= $model->file4 ?>' Download>Download File 4</a>
+  
+        <?php
+    } ?>
 
 </div>

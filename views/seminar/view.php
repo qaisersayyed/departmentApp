@@ -20,9 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             //'seminar_id',
             // 'speaker_name:ntext',
-            'title:ntext',
-               'conducted_type',
-               'level' ,   
+            'type:ntext',
+            'title:ntext',            
+            'conducted_type',
+            'level' ,   
             'faculty_organizer:ntext',
             'faculty_attended:ntext',
             'participant:ntext',

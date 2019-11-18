@@ -21,7 +21,7 @@ class SearchInternship extends Internship
     {
         return [
             [['internship_id'], 'integer'],
-            [['start_date', 'end_date', 'file','file1','file2','file3', 'program_id', 'student_id', 'academic_year_id', 'company'], 'safe'],
+            [['start_date','user_id' ,'end_date', 'file','file1','file2','file3', 'program_id', 'student_id', 'academic_year_id', 'company'], 'safe'],
             [['hours'], 'number'],
         ];
     }
@@ -65,7 +65,7 @@ class SearchInternship extends Internship
         $query->joinWith("academicYear");
 
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'academic_year.year', $this->from, $this->to]);
         }
 
@@ -76,7 +76,7 @@ class SearchInternship extends Internship
             //'program_id' => $this->program_id,
             //'student_id' => $this->student_id,
             //'academic_year' => $this->academic_year,
-            //'company' => $this->company,
+            'company' => $this->company,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'hours' => $this->hours,
@@ -90,6 +90,9 @@ class SearchInternship extends Internship
         $query->andFilterWhere(['like', 'program.name', $this->program_id]);
         $query->andFilterWhere(['like', 'student.name', $this->student_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['internship.user_id' => Yii::$app->user->id ]);
+        }
 
         return $dataProvider;
     }

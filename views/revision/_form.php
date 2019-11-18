@@ -18,39 +18,43 @@ use dosamigos\datepicker\DatePicker;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'syllabus_date')->widget(DatePicker::className(), [
-    'model' => $model,
-    'attribute' => 'syllabus_date',
+        'model' => $model,
+        'attribute' => 'syllabus_date',
         'clientOptions' => [
             'autoclose' => false,
             'format' => 'yyyy-mm-dd'
         ]
-]);?>
-    <?=$form->field($model,'program_id')->dropDownList(
-		ArrayHelper::map(Program::find()->where(['status'=>1])->all(),'program_id','name'),
-        ['prompt'=>'select ']        
-)->label('Program Name')?>
+    ]); ?>
+    <?= $form->field($model, 'program_id')->dropDownList(
+        ArrayHelper::map(Program::find()->where(['status' => 1])->all(), 'program_id', 'name'),
+        ['prompt' => 'select ']
+    )->label('Program Name') ?>
 
-	<?=$form->field($model,'paper_id')->dropDownList(
-		ArrayHelper::map(Paper::find()->where(['status'=>1])->all(),'paper_id','name'),
-		['prompt'=>'select ']
-)?>
+    <?= $form->field($model, 'paper_id')->dropDownList(
+        ArrayHelper::map(Paper::find()->where(['status' => 1])->all(), 'paper_id', 'name'),
+        ['prompt' => 'select ']
+    ) ?>
 
 
-		<?=$form->field($model,'academic_year_id')->dropDownList(
-		ArrayHelper::map(AcademicYear::find()->orderBy(['year'=>SORT_DESC])->all(),'academic_year_id','year')
-)?>
+    <?= $form->field($model, 'academic_year_id')->dropDownList(
+        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC])->all(), 'academic_year_id', 'year')
+    ) ?>
 
-<?= $form->field($model, 'syllabus_file')->fileInput();echo "<br>$model->syllabus_file</br>" ?>
-    <?= $form->field($model, 'syllabus_file2')->fileInput();echo "<br>$model->syllabus_file2</br>" ?>
-    <?= $form->field($model, 'syllabus_file3')->fileInput();echo "<br>$model->syllabus_file3</br>" ?>
-    <?= $form->field($model, 'syllabus_file4')->fileInput();echo "<br>$model->syllabus_file4</br>" ?>
-    
+    <?= $form->field($model, 'syllabus_file')->fileInput();
+    echo "<br>$model->syllabus_file</br>" ?>
+    <?= $form->field($model, 'syllabus_file2')->fileInput();
+    echo "<br>$model->syllabus_file2</br>" ?>
+    <?= $form->field($model, 'syllabus_file3')->fileInput();
+    echo "<br>$model->syllabus_file3</br>" ?>
+    <?= $form->field($model, 'syllabus_file4')->fileInput();
+    echo "<br>$model->syllabus_file4</br>" ?>
 
-<?php
-        $id= Yii::$app->user->id;
-        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+
+    <?php
+    $id = Yii::$app->user->id;
+    echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
     ?>
-    
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
@@ -58,9 +62,9 @@ use dosamigos\datepicker\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
-<?php 
+<?php
 
-    $script = <<< HTML
+$script = <<< HTML
         $(document).ready(function (){
             $("#revision-program_id").change(function (){
                 $('#revision-paper_id').empty();

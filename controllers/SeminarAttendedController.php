@@ -37,6 +37,10 @@ class SeminarAttendedController extends Controller
     {
         if(!Yii::$app->user->isGuest){
             $searchModel = new SearchSeminarAttended();
+            if(Yii::$app->request->get('from') && Yii::$app->request->get('to')){
+                $searchModel->to = Yii::$app->request->get('to');
+                $searchModel->from = Yii::$app->request->get('from');
+            }
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -171,9 +175,9 @@ class SeminarAttendedController extends Controller
                 }else{
                     
                     $cnt = 1;
-                    $filename =  'uploads/seminar/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
+                    $filename =  'uploads/seminar-attended/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/seminar/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
+                        $filename =  'uploads/seminar-attended/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
                         $cnt++;
                     }         
                     $model->file2->saveAs($filename);
@@ -209,6 +213,10 @@ class SeminarAttendedController extends Controller
                     $model->file4->saveAs($filename);
                     $model->file4= $filename;
                 }
+                if($model->student_present == 0){
+                    $model->student_name = " ";
+                   
+                }
                 $model->save(false);
                 
                 return $this->redirect(['view', 'id' => $model->seminar_attended_id]);
@@ -232,8 +240,25 @@ class SeminarAttendedController extends Controller
     public function actionDelete($id)
     {
         if(!Yii::$app->user->isGuest){
-            $this->findModel($id)->delete();
+            $model = $this->findModel($id);
+            $file1 = $model->file1;
+            $file2 = $model->file2;
+            $file3 = $model->file3;
+            $file4 = $model->file4;
 
+            if(file_exists($file1)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file1);
+            }
+            if(file_exists($file2)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file2);
+            }
+            if(file_exists($file3)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file3);
+            }
+            if(file_exists($file4)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file4);
+            }
+            $this->findModel($id)->delete();
             return $this->redirect(['index']);
         }else{
             throw new \yii\web\ForbiddenHttpException;

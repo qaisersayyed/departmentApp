@@ -34,12 +34,12 @@ class Program extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'department_id'], 'required'],
-            [['department_id', 'user_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['name'], 'required'],
+            [['user_id'], 'integer'],
+            [['created_at', 'updated_at','department_id'], 'safe'],
             [['name'], 'string', 'max' => 50],
             [['status'], 'string', 'max' => 1],
-            [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
+            
         ];
     }
 

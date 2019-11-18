@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
             ],
 
             [
-                'label' => 'Revision',
+                'label' => 'Revision of structure',
                 'attribute' => 'revision',
                 'value' => function ($dataProvider) {
                     if ($dataProvider->revision == 1) {
@@ -39,12 +39,25 @@ $this->params['breadcrumbs'][] = ['label' => 'Bos', 'url' => ['index']];
             ],
             'academicYear.year',
             'description',
-            'minutes:ntext',
+           // 'minutes:ntext',
 
             //'created_at',
             //'updated_at',
         ],
     ]) ?>
-    <a class="btn btn-default" href='<?= $model->minutes ?>'Download>Download minutes file</a>
+    <?php if ($model->file1 ){ echo "<h2>File 1</h2>"?>
+        
+        <a class="btn btn-default" href='<?= $model->file1 ?>' Download>Download File 1</a>
+    <?php } ?>
+    <?php if ($model->file2 ){ echo "<br><h2>File 2</h2>" ?>
+        <a class="btn btn-default" href='<?= $model->file2 ?>' Download>Download File 2</a>
+        <?php } ?>
+    <?php if ($model->file3 ){  echo "<h2>File 3</h2>" ?>
+        <a class="btn btn-default" href='<?= $model->file3 ?>' Download>Download File 3</a>
+        <?php } ?>
+    <?php if ($model->file4 ){  echo "<h2>File 4</h2>" ?> 
+        <a class="btn btn-default" href='<?= $model->file4 ?>' Download>Download File 4</a>
+  
+        <?php } ?>
 
 </div>

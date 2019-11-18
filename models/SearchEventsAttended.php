@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\base\Model;
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\models\EventsAttended;
 
@@ -74,6 +75,9 @@ class SearchEventsAttended extends EventsAttended
             ->andFilterWhere(['like', 'file2', $this->file2])
             ->andFilterWhere(['like', 'file3', $this->file3])
             ->andFilterWhere(['like', 'file4', $this->file4]);
+        if (yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         return $dataProvider;
     }

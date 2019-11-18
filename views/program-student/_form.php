@@ -36,7 +36,7 @@ use app\models\AcademicYear;
 
     <?php
         $id= Yii::$app->user->id;
-        echo $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
+        $form->field($model, 'user_id')->hiddenInput(['value' => $id])->label(false);
     ?>
 
     <div class="form-group">

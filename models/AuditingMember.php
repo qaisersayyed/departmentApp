@@ -14,7 +14,6 @@ use Yii;
  * @property string $college_name
  * @property string $program
  * @property string $faculty_name
- * @property int $department_id
  * @property int $academic_year_id
  * @property string $created_at
  * @property string $updated_at
@@ -38,15 +37,14 @@ class AuditingMember extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'start_date', 'end_date', 'college_name', 'program', 'faculty_name', 'department_id', 'academic_year_id','faculty_id'], 'required'],
+            [['name', 'start_date', 'end_date', 'college_name', 'program', 'faculty_name', 'academic_year_id','faculty_id'], 'required'],
             [['file1','file2','file3','file4'],'file'],
             [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['college_name', 'faculty_name', 'description'], 'string'],
-            [['department_id', 'academic_year_id','faculty_id'], 'integer'],
+            [['academic_year_id','faculty_id', 'user_id'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['program'], 'string', 'max' => 100],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],
-            [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
             [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
        
         ];
@@ -66,7 +64,6 @@ class AuditingMember extends \yii\db\ActiveRecord
             'program' => 'Program',
             'faculty_id' => 'Faculty Name',
             'faculty_name' => 'Other Faculty Names',
-            'department_id' => 'Department ',
             'academic_year_id' => 'Academic Year ',
             'description' => 'Description',
             'created_at' => 'Created At',
@@ -83,13 +80,6 @@ class AuditingMember extends \yii\db\ActiveRecord
         return $this->hasOne(AcademicYear::className(), ['academic_year_id' => 'academic_year_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDepartment()
-    {
-        return $this->hasOne(Department::className(), ['department_id' => 'department_id']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery

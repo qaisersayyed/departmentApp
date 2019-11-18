@@ -21,8 +21,8 @@ class SearchEvent extends Event
     public function rules()
     {
         return [
-            [['event_id'], 'integer'],
-            [['name', 'user_id','venue', 'participant', 'participant_name', 'faculty_coordinator', 'student_coordinator', 'start_date', 'end_date', 'created_at', 'updated_at', 'academic_year_id','faculty_id'], 'safe'],
+            [['event_id','participant'], 'integer'],
+            [['name', 'user_id','venue', 'participant_name', 'faculty_coordinator', 'student_coordinator', 'start_date', 'end_date', 'created_at', 'updated_at', 'academic_year_id','faculty_id'], 'safe'],
             [['cost'], 'number'],
         ];
     }
@@ -81,11 +81,11 @@ class SearchEvent extends Event
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'event.name', $this->name])
             ->andFilterWhere(['like', 'venue', $this->venue])
           
             ->andFilterWhere(['like', 'participant', $this->participant])
-            ->andFilterWhere(['like', 'participant_name', $this->participant])
+            ->andFilterWhere(['like', 'participant_name', $this->participant_name])
             ->andFilterWhere(['like', 'faculty_coordinator', $this->faculty_coordinator])
             ->andFilterWhere(['like', 'student_coordinator', $this->student_coordinator]);
         
@@ -93,7 +93,7 @@ class SearchEvent extends Event
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
     
         if (Yii::$app->user->identity->username != 'admin') {
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id ]);
+            $query->andFilterWhere(['event.user_id' => Yii::$app->user->id ]);
         }
         return $dataProvider;
     }

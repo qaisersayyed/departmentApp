@@ -99,14 +99,15 @@ class SubjectExpertController extends Controller
     {
         $model = $this->findModel($id);
         if(!Yii::$app->user->isGuest){
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save(false);
+                    
+                return $this->redirect(['view', 'id' => $model->subject_expert_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->subject_expert_id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }else {
             throw new \yii\web\ForbiddenHttpException;
         }

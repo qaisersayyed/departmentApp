@@ -18,7 +18,7 @@ class SearchSubjectExpert extends SubjectExpert
     public function rules()
     {
         return [
-            [['subject_expert_id'], 'integer'],
+            [['subject_expert_id','user_id',], 'integer'],
             [['faculty_id', 'created_at', 'updated_at', 'department_id', 'academic_year_id'], 'safe'],
         ];
     }
@@ -67,9 +67,12 @@ class SearchSubjectExpert extends SubjectExpert
         ]);
 
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
-        $query->andFilterWhere(['like', 'department.name', $this->department_id]);
+        // $query->andFilterWhere(['like', 'department.name', $this->department_id]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
 
+        if(yii::$app->user->identity->username != 'admin'){
+            $query->andFilterWhere(['subject_expert.user_id' => Yii::$app->user->id]);
+        }
         return $dataProvider;
     }
 }

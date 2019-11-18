@@ -43,6 +43,7 @@ class Faculty extends \yii\db\ActiveRecord
             [['email', 'employee_id'], 'string', 'max' => 50],
             [['phone_no'], 'string', 'max' => 15],
             [['status'], 'string', 'max' => 1],
+            [['user_id'],'integer']
         ];
     }
 

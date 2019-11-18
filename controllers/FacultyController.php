@@ -75,6 +75,7 @@ class FacultyController extends Controller
         $model = new Faculty();
         if(!Yii::$app->user->isGuest){
             if ($model->load(Yii::$app->request->post()) ) {
+                $model->user_id = Yii::$app->user->id;
                 $model->save(false);
                 return $this->redirect(['view', 'id' => $model->faculty_id]);
             }

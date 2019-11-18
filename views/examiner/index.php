@@ -10,7 +10,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $searchModel app\models\SearchExaminer */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Examiners';
+$this->title = 'Examiner';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="examiner-index">
@@ -98,12 +98,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'faculty_name:ntext',
             //'venue',
             //'end_date',
-            /*[
-                'label' => 'Department Name',
-                'value' => 'department.name',
-                'attribute' => 'department_id',
-                ],
-            */
             [
                 'label' => 'Academic Year',
                 'value' => 'academicYear.year',

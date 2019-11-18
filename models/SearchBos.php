@@ -22,8 +22,8 @@ class SearchBos extends Bos
     public function rules()
     {
         return [
-            [['bos_id' ], 'integer'],
-            [['program', 'minutes', 'user_id','date', 'created_at', 'updated_at', 'department_id',  'academic_year_id'], 'safe'],
+            [['bos_id', 'user_id' ], 'integer'],
+            [['program','date', 'created_at', 'updated_at', 'department_id',  'academic_year_id'], 'safe'],
         ];
     }
 
@@ -74,8 +74,8 @@ class SearchBos extends Bos
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'program', $this->program])
-              ->andFilterWhere(['like', 'minutes', $this->minutes]);
+        $query->andFilterWhere(['like', 'program', $this->program]);
+            //   ->andFilterWhere(['like', 'minutes', $this->minutes]);
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
         $query->andFilterWhere(['like', 'date', $this->date]);
 

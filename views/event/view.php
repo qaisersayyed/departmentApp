@@ -22,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'venue',
            
             'cost',
-            'participant:ntext',
+            'participant',
+            'participant_name:ntext',
             [
                 'label' => 'Faculty Coordinator',
                 'attribute' => 'faculty.name',
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'faculty_coordinator',
             'student_coordinator',
+            'description',
             [
                 'label' => 'Start Date',
                 'attribute' => 'start_date',

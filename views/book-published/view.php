@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\BookPublished */
 
 $this->title = $model->book_published_id;
-$this->params['breadcrumbs'][] = ['label' => 'Book Publisheds', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Book Published', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -20,7 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'book_title',
             'author',
             'edited_volume',
-            'date',
+            [
+                'attribute'=>'date',
+                'value' => function($model){
+                    return date('d M Y', strtotime($model->date));
+                }
+            ],
             'publisher',
             'isbn',
             // 'student_involved',

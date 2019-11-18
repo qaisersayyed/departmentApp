@@ -33,14 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'Type',
             [
                 'label' => 'Date of joining',
-                'value' => function($model){
+                'value' => function ($model) {
                     return date('d M Y', strtotime($model->date_of_joining));
                 }
             ],
             [
                 'label' => 'Date of leaving',
-                'value' => function($model){
-                    return date('d M Y', strtotime($model->date_of_leaving));
+                'value' => function ($model) {
+                    if ($model->date_of_leaving != null) {
+                        return date('d M Y', strtotime($model->date_of_leaving));
+                    } else {
+                        return "Working";
+                    }
                 }
             ],
             'faculty.email',

@@ -36,24 +36,17 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'extension_activities_id',
             'title',
             'organising_unit:ntext',
+            'type',
             'contact_no',
             'teacher_no',
             'student_no',
+            'male',
+            'female',
             'teachers:ntext',
-            'date',
-            'description:ntext',
-            [
-                'label' => 'Awarded by govt.',
-                'value' => function ($dataProvider) {
-                    if ($dataProvider->is_awarded == 0) {
-                        return 'No';
-                    } else {
-                        return "Yes";
-                    }
-                },
-                'attribute' => 'is_awarded',
-            ],
-        
+            'participant_no',
+            'start_date',
+            'end_date',
+            'is_awarded',
             'scheme_name',
             //'created_at',
             //'updated_at',

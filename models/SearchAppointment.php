@@ -18,7 +18,7 @@ class SearchAppointment extends Appointment
     public function rules()
     {
         return [
-            [['appointment_id', ], 'integer'],
+            [['appointment_id','user_id' ], 'integer'],
             [['date_of_joining', 'date_of_leaving','faculty_id','Type', 'created_at', 'updated_at', 'status'], 'safe'],
         ];
     }
@@ -76,6 +76,9 @@ class SearchAppointment extends Appointment
               ->andFilterWhere(['like', 'appointment.date_of_joining', $this->date_of_joining])
               ->andFilterWhere(['like', 'appointment.date_of_leaving', $this->date_of_leaving]);
 
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['appointment.user_id' => Yii::$app->user->id ]);
+        }
         return $dataProvider;
     }
 }

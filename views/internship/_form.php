@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\models\Student;
+use app\models\ProgramStudent;
 use app\models\AcademicYear;
 use app\models\Program;
 use dosamigos\datepicker\DatePicker;
@@ -18,43 +18,46 @@ use dosamigos\datepicker\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'program_id')->dropDownList(
-        ArrayHelper::map(Program::find()->all(),'program_id','name'),
-        ['prompt'=>'select ']       
-   )  ?>
+    ArrayHelper::map(Program::find()->where(['user_id' => Yii::$app->user->id])->all(), 'program_id', 'name')
+)  ?>
      <?= $form->field($model, 'student_id')->dropDownList(
-        ArrayHelper::map(Student::find()->where(['status' => 1])->all(),'student_id','name'),
-        ['prompt'=>'select ']
-    ) ?>
+    ArrayHelper::map(ProgramStudent::find()->where(['status' => 1])->where(['user_id' => Yii::$app->user->id])->all(), 'program_student_id', 'student.name'),
+    ['prompt'=>'select ']
+) ?>
 
    <?= $form->field($model, 'academic_year_id')->dropDownList(
-        ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(),'academic_year_id','year')
-        // ['prompt'=>'select ']       
-   )  
+    ArrayHelper::map(AcademicYear::find()->orderBy(['year' => SORT_DESC ])->all(), 'academic_year_id', 'year')
+        // ['prompt'=>'select ']
+)
     ?>
 
     <?= $form->field($model, 'company')->textInput() ?>
 
      <?= $form->field($model, 'start_date')->widget(
-    DatePicker::className(), [
+        DatePicker::className(),
+        [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+    );?>
     <br>
     <?= $form->field($model, 'end_date')->widget(
-    DatePicker::className(), [
+        DatePicker::className(),
+        [
             // inline too, not bad
-            'inline' => false, 
+            'inline' => false,
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-    ]);?>
+    ]
+    );?>
 
     <?= $form->field($model, 'hours')->textInput() ?>
 
@@ -76,7 +79,7 @@ use dosamigos\datepicker\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
-<?php 
+<?php
 
 $script = <<< HTML
     $(document).ready(function (){

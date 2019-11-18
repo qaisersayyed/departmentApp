@@ -35,7 +35,7 @@ class Appointment extends \yii\db\ActiveRecord
         return [
             [['date_of_joining','Type'], 'required'],
             [['date_of_joining', 'date_of_leaving', 'created_at', 'updated_at'], 'safe'],
-            [['faculty_id'], 'integer'],
+            [['faculty_id','user_id'], 'integer'],
             [['status'], 'string', 'max' => 1],
             [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['faculty_id' => 'faculty_id']],
         ];

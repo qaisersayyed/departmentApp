@@ -33,8 +33,8 @@ class SubjectExpert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['faculty_id', 'department_id', 'academic_year_id'], 'required'],
-            [['department_id', 'academic_year_id', 'faculty_id'], 'integer'],
+            [['faculty_id', 'academic_year_id'], 'required'],
+            [['department_id','user_id', 'academic_year_id', 'faculty_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['description'], 'string'],
             [['academic_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['academic_year_id' => 'academic_year_id']],

@@ -95,8 +95,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'academic_year_id'
             ],
             'company',
-            //'start_date',
-            //'end_date',
+            'start_date',
+            'end_date',
             [
                 'attribute'=>'hours',
                 'pageSummary' => true,

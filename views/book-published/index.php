@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 
@@ -66,13 +66,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'autoXlFormat'=>true,
+        'export'=>[
+        'label' => 'Export',
+        'fontAwesome'=>true,
+        'showConfirmAlert'=>false,
+        'target'=>GridView::TARGET_BLANK
+        ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
             // 'book_published_id',
             'book_title',
             'edited_volume',
-            'date',
+            [
+                'attribute'=>'date',
+                'value' => function($model){
+                    return date('d M Y', strtotime($model->date));
+                }
+            ],
             'author',
             'publisher',
             'isbn',
@@ -86,7 +98,14 @@ $this->params['breadcrumbs'][] = $this->title;
             //'file3',
             //'file4',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn'],
         ],
+        'pjax'=>true,
+        'showPageSummary'=>false,
+        'panel'=>[
+            
+            'heading'=> $this->title,
+           
+        ]
     ]); ?>
 </div>
