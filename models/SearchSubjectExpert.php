@@ -47,6 +47,7 @@ class SearchSubjectExpert extends SubjectExpert
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['subject_expert_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

@@ -51,6 +51,7 @@ class SearchBos extends Bos
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['bos_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

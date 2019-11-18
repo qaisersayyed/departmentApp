@@ -51,6 +51,7 @@ class SearchEvent extends Event
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['event_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
