@@ -46,7 +46,7 @@ use app\models\AcademicYear;
     <?= $form->field($model, 'program')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'faculty_id')->dropDownList(
-        ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ArrayHelper::map(Faculty::find()->where(['user_id' => Yii::$app->user->id])->all(),'faculty_id','name'),
         ['prompt'=>'select ']
     )?>
 

@@ -50,6 +50,7 @@ class SearchBookPublished extends BookPublished
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['book_published_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

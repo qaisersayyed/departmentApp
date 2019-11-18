@@ -235,11 +235,24 @@ class InternshipController extends Controller
     public function actionDelete($id)
     {
         // $model = $this->findModel($id);
-        // unlink($model->file);
-        // unlink($model->file1);
-        // unlink($model->file2);
-        // unlink($model->file3);
         if (!Yii::$app->user->isGuest) {
+            $file1 = $model->file;
+            $file2 = $model->file1;
+            $file3 = $model->file2;
+            $file4 = $model->file3;
+
+            if (file_exists($file1)) {
+                unlink(Yii::$app->basePath. '/web/'. $model->file1);
+            }
+            if (file_exists($file2)) {
+                unlink(Yii::$app->basePath. '/web/'. $model->file2);
+            }
+            if (file_exists($file3)) {
+                unlink(Yii::$app->basePath. '/web/'. $model->file3);
+            }
+            if (file_exists($file4)) {
+                unlink(Yii::$app->basePath. '/web/'. $model->file4);
+            }
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
