@@ -47,6 +47,7 @@ class SearchProgram extends Program
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['program_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

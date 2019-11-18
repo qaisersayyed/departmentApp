@@ -9,7 +9,6 @@ use app\models\Faculty;
 use yii\helpers\ArrayHelper;
 use dosamigos\datepicker\DatePicker;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Project */
 /* @var $form yii\widgets\ActiveForm */
@@ -46,15 +45,15 @@ use dosamigos\datepicker\DatePicker;
 ]);?>
     
     <?= $form->field($model, 'agency_id')->dropDownList(
-        ArrayHelper::map(Agency::find()->all(),'agency_id','name'),
-        ['prompt'=>'select ']       
-   )  
+    ArrayHelper::map(Agency::find()->all(), 'agency_id', 'name'),
+    ['prompt'=>'select ']
+)
     ?>
 
     <?= $form->field($model, 'duration')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'faculty_id')->dropDownList(
-		ArrayHelper::map(Faculty::find()->all(),'faculty_id','name'),
+        ArrayHelper::map(Faculty::find()->where(['status' => 1])->where(['user_id' => Yii::$app->user->id])->all(), 'faculty_id', 'name'),
         ['prompt'=>'select ']
     )?>
 
@@ -65,13 +64,12 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>    
 
     <!-- <?= $form->field($model, 'department_id')->dropDownList(
-		ArrayHelper::map(Department::find()->all(),'department_id','name'),
+        ArrayHelper::map(Department::find()->all(), 'department_id', 'name'),
         ['prompt'=>'select ']
     )?> -->
 
     <?= $form->field($model, 'academic_year_id')->dropDownList(
-		ArrayHelper::map(AcademicYear::find()->orderBy(['year'=>SORT_DESC])->all(),'academic_year_id','year')
-		
+        ArrayHelper::map(AcademicYear::find()->orderBy(['year'=>SORT_DESC])->all(), 'academic_year_id', 'year')
     ) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>

@@ -35,23 +35,28 @@ use yii\data\ActiveDataProvider;
         <div class="col-md-3">
             <br>
             <?= $form->field($modal, 'pid')->dropDownList(
-                ArrayHelper::map(Program::find()->where(['user_id'=>Yii::$app->user->id])->all(), 'program_id', 'name')
+                ArrayHelper::map(Program::find()->where(['user_id' => Yii::$app->user->id])->all(), 'program_id', 'name')
 
             ) ?>
 
         </div>
 
         <br>
-
-        <?= $form->field($modal, 'file')->fileInput(['accept' => '.csv']);
-        echo "<br>$modal->file</br>" ?>
-
-
         <div class="col-md-2">
+            <?= $form->field($modal, 'file')->fileInput(['accept' => '.csv']);
+            echo "<br>$modal->file</br>" ?>
+
+        </div>
+        <div class="col-md-3">
+            <br>
             <?= Html::submitButton('Import', ['class' => 'btn btn-success']) ?>
 
         </div>
         <?php ActiveForm::end(); ?>
+        <div class="col-md-3">
+            <a class="btn btn-warning" href='student.csv' Download>Download Template</a>
+
+        </div>
 
     </div>
 </div>

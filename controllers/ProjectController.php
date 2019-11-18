@@ -84,47 +84,47 @@ class ProjectController extends Controller
                 $model->project_file2 = UploadedFile::getInstance($model, 'project_file2');
                 $model->project_file3 = UploadedFile::getInstance($model, 'project_file3');
                 $model->project_file4 = UploadedFile::getInstance($model, 'project_file4');
-                if ($model->project_file ) {       
+                if ($model->project_file) {
                     $cnt = 1;
                     $filename =  'uploads/project/' . $model->project_file ->baseName . '.' . $model->project_file ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/project/' . $model->project_file ->baseName. $cnt . '.' . $model->project_file ->extension ; 
+                        $filename =  'uploads/project/' . $model->project_file ->baseName. $cnt . '.' . $model->project_file ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->project_file->saveAs($filename);
                     $model->project_file= $filename;
                 }
-                if ($model->project_file2 ) {                
+                if ($model->project_file2) {
                     $cnt = 1;
                     $filename =  'uploads/project/' . $model->project_file2 ->baseName . '.' . $model->project_file2 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/project/' . $model->project_file2 ->baseName. $cnt . '.' . $model->project_file2 ->extension ; 
+                        $filename =  'uploads/project/' . $model->project_file2 ->baseName. $cnt . '.' . $model->project_file2 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->project_file2->saveAs($filename);
                     $model->project_file2= $filename;
                 }
-                if ($model->project_file3 ) {                
+                if ($model->project_file3) {
                     $cnt = 1;
                     $filename =  'uploads/project/' . $model->project_file3 ->baseName . '.' . $model->project_file3 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/project/' . $model->project_file3 ->baseName. $cnt . '.' . $model->project_file3 ->extension ; 
+                        $filename =  'uploads/project/' . $model->project_file3 ->baseName. $cnt . '.' . $model->project_file3 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->project_file3->saveAs($filename);
                     $model->project_file3= $filename;
                 }
-                if ($model->project_file4) {                
+                if ($model->project_file4) {
                     $cnt = 1;
                     $filename =  'uploads/project/' . $model->project_file4 ->baseName . '.' . $model->project_file4 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/project/' . $model->project_file4 ->baseName. $cnt . '.' . $model->project_file4 ->extension ; 
+                        $filename =  'uploads/project/' . $model->project_file4 ->baseName. $cnt . '.' . $model->project_file4 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->project_file4->saveAs($filename);
                     $model->project_file4= $filename;
                 }
-                $model->save();
+                $model->save(false);
                 return $this->redirect(['view', 'id' => $model->project_id]);
             }
 
@@ -145,7 +145,6 @@ class ProjectController extends Controller
      */
     public function actionUpdate($id)
     {
-
         if (!Yii::$app->user->isGuest) {
             $model = $this->findModel($id);
             $old_data = $this->findModel($id);
@@ -154,12 +153,9 @@ class ProjectController extends Controller
             $model->project_file3 = UploadedFile::getInstance($model, 'project_file3');
             $model->project_file4 = UploadedFile::getInstance($model, 'project_file4');
             if ($model->load(Yii::$app->request->post())) {
-
-
                 if (!$model->project_file) {
                     $model->project_file = $old_data->project_file;
                 } else {
-
                     $model->project_file->saveAs('uploads/project/' . $model->project_file->baseName . '.' . $model->project_file->extension);
                     $model->project_file = 'uploads/project/' . $model->project_file->baseName . '.' . $model->project_file->extension;
                 }
@@ -168,7 +164,6 @@ class ProjectController extends Controller
                 if (!$model->project_file2) {
                     $model->project_file2 = $old_data->project_file2;
                 } else {
-
                     $model->project_file2->saveAs('uploads/project/' . $model->project_file2->baseName . '.' . $model->project_file2->extension);
                     $model->project_file2 = 'uploads/project/' . $model->project_file2->baseName . '.' . $model->project_file2->extension;
                 }
@@ -177,7 +172,6 @@ class ProjectController extends Controller
                 if (!$model->project_file3) {
                     $model->project_file3 = $old_data->project_file3;
                 } else {
-
                     $model->project_file3->saveAs('uploads/project/' . $model->project_file3->baseName . '.' . $model->project_file3->extension);
                     $model->project_file3 = 'uploads/project/' . $model->project_file3->baseName . '.' . $model->project_file3->extension;
                 }
@@ -186,7 +180,6 @@ class ProjectController extends Controller
                 if (!$model->project_file4) {
                     $model->project_file4 = $old_data->project_file4;
                 } else {
-
                     $model->project_file4->saveAs('uploads/project/' . $model->project_file4->baseName . '.' . $model->project_file4->extension);
                     $model->project_file4 = 'uploads/project/' . $model->project_file4->baseName . '.' . $model->project_file4->extension;
                 }

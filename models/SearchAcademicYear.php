@@ -46,7 +46,10 @@ class SearchAcademicYear extends AcademicYear
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
+
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['academic_year_id'=>SORT_DESC]],
+
         ]);
 
         $this->load($params);

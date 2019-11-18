@@ -133,7 +133,7 @@ if (Yii::$app->user->identity->username != 'admin') {
             'attribute' => 'roll_no',
             ],
 
-            'student.phone_no',
+          //  'student.phone_no',
             'student.email',
             [
                 'label' => 'Status',

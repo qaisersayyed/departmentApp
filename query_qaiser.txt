@@ -7,3 +7,6 @@ ALTER TABLE `extension_activities` ADD `male` INT NULL AFTER `is_awarded`, ADD `
 ALTER TABLE `extension_activities` ADD `file1` TEXT NULL AFTER `female`, ADD `file2` TEXT NULL AFTER `file1`, ADD `file3` TEXT NULL AFTER `file2`, ADD `file4` TEXT NULL AFTER `file3`;
 ALTER TABLE `internship` ADD `user_id` INT NOT NULL AFTER `description`;
 ALTER TABLE `program` CHANGE `department_id` `department_id` VARCHAR(50) NOT NULL;
+
+-----------18 nov 2019------------
+ALTER TABLE `student` CHANGE `phone_no` `phone_no` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `email` `email` VARCHAR(254) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
