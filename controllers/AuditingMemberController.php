@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
-
 /**
  * AuditingMemberController implements the CRUD actions for AuditingMember model.
  */
@@ -37,17 +36,17 @@ class AuditingMemberController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
-        $searchModel = new SearchAuditingMember();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (!Yii::$app->user->isGuest) {
+            $searchModel = new SearchAuditingMember();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+            return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-        }else{
-        throw new \yii\web\ForbiddenHttpException;
-    }
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
+        }
     }
 
     /**
@@ -58,12 +57,12 @@ class AuditingMemberController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest){
-        return $this->render('view', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        }else{
-        throw new \yii\web\ForbiddenHttpException;
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
 
@@ -75,64 +74,64 @@ class AuditingMemberController extends Controller
     public function actionCreate()
     {
         $model = new AuditingMember();
-        if(!Yii::$app->user->isGuest){
-            if ($model->load(Yii::$app->request->post()) ){
+        if (!Yii::$app->user->isGuest) {
+            if ($model->load(Yii::$app->request->post())) {
                 $model->file1 = UploadedFile::getInstance($model, 'file1');
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
-                if ($model->file1 ) {       
+                if ($model->file1) {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file1->saveAs($filename);
                     $model->file1= $filename;
                 }
-                if ($model->file2 ) {                
+                if ($model->file2) {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file2->saveAs($filename);
                     $model->file2= $filename;
                 }
-                if ($model->file3 ) {                
+                if ($model->file3) {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file3 ->baseName. $cnt . '.' . $model->file3 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file3 ->baseName. $cnt . '.' . $model->file3 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file3->saveAs($filename);
                     $model->file3= $filename;
                 }
-                if ($model->file4) {                
+                if ($model->file4) {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file4 ->baseName. $cnt . '.' . $model->file4 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file4 ->baseName. $cnt . '.' . $model->file4 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file4->saveAs($filename);
                     $model->file4= $filename;
                 }
                 
-	            $model->save();
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->auditing_member_id]);
-                }
+            }
 
-                return $this->render('create', [
+            return $this->render('create', [
                     'model' => $model,
                 ]);
-            }else{
-                throw new \yii\web\ForbiddenHttpException;
-            }
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
+        }
     }
 
     /**
@@ -144,66 +143,62 @@ class AuditingMemberController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $model = $this->findModel($id);
             $old_data= $this->findModel($id);
     
             if ($model->load(Yii::$app->request->post())) {
                 $model->file1 = UploadedFile::getInstance($model, 'file1');
                 
-                if (!$model->file1 ){
+                if (!$model->file1) {
                     $model->file1 = $old_data->file1;
-                    
-                }else{
+                } else {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file1 ->baseName . '.' . $model->file1 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file1 ->baseName. $cnt . '.' . $model->file1 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file1->saveAs($filename);
                     $model->file1= $filename;
                 }
                 $model->file2 = UploadedFile::getInstance($model, 'file2');
-                if (!$model->file2){
+                if (!$model->file2) {
                     $model->file2 = $old_data->file2;
-    
-                }else{
+                } else {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file2 ->baseName . '.' . $model->file2 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file2 ->baseName. $cnt . '.' . $model->file2 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file2->saveAs($filename);
                     $model->file2= $filename;
                 }
                 $model->file3 = UploadedFile::getInstance($model, 'file3');
-                if (!$model->file3){
+                if (!$model->file3) {
                     $model->file3 = $old_data->file3;
-    
-                }else{
+                } else {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file3 ->baseName . '.' . $model->file3 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file3 ->baseName. $cnt . '.' . $model->file3 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file3 ->baseName. $cnt . '.' . $model->file3 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file3->saveAs($filename);
                     $model->file3= $filename;
                 }
                 $model->file4 = UploadedFile::getInstance($model, 'file4');
                 
-                if (!$model->file4){
+                if (!$model->file4) {
                     $model->file4 = $old_data->file4;
-                }else{
-                    
+                } else {
                     $cnt = 1;
                     $filename =  'uploads/auditing-member/' . $model->file4 ->baseName . '.' . $model->file4 ->extension;
                     while (file_exists($filename)) {
-                        $filename =  'uploads/auditing-member/' . $model->file4 ->baseName. $cnt . '.' . $model->file4 ->extension ; 
+                        $filename =  'uploads/auditing-member/' . $model->file4 ->baseName. $cnt . '.' . $model->file4 ->extension ;
                         $cnt++;
-                    }         
+                    }
                     $model->file4->saveAs($filename);
                     $model->file4= $filename;
                 }
@@ -215,8 +210,8 @@ class AuditingMemberController extends Controller
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }else{
-        throw new \yii\web\ForbiddenHttpException;
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
 
@@ -229,29 +224,30 @@ class AuditingMemberController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest){
+        if (!Yii::$app->user->isGuest) {
             $model = $this->findModel($id);
             $file1 = $model->file1;
             $file2 = $model->file2;
             $file3 = $model->file3;
             $file4 = $model->file4;
 
-            if(file_exists($file1)){
+            
+            if (file_exists($file1)) {
                 unlink(Yii::$app->basePath. '/web/'. $model->file1);
             }
-            if(file_exists($file2)){
+            if (file_exists($file2)) {
                 unlink(Yii::$app->basePath. '/web/'. $model->file2);
             }
-            if(file_exists($file3)){
+            if (file_exists($file3)) {
                 unlink(Yii::$app->basePath. '/web/'. $model->file3);
             }
-            if(file_exists($file4)){
+            if (file_exists($file4)) {
                 unlink(Yii::$app->basePath. '/web/'. $model->file4);
             }
             $this->findModel($id)->delete();
             return $this->redirect(['index']);
-         }else{
-        throw new \yii\web\ForbiddenHttpException;
+        } else {
+            throw new \yii\web\ForbiddenHttpException;
         }
     }
 
