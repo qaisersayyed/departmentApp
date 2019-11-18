@@ -62,10 +62,10 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
 
                     <div class="menu_section">
                         <h3>General</h3>
-                        <?php 
-                            if(Yii::$app->user->identity->username == 'admin'){
+                        <?php
+                            if (Yii::$app->user->identity->username == 'admin') {
                                 $visibility = true;
-                            }else{
+                            } else {
                                 $visibility = false;
                             }
                         ?>
@@ -108,7 +108,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ['label' => 'Extension Activities', 'url' => ['/extension-activities/index']],
                                             ['label' => 'Other Event', 'url' => ['/event/index']],
                                             ['label' => 'BOS', 'url' => ['/bos/index']],
-                                            ['label' => 'Revision', 'url' => ['/revision/index']],
+                                          //  ['label' => 'Revision', 'url' => ['/revision/index']],
                                         ],
                                     ],
                                     [

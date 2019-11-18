@@ -47,6 +47,7 @@ class SearchExtensionActivities extends ExtensionActivities
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['extension_activities_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
