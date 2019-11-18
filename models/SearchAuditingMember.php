@@ -52,6 +52,7 @@ class SearchAuditingMember extends AuditingMember
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['auditing_member_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
