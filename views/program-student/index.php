@@ -65,26 +65,17 @@ if (Yii::$app->user->identity->username != 'admin') {
                 <span class="glyphicon glyphicon-plus"></span> Add Alumni</a>
 
             <!-- <a Style="float:right;" href="index.php?r=program-student/attendance" class="btn btn-success">
-                <span class="glyphicon glyphicon glyphicon-list-alt"></span> Attendance Sheet</a>
-            </div> -->
+                <span class="glyphicon glyphicon glyphicon-list-alt"></span> Attendance Sheet</a> -->
+
+            <a Style="float:right;" href="index.php?r=program-student/import" class="btn btn-success">
+                <span class="glyphicon glyphicon glyphicon-list-alt"></span> Import</a>
+            </div>
+            </div>
        
         <?php
         if (Yii::$app->user->identity->username != 'admin') {
             ?>
-        <div class="col-md-12    text-left">
-        <form Style="padding-right: 150px;" action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
-        <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
-        <div class="col-md-3">
-            <label>Choose Excel File</label><br> <input type="file" name="file" id="file" accept=".csv">
-            <br>
-        </div>
-        <div class="col-md-3">
-            <br>
-            <button type="submit" id="submit" name="import" class="btn btn-success">Import</button>
-        </div>
-
-    </form>
-    </div>
+        
         <?php
         } ActiveForm::end(); ?>
  </div><br>

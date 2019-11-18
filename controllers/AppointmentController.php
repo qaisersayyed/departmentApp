@@ -79,7 +79,9 @@ class AppointmentController extends Controller
 
 
             if ($model->load(Yii::$app->request->post()) && $faculty->load(Yii::$app->request->post())) {
+                $faculty->user_id = Yii::$app->user->id;
                 $faculty->save();
+                $model->user_id = Yii::$app->user->id;
                 $model->faculty_id = $faculty->faculty_id;
                 $model->save();
            

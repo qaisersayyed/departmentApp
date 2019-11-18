@@ -47,6 +47,7 @@ class SearchSubjectExpert extends SubjectExpert
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['subject_expert_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -71,7 +72,7 @@ class SearchSubjectExpert extends SubjectExpert
         $query->andFilterWhere(['like', 'academic_year.year', $this->academic_year_id]);
 
         if(yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+            $query->andFilterWhere(['subject_expert.user_id' => Yii::$app->user->id]);
         }
         return $dataProvider;
     }

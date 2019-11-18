@@ -17,3 +17,7 @@ ALTER TABLE `bos` ADD `file2` TEXT NULL AFTER `minutes`, ADD `file3` TEXT NULL A
 ALTER TABLE `bos` CHANGE `minutes` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
 
 ALTER TABLE `bos` CHANGE `file1` `file1` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+
+ALTER TABLE `faculty` ADD `user_id` INT NOT NULL AFTER `status`;
+
+ALTER TABLE `appointment` ADD `user_id` INT NOT NULL AFTER `status`;

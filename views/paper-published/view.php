@@ -35,14 +35,23 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Indexed in UGC Care List',
                 'attribute' => 'dgc_flag', 
-                'value' => $model->dgc_flag == 0 ? 'false' : 'true',   
+                'value' => $model->dgc_flag == 0 ? 'False' : 'True',   
             ],
+            [
+                'label' => 'UGC Number',
+                'attribute' => 'ugc_no',    
+            ],
+            [
+                'label' => 'H Index of Author',
+                'attribute' => 'h_index_author',    
+            ],
+
             [
                 'label' => 'Group',
                 'attribute' => 'group',    
             ],
             [
-                'label' => 'ISBN',
+                'label' => 'ISBN/ISSN',
                 'attribute' => 'isbn',    
             ],
             [
@@ -61,7 +70,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Institutional Affiliation',
                 'attribute' => 'institute_affiliation',    
             ],
-
+            [
+                'label' => 'Orcid Number',
+                'attribute' => 'orcid',    
+            ],
+            
         
             // 'co_auther',
             'description'

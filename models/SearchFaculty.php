@@ -18,7 +18,7 @@ class SearchFaculty extends Faculty
     public function rules()
     {
         return [
-            [['faculty_id'], 'integer'],
+            [['faculty_id','user_id'], 'integer'],
             [['name', 'email', 'phone_no', 'address', 'employee_id', 'created_at', 'updated_at', 'status'], 'safe'],
         ];
     }
@@ -72,6 +72,10 @@ class SearchFaculty extends Faculty
             ->andFilterWhere(['like', 'employee_id', $this->employee_id])
             ->andFilterWhere(['like', 'status', $this->status]);
 
-        return $dataProvider;
+        
+            if (Yii::$app->user->identity->username != 'admin') {
+                $query->andFilterWhere(['user_id' => Yii::$app->user->id ]);
+            }
+            return $dataProvider;
     }
 }

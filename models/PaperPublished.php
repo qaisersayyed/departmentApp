@@ -33,7 +33,7 @@ class PaperPublished extends \yii\db\ActiveRecord
     {
         return [
             [['paper_title', 'journal_name', 'date','faculty'], 'required'],
-            [['description','group','isbn','doi_link','h_index_journal','h_index_author','institute_affiliation'], 'string'],
+            [['description','group','isbn','doi_link','h_index_journal','h_index_author','institute_affiliation','ugc_no','orcid'], 'string'],
             [['file1','file2','file3','file4'],'file'],
             [['created_at', 'updated_at'], 'safe'],
             [['dgc_flag'], 'boolean'],
@@ -56,7 +56,9 @@ class PaperPublished extends \yii\db\ActiveRecord
             'journal_name' => 'Journal Name',
             'date' => 'Date',
             'faculty' => 'Author',
-            'isbn' => 'ISBN',
+            'isbn' => 'ISBN/ISSN',
+            'ugc_no' => 'UGC Number',
+            'orcid' => 'Orcid Number',
             'doi_link' => 'Doi Link',
             'h_index_journal' => 'H Index of Journal',
             'h_index_author' => 'H Index of Author',

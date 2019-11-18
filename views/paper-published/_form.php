@@ -41,9 +41,13 @@ use app\models\Faculty;
         array('A'=>'Group A', 'B'=>'Group B','C'=>'Group C','D'=>'Group D',),
         ['prompt'=>'select ']
     )  ?>
+
+    <?= $form->field($model, 'ugc_no')->textInput(['maxlength' => true]) ?>
 </div>
 
 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+<?= $form->field($model, 'orcid')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'isbn')->textInput(['maxlength' => true]) ?>
 
@@ -87,6 +91,7 @@ use app\models\Faculty;
             $('#dropdown').slideToggle();
         });
     });
+
         
 
 JS;
