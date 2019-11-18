@@ -116,11 +116,9 @@ class ProgramStudentController extends Controller
     public function actionImport()
     {
         if (!Yii::$app->user->isGuest) {
-
             if (!Yii::$app->user->isGuest) {
                 $modal= new Upload();
                 if ($modal->load(Yii::$app->request->post())) {
-
                     $aid = $modal->aid;
                     $pid = $modal->pid;
                     $modal->file = UploadedFile::getInstance($modal, 'file');
@@ -128,18 +126,19 @@ class ProgramStudentController extends Controller
                     $filename =  'uploads/temp/' . $modal->file ->baseName . '.' . $modal->file ->extension;
                     $modal->file->saveAs($filename);
                     $modal->file= $filename;
-
+                    $id = Yii::$app->user->id;
                     if (!empty($filename)) {
                         $file1 = fopen($filename, "r");
 
                         $flag = true;
+
                         while (($emapData = fgetcsv($file1, 10000, ",")) !== false) {
                             if ($flag) {
                                 $flag = false;
                                 continue;
                             }
-                            $sql = "INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`,`email`) VALUES (NULL,'$emapData[2]','$emapData[3]','','')";
-                            $sql1 = "INSERT INTO `program_student` (`program_student_id`, `program_id`, `student_id`, `created_at`, `updated_at`, `status`, `academic_year_id`) VALUES (NULL, '$pid', (SELECT `student_id` FROM `student` WHERE `roll_no` = '$emapData[2]' ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', '$aid' )";
+                            $sql = "INSERT INTO `student` (`student_id`, `name`, `roll_no`, `phone_no`,`email`) VALUES (NULL,'$emapData[1]','$emapData[2]','','')";
+                            $sql1 = "INSERT INTO `program_student` (`program_student_id`, `program_id`, `student_id`, `created_at`, `updated_at`, `status`, `academic_year_id`, `user_id`) VALUES (NULL, '$pid', (SELECT `student_id` FROM `student` WHERE `roll_no` = '$emapData[2]' ), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', '$aid','$id' )";
                         
                             Yii::$app->db->createCommand($sql)->execute();
                             Yii::$app->db->createCommand($sql1)->execute();
@@ -156,12 +155,9 @@ class ProgramStudentController extends Controller
                                                 alert(\"CSV File has been successfully Imported.\");
                                                 window.location.replace('index.php?r=program-student');
                                             </script>";
-
-
-                        
                     }
                 } else {
-                    return $this->render('import',[
+                    return $this->render('import', [
                         'modal' =>$modal,
                     ]);
                 }

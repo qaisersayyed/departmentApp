@@ -317,7 +317,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-              <a href="http://www.fossclubgoa.com/chowgulefossclub/"> Designed and Developed by Chowgule FOSS Club</a>
+              <a href="index.php?r=site/about"> Designed and Developed by Chowgule FOSS Club</a>
             </div>
             <div class="clearfix"></div>
         </footer>
