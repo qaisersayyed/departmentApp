@@ -47,6 +47,8 @@ class SearchAgency extends Agency
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['agency_id'=>SORT_DESC]],
+
         ]);
 
         $this->load($params);

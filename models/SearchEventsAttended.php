@@ -47,6 +47,7 @@ class SearchEventsAttended extends EventsAttended
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['event_attended_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

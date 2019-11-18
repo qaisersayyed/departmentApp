@@ -76,7 +76,7 @@ class SearchAuditingMember extends AuditingMember
             'updated_at' => $this->updated_at,
         ]);
 
-        if($this->to != "" && $this->from != ""){
+        if ($this->to != "" && $this->from != "") {
             $query->andFilterWhere(['between', 'start_date', $this->from, $this->to]);
         }
 
@@ -89,8 +89,8 @@ class SearchAuditingMember extends AuditingMember
             ->andFilterWhere(['like', 'start_date', $this->start_date])
             ->andFilterWhere(['like', 'end_date', $this->end_date]);
 
-        if(Yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+        if (Yii::$app->user->identity->username != 'admin') {
+            $query->andFilterWhere(['auditing_member.user_id' => Yii::$app->user->id]);
         }
 
         return $dataProvider;
