@@ -86,7 +86,7 @@ class SearchExaminer extends Examiner
         $query->andFilterWhere(['like', 'faculty.name', $this->faculty_id]);
 
         if(Yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+            $query->andFilterWhere(['examiner.user_id' => Yii::$app->user->id]);
         }
 
         return $dataProvider;

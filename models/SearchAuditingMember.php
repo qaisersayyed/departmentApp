@@ -90,7 +90,7 @@ class SearchAuditingMember extends AuditingMember
             ->andFilterWhere(['like', 'end_date', $this->end_date]);
 
         if(Yii::$app->user->identity->username != 'admin'){
-            $query->andFilterWhere(['user_id' => Yii::$app->user->id]);
+            $query->andFilterWhere(['auditing_member.user_id' => Yii::$app->user->id]);
         }
 
         return $dataProvider;
