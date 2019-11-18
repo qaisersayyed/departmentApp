@@ -102,6 +102,8 @@ class UsersController extends Controller
             $model = $this->findModel($id);
     
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                echo $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->user_id]);
             }
     

@@ -230,14 +230,29 @@ class PaperPresentedController extends Controller
     public function actionDelete($id)
     {
         if(!Yii::$app->user->isGuest){
-            $model =PaperPresented::findOne($id);
-            $model->status = 0;
-            $model->save(false);
+            $model = $this->findModel($id);
+            $paper_presented_file = $model->paper_presented_file;
+            $paper_presented_file2 = $model->paper_presented_file2;
+            $paper_presented_file3 = $model->paper_presented_file3;
+            $paper_presented_file4 = $model->paper_presented_file4;
+
+            if(file_exists($paper_presented_file)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file1);
+            }
+            if(file_exists($paper_presented_file2)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file2);
+            }
+            if(file_exists($paper_presented_file3)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file3);
+            }
+            if(file_exists($paper_presented_file4)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file4);
+            }
+            $this->findModel($id)->delete();
             return $this->redirect(['index']);
-        }else{
-            throw new \yii\web\ForbiddenHttpException; 
+         }else{
+        throw new \yii\web\ForbiddenHttpException;
         }
-       
     }
 
     /**

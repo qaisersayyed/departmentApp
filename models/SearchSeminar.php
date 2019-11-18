@@ -51,6 +51,7 @@ class SearchSeminar extends Seminar
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['seminar_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

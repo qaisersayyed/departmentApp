@@ -48,6 +48,7 @@ class SearchSeminarAttended extends SeminarAttended
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['seminar_attended_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
