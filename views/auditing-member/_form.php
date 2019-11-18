@@ -27,7 +27,8 @@ use app\models\AcademicYear;
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'clearBtn' => true,
             ]
     ]);?>
      <?= $form->field($model, 'end_date')->widget(
@@ -37,7 +38,8 @@ use app\models\AcademicYear;
             // modify template for custom rendering
             'clientOptions' => [
                 'autoclose' => true,
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'clearBtn' => true,
             ]
     ]);?>
 

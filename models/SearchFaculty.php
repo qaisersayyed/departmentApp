@@ -47,6 +47,7 @@ class SearchFaculty extends Faculty
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['faculty_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

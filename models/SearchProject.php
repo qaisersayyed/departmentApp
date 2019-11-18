@@ -50,6 +50,7 @@ class SearchProject extends Project
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['project_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

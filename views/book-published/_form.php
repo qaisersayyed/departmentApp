@@ -27,6 +27,7 @@ use dosamigos\datepicker\DatePicker;
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
                 'minViewMode' => 'months',
+                'clearBtn' => true,
             ]
     ]);?>
 

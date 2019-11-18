@@ -22,7 +22,8 @@ use dosamigos\datepicker\DatePicker;
         'attribute' => 'syllabus_date',
         'clientOptions' => [
             'autoclose' => false,
-            'format' => 'yyyy-mm-dd'
+            'format' => 'yyyy-mm-dd',
+            'clearBtn' => true,
         ]
     ]); ?>
     <?= $form->field($model, 'program_id')->dropDownList(
