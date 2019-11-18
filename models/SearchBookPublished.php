@@ -50,6 +50,7 @@ class SearchBookPublished extends BookPublished
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['book_published_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -67,8 +68,6 @@ class SearchBookPublished extends BookPublished
         // grid filtering conditions
         $query->andFilterWhere([
             'book_published_id' => $this->book_published_id,
-            'date' => $this->date,
-            'student_involved' => $this->student_involved,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

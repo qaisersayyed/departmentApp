@@ -50,6 +50,7 @@ class SearchExaminer extends Examiner
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['examiner_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);

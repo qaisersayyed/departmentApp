@@ -62,7 +62,7 @@ class BookPublished extends \yii\db\ActiveRecord
             'date' => 'Year / Month',
             'publisher' => 'Publisher',
             'isbn' => 'Isbn',
-            'student_involved' => 'Student Involved',
+            'student_involved' => 'Were students involved ?',
             'student_name' => 'Student Name',
             'description' => 'Description',
             'created_at' => 'Created At',

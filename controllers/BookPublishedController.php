@@ -38,6 +38,10 @@ class BookPublishedController extends Controller
     {   
         if(!Yii::$app->user->isGuest){
             $searchModel = new SearchBookPublished();
+            if (Yii::$app->request->get('from') && Yii::$app->request->get('to')) {
+                $searchModel->to = Yii::$app->request->get('to');
+                $searchModel->from = Yii::$app->request->get('from');
+            }
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     
             return $this->render('index', [
@@ -229,11 +233,28 @@ class BookPublishedController extends Controller
     public function actionDelete($id)
     {
         if(!Yii::$app->user->isGuest){
+            $model = $this->findModel($id);
+            $file1 = $model->file1;
+            $file2 = $model->file2;
+            $file3 = $model->file3;
+            $file4 = $model->file4;
+
+            if(file_exists($file1)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file1);
+            }
+            if(file_exists($file2)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file2);
+            }
+            if(file_exists($file3)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file3);
+            }
+            if(file_exists($file4)){
+                unlink(Yii::$app->basePath. '/web/'. $model->file4);
+            }
             $this->findModel($id)->delete();
-    
             return $this->redirect(['index']);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
+         }else{
+        throw new \yii\web\ForbiddenHttpException;
         }
     }
 

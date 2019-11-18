@@ -50,6 +50,7 @@ class SearchPaperPresented extends PaperPresented
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['paper_presented_id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
